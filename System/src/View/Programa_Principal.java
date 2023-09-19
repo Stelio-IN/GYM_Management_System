@@ -49,6 +49,7 @@ public class Programa_Principal extends Application {
         if (alerta.showAndWait().get() == ButtonType.OK) {
 
             System.out.println("Exit exito");
+            System.out.println("bla bla bla");
             stage.close();
         }
     }
