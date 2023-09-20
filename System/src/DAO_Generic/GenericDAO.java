@@ -21,12 +21,12 @@ public class GenericDAO {
     private EntityManager gerente;
 
     public GenericDAO() {
-        fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
         gerente = fabrica.createEntityManager();
     }
 
     public void add(Object obj) {
-        fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
         gerente = fabrica.createEntityManager();
         try {
             gerente.getTransaction().begin();
@@ -51,7 +51,7 @@ public class GenericDAO {
         EntityManager gerente = null;
 
         try {
-            fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+            fabrica = Persistence.createEntityManagerFactory("SystemPU");
             gerente = fabrica.createEntityManager();
 
             // Consulta para listar todos os objetos da classe especificada
@@ -97,7 +97,7 @@ public class GenericDAO {
      */
     public void removerLogico(Class<?> classe, Long id, Object novosDados) {
         try {
-            fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+            fabrica = Persistence.createEntityManagerFactory("SystemPU");
             gerente = fabrica.createEntityManager();
             gerente.getTransaction().begin();
 
@@ -126,7 +126,7 @@ public class GenericDAO {
      */
     public void Atualizar(Class<?> classe, Long id, Object novosDados) {
         try {
-            fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+            fabrica = Persistence.createEntityManagerFactory("SystemPU");
             gerente = fabrica.createEntityManager();
             gerente.getTransaction().begin();
 
@@ -156,7 +156,7 @@ public class GenericDAO {
      */
     public void removeFisico(Class<?> classe, Long id) {
         try {
-            fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+            fabrica = Persistence.createEntityManagerFactory("SystemPU");
             gerente = fabrica.createEntityManager();
             gerente.getTransaction().begin();
 
@@ -178,7 +178,7 @@ public class GenericDAO {
     caso tenha varias tabelas para ter acesso
     */
     public <T> T buscarPorEmail(Class<T> entityClass, String email) {
-    EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+    EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("SystemPU");
     EntityManager gerente = fabrica.createEntityManager();
     
     try {
@@ -202,7 +202,7 @@ public class GenericDAO {
     para tabela pessoa
     */
 //    public Object logarEmail(String email) {
-//        fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
+//        fabrica = Persistence.createEntityManagerFactory("SystemPU");
 //        gerente = fabrica.createEntityManager();
 //        List<Pessoa> pessoas = gerente.createNamedQuery("Pessoa.findByEmail", Pessoa.class).setParameter("email", email).getResultList();
 //        if (!pessoas.isEmpty()) {

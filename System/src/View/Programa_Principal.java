@@ -4,6 +4,8 @@
  */
 package View;
 
+import DAO_Generic.GenericDAO;
+import DTO.Administrador;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -38,6 +40,13 @@ public class Programa_Principal extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Administrador admin = new Administrador();
+        admin.setNome("gym");
+        admin.setEmail("gym@gmail.com");
+        admin.setPassword("12345");
+        GenericDAO obj = new GenericDAO();
+        obj.add(admin);
+        
         launch(args);
     }
 
