@@ -50,6 +50,7 @@ public class Programa_Principal extends Application {
 
             System.out.println("Exit exito");
             System.out.println("bla bla bla");
+            System.out.println("De volta ksksk");
             stage.close();
         }
     }
