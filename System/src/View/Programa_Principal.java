@@ -23,7 +23,7 @@ public class Programa_Principal extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("Inicio.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Tela_Login.fxml"));
 //        Parent root = FXMLLoader.load(getClass().getResource("TelaPrincipal.fxml"));
 
         Scene scene = new Scene(root);
@@ -40,12 +40,12 @@ public class Programa_Principal extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Administrador admin = new Administrador();
-        admin.setNome("gymm");
-        admin.setEmail("gymm@gmail.com");
-        admin.setPassword("123456");
-        GenericDAO obj = new GenericDAO();
-        obj.add(admin);
+//        Administrador admin = new Administrador();
+//        admin.setNome("gymm");
+//        admin.setEmail("gymm@gmail.com");
+//        admin.setPassword("123456");
+//        GenericDAO obj = new GenericDAO();
+//        obj.add(admin);
         
         launch(args);
     }

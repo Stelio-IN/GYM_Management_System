@@ -4,6 +4,7 @@
  */
 package DAO_Generic;
 
+import DTO.Administrador;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -201,17 +202,18 @@ public class GenericDAO {
     /*
     para tabela pessoa
     */
-//    public Object logarEmail(String email) {
-//        fabrica = Persistence.createEntityManagerFactory("SystemPU");
-//        gerente = fabrica.createEntityManager();
-//        List<Pessoa> pessoas = gerente.createNamedQuery("Pessoa.findByEmail", Pessoa.class).setParameter("email", email).getResultList();
-//        if (!pessoas.isEmpty()) {
-//            return pessoas.get(0);
-//        } else {
-//            return null;
-//        }
-//
-//    }
+    //Usando para teste apenas Admin
+    public Object logarEmail(String email) {
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+        gerente = fabrica.createEntityManager();
+        List<Administrador> admin = gerente.createNamedQuery("Administrador.findByEmail", Administrador.class).setParameter("email", email).getResultList();
+        if (!admin.isEmpty()) {
+            return admin.get(0);
+        } else {
+            return null;
+        }
+
+    }
     
     /**
      * Metodos mais especificos caso haja algum problema
