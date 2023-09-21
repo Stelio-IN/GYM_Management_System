@@ -20,6 +20,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -38,11 +39,13 @@ public class Tela_LoginController implements Initializable {
     private TextField txtPassword;
 
     @FXML
-    private Stage stage;
-    @FXML
-    private Scene scene;
-    @FXML
-    private Parent root;
+    public void Tela_Principal(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/View/Inicio.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
     void btnLogar(ActionEvent event) {
@@ -64,17 +67,9 @@ public class Tela_LoginController implements Initializable {
                 e.printStackTrace(); // Trate ou registre erros adequadamente
             }
         } else {
-            // Exiba uma mensagem de erro ao usuário, informando que as credenciais são inválidas.
+            JOptionPane.showMessageDialog(null,"Credencias erradas");
+         
         }
-    }
-
-    @FXML
-    public void Tela_Principal(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("Inicio.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
     }
 
     @Override
