@@ -41,9 +41,9 @@ public class Programa_Principal extends Application {
      */
     public static void main(String[] args) {
         Administrador admin = new Administrador();
-        admin.setNome("gym");
-        admin.setEmail("gym@gmail.com");
-        admin.setPassword("12345");
+        admin.setNome("gymm");
+        admin.setEmail("gymm@gmail.com");
+        admin.setPassword("123456");
         GenericDAO obj = new GenericDAO();
         obj.add(admin);
         
