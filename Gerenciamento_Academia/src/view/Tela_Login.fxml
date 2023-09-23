@@ -9,6 +9,30 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Login_Controller">
     <stylesheets>
-        <URL value="@/css/tela_login.css"/>
+        <URL value="@/css/tela_login.css" />
     </stylesheets>
+   <children>
+      <AnchorPane prefHeight="401.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="22.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo1.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="txtEmail" layoutX="300.0" layoutY="188.0" prefHeight="25.0" prefWidth="189.0" promptText="email" style="-fx-background-color: transparent; -fx-border-color: #000000;" />
+      <Button layoutX="441.0" layoutY="292.0" mnemonicParsing="false" onAction="#btnLogar" style="-fx-background-color: aqua; -fx-border-color: black;" text="Entrar" textFill="#364a3d" />
+      <Text layoutX="344.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela Login" wrappingWidth="117.3046875">
+         <font>
+            <Font name="Bodoni MT Black" size="20.0" />
+         </font>
+      </Text>
+      <ImageView fitHeight="84.0" fitWidth="77.0" layoutX="364.0" layoutY="43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/logo1_4.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="txtPassword" layoutX="300.0" layoutY="237.0" prefHeight="25.0" prefWidth="189.0" promptText="password" style="-fx-background-color: transparent; -fx-border-color: #000000;" />
+   </children>
 </AnchorPane>
