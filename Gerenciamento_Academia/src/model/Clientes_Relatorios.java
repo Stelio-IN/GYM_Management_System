@@ -4,10 +4,15 @@
  */
 package model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author steli
  */
-public class Clientes_Relatorios {
+
+public class Clientes_Relatorios implements Serializable{
+   
+
     
-}
+    }

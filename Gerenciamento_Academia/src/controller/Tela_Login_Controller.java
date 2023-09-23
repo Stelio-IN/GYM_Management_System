@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Administrador;
 
+
 /**
  * FXML Controller class
  *
@@ -68,7 +69,7 @@ public class Tela_Login_Controller implements Initializable {
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }
