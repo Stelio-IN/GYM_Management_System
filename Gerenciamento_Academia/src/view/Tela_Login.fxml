@@ -9,7 +9,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Login_Controller">
     <stylesheets>
-        <URL value="@/css/tela_login.css" />
+        <URL value="@/css/tela_login.css"/>
     </stylesheets>
    <children>
       <AnchorPane prefHeight="401.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;">
