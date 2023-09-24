@@ -35,31 +35,13 @@ public abstract class Pessoa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "id")
     protected Long id;
-
-    @Basic(optional = false)
-    @Column(name = "nome")
     protected String nome;
-
-    @Basic(optional = false)
-    @Column(name = "genero")
     protected String genero;
-    
-    @Basic(optional = false)
-    @Column(name = "codigo", unique = true)
     protected String codigo;
-    
     protected String nacionalidade;
-    protected String naturalidade;
-    
-    protected String email;
-    
-    @Basic(optional = false)
-   // @Column(name = "telefone")
-   // @UniqueConstraint(columnNames = "telefone")
-    @Column(name = "telefone", unique = true)
-    
+    protected String naturalidade; 
+    protected String email;   
     protected String telefone;
     
     protected String telefone_Alternativo;
@@ -67,10 +49,7 @@ public abstract class Pessoa implements Serializable {
     @OneToOne(cascade = CascadeType.ALL) // Isso indica uma associação "um para um"
     @JoinColumn(name = "endereco_id") // Isso cria uma coluna "endereco_id" na tabela Pessoa
     protected Endereco endereco;
-    
-    @Column(name = "bilhete_Identificacao", unique = true)
-    protected String bilhete_Identificacao;
-    
+    protected String bilhete_Identificacao; 
     protected String estado_Civil;
     protected String imagem;
     protected String password;

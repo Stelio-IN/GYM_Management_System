@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
@@ -20,31 +21,20 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Administrador.findByEmail", query = "SELECT a FROM Administrador a WHERE a.email = :email"),})
+    @NamedQuery(name = "Administrador.findByEmail", query = "SELECT a FROM Administrador a WHERE a.email = :email"),
+     @NamedQuery(name = "Administrador.findByCodigo", query = "SELECT a FROM Administrador a WHERE a.codigo = :email")})
 public class Administrador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Basic(optional = false)
-    @Column(name = "email", unique = true)
     private String nome;
-
-    @Basic(optional = false)
-    @Column(name = "codigo", unique = true)
-    private String codigo;
-    
-    @Basic(optional = false)
-    @Column(name = "email", unique = true)
+    private String codigo; 
     private String email;
-
-    @Basic(optional = false)
-    @Column(name = "password")
     private String password;
 
-    @Column(name = "imagem")
-    private String imagem;
+    @Lob
+    private byte[] imagem;
 
     public Long getId() {
         return id;
@@ -86,14 +76,17 @@ public class Administrador implements Serializable {
         this.password = password;
     }
 
-    public String getImagem() {
+    public byte[] getImagem() {
         return imagem;
     }
 
-    public void setImagem(String imagem) {
+    public void setImagem(byte[] imagem) {
         this.imagem = imagem;
     }
 
-    
+    @Override
+    public String toString() {
+        return "Administrador{" + "id=" + id + ", nome=" + nome + ", codigo=" + codigo + ", email=" + email + ", password=" + password + ", imagem=" + imagem + '}';
+    }
 
 }

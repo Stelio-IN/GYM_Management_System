@@ -20,7 +20,8 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Cadastrar_Cliente.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Cadastrar_Cliente.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -41,8 +42,7 @@ public class App extends Application {
         if (alerta.showAndWait().get() == ButtonType.OK) {
 
             System.out.println("Exit exito");
-            System.out.println("bla bla bla");
-            System.out.println("De volta ksksk");
+  
             stage.close();
         }
     }

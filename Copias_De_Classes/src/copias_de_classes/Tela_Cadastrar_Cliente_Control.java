@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
  */
-package controller;
+package copias_de_classes;
 
 import java.io.ByteArrayInputStream;
 import java.io.File;
@@ -41,7 +41,7 @@ import model.Administrador;
  *
  * @author steli
  */
-public class Tela_Cadastrar_Cliente_Controller implements Initializable {
+public class Tela_Cadastrar_Cliente_Control implements Initializable {
 
     @FXML
     private ComboBox<String> comboBoxDesporto;
@@ -172,10 +172,80 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 //        System.out.println(pegarEsporte.getText());
 //    }
     @FXML
+    private TextField txtCodigo;
+    @FXML
     private TextField txtEmail;
 
     @FXML
     private TextField txtNome;
- 
+
+    @FXML
+    private TextField txtPassword;
+
+ /*   @FXML
+    void cadastrar(ActionEvent event) throws IOException {
+//        Administrador admi = new Administrador();
+//        admi.setCodigo(txtCodigo.getText());
+//        admi.setEmail(txtEmail.getText());
+//        admi.setNome(txtNome.getText());
+//        admi.setPassword(txtPassword.getText());
+//
+//        // Verifique se o caminho do arquivo não é nulo ou vazio
+//        if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
+//            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+//            Path imagePath = Paths.get(caminhoDoArquivo);
+//            byte[] imagemBytes = Files.readAllBytes(imagePath);
+//            admi.setImagem(imagemBytes);
+//        } else {
+//            System.out.println("Nenhum arquivo de imagem selecionado.");
+//        }
+
+        GenericDAO dao = new GenericDAO();
+        //  dao.add(admi);
+
+        // System.out.println(admi);
+        System.out.println("IN");
+
+        Administrador administrador = (Administrador) dao.logarEmail("admin");
+
+        if (administrador != null && administrador.getImagem() != null) {
+            // Converta o array de bytes em uma Image
+            byte[] imagemBytes = administrador.getImagem();
+            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+            // Defina a imagem no ImageView
+            imageCamera.setImage(imagem);
+
+            // Adicione o ImageView a um pane, painel, ou outro local em sua interface gráfica para exibi-lo
+            // Exemplo: seuPainel.getChildren().add(imageView);
+        } else {
+            // Não foi encontrada imagem ou a imagem é nula
+            // Você pode definir uma imagem padrão ou exibir uma mensagem de ausência de imagem
+        }
+    }
+*/
+     @FXML
+    void cadastrar(ActionEvent event)  {
+           GenericDAO dao = new GenericDAO();
+         Administrador administrador = (Administrador) dao.logarEmail("admin");
+
+        if (administrador != null && administrador.getImagem() != null) {
+            // Converta o array de bytes em uma Image
+            byte[] imagemBytes = administrador.getImagem();
+            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+            // Defina a imagem no ImageView
+            imageCamera.setImage(imagem);
+System.out.println("Encontrado");
+            // Adicione o ImageView a um pane, painel, ou outro local em sua interface gráfica para exibi-lo
+            // Exemplo: seuPainel.getChildren().add(imageView);
+        } else {
+            // Não foi encontrada imagem ou a imagem é nula
+            // Você pode definir uma imagem padrão ou exibir uma mensagem de ausência de imagem
+            System.out.println("Nao Encontrado");
+
+        }
+    
+    }
 
 }

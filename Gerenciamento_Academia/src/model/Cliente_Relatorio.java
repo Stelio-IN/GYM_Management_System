@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author steli
  */
 
-public class Clientes_Relatorios implements Serializable{
+public class Cliente_Relatorio implements Serializable{
    
 
     
