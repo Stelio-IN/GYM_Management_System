@@ -18,8 +18,7 @@ import javax.persistence.Id;
 @Entity
 public class Plano_de_Associacao implements Serializable{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
+    @GeneratedValue(strategy = GenerationType.IDENTITY)   
     private int id;
     private int duracao;
     private String nome;

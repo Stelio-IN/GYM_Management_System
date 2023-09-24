@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * @author steli
  */
 @Entity
-public class Pagamentos_Mensalidades implements Serializable{
+public class Pagamento_Mensalidade implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 

@@ -5,76 +5,60 @@
 package model;
 
 import java.io.Serializable;
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 /**
  *
  * @author steli
  */
 @Entity
-@Table(name = "pessoa")
-@NamedQueries({
-    @NamedQuery(name = "Pessoa.findAll", query = "SELECT p FROM Pessoa p"),
-    @NamedQuery(name = "Pessoa.findById", query = "SELECT p FROM Pessoa p WHERE p.id = :id"),
-    @NamedQuery(name = "Pessoa.findByNome", query = "SELECT p FROM Pessoa p WHERE p.nome = :nome"),
-    @NamedQuery(name = "Pessoa.findByEmail", query = "SELECT p FROM Pessoa p WHERE p.email = :email")})
+public class Cliente extends Pessoa implements Serializable {
 
-public abstract class Pessoa implements Serializable {
+    private String contato_emergencia;
+    private String data_inscricao;
+    private Double altura;
+    private Double peso;
+    private Plano_de_Associacao plano_de_associacao;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    protected Long id;
+    public String getContato_emergencia() {
+        return contato_emergencia;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "nome")
-    protected String nome;
+    public void setContato_emergencia(String contato_emergencia) {
+        this.contato_emergencia = contato_emergencia;
+    }
 
-    @Basic(optional = false)
-    @Column(name = "genero")
-    protected String genero;
-    
-    @Basic(optional = false)
-    @Column(name = "codigo", unique = true)
-    protected String codigo;
-    
-    protected String nacionalidade;
-    protected String naturalidade;
-    
-    protected String email;
-    
-    @Basic(optional = false)
-   // @Column(name = "telefone")
-   // @UniqueConstraint(columnNames = "telefone")
-    @Column(name = "telefone", unique = true)
-    
-    protected String telefone;
-    
-    protected String telefone_Alternativo;
+    public String getData_inscricao() {
+        return data_inscricao;
+    }
 
-    @OneToOne(cascade = CascadeType.ALL) // Isso indica uma associação "um para um"
-    @JoinColumn(name = "endereco_id") // Isso cria uma coluna "endereco_id" na tabela Pessoa
-    protected Endereco endereco;
-    
-    @Column(name = "bilhete_Identificacao", unique = true)
-    protected String bilhete_Identificacao;
-    
-    protected String estado_Civil;
-    protected String imagem;
-    protected String password;
-    protected boolean isAtivo;
+    public void setData_inscricao(String data_inscricao) {
+        this.data_inscricao = data_inscricao;
+    }
+
+    public Double getAltura() {
+        return altura;
+    }
+
+    public void setAltura(Double altura) {
+        this.altura = altura;
+    }
+
+    public Double getPeso() {
+        return peso;
+    }
+
+    public void setPeso(Double peso) {
+        this.peso = peso;
+    }
+
+    public Plano_de_Associacao getPlano_de_associacao() {
+        return plano_de_associacao;
+    }
+
+    public void setPlano_de_associacao(Plano_de_Associacao plano_de_associacao) {
+        this.plano_de_associacao = plano_de_associacao;
+    }
 
     public Long getId() {
         return id;
@@ -196,6 +180,7 @@ public abstract class Pessoa implements Serializable {
         this.isAtivo = isAtivo;
     }
     
-    
+
+
 
 }

@@ -15,7 +15,7 @@ import javax.persistence.Id;
  * @author steli
  */
 @Entity
-public class Instrutores implements Serializable{
+public class Instrutor implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     

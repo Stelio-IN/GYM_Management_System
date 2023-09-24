@@ -17,37 +17,35 @@ import javax.persistence.Id;
 @Entity
 public class Endereco implements Serializable{
     @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
-    private int id;
-    private String nacionalidade;
-    private String naturalidade;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  
+    private long id;
+    private String numero_Casa;
+    private String cidade;
     private String bairro;
     private String rua;
- 
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public String getNacionalidade() {
-        return nacionalidade;
+    public String getNumero_Casa() {
+        return numero_Casa;
     }
 
-    public void setNacionalidade(String nacionalidade) {
-        this.nacionalidade = nacionalidade;
+    public void setNumero_Casa(String numero_Casa) {
+        this.numero_Casa = numero_Casa;
     }
 
-    public String getNaturalidade() {
-        return naturalidade;
+    public String getCidade() {
+        return cidade;
     }
 
-    public void setNaturalidade(String naturalidade) {
-        this.naturalidade = naturalidade;
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 
     public String getBairro() {
@@ -66,7 +64,8 @@ public class Endereco implements Serializable{
         this.rua = rua;
     }
 
- 
-
-    
+    @Override
+    public String toString() {
+        return "Endereco{" + "id=" + id + ", numero_Casa=" + numero_Casa + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + '}';
+    }
 }
