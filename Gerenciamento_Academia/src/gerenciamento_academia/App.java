@@ -8,6 +8,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
 /**
@@ -24,11 +26,26 @@ public class App extends Application {
         
         stage.setScene(scene);
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            event.consume();
+            close(stage);
+        });
     }
 
-    /**
-     * @param args the command line arguments
-     */
+   
+    void close(Stage stage) {
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("FECHAR");
+        alerta.setHeaderText("Quer realment Fechar");
+        alerta.setContentText("Deseja salvar antes de Fechar");
+        if (alerta.showAndWait().get() == ButtonType.OK) {
+
+            System.out.println("Exit exito");
+            System.out.println("bla bla bla");
+            System.out.println("De volta ksksk");
+            stage.close();
+        }
+    }
     public static void main(String[] args) {
         launch(args);
     }

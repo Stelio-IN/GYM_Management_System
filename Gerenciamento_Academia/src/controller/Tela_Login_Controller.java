@@ -17,6 +17,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Administrador;
@@ -33,6 +34,30 @@ public class Tela_Login_Controller implements Initializable {
 
     @FXML
     private TextField txtPassword;
+    
+    @FXML
+    private AnchorPane PainelTelaLogin;
+    @FXML
+    private Stage stage;
+    @FXML
+    private Scene scene;
+    @FXML
+    private Parent root;
+
+    @FXML
+    void close(ActionEvent event) {
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("FECHAR");
+        alerta.setHeaderText("Quer realment Fechar");
+        alerta.setContentText("Deseja salvar antes de Fechar");
+        if (alerta.showAndWait().get() == ButtonType.OK) {
+            stage = (Stage) PainelTelaLogin.getScene().getWindow();
+            System.out.println("Exit exito");
+            stage.close();
+        }
+    }
+
     @FXML
     public void Tela_Principal(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Admin.fxml"));
@@ -62,13 +87,14 @@ public class Tela_Login_Controller implements Initializable {
                 e.printStackTrace(); // Trate ou registre erros adequadamente
             }
         } else {
-            JOptionPane.showMessageDialog(null,"Credencias erradas");
-         
+            JOptionPane.showMessageDialog(null, "Credencias erradas");
+
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-    
+    }
+
 }
