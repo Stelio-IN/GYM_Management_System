@@ -35,6 +35,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Administrador;
+import model.Cliente;
 
 /**
  * FXML Controller class
@@ -66,6 +67,22 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
     @FXML
     private ImageView imageCamera;
+    
+    
+    @FXML
+    private TextField txtContacto;
+
+    @FXML
+    private TextField txtDataInscricao;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtNome;
+
+    @FXML
+    private TextField txtNumeroInsc;  
 
     String caminhoDoArquivo;
 
@@ -153,29 +170,41 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         dataChosser.setDayCellFactory(dayCellFactory);
     }
 
-//    @FXML
-//    void cadastrar(ActionEvent event) {
-//        if (dataChosser.getValue() != null) {
-//            // Obtenha o valor selecionado e faça algo com ele
-//            java.time.LocalDate dataSelecionada = dataChosser.getValue();
-//            System.out.println("Data selecionada: " + dataSelecionada);
-//        } else {
-//            System.out.println("Nenhuma data selecionada.");
-//        }
-//
-//        //Radio Button 
-//        RadioButton pegarGenero = (RadioButton) genero.getSelectedToggle();
-//        System.out.println(pegarGenero.getText());
-//        RadioButton pegarEsporte = (RadioButton) grupoDesport.getSelectedToggle();
-//        System.out.println(pegarEsporte.getText());
-//        RadioButton pegarDoenca = (RadioButton) grupoDoenca.getSelectedToggle();
-//        System.out.println(pegarEsporte.getText());
-//    }
     @FXML
-    private TextField txtEmail;
+    void cadastrar(ActionEvent event) {
+        
+        
+        
+        if (dataChosser.getValue() != null) {
+            // Obtenha o valor selecionado e faça algo com ele
+            java.time.LocalDate dataSelecionada = dataChosser.getValue();
+            System.out.println("Data selecionada: " + dataSelecionada);
+        } else {
+            System.out.println("Nenhuma data selecionada.");
+        }
 
-    @FXML
-    private TextField txtNome;
+        //Radio Button 
+        RadioButton pegarGenero = (RadioButton) genero.getSelectedToggle();
+        System.out.println(pegarGenero.getText());
+        RadioButton pegarEsporte = (RadioButton) grupoDesport.getSelectedToggle();
+        System.out.println(pegarEsporte.getText());
+        RadioButton pegarDoenca = (RadioButton) grupoDoenca.getSelectedToggle();
+        System.out.println(pegarEsporte.getText());
+        
+        Cliente cli = new Cliente();
+        cli.setNome("invo");
+        cli.setNacionalidade("MOZ");
+        cli.setEmail("invo@gmai.com");
+        cli.setEstado_Civil("Solteiro");
+        cli.setContato_emergencia("842156451");
+        
+        GenericDAO dao = new GenericDAO();
+        
+        dao.add(cli);
+        
+        
+        
+    }
  
 
 }
