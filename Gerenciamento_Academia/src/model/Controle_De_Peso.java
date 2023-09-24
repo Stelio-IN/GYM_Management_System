@@ -8,13 +8,8 @@ package model;
  *
  * @author steli
  */
-public class Pessoa {
-    protected Long id;
-    protected String nome;
-    protected String genero;
-    protected String nascimento;
-    protected String email;
-    protected String celular;
-    protected Endereco endereco;
-        
+public class Controle_De_Peso {
+    private int id;
+    private String data;
+    
 }

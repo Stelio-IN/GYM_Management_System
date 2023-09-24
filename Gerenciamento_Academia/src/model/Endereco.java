@@ -24,7 +24,7 @@ public class Endereco implements Serializable{
     private String naturalidade;
     private String bairro;
     private String rua;
-    private Instrutores instrutor; // Chave estrangeira proveniente da classe Instrutores
+ 
 
     public int getId() {
         return id;
@@ -66,13 +66,7 @@ public class Endereco implements Serializable{
         this.rua = rua;
     }
 
-    public Instrutores getInstrutor() {
-        return instrutor;
-    }
-
-    public void setInstrutor(Instrutores instrutor) {
-        this.instrutor = instrutor;
-    }
+ 
 
     
 }
