@@ -43,6 +43,7 @@ public class Tela_Login_Controller implements Initializable {
     private Scene scene;
     @FXML
     private Parent root;
+    
 
     @FXML
     void close(ActionEvent event) {
