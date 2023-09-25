@@ -19,6 +19,42 @@ public class Cliente extends Pessoa implements Serializable {
     private Double altura;
     private Double peso;
     private Plano_de_Associacao plano_de_associacao;
+    private String nome_Do_Conjuge;
+    private String nascimento;
+    private String esporte_que_Pratica;
+    private String doenca;
+
+    public String getDoenca() {
+        return doenca;
+    }
+
+    public void setDoenca(String doenca) {
+        this.doenca = doenca;
+    }
+
+    public String getEsporte_que_Pratica() {
+        return esporte_que_Pratica;
+    }
+
+    public void setEsporte_que_Pratica(String esporte) {
+        this.esporte_que_Pratica = esporte;
+    }
+
+    public String getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
+    }
+
+    public String getNome_Do_Conjuge() {
+        return nome_Do_Conjuge;
+    }
+
+    public void setNome_Do_Conjuge(String nome_Do_Conjuge) {
+        this.nome_Do_Conjuge = nome_Do_Conjuge;
+    }
 
     public String getContato_emergencia() {
         return contato_emergencia;
@@ -128,6 +164,14 @@ public class Cliente extends Pessoa implements Serializable {
         return telefone_Alternativo;
     }
 
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+
     public void setTelefone_Alternativo(String telefone_Alternativo) {
         this.telefone_Alternativo = telefone_Alternativo;
     }
@@ -156,14 +200,6 @@ public class Cliente extends Pessoa implements Serializable {
         this.estado_Civil = estado_Civil;
     }
 
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -179,8 +215,38 @@ public class Cliente extends Pessoa implements Serializable {
     public void setIsAtivo(boolean isAtivo) {
         this.isAtivo = isAtivo;
     }
-    
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Cliente{");
+        sb.append("id=").append(id);
+        sb.append(", nome=").append(nome);
+        sb.append(", genero=").append(genero);
+        sb.append(", codigo=").append(codigo);
+        sb.append(", nacionalidade=").append(nacionalidade);
+        sb.append(", naturalidade=").append(naturalidade);
+        sb.append(", email=").append(email);
+        sb.append(", telefone=").append(telefone);
+        sb.append(", telefone_Alternativo=").append(telefone_Alternativo);
+        sb.append(", endereco=").append(endereco);
+        sb.append(", bilhete_Identificacao=").append(bilhete_Identificacao);
+        sb.append(", estado_Civil=").append(estado_Civil);
+        sb.append(", imagem=").append(imagem);
+        sb.append(", password=").append(password);
+        sb.append(", isAtivo=").append(isAtivo);
+        sb.append("contato_emergencia=").append(contato_emergencia);
+        sb.append(", data_inscricao=").append(data_inscricao);
+        sb.append(", altura=").append(altura);
+        sb.append(", peso=").append(peso);
+        sb.append(", plano_de_associacao=").append(plano_de_associacao);
+        sb.append(", nome_Do_Conjuge=").append(nome_Do_Conjuge);
+        sb.append(", nascimento=").append(nascimento);
+        sb.append(", esporte_que_Pratica=").append(esporte_que_Pratica);
+        sb.append(", doenca=").append(doenca);
+        sb.append('}');
+        return sb.toString();
+    }
 
 
 }

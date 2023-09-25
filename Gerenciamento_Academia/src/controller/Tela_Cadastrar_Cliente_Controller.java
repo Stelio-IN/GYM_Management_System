@@ -12,6 +12,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -36,6 +38,8 @@ import javafx.stage.Stage;
 import javafx.util.Callback;
 import model.Administrador;
 import model.Cliente;
+import model.Endereco;
+import model.Pessoa;
 
 /**
  * FXML Controller class
@@ -55,20 +59,58 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     private ObservableList<String> obserdoencas;
 
     @FXML
+    private ComboBox<String> comboBoxBairro;
+    private final List<String> bairro = new ArrayList<>();
+    private ObservableList<String> obserBairro;
+
+    @FXML
+    private ComboBox<String> comboBoxCidade;
+    private final List<String> cidade = new ArrayList<>();
+    private ObservableList<String> obserCidade;
+
+    @FXML
+    private ComboBox<String> comboBoxNacionalidade;
+    private final List<String> nacionalidade = new ArrayList<>();
+    private ObservableList<String> obserNacionalidade;
+
+    @FXML
     private ToggleGroup genero;
 
     @FXML
     private ToggleGroup grupoDesport;
+
     @FXML
     private ToggleGroup grupoDoenca;
+
+    @FXML
+    private ToggleGroup grupoestadocivil;
+
+    @FXML
+    private TextField txtContactoAlternativo;
+
+    @FXML
+    private TextField txtContactoEmergencia;
+
+    @FXML
+    private TextField txtNomeConjuge;
+
+    @FXML
+    private TextField txtNumeroDaCasa;
+    @FXML
+    private TextField txtAltura;
+
+    @FXML
+    private TextField txtPeso;
+
+    @FXML
+    private TextField txtRua;
 
     @FXML
     private DatePicker dataChosser;
 
     @FXML
     private ImageView imageCamera;
-    
-    
+
     @FXML
     private TextField txtContacto;
 
@@ -82,7 +124,11 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     private TextField txtNome;
 
     @FXML
-    private TextField txtNumeroInsc;  
+    private TextField txtNumeroInsc;
+    @FXML
+    private TextField txtCodigoMembro;
+    @FXML
+    private TextField txtIdentificacao;
 
     String caminhoDoArquivo;
 
@@ -118,8 +164,60 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         //Carregar combo
         carregarDesportos();
         carregarDoencas();
+        carregarNacionalidade();
+        carregarBairros();
+        carregarCidade();
 
-        // TODO
+        //Inicializando ficha de Inscricao e Data de inscriacao
+        LocalDate dataAtual = LocalDate.now();
+        // Escolha um formato de data desejado
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataAtualFormatada = dataAtual.format(formatter);
+        txtDataInscricao.setText(dataAtualFormatada);
+        txtDataInscricao.setDisable(true);
+
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "CG" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        System.out.println(idUnico);
+        txtCodigoMembro.setText(idUnico);
+        txtCodigoMembro.setDisable(true);
+
+        String idFatura = String.format("%05d", quant); // Formata o número com 4 dígitos 
+        System.out.println(idFatura);
+
+        txtNumeroInsc.setText(idFatura);
+
+        txtNumeroInsc.setDisable(true);
+    }
+
+    void carregarCidade() {
+        cidade.add("Niassa");
+        cidade.add(" Cabo Delgado");
+        cidade.add(" Nampula");
+        cidade.add("Maputo");
+        cidade.add(" Gaza");
+        cidade.add("Inhambane");
+        cidade.add(" Tete");
+        cidade.add("Manica");
+        obserCidade = FXCollections.observableArrayList(cidade);
+        comboBoxCidade.setItems(obserCidade);
+    }
+
+    void carregarBairros() {
+        bairro.add("Alto Maé");
+        bairro.add(" Malhangalene");
+        bairro.add(" Polana");
+        bairro.add("Chamanculo");
+        bairro.add(" Maxaquene");
+        bairro.add("Albazine");
+        bairro.add(" Costa do Sol");
+        bairro.add("Zimpento");
+        obserBairro = FXCollections.observableArrayList(bairro);
+        comboBoxBairro.setItems(obserBairro);
     }
 
     void carregarDesportos() {
@@ -143,7 +241,16 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         doencas.add(" Psiquiátricas");
         obserdoencas = FXCollections.observableArrayList(doencas);
         comboBoxDoencas.setItems(obserdoencas);
+    }
 
+    void carregarNacionalidade() {
+        nacionalidade.add(" Moçambique");
+        nacionalidade.add(" Africa do sul");
+        nacionalidade.add("Angola");
+        nacionalidade.add("Brasil");
+        nacionalidade.add(" Portugal");
+        obserNacionalidade = FXCollections.observableArrayList(nacionalidade);
+        comboBoxNacionalidade.setItems(obserNacionalidade);
     }
 
     private void limitarDatePicker() {
@@ -171,40 +278,108 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     }
 
     @FXML
-    void cadastrar(ActionEvent event) {
-        
-        
-        
+    void ativarCampoConjugue(ActionEvent event) {
+        txtNomeConjuge.setDisable(false);
+    }
+
+    @FXML
+    void ativarComboDesportos(ActionEvent event) {
+        comboBoxDesporto.setDisable(true);
+    }
+
+    @FXML
+    void ativarComboDoencas(ActionEvent event) {
+        comboBoxDoencas.setDisable(true);
+    }
+
+    @FXML
+    void desativarCampoConjugue(ActionEvent event) {
+        txtNomeConjuge.setDisable(true);
+    }
+
+    @FXML
+    void desativarComboDoencas(ActionEvent event) {
+        comboBoxDoencas.setDisable(false);
+    }
+
+    @FXML
+    void desabilitarComboDesportos(ActionEvent event) {
+        comboBoxDesporto.setDisable(false);
+    }
+
+    @FXML
+    void cadastrar(ActionEvent event) throws IOException {
+        Cliente cliente = new Cliente();
+        GenericDAO dao = new GenericDAO();
+
+        //Radio Button 
+        RadioButton pegarGenero = (RadioButton) genero.getSelectedToggle();
+        String genero = pegarGenero.getText();
+
+        RadioButton pegarEsporte = (RadioButton) grupoDesport.getSelectedToggle();
+        String esporte = pegarEsporte.getText();
+
+        RadioButton pegarDoenca = (RadioButton) grupoDoenca.getSelectedToggle();
+        String doenca = pegarDoenca.getText();
+
+        RadioButton pegarEstadoCivil = (RadioButton) grupoestadocivil.getSelectedToggle();
+        String estadoCivil = pegarEstadoCivil.getText();
+        //Pegando a data do 
+        String dataAtualFormatada = "";
         if (dataChosser.getValue() != null) {
             // Obtenha o valor selecionado e faça algo com ele
             java.time.LocalDate dataSelecionada = dataChosser.getValue();
-            System.out.println("Data selecionada: " + dataSelecionada);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            dataAtualFormatada = dataSelecionada.format(formatter);
+
+            System.out.println("Data selecionada: " + dataAtualFormatada);
         } else {
             System.out.println("Nenhuma data selecionada.");
         }
 
-        //Radio Button 
-        RadioButton pegarGenero = (RadioButton) genero.getSelectedToggle();
-        System.out.println(pegarGenero.getText());
-        RadioButton pegarEsporte = (RadioButton) grupoDesport.getSelectedToggle();
-        System.out.println(pegarEsporte.getText());
-        RadioButton pegarDoenca = (RadioButton) grupoDoenca.getSelectedToggle();
-        System.out.println(pegarEsporte.getText());
+        cliente.setNome(txtNome.getText());
+        cliente.setNacionalidade(comboBoxNacionalidade.getValue());
+        cliente.setGenero(genero);
+        cliente.setEstado_Civil(estadoCivil);
+        cliente.setNascimento(dataAtualFormatada);
+        cliente.setBilhete_Identificacao(txtIdentificacao.getText());
+        cliente.setTelefone(txtContacto.getText());
+        cliente.setTelefone_Alternativo(txtContactoAlternativo.getText());
+        cliente.setContato_emergencia(txtContactoEmergencia.getText());
+        cliente.setData_inscricao(txtDataInscricao.getText());
+        cliente.setCodigo(txtCodigoMembro.getText());
+        cliente.setEsporte_que_Pratica(comboBoxDesporto.getValue());
+        cliente.setDoenca(comboBoxDoencas.getValue());
+        cliente.setEmail(txtEmail.getText());
+        cliente.setNaturalidade(comboBoxCidade.getValue());
+        cliente.setNome_Do_Conjuge(txtNomeConjuge.getText());
+        Endereco endereco = new Endereco();
+        endereco.setBairro(comboBoxBairro.getValue());
+        endereco.setRua(txtRua.getText());
+        endereco.setNumero_Casa(txtNumeroDaCasa.getText());
+
+        cliente.setEndereco(endereco);
+        cliente.setIsAtivo(true);
         
-        Cliente cli = new Cliente();
-        cli.setNome("invo");
-        cli.setNacionalidade("MOZ");
-        cli.setEmail("invo@gmai.com");
-        cli.setEstado_Civil("Solteiro");
-        cli.setContato_emergencia("842156451");
+        cliente.setPeso(Double.valueOf(txtPeso.getText()));
         
-        GenericDAO dao = new GenericDAO();
+        cliente.setAltura(Double.valueOf(txtAltura.getText()));
         
-        dao.add(cli);
-        
-        
+        // Verifique se o caminho do arquivo não é nulo ou vazio
+        if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
+            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            Path imagePath = Paths.get(caminhoDoArquivo);
+            byte[] imagemBytes = Files.readAllBytes(imagePath);
+
+            cliente.setImagem(imagemBytes);
+
+        } else {
+            System.out.println("Nenhum arquivo de imagem selecionado.");
+        }
+
+        //System.out.println(cliente);
+        dao.add(cliente);
         
     }
- 
 
 }

@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -51,9 +52,20 @@ public abstract class Pessoa implements Serializable {
     protected Endereco endereco;
     protected String bilhete_Identificacao; 
     protected String estado_Civil;
-    protected String imagem;
+    @Lob
+    protected byte[] imagem;
     protected String password;
     protected boolean isAtivo;
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+    
+    
 
     public Long getId() {
         return id;
@@ -151,14 +163,6 @@ public abstract class Pessoa implements Serializable {
         this.estado_Civil = estado_Civil;
     }
 
-    public String getImagem() {
-        return imagem;
-    }
-
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -174,7 +178,30 @@ public abstract class Pessoa implements Serializable {
     public void setIsAtivo(boolean isAtivo) {
         this.isAtivo = isAtivo;
     }
-    
-    
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Pessoa{");
+        sb.append("id=").append(id);
+        sb.append(", nome=").append(nome);
+        sb.append(", genero=").append(genero);
+        sb.append(", codigo=").append(codigo);
+        sb.append(", nacionalidade=").append(nacionalidade);
+        sb.append(", naturalidade=").append(naturalidade);
+        sb.append(", email=").append(email);
+        sb.append(", telefone=").append(telefone);
+        sb.append(", telefone_Alternativo=").append(telefone_Alternativo);
+        sb.append(", endereco=").append(endereco);
+        sb.append(", bilhete_Identificacao=").append(bilhete_Identificacao);
+        sb.append(", estado_Civil=").append(estado_Civil);
+        sb.append(", imagem=").append(imagem);
+        sb.append(", password=").append(password);
+        sb.append(", isAtivo=").append(isAtivo);
+        sb.append('}');
+        return sb.toString();
+    }
+    
+    
+    
 }

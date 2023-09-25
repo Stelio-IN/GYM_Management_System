@@ -34,9 +34,11 @@ public class GenericDAO {
             gerente.persist(obj);
             gerente.getTransaction().commit();
             gerente.close();
+            JOptionPane.showMessageDialog(null, "Gravado");
         } catch (Exception e) {
             gerente.getTransaction().rollback();
             e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Erro ao gravar");
         }
     }
 
@@ -48,8 +50,6 @@ public class GenericDAO {
      * @return
      */
     public List<?> listar(Class<?> classe) {
-        EntityManagerFactory fabrica = null;
-        EntityManager gerente = null;
 
         try {
             fabrica = Persistence.createEntityManagerFactory("SystemPU");
@@ -70,6 +70,31 @@ public class GenericDAO {
             }
         }
     }
+    
+    
+    public int contar(Class<?> classe) {
+
+    try {
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+        gerente = fabrica.createEntityManager();
+
+        // Consulta para contar todos os objetos da classe especificada
+        String consulta = "SELECT COUNT(obj) FROM " + classe.getSimpleName() + " obj";
+        TypedQuery<Long> query = gerente.createQuery(consulta, Long.class);
+
+        Long resultado = query.getSingleResult();
+        return resultado.intValue(); // Converter para int
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return -1; // Ou lançar uma exceção apropriada, dependendo do seu caso.
+    } finally {
+        if (gerente != null && gerente.isOpen()) {
+            gerente.close();
+        }
+    }
+}
+
 
     /**
      * Busca pelo Id
