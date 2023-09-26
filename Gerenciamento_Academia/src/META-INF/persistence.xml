@@ -6,6 +6,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <!-- Lista de entidades -->
     <class>DTO.Administrador</class>
+    <class>model.Ficha_Inscricao</class>
     <properties>
         <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/trabalho?zeroDateTimeBehavior=CONVERT_TO_NULL"/>

@@ -39,6 +39,7 @@ import javafx.util.Callback;
 import model.Administrador;
 import model.Cliente;
 import model.Endereco;
+import model.Ficha_Inscricao;
 import model.Pessoa;
 
 /**
@@ -156,6 +157,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         }
     }
 
+    private String idFatura;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         limitarDatePicker();
@@ -186,7 +188,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         txtCodigoMembro.setText(idUnico);
         txtCodigoMembro.setDisable(true);
 
-        String idFatura = String.format("%05d", quant); // Formata o número com 4 dígitos 
+        idFatura = String.format("%05d", quant); // Formata o número com 4 dígitos 
         System.out.println(idFatura);
 
         txtNumeroInsc.setText(idFatura);
@@ -377,9 +379,20 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
 
+        
         //System.out.println(cliente);
         dao.add(cliente);
         
+        /*
+        Ficha de inscricao sala
+        */
+        
+        Ficha_Inscricao ficha = new Ficha_Inscricao();
+        ficha.setNumero_Da_Ficha(idFatura);
+        ficha.setCliente(txtNome.getText());
+        ficha.setFuncionario("Funcionario maluco");
+        ficha.setData_Da_Inscriacao(dataAtualFormatada);
+        dao.add(ficha);
     }
 
 }
