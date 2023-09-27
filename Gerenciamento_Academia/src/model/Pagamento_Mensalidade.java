@@ -15,16 +15,15 @@ import javax.persistence.Id;
  * @author steli
  */
 @Entity
-public class Pagamento_Mensalidade implements Serializable{
+public class Pagamento_Mensalidade implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
-    private int duracao;
-    private String nome;
-    private String descricao;
-    private Double preco;
-    private boolean status;
+    private Cliente cliente;
+    private Funcionario funcionario;
+    private String data_Pagamento;
+    private Double valor;
 
     public int getId() {
         return id;
@@ -34,46 +33,38 @@ public class Pagamento_Mensalidade implements Serializable{
         this.id = id;
     }
 
-    public int getDuracao() {
-        return duracao;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public String getNome() {
-        return nome;
+    public Funcionario getFuncionario() {
+        return funcionario;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public String getData_Pagamento() {
+        return data_Pagamento;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setData_Pagamento(String data_Pagamento) {
+        this.data_Pagamento = data_Pagamento;
     }
 
-    public Double getPreco() {
-        return preco;
+    public Double getValor() {
+        return valor;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
     
     
-    
-    }
+
+}

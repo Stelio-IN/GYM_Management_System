@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
@@ -25,7 +26,18 @@ public class Plano_de_Associacao implements Serializable{
     private String descricao;
     private Double preco;
     private boolean status;
+    @Lob
+    protected byte[] imagem;
 
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+    
+    
     public boolean isStatus() {
         return status;
     }

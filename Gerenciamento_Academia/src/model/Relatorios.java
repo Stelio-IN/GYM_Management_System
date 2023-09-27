@@ -18,7 +18,6 @@ import javax.persistence.Id;
 public class Relatorios  implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    
     private int id;
     private String nome;
     private String data_de_geracao;

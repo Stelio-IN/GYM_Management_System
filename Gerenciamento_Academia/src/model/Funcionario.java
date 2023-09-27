@@ -6,87 +6,24 @@ package model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
 
 /**
  *
  * @author steli
  */
 @Entity
-public class Funcionario implements Serializable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-   
-    private int id;
-    private int codigo;
-    private String nome;
-    private String sobrenome;
-    private String genero;
-    private String passaporte;
-    private String bi;
+public class Funcionario extends Pessoa implements Serializable {
+    
+    private Double salario;
     private String cargo;
-    private String telefone;
-    private String email;
-    private String password;
-    private Endereco endereco; // Chave estrangeira proveniente da classe Endereco
-    private boolean status;
 
-    public int getId() {
-        return id;
+    public Double getSalario() {
+        return salario;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getCodigo() {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getSobrenome() {
-        return sobrenome;
-    }
-
-    public void setSobrenome(String sobrenome) {
-        this.sobrenome = sobrenome;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
-    public String getPassaporte() {
-        return passaporte;
-    }
-
-    public void setPassaporte(String passaporte) {
-        this.passaporte = passaporte;
-    }
-
-    public String getBi() {
-        return bi;
-    }
-
-    public void setBi(String bi) {
-        this.bi = bi;
+    public void setSalario(Double salario) {
+        this.salario = salario;
     }
 
     public String getCargo() {
@@ -97,12 +34,52 @@ public class Funcionario implements Serializable {
         this.cargo = cargo;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public Long getId() {
+        return id;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public String getNaturalidade() {
+        return naturalidade;
+    }
+
+    public void setNaturalidade(String naturalidade) {
+        this.naturalidade = naturalidade;
     }
 
     public String getEmail() {
@@ -113,12 +90,20 @@ public class Funcionario implements Serializable {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getTelefone() {
+        return telefone;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getTelefone_Alternativo() {
+        return telefone_Alternativo;
+    }
+
+    public void setTelefone_Alternativo(String telefone_Alternativo) {
+        this.telefone_Alternativo = telefone_Alternativo;
     }
 
     public Endereco getEndereco() {
@@ -129,16 +114,44 @@ public class Funcionario implements Serializable {
         this.endereco = endereco;
     }
 
-    public boolean isStatus() {
-        return status;
+    public String getBilhete_Identificacao() {
+        return bilhete_Identificacao;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setBilhete_Identificacao(String bilhete_Identificacao) {
+        this.bilhete_Identificacao = bilhete_Identificacao;
     }
 
-   
-    
-    
+    public String getEstado_Civil() {
+        return estado_Civil;
+    }
+
+    public void setEstado_Civil(String estado_Civil) {
+        this.estado_Civil = estado_Civil;
+    }
+
+    public byte[] getImagem() {
+        return imagem;
+    }
+
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public boolean isIsAtivo() {
+        return isAtivo;
+    }
+
+    public void setIsAtivo(boolean isAtivo) {
+        this.isAtivo = isAtivo;
+    }
     
 }

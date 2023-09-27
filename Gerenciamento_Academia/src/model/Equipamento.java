@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 
 /**
  *
@@ -16,14 +17,15 @@ import javax.persistence.Id;
  */
 @Entity
 public class Equipamento implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private int id;
     private String nome;
     private String marca;
     private String modelo;
-    private Double preco;
+    @Lob
+    protected byte[] imagem;
     private boolean status;
 
     public int getId() {
@@ -58,12 +60,12 @@ public class Equipamento implements Serializable {
         this.modelo = modelo;
     }
 
-    public Double getPreco() {
-        return preco;
+    public byte[] getImagem() {
+        return imagem;
     }
 
-    public void setPreco(Double preco) {
-        this.preco = preco;
+    public void setImagem(byte[] imagem) {
+        this.imagem = imagem;
     }
 
     public boolean isStatus() {
@@ -73,7 +75,5 @@ public class Equipamento implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
-    
-    
-    
-    }
+
+}
