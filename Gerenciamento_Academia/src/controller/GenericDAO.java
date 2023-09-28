@@ -14,7 +14,8 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author steli
+ * @author steli 
+ * sumeid's branch
  */
 public class GenericDAO {
 
