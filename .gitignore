@@ -17,3 +17,8 @@ Gerenciamento_Academia/nbproject/project.properties
 /Copias_De_Classes/nbproject/private/
 /Copias_De_Classes/build/
 /Copias_De_Classes/
+Gerenciamento_Academia/nbproject/project.properties
+*.properties
+Gerenciamento_Academia/src/gerenciamento_academia/App.java
+*.java
+Gerenciamento_Academia/src/gerenciamento_academia/App.java
