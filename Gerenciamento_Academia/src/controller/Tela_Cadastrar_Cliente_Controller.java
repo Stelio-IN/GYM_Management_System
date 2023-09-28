@@ -226,7 +226,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         desportos.add("Futebol");
         desportos.add("Basquetebol");
         desportos.add("Atletismo");
-        desportos.add("Natcão");
+        desportos.add("Natacão");
         obserDesportos = FXCollections.observableArrayList(desportos);
         comboBoxDesporto.setItems(obserDesportos);
     }

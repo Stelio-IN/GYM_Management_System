@@ -17,7 +17,7 @@ import javax.persistence.Lob;
  */
 @Entity
 public class Equipamento implements Serializable {
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
