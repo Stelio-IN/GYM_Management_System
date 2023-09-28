@@ -18,7 +18,6 @@ public class Instrutor extends Pessoa implements Serializable{
     private String especializacao;
     private Double classificacao;
     private Double salario;
-    private Endereco endereco; // chave estrageira proveniente da classe Endereco
 
     public String getEspecializacao() {
         return especializacao;
@@ -163,7 +162,7 @@ public class Instrutor extends Pessoa implements Serializable{
     public void setIsAtivo(boolean isAtivo) {
         this.isAtivo = isAtivo;
     }
+
     
-    
-    
+        
 }
