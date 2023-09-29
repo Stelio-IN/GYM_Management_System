@@ -1,19 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Admin_Menu_Instrutores_Controller">
-    <stylesheets>
-        <URL value="@/css/tela_admin_menu_instrutores.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="445.0" prefWidth="639.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Instrutores_Controller">
+   <stylesheets>
+      <URL value="@/css/tela_admin_menu_funcionarios.css" />
+   </stylesheets>
    <children>
-      <Text layoutX="210.0" layoutY="215.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instrutores">
+      <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="551.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/lupa.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="26.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instrutores" wrappingWidth="78.28564453125">
          <font>
-            <Font size="38.0" />
+            <Font size="15.0" />
          </font>
       </Text>
+      <TableView fx:id="tabela" layoutX="7.0" layoutY="255.0" prefHeight="175.0" prefWidth="626.0">
+         <columns>
+            <TableColumn fx:id="tabela_Codigo" prefWidth="34.4000244140625" text="Codigo" />
+            <TableColumn fx:id="tabela_Nome" prefWidth="75.20001220703125" text="Nome" />
+            <TableColumn fx:id="tabela_Especializacao" minWidth="0.0" prefWidth="111.20001220703125" text="Especializacao" />
+            <TableColumn fx:id="tabela_Email" prefWidth="93.5999755859375" text="Email" />
+            <TableColumn fx:id="tabela_Situacao" prefWidth="98.40008544921875" text="Situação" />
+            <TableColumn fx:id="tabela_Salario" prefWidth="87.20001220703125" text="Salario" />
+            <TableColumn fx:id="tabela_Classificacao" prefWidth="189.5999755859375" text="Classificacao" />
+         </columns>
+      </TableView>
+      <TextField fx:id="txtNome" layoutX="30.0" layoutY="70.0" promptText="Nome  Instrutor" />
+      <TextField fx:id="txtEspecializacao" layoutX="194.0" layoutY="107.0" promptText="Especializacao" />
+      <TextField fx:id="txtCodigo" layoutX="30.0" layoutY="117.0" promptText="codigo" />
+      <TextField fx:id="txtSalario" layoutX="188.0" layoutY="154.0" promptText="Salario" />
+      <TextField fx:id="txtEmail" layoutX="194.0" layoutY="70.0" promptText="email" />
+      <TextField fx:id="txtPassword" layoutX="30.0" layoutY="154.0" promptText="password" />
+      <Button layoutX="412.0" layoutY="82.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+      <Button layoutX="512.0" layoutY="82.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+      <Button layoutX="412.0" layoutY="129.0" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
+      <Button layoutX="513.0" layoutY="129.0" mnemonicParsing="false" onAction="#listar" text="Listar" />
+      <TextField fx:id="txtPesquisa" layoutX="382.0" layoutY="20.0" prefHeight="25.0" prefWidth="195.0" promptText="Pesquisar Instrutor" style="-fx-background-color: transparent; -fx-border-color: black;" />
+      <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button layoutX="549.0" layoutY="21.0" mnemonicParsing="false" onAction="#pesquisar" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txtId" layoutX="30.0" layoutY="41.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" />
+      <TextField fx:id="txtClassificacao" layoutX="30.0" layoutY="197.0" promptText="Classificacao" />
    </children>
 </AnchorPane>
