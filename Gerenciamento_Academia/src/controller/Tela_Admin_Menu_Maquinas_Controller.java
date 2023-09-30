@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.Administrador;
 import model.Equipamento;
 
 /**
@@ -47,6 +49,9 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
 
     @FXML
     private TableColumn<Equipamento, String> tabela_Nome;
+    
+        @FXML
+    private TableColumn<Equipamento, Byte> tabela_Imagem;
 
     @FXML
     private TextField txtId;
@@ -126,14 +131,27 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
     
 
     @FXML
-    void editar(ActionEvent event) {
+    void editar(ActionEvent event) throws IOException {
         Class<Equipamento> classe = Equipamento.class;
         GenericDAO dao = new GenericDAO();
         Equipamento equip = new Equipamento();
+       
         equip.setId(Long.valueOf(txtId.getText()));
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
         equip.setModelo(txtModelo.getText());
+        // Verifique se o caminho do arquivo não é nulo ou vazio
+        if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
+            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            Path imagePath = Paths.get(caminhoDoArquivo);
+             byte[] imagemBytes = Files.readAllBytes(imagePath);
+
+            equip.setImagem(imagemBytes);
+
+        } else {
+            System.out.println("Nenhum arquivo de imagem selecionado.");
+        }
+     
         
         dao.Atualizar(classe, Long.valueOf(txtId.getText()), equip);
         
@@ -146,6 +164,8 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         
         
     }
+    
+
 
     @FXML
     void excluir(ActionEvent event) {
@@ -172,6 +192,7 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         tabela_Nome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         tabela_Marca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
         tabela_Modelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
+       // tabela_Imagem.setCellValueFactory(new PropertyValueFactory<>("Imagem"));
         
         observableList = FXCollections.observableArrayList(lista);
        tabela.setItems(observableList);
@@ -196,7 +217,17 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
          txtNome.setText(pessoa.getNome());
          txtMarca.setText(pessoa.getMarca());
          txtModelo.setText(pessoa.getModelo());
-        
+         
+          if (pessoa.getImagem() != null) {
+            // Converta o array de bytes em uma Image
+            byte[] imagemBytes = pessoa.getImagem();
+            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+            // Defina a imagem no ImageView
+            imageCamera.setImage(imagem);
+        } else {
+           JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+        }
          
 
      } else {
@@ -207,5 +238,22 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
          
      }
      }
+     
+      void retornar_Imagem_Banco(ActionEvent event) {
+        GenericDAO dao = new GenericDAO();
+        Equipamento administrador = (Equipamento) dao.logarEmail("admin");
+
+        if (administrador != null && administrador.getImagem() != null) {
+            // Converta o array de bytes em uma Image
+            byte[] imagemBytes = administrador.getImagem();
+            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+            // Defina a imagem no ImageView
+            imageCamera.setImage(imagem);
+            System.out.println("Encontrado");
+        } else {
+            System.out.println("Nao Encontrado");
+        }
+    }
     
 }

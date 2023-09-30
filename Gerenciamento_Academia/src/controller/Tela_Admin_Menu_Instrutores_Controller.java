@@ -4,7 +4,13 @@
  */
 package controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -16,7 +22,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
+import model.Equipamento;
 import model.Instrutor;
 import model.Pessoa;
 
@@ -85,9 +96,38 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     
     @FXML
     private TextField txtClassificacao;
+    
+      @FXML
+    private ImageView imageCamera;
+      
+        private String caminhoDoArquivo;
+      
+        @FXML
+    void carregarimg(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecionar uma imagem");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"),
+                new FileChooser.ExtensionFilter("Todos os arquivos", "*.*")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        if (selectedFile != null) {
+            caminhoDoArquivo = selectedFile.getAbsolutePath();
+
+            // Cria uma instância de Image com o arquivo selecionado
+            Image imagemSelecionada = new Image(selectedFile.toURI().toString());
+
+            // Atribui a imagem ao ImageView
+            imageCamera.setImage(imagemSelecionada);
+        } else {
+            System.out.println("Nenhum arquivo selecionado.");
+        }
+    }
 
     @FXML
-    void cadastrar(ActionEvent event) {
+    void cadastrar(ActionEvent event) throws IOException {
         
         Instrutor func = new Instrutor();
         GenericDAO dao = new GenericDAO();
@@ -98,12 +138,25 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         func.setCodigo(txtCodigo.getText());
         func.setEmail(txtEmail.getText());
         func.setClassificacao(Double.valueOf(txtClassificacao.getText()));
+        
+         // Verifique se o caminho do arquivo não é nulo ou vazio
+        if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
+            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            Path imagePath = Paths.get(caminhoDoArquivo);
+            byte[] imagemBytes = Files.readAllBytes(imagePath);
+
+            func.setImagem(imagemBytes);
+
+        } else {
+            System.out.println("Nenhum arquivo de imagem selecionado.");
+        }
+        
         dao.add(func);
 
     }
 
     @FXML
-    void editar(ActionEvent event) {
+    void editar(ActionEvent event) throws IOException {
         
         Class<Pessoa> classe = Pessoa.class;
         Instrutor func = new Instrutor();
@@ -116,6 +169,17 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         func.setSalario(Double.valueOf(txtSalario.getText()));
         func.setPassword(txtPassword.getText());
         func.setClassificacao(Double.valueOf(txtClassificacao.getText()));
+        
+        if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
+            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            Path imagePath = Paths.get(caminhoDoArquivo);
+            byte[] imagemBytes = Files.readAllBytes(imagePath);
+
+            func.setImagem(imagemBytes);
+
+        } else {
+            System.out.println("Nenhum arquivo de imagem selecionado.");
+        }
 
         dao.Atualizar(classe, Long.valueOf(txtId.getText()), func);
         JOptionPane.showMessageDialog(null, "Atualizado COm sucesso");
@@ -123,6 +187,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         txtEmail.setText("");
         txtNome.setText("");
         txtPassword.setText("");
+        imageCamera.setImage(null);
         listar(event);
     }
 
@@ -189,6 +254,18 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtSalario.setText(pessoa.getSalario().toString());
             txtPassword.setText(pessoa.getPassword());
             txtClassificacao.setText(pessoa.getClassificacao().toString());
+            
+            if (pessoa.getImagem() != null) {
+            // Converta o array de bytes em uma Image
+            byte[] imagemBytes = pessoa.getImagem();
+            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+            // Defina a imagem no ImageView
+            imageCamera.setImage(imagem);
+        } else {
+           JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+        }
+            
 
         } else {
             txtId.setText("");
@@ -201,8 +278,24 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtClassificacao.setText("");
         }
     }
-//    public void initialize(URL url, ResourceBundle rb) {
-//        // TODO
-//    }    
+    
+     void retornar_Imagem_Banco(ActionEvent event) {
+        GenericDAO dao = new GenericDAO();
+        Pessoa administrador = (Pessoa) dao.logarEmail("admin");
+
+        if (administrador != null && administrador.getImagem() != null) {
+            // Converta o array de bytes em uma Image
+            byte[] imagemBytes = administrador.getImagem();
+            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+            // Defina a imagem no ImageView
+            imageCamera.setImage(imagem);
+            System.out.println("Encontrado");
+        } else {
+            System.out.println("Nao Encontrado");
+        }
+    }
+    
+
     
 }

@@ -28,9 +28,10 @@
       </Text>
       <TableView fx:id="tabela" layoutX="13.0" layoutY="266.0" prefHeight="165.0" prefWidth="608.0">
          <columns>
-            <TableColumn fx:id="tabela_Modelo" prefWidth="206.39999103546143" text="Modelo" />
-            <TableColumn fx:id="tabela_Nome" prefWidth="199.2000274658203" text="Nome" />
-            <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="202.4000244140625" text="Marca" />
+            <TableColumn fx:id="tabela_Modelo" prefWidth="110.39999103546143" text="Modelo" />
+            <TableColumn fx:id="tabela_Nome" prefWidth="172.8000030517578" text="Nome" />
+            <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="172.0" text="Marca" />
+            <TableColumn fx:id="tabela_Imagem" prefWidth="152.0" text="Imagem" />
          </columns>
       </TableView>
       <TextField fx:id="txtNome" layoutX="26.0" layoutY="77.0" promptText="Nome da maquina" />

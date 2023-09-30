@@ -26,7 +26,7 @@ public class Equipamento implements Serializable {
     private String modelo;
     @Lob
     protected byte[] imagem;
-    private boolean status;
+    private boolean status; 
 
     public Long getId() {
         return id;
