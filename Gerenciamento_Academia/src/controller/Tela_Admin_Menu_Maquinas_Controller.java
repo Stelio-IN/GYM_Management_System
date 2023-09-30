@@ -37,7 +37,6 @@ import model.Equipamento;
  */
 public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
 
-    
     @FXML
     private TableView<Equipamento> tabela;
 
@@ -49,8 +48,8 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
 
     @FXML
     private TableColumn<Equipamento, String> tabela_Nome;
-    
-        @FXML
+
+    @FXML
     private TableColumn<Equipamento, Byte> tabela_Imagem;
 
     @FXML
@@ -67,13 +66,21 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
 
     @FXML
     private TextField txtPesquisa;
-    
-      @FXML
+
+    @FXML
     private ImageView imageCamera;
     
-     String caminhoDoArquivo;
-     
-     @FXML
+    private ObservableList<Equipamento> observableList;
+
+    private String caminhoDoArquivo;
+
+    /**
+     * Método que carrega a imagem do diretório da máquina para o app , que
+     * posteriormente será atribuida a maquina que está sendo cadastrada
+     *
+     * @param event
+     */
+    @FXML
     void carregarimg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecionar uma imagem");
@@ -97,6 +104,12 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         }
     }
 
+    /**
+     * Método para cadastrar as máquinas
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void cadastrar(ActionEvent event) throws IOException {
         GenericDAO dao = new GenericDAO();
@@ -104,38 +117,40 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
         equip.setModelo(txtModelo.getText());
-        
-        // Verifique se o caminho do arquivo não é nulo ou vazio
+
+        //Instrução que verifica se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
-            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            //Instrução que faz a leitura da imagem do arquivo e armazenamento como um array de bytes
             Path imagePath = Paths.get(caminhoDoArquivo);
             byte[] imagemBytes = Files.readAllBytes(imagePath);
-
             equip.setImagem(imagemBytes);
-
         } else {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
-        
         dao.add(equip);
     }
-    
+
     @FXML
     void pesquisar(ActionEvent event) {
- if (!txtPesquisa.getText().equals("")) {
+        if (!txtPesquisa.getText().equals("")) {
             JOptionPane.showMessageDialog(null, txtPesquisa.getText());
         } else {
             JOptionPane.showMessageDialog(null, "Campo de Texto Vazio");
         }
     }
-    
 
+    /**
+     * Método para editar os atributos relativos as máquinas
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void editar(ActionEvent event) throws IOException {
         Class<Equipamento> classe = Equipamento.class;
         GenericDAO dao = new GenericDAO();
         Equipamento equip = new Equipamento();
-       
+
         equip.setId(Long.valueOf(txtId.getText()));
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
@@ -144,116 +159,98 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
             Path imagePath = Paths.get(caminhoDoArquivo);
-             byte[] imagemBytes = Files.readAllBytes(imagePath);
-
+            byte[] imagemBytes = Files.readAllBytes(imagePath);
             equip.setImagem(imagemBytes);
-
         } else {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
-     
-        
         dao.Atualizar(classe, Long.valueOf(txtId.getText()), equip);
-        
         JOptionPane.showMessageDialog(null, "Atualizado COm sucesso");
         txtId.setText("");
         txtMarca.setText("");
         txtNome.setText("");
         txtModelo.setText("");
         listar(event);
-        
-        
+
     }
-    
 
-
+    /**
+     * Método para remover a máquina dos registos
+     *
+     * @param event
+     */
     @FXML
     void excluir(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
         Class<Equipamento> classe = Equipamento.class;
         dao.removeFisico(classe, Long.valueOf(txtId.getText()));
-        
         txtId.setText("");
         txtMarca.setText("");
         txtNome.setText("");
         txtModelo.setText("");
         listar(event);
-        
     }
 
-    private ObservableList<Equipamento> observableList;
+    /**
+     * Método para apresentar todas as máquinas ativas no négocio
+     *
+     * @param event
+     */
     @FXML
     void listar(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
-        Class<Equipamento> classe =  Equipamento.class;
-        
+        Class<Equipamento> classe = Equipamento.class;
+
         List<Equipamento> lista = (List<Equipamento>) dao.listar(classe);
-        
+
         tabela_Nome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         tabela_Marca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
         tabela_Modelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
-       // tabela_Imagem.setCellValueFactory(new PropertyValueFactory<>("Imagem"));
-        
+        // tabela_Imagem.setCellValueFactory(new PropertyValueFactory<>("Imagem"));
+
         observableList = FXCollections.observableArrayList(lista);
-       tabela.setItems(observableList);
-        
+        tabela.setItems(observableList);
+
     }
 
-    
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-     tabela.getSelectionModel().selectedItemProperty().addListener(
+        tabela.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
-     );
-         txtId.setDisable(true);
-             }   
-    
-     public void pegarLinhaSelecionada(Equipamento pessoa) {
-     if (pessoa != null) {
-         txtId.setText(String.valueOf(pessoa.getId()));
-         txtNome.setText(pessoa.getNome());
-         txtMarca.setText(pessoa.getMarca());
-         txtModelo.setText(pessoa.getModelo());
-         
-          if (pessoa.getImagem() != null) {
-            // Converta o array de bytes em uma Image
-            byte[] imagemBytes = pessoa.getImagem();
-            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+        );
+        txtId.setDisable(true);
+    }
 
-            // Defina a imagem no ImageView
-            imageCamera.setImage(imagem);
+    /**
+     * Método para carregar os dados na tabela para os respectivos campos
+     *
+     * @param pessoa
+     */
+    public void pegarLinhaSelecionada(Equipamento pessoa) {
+        if (pessoa != null) {
+            txtId.setText(String.valueOf(pessoa.getId()));
+            txtNome.setText(pessoa.getNome());
+            txtMarca.setText(pessoa.getMarca());
+            txtModelo.setText(pessoa.getModelo());
+
+            if (pessoa.getImagem() != null) {
+                // Converta o array de bytes em uma Image
+                byte[] imagemBytes = pessoa.getImagem();
+                Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+                // Defina a imagem no ImageView
+                imageCamera.setImage(imagem);
+            } else {
+                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+            }
+
         } else {
-           JOptionPane.showMessageDialog(null, "imagem nao encontrada");
-        }
-         
+            txtId.setText("");
+            txtNome.setText("");
+            txtMarca.setText("");
+            txtModelo.setText("");
 
-     } else {
-         txtId.setText("");
-         txtNome.setText("");
-         txtMarca.setText("");
-         txtModelo.setText("");
-         
-     }
-     }
-     
-      void retornar_Imagem_Banco(ActionEvent event) {
-        GenericDAO dao = new GenericDAO();
-        Equipamento administrador = (Equipamento) dao.logarEmail("admin");
-
-        if (administrador != null && administrador.getImagem() != null) {
-            // Converta o array de bytes em uma Image
-            byte[] imagemBytes = administrador.getImagem();
-            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
-
-            // Defina a imagem no ImageView
-            imageCamera.setImage(imagem);
-            System.out.println("Encontrado");
-        } else {
-            System.out.println("Nao Encontrado");
         }
     }
-    
+
 }

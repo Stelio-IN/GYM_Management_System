@@ -32,8 +32,8 @@ import model.Instrutor;
 import model.Pessoa;
 
 /**
- * FXML Controller class
- *
+ * Está classe permite ao administrador tratar de todos os dados relativos ao instrutor
+ * 
  * @author steli
  */
 public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
@@ -57,7 +57,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
 
     @FXML
     private TableColumn<Instrutor, String> tabela_Salario;
-    
+
     @FXML
     private TableColumn<Instrutor, String> tabela_Classificacao;
 
@@ -65,16 +65,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     private TableColumn<?, ?> tabela_Situacao;
 
     @FXML
-    void pesquisar(ActionEvent event) {
-        if (!txtPesquisa.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, txtPesquisa.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Campo de Texto Vazio");
-        }
-    }
-
-    @FXML
-    private TextField txtEspecializacao; // Representa a variavel String Especializacao
+    private TextField txtEspecializacao; 
 
     @FXML
     private TextField txtCodigo;
@@ -93,16 +84,33 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
 
     @FXML
     private TextField txtId;
-    
+
     @FXML
     private TextField txtClassificacao;
-    
-      @FXML
+
+    @FXML
     private ImageView imageCamera;
-      
-        private String caminhoDoArquivo;
-      
-        @FXML
+
+    private String caminhoDoArquivo;
+    
+    private ObservableList<Instrutor> observableListe;
+
+    @FXML
+    void pesquisar(ActionEvent event) {
+        if (!txtPesquisa.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, txtPesquisa.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Campo de Texto Vazio");
+        }
+    }
+
+    /**
+     * Método que carrega a imagem do diretório da máquina para o app , com o
+     * objetivo de atribuir ao instrutor que está sendo cadastrado
+     *
+     * @param event
+     */
+    @FXML
     void carregarimg(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Selecionar uma imagem");
@@ -126,9 +134,15 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         }
     }
 
+    /**
+     * Método para cadastrar os instrutores no sistema
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void cadastrar(ActionEvent event) throws IOException {
-        
+
         Instrutor Instruto = new Instrutor();
         GenericDAO dao = new GenericDAO();
         Instruto.setEspecializacao(txtEspecializacao.getText());
@@ -138,26 +152,28 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         Instruto.setCodigo(txtCodigo.getText());
         Instruto.setEmail(txtEmail.getText());
         Instruto.setClassificacao(Double.valueOf(txtClassificacao.getText()));
-        
-         // Verifique se o caminho do arquivo não é nulo ou vazio
+
+        // Instrução que verifica se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
-            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            // Instrução que faz a leitura da imagem do arquivo e armazenamento como um array de bytes
             Path imagePath = Paths.get(caminhoDoArquivo);
             byte[] imagemBytes = Files.readAllBytes(imagePath);
-
             Instruto.setImagem(imagemBytes);
-
         } else {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
-        
         dao.add(Instruto);
-
     }
 
+    /**
+     * Método para atualizar os dados relativos aos instrutores
+     *
+     * @param event
+     * @throws IOException
+     */
     @FXML
     void editar(ActionEvent event) throws IOException {
-        
+
         Class<Pessoa> classe = Pessoa.class;
         Instrutor Instru = new Instrutor();
         GenericDAO dao = new GenericDAO();
@@ -169,7 +185,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         Instru.setSalario(Double.valueOf(txtSalario.getText()));
         Instru.setPassword(txtPassword.getText());
         Instru.setClassificacao(Double.valueOf(txtClassificacao.getText()));
-        
+
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
             Path imagePath = Paths.get(caminhoDoArquivo);
@@ -178,11 +194,11 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             Instru.setImagem(imagemBytes);
 
         } else {
-           JOptionPane.showMessageDialog(null, "Nenhuma imagem selecionada");
+            JOptionPane.showMessageDialog(null, "Nenhuma imagem selecionada");
         }
 
         dao.Atualizar(classe, Long.valueOf(txtId.getText()), Instru);
-        JOptionPane.showMessageDialog(null, "Dados atualizados" , "",JOptionPane.YES_OPTION);
+        JOptionPane.showMessageDialog(null, "Dados atualizados", "", JOptionPane.YES_OPTION);
         txtId.setText("");
         txtEmail.setText("");
         txtNome.setText("");
@@ -191,6 +207,11 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         listar(event);
     }
 
+    /**
+     * Método que elimina de forma lógica o instrutor da base de dados
+     *
+     * @param event
+     */
     @FXML
     void excluir(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
@@ -209,9 +230,12 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         txtClassificacao.setText("");
         listar(event);
     }
-
-    private ObservableList<Instrutor> observableListe;
-
+    
+    /**
+     * Método para apresentar todos os instrutores ativos no sistema
+     *
+     * @param event
+     */
     @FXML
     void listar(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
@@ -224,7 +248,6 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         tabela_Nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         tabela_Salario.setCellValueFactory(new PropertyValueFactory<>("salario"));
         tabela_Especializacao.setCellValueFactory(new PropertyValueFactory<>("Especializacao"));
-        //tabela_Situacao.setCellValueFactory(new PropertyValueFactory<>("situacao"));
         tabela_Classificacao.setCellValueFactory(new PropertyValueFactory<>("Classificacao"));
 
         observableListe = FXCollections.observableArrayList(lista);
@@ -233,17 +256,18 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-//           tabela.getSelectionModel().selectedItemProperty().addListener(
-//                (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue.getValue()));
 
         tabela.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
-        
         txtId.setDisable(true);
     }
 
+    /**
+     * Método para carregar os dados na tabela para os respectivos campos
+     *
+     * @param pessoa
+     */
     public void pegarLinhaSelecionada(Instrutor pessoa) {
         if (pessoa != null) {
             txtId.setText(pessoa.getId().toString());
@@ -254,18 +278,17 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtSalario.setText(pessoa.getSalario().toString());
             txtPassword.setText(pessoa.getPassword());
             txtClassificacao.setText(pessoa.getClassificacao().toString());
-            
-            if (pessoa.getImagem() != null) {
-            // Converta o array de bytes em uma Image
-            byte[] imagemBytes = pessoa.getImagem();
-            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
-            // Defina a imagem no ImageView
-            imageCamera.setImage(imagem);
-        } else {
-           JOptionPane.showMessageDialog(null, "imagem nao encontrada");
-        }
-            
+            if (pessoa.getImagem() != null) {
+                //Instrução que converte o array de bytes em uma Image
+                byte[] imagemBytes = pessoa.getImagem();
+                Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+                //Intrução que define a imagem no ImageView
+                imageCamera.setImage(imagem);
+            } else {
+                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+            }
 
         } else {
             txtId.setText("");
@@ -278,5 +301,5 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtClassificacao.setText("");
         }
     }
-    
+
 }
