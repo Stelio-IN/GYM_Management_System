@@ -20,19 +20,19 @@ public class Equipamento implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     private String nome;
     private String marca;
     private String modelo;
     @Lob
     protected byte[] imagem;
-    private boolean status;
+    private boolean status; 
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -75,5 +75,12 @@ public class Equipamento implements Serializable {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    @Override
+    public String toString() {
+        return "Equipamento{" + "id=" + id + ", nome=" + nome + ", marca=" + marca + ", modelo=" + modelo + ", imagem=" + imagem + ", status=" + status + '}';
+    }
+    
+    
 
 }

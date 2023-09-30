@@ -132,6 +132,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     private TextField txtIdentificacao;
 
     String caminhoDoArquivo;
+    
 
     @FXML
     void carregarimg(ActionEvent event) {
@@ -251,7 +252,6 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         nacionalidade.add(" Africa do sul");
         nacionalidade.add("Angola");
         nacionalidade.add("Brasil");
-        nacionalidade.add(" Portugal");
         obserNacionalidade = FXCollections.observableArrayList(nacionalidade);
         comboBoxNacionalidade.setItems(obserNacionalidade);
     }

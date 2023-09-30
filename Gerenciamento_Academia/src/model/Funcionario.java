@@ -82,11 +82,11 @@ public class Funcionario extends Pessoa implements Serializable {
         this.naturalidade = naturalidade;
     }
 
-    public String getEmail() {
+    public String getEmail(){
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email){
         this.email = email;
     }
 

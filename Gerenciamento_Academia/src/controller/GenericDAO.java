@@ -15,7 +15,8 @@ import model.Pessoa;
 
 /**
  *
- * @author steli
+ * @author steli 
+ * sumeid's branch
  */
 public class GenericDAO {
 
