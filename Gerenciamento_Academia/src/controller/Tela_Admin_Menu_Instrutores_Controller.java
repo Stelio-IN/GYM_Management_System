@@ -129,15 +129,15 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     @FXML
     void cadastrar(ActionEvent event) throws IOException {
         
-        Instrutor func = new Instrutor();
+        Instrutor Instruto = new Instrutor();
         GenericDAO dao = new GenericDAO();
-        func.setEspecializacao(txtEspecializacao.getText());
-        func.setNome(txtNome.getText());
-        func.setPassword(txtPassword.getText());
-        func.setSalario(Double.valueOf(txtSalario.getText()));
-        func.setCodigo(txtCodigo.getText());
-        func.setEmail(txtEmail.getText());
-        func.setClassificacao(Double.valueOf(txtClassificacao.getText()));
+        Instruto.setEspecializacao(txtEspecializacao.getText());
+        Instruto.setNome(txtNome.getText());
+        Instruto.setPassword(txtPassword.getText());
+        Instruto.setSalario(Double.valueOf(txtSalario.getText()));
+        Instruto.setCodigo(txtCodigo.getText());
+        Instruto.setEmail(txtEmail.getText());
+        Instruto.setClassificacao(Double.valueOf(txtClassificacao.getText()));
         
          // Verifique se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
@@ -145,13 +145,13 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             Path imagePath = Paths.get(caminhoDoArquivo);
             byte[] imagemBytes = Files.readAllBytes(imagePath);
 
-            func.setImagem(imagemBytes);
+            Instruto.setImagem(imagemBytes);
 
         } else {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
         
-        dao.add(func);
+        dao.add(Instruto);
 
     }
 
@@ -159,30 +159,30 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     void editar(ActionEvent event) throws IOException {
         
         Class<Pessoa> classe = Pessoa.class;
-        Instrutor func = new Instrutor();
+        Instrutor Instru = new Instrutor();
         GenericDAO dao = new GenericDAO();
-        func.setId(Long.valueOf(txtId.getText()));
-        func.setEmail(txtEmail.getText());
-        func.setNome(txtNome.getText());
-        func.setCodigo(txtCodigo.getText());
-        func.setEspecializacao(String.valueOf(txtEspecializacao.getText()));
-        func.setSalario(Double.valueOf(txtSalario.getText()));
-        func.setPassword(txtPassword.getText());
-        func.setClassificacao(Double.valueOf(txtClassificacao.getText()));
+        Instru.setId(Long.valueOf(txtId.getText()));
+        Instru.setEmail(txtEmail.getText());
+        Instru.setNome(txtNome.getText());
+        Instru.setCodigo(txtCodigo.getText());
+        Instru.setEspecializacao(String.valueOf(txtEspecializacao.getText()));
+        Instru.setSalario(Double.valueOf(txtSalario.getText()));
+        Instru.setPassword(txtPassword.getText());
+        Instru.setClassificacao(Double.valueOf(txtClassificacao.getText()));
         
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
             Path imagePath = Paths.get(caminhoDoArquivo);
             byte[] imagemBytes = Files.readAllBytes(imagePath);
 
-            func.setImagem(imagemBytes);
+            Instru.setImagem(imagemBytes);
 
         } else {
-            System.out.println("Nenhum arquivo de imagem selecionado.");
+           JOptionPane.showMessageDialog(null, "Nenhuma imagem selecionada");
         }
 
-        dao.Atualizar(classe, Long.valueOf(txtId.getText()), func);
-        JOptionPane.showMessageDialog(null, "Atualizado COm sucesso");
+        dao.Atualizar(classe, Long.valueOf(txtId.getText()), Instru);
+        JOptionPane.showMessageDialog(null, "Dados atualizados" , "",JOptionPane.YES_OPTION);
         txtId.setText("");
         txtEmail.setText("");
         txtNome.setText("");
@@ -195,9 +195,9 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     void excluir(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
 
-        Class<Instrutor> func_Classe = Instrutor.class;
+        Class<Instrutor> Instr_Classe = Instrutor.class;
         // dao.removerLogico(func_Classe, Long.valueOf(txtId.getText()), dao);
-        dao.removeFisico(func_Classe, Long.valueOf(txtId.getText()));
+        dao.removeFisico(Instr_Classe, Long.valueOf(txtId.getText()));
         JOptionPane.showMessageDialog(null, "Removido COm sucesso");
         txtId.setText("");
         txtEmail.setText("");
@@ -216,8 +216,8 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     void listar(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
 
-        Class<Instrutor> func_Classe = Instrutor.class;
-        List<Instrutor> lista = (List<Instrutor>) dao.listar(func_Classe);
+        Class<Instrutor> Instr_Classe = Instrutor.class;
+        List<Instrutor> lista = (List<Instrutor>) dao.listar(Instr_Classe);
 
         tabela_Codigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         tabela_Email.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -278,24 +278,5 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtClassificacao.setText("");
         }
     }
-    
-     void retornar_Imagem_Banco(ActionEvent event) {
-        GenericDAO dao = new GenericDAO();
-        Pessoa administrador = (Pessoa) dao.logarEmail("admin");
-
-        if (administrador != null && administrador.getImagem() != null) {
-            // Converta o array de bytes em uma Image
-            byte[] imagemBytes = administrador.getImagem();
-            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
-
-            // Defina a imagem no ImageView
-            imageCamera.setImage(imagem);
-            System.out.println("Encontrado");
-        } else {
-            System.out.println("Nao Encontrado");
-        }
-    }
-    
-
     
 }
