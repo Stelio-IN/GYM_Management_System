@@ -4,7 +4,12 @@
  */
 package controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -16,6 +21,10 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Equipamento;
 
@@ -53,14 +62,55 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
 
     @FXML
     private TextField txtPesquisa;
+    
+      @FXML
+    private ImageView imageCamera;
+    
+     String caminhoDoArquivo;
+     
+     @FXML
+    void carregarimg(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Selecionar uma imagem");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Imagens", "*.png", "*.jpg", "*.jpeg", "*.gif", "*.bmp"),
+                new FileChooser.ExtensionFilter("Todos os arquivos", "*.*")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        if (selectedFile != null) {
+            caminhoDoArquivo = selectedFile.getAbsolutePath();
+
+            // Cria uma instância de Image com o arquivo selecionado
+            Image imagemSelecionada = new Image(selectedFile.toURI().toString());
+
+            // Atribui a imagem ao ImageView
+            imageCamera.setImage(imagemSelecionada);
+        } else {
+            System.out.println("Nenhum arquivo selecionado.");
+        }
+    }
 
     @FXML
-    void cadastrar(ActionEvent event) {
+    void cadastrar(ActionEvent event) throws IOException {
         GenericDAO dao = new GenericDAO();
         Equipamento equip = new Equipamento();
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
         equip.setModelo(txtModelo.getText());
+        
+        // Verifique se o caminho do arquivo não é nulo ou vazio
+        if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
+            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            Path imagePath = Paths.get(caminhoDoArquivo);
+            byte[] imagemBytes = Files.readAllBytes(imagePath);
+
+            equip.setImagem(imagemBytes);
+
+        } else {
+            System.out.println("Nenhum arquivo de imagem selecionado.");
+        }
         
         dao.add(equip);
     }
@@ -146,6 +196,7 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
          txtNome.setText(pessoa.getNome());
          txtMarca.setText(pessoa.getMarca());
          txtModelo.setText(pessoa.getModelo());
+        
          
 
      } else {
