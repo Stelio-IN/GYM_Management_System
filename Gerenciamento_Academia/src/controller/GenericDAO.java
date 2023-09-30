@@ -11,6 +11,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
+import model.Pessoa;
 
 /**
  *
@@ -240,6 +241,13 @@ public class GenericDAO {
         }
 
     }
+    
+      public List<Pessoa> buscarPessoasPorNome(String nome) {
+        TypedQuery<Pessoa> query = gerente.createNamedQuery("Pessoa.findByName", Pessoa.class);
+        query.setParameter("nome", "%" + nome + "%"); // O operador % é usado para consultas "LIKE"
+        return query.getResultList();
+    }
+    
     
     /**
      * Metodos mais especificos caso haja algum problema
