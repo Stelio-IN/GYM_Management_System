@@ -74,13 +74,13 @@ public class GenericDAO {
     }
     
     
-    public int contar(Class<?> classe) {
+    public int contar_Quantidade_Base(Class<?> classe) {
 
     try {
         fabrica = Persistence.createEntityManagerFactory("SystemPU");
         gerente = fabrica.createEntityManager();
 
-        // Consulta para contar todos os objetos da classe especificada
+        // Consulta para contar_Quantidade_Base todos os objetos da classe especificada
         String consulta = "SELECT COUNT(obj) FROM " + classe.getSimpleName() + " obj";
         TypedQuery<Long> query = gerente.createQuery(consulta, Long.class);
 

@@ -22,7 +22,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
@@ -181,7 +185,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
         GenericDAO dao = new GenericDAO();
         Class<Pessoa> classe = Pessoa.class;
-        int quant = dao.contar(classe);
+        int quant = dao.contar_Quantidade_Base(classe);
         System.out.println(quant);
         int anoAtual = Year.now().getValue(); // Obtém o ano atual
         String idUnico = "CG" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
@@ -394,6 +398,19 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         ficha.setFuncionario("Funcionario maluco");
         ficha.setData_Da_Inscriacao(dataAtualFormatada);
         dao.add(ficha);
+        
+//        Tela_Menu_FuncController trocarTela = new Tela_Menu_FuncController();
+//        
+//        trocarTela.carregarTela("/view/Tela_Menu_Admin");
+        Tela_Principal(event);
+    }
+        public void Tela_Principal(ActionEvent event) throws IOException {
+            
+        Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Func.fxml"));
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
