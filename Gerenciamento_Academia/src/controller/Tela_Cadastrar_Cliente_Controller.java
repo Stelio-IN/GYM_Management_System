@@ -109,6 +109,9 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
     @FXML
     private TextField txtRua;
+    
+    @FXML
+    private TextField txtPassword;
 
     @FXML
     private DatePicker dataChosser;
@@ -360,6 +363,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         cliente.setEmail(txtEmail.getText());
         cliente.setNaturalidade(comboBoxCidade.getValue());
         cliente.setNome_Do_Conjuge(txtNomeConjuge.getText());
+        cliente.setPassword(txtPassword.getText());
         Endereco endereco = new Endereco();
         endereco.setBairro(comboBoxBairro.getValue());
         endereco.setRua(txtRua.getText());

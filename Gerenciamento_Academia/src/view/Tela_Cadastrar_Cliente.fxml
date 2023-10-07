@@ -105,6 +105,7 @@
             <TextField fx:id="txtPeso" promptText="peso" GridPane.columnIndex="1" GridPane.rowIndex="8" />
             <TextField fx:id="txtAltura" promptText="altura" GridPane.columnIndex="2" GridPane.rowIndex="8" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dados*" GridPane.rowIndex="8" />
+            <TextField fx:id="txtPassword" promptText="Password" GridPane.columnIndex="2" GridPane.rowIndex="11" />
          </children>
       </GridPane>
       <Button layoutX="650.0" layoutY="177.0" mnemonicParsing="false" onAction="#carregarimg" text="Carregar IMG" />

@@ -11,7 +11,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Menu_Func_Controller">
    <center>
       <AnchorPane fx:id="panelGeral" prefHeight="660.0" prefWidth="769.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER" />
@@ -38,7 +37,7 @@
       </MenuBar>
    </top>
    <left>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="675.0" prefWidth="192.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="102.0" fitWidth="108.0" layoutX="47.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -50,11 +49,11 @@
                   <Font name="Bodoni MT Condensed" size="31.0" />
                </font>
             </Text>
-            <Button layoutX="18.0" layoutY="222.0" mnemonicParsing="false" onAction="#tela_Admin_Menu_Clientes" text="Cadastrar/Atualizar Clientes" />
-            <Button layoutX="51.0" layoutY="313.0" mnemonicParsing="false" text="Instrutores Status" />
-            <Button layoutX="54.0" layoutY="367.0" mnemonicParsing="false" text="Maquinas Status" />
-            <Button layoutX="72.0" layoutY="267.0" mnemonicParsing="false" onAction="#plano_Associa" text="Pacotes" />
-            <Button layoutX="80.0" layoutY="176.0" mnemonicParsing="false" onAction="#Tela_Geral" text="Geral" />
+            <Button layoutX="-1.0" layoutY="222.0" mnemonicParsing="false" onAction="#tela_Admin_Menu_Clientes" prefHeight="25.0" prefWidth="202.0" text="Cadastrar/Atualizar Clientes" />
+            <Button layoutY="313.0" mnemonicParsing="false" onAction="#Tela_Instrutores" prefHeight="25.0" prefWidth="200.0" text="Instrutores Status" />
+            <Button layoutX="-1.0" layoutY="367.0" mnemonicParsing="false" onAction="#Tela_Maquinas" prefHeight="25.0" prefWidth="201.0" text="Maquinas Status" />
+            <Button layoutX="-2.0" layoutY="267.0" mnemonicParsing="false" onAction="#plano_Associa" prefHeight="25.0" prefWidth="202.0" text="Pacotes" />
+            <Button layoutY="176.0" mnemonicParsing="false" onAction="#Tela_Geral" prefHeight="25.0" prefWidth="201.0" text="Geral" />
          </children>
       </AnchorPane>
    </left>

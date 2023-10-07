@@ -20,10 +20,10 @@ import javax.persistence.NamedQuery;
  * @author steli
  */
 @Entity
-@NamedQueries({
-    @NamedQuery(name = "Administrador.findByEmail", query = "SELECT a FROM Administrador a WHERE a.email = :email"),
-     @NamedQuery(name = "Administrador.findByCodigo", query = "SELECT a FROM Administrador a WHERE a.codigo = :email")})
-public class Administrador implements Serializable {
+//@NamedQueries({
+//    @NamedQuery(name = "Administrador.findByEmail", query = "SELECT a FROM Administrador a WHERE a.email = :email"),
+//     @NamedQuery(name = "Administrador.findByCodigo", query = "SELECT a FROM Administrador a WHERE a.codigo = :email")})
+public class Administrador extends Pessoa implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -89,4 +89,77 @@ public class Administrador implements Serializable {
         return "Administrador{" + "id=" + id + ", nome=" + nome + ", codigo=" + codigo + ", email=" + email + ", password=" + password + ", imagem=" + imagem + '}';
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getNacionalidade() {
+        return nacionalidade;
+    }
+
+    public void setNacionalidade(String nacionalidade) {
+        this.nacionalidade = nacionalidade;
+    }
+
+    public String getNaturalidade() {
+        return naturalidade;
+    }
+
+    public void setNaturalidade(String naturalidade) {
+        this.naturalidade = naturalidade;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getTelefone_Alternativo() {
+        return telefone_Alternativo;
+    }
+
+    public void setTelefone_Alternativo(String telefone_Alternativo) {
+        this.telefone_Alternativo = telefone_Alternativo;
+    }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getBilhete_Identificacao() {
+        return bilhete_Identificacao;
+    }
+
+    public void setBilhete_Identificacao(String bilhete_Identificacao) {
+        this.bilhete_Identificacao = bilhete_Identificacao;
+    }
+
+    public String getEstado_Civil() {
+        return estado_Civil;
+    }
+
+    public void setEstado_Civil(String estado_Civil) {
+        this.estado_Civil = estado_Civil;
+    }
+
+    public boolean isIsAtivo() {
+        return isAtivo;
+    }
+
+    public void setIsAtivo(boolean isAtivo) {
+        this.isAtivo = isAtivo;
+    }
+
+    
 }

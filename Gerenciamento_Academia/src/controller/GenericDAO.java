@@ -15,8 +15,7 @@ import model.Pessoa;
 
 /**
  *
- * @author steli 
- * sumeid's branch
+ * @author steli sumeid's branch
  */
 public class GenericDAO {
 
@@ -72,31 +71,29 @@ public class GenericDAO {
             }
         }
     }
-    
-    
+
     public int contar_Quantidade_Base(Class<?> classe) {
 
-    try {
-        fabrica = Persistence.createEntityManagerFactory("SystemPU");
-        gerente = fabrica.createEntityManager();
+        try {
+            fabrica = Persistence.createEntityManagerFactory("SystemPU");
+            gerente = fabrica.createEntityManager();
 
-        // Consulta para contar_Quantidade_Base todos os objetos da classe especificada
-        String consulta = "SELECT COUNT(obj) FROM " + classe.getSimpleName() + " obj";
-        TypedQuery<Long> query = gerente.createQuery(consulta, Long.class);
+            // Consulta para contar_Quantidade_Base todos os objetos da classe especificada
+            String consulta = "SELECT COUNT(obj) FROM " + classe.getSimpleName() + " obj";
+            TypedQuery<Long> query = gerente.createQuery(consulta, Long.class);
 
-        Long resultado = query.getSingleResult();
-        return resultado.intValue(); // Converter para int
+            Long resultado = query.getSingleResult();
+            return resultado.intValue(); // Converter para int
 
-    } catch (Exception e) {
-        e.printStackTrace();
-        return -1; // Ou lançar uma exceção apropriada, dependendo do seu caso.
-    } finally {
-        if (gerente != null && gerente.isOpen()) {
-            gerente.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1; // Ou lançar uma exceção apropriada, dependendo do seu caso.
+        } finally {
+            if (gerente != null && gerente.isOpen()) {
+                gerente.close();
+            }
         }
     }
-}
-
 
     /**
      * Busca pelo Id
@@ -105,7 +102,6 @@ public class GenericDAO {
      * @param id
      * @return
      */
-    
     public Object buscaId(Class<?> classe, Object id) {
         try {
             return gerente.find(classe, id);
@@ -114,7 +110,6 @@ public class GenericDAO {
         }
         return null;
     }
-   
 
     /**
      * Metodo Para remover Logico
@@ -158,7 +153,7 @@ public class GenericDAO {
             gerente = fabrica.createEntityManager();
             gerente.getTransaction().begin();
 
-           Object obj = buscaId(classe, id);
+            Object obj = buscaId(classe, id);
 //            Object obj = buscarPessoaPorId(id);
             if (obj != null) {
                 gerente.merge(novosDados);
@@ -201,59 +196,80 @@ public class GenericDAO {
             gerente.close();
         }
     }
-    
+
     /*
     caso tenha varias tabelas para ter acesso
-    */
+     */
     public <T> T buscarPorEmail(Class<T> entityClass, String email) {
-    EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("SystemPU");
-    EntityManager gerente = fabrica.createEntityManager();
-    
-    try {
-        String queryName = entityClass.getSimpleName() + ".findByEmail";
-        TypedQuery<T> query = gerente.createNamedQuery(queryName, entityClass)
-            .setParameter("email", email);
-        List<T> resultList = query.getResultList();
-        
-        if (!resultList.isEmpty()) {
-            return resultList.get(0);
-        } else {
-            return null;
+        EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("SystemPU");
+        EntityManager gerente = fabrica.createEntityManager();
+
+        try {
+            String queryName = entityClass.getSimpleName() + ".findByEmail";
+            TypedQuery<T> query = gerente.createNamedQuery(queryName, entityClass)
+                    .setParameter("email", email);
+            List<T> resultList = query.getResultList();
+
+            if (!resultList.isEmpty()) {
+                return resultList.get(0);
+            } else {
+                return null;
+            }
+        } finally {
+            gerente.close();
+            fabrica.close();
         }
-    } finally {
-        gerente.close();
-        fabrica.close();
     }
-}
-    
+
     /*
     para tabela pessoa
-    */
+     */
     //Usando para teste apenas Admin
     public Object logarEmail(String email) {
         fabrica = Persistence.createEntityManagerFactory("SystemPU");
         gerente = fabrica.createEntityManager();
-        List<Administrador> admin = gerente.createNamedQuery("Administrador.findByEmail", Administrador.class).setParameter("email", email).getResultList();
-        if (!admin.isEmpty()) {
-            return admin.get(0);
+        List<Pessoa> pessoa = gerente.createNamedQuery("Pessoa.findByEmail", Pessoa.class).setParameter("email", email).getResultList();
+        if (!pessoa.isEmpty()) {
+            return pessoa.get(0);
         } else {
             return null;
         }
 
     }
-    
-      public List<Pessoa> buscarPessoasPorNome(String nome) {
+
+    public Object logarEmailOuCodigo(String input) {
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+        gerente = fabrica.createEntityManager();
+        if (input != null && input.length() == 10) {
+            List<Pessoa> pessoas = gerente.createNamedQuery("Pessoa.findByCodigo", Pessoa.class)
+                    .setParameter("codigo", input)
+                    .getResultList();
+            if (!pessoas.isEmpty()) {
+                return pessoas.get(0);
+            }
+        } else {
+            List<Pessoa> pessoas = gerente.createNamedQuery("Pessoa.findByEmail", Pessoa.class)
+                    .setParameter("email", input)
+                    .getResultList();
+            if (!pessoas.isEmpty()) {
+                return pessoas.get(0);
+            }
+        }
+
+        return null; 
+    }
+
+    public List<Pessoa> buscarPessoasPorNome(String nome) {
         TypedQuery<Pessoa> query = gerente.createNamedQuery("Pessoa.findByName", Pessoa.class);
         query.setParameter("nome", "%" + nome + "%"); // O operador % é usado para consultas "LIKE"
         return query.getResultList();
     }
-    
-    
+
     /**
      * Metodos mais especificos caso haja algum problema
      */
 
-     /*
+    /*
     public Object buscaId(Long id) {
         try {
             return gerente.find(Pessoa.class, id);
@@ -262,9 +278,9 @@ public class GenericDAO {
         }
         return null;
     }
-    */
+     */
 
-   /* 
+ /* 
     public Pessoa buscarPessoaPorId(Long id) {
     EntityManagerFactory fabrica = Persistence.createEntityManagerFactory("aaaaaPU");
     EntityManager gerente = fabrica.createEntityManager();
@@ -281,5 +297,5 @@ public class GenericDAO {
         fabrica.close();
     }
     }
-    */
+     */
 }
