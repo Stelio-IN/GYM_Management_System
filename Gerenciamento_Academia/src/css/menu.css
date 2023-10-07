@@ -1,0 +1,20 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color:  #ffffff;
+    -fx-background-radius: 50px 50px 50px 50px;   
+}
+
+.imagemAdmin{
+  
+}
+
+.borderpane{
+  -fx-background-color:  #18fa181a;
+}
+
+.pesquisar{
+  -fx-background-color:  #c2b8b841;
+}

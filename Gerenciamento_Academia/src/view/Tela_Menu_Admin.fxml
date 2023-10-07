@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -17,20 +16,17 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" styleClass="borderpane" stylesheets="@../../../../../NetBeansProjects/DASHBOARDS/src/dashboards/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="C:\Users\$umeid_ibr\Documents\JAVA_REPOSITORIO\GYM_Management_System\Gerenciamento_Academia\src\controller\Tela_Menu_Admin.fxml">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" styleClass="borderpane" stylesheets="@../css/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Menu_Admin_Controller">
    <left>
       <AnchorPane prefHeight="743.0" prefWidth="138.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="AnchorPane" layoutX="18.0" layoutY="15.0" prefHeight="693.0" prefWidth="130.0" styleClass="mainFxmlClass">
-               <stylesheets>
-                  <URL value="@../../../../../NetBeansProjects/DASHBOARDS/src/dashboards/menu.css" />
-               </stylesheets>
+            <AnchorPane id="AnchorPane" layoutX="18.0" layoutY="15.0" prefHeight="693.0" prefWidth="130.0" styleClass="mainFxmlClass" stylesheets="@../css/menu.css">
                <children>
                   <VBox alignment="CENTER" layoutY="10.0" prefHeight="170.0" prefWidth="130.0" style="-fx-background-radius: 50px 50px 0px 0px;" styleClass="imagemAdmin">
                      <children>
                         <ImageView fitHeight="107.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="S:\Web Development\HTML\PORTFOLIO SMD 2\Verificador de idade\fotoidoso.png" />
+                              <Image url="@../img/fotocrianca.png" />
                            </image>
                         </ImageView>
                         <HBox alignment="CENTER">
@@ -38,7 +34,7 @@
                               <Insets top="15.0" />
                            </VBox.margin>
                            <children>
-                              <Label alignment="CENTER" text="Sra. Mphemo" textFill="#636262">
+                              <Label alignment="CENTER" text="Mana Tocozinha" textFill="#636262">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
