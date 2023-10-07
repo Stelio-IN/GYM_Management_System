@@ -16,21 +16,25 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="C:\Users\$umeid_ibr\Documents\JAVA_REPOSITORIO\GYM_Management_System\Gerenciamento_Academia\src\controller\Tela_Menu_Admin.fxml">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" styleClass="borderpane" stylesheets="@../../../../../NetBeansProjects/DASHBOARDS/src/dashboards/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="C:\Users\$umeid_ibr\Documents\JAVA_REPOSITORIO\GYM_Management_System\Gerenciamento_Academia\src\controller\Tela_Menu_Admin.fxml">
    <center>
-      <AnchorPane fx:id="panelGeral" prefHeight="611.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="panelGeral" prefHeight="689.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
          <effect>
             <DropShadow>
                <color>
-                  <Color red="1.0" green="0.07037036865949631" blue="0.07037036865949631" />
+                  <Color red="0.6315789222717285" green="0.5497075915336609" blue="0.5497075915336609" />
                </color>
             </DropShadow>
-         </effect></AnchorPane>
+         </effect>
+         <children>
+            <AnchorPane layoutX="58.0" layoutY="24.0" prefHeight="118.0" prefWidth="914.0" style="-fx-background-color: white; -fx-background-radius: 40px;" />
+            <AnchorPane layoutX="72.0" layoutY="176.0" prefHeight="307.0" prefWidth="555.0" style="-fx-background-color: white; -fx-background-radius: 10px;" />
+         </children></AnchorPane>
    </center>
    <left>
-      <AnchorPane prefHeight="700.0" prefWidth="230.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="769.0" prefWidth="270.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="AnchorPane" layoutY="35.0" prefHeight="715.0" prefWidth="236.0" styleClass="mainFxmlClass">
+            <AnchorPane id="AnchorPane" layoutY="-7.0" prefHeight="666.0" prefWidth="270.0" styleClass="mainFxmlClass">
                <stylesheets>
                   <URL value="@../../../../../NetBeansProjects/DASHBOARDS/src/dashboards/menu.css" />
                </stylesheets>
@@ -248,25 +252,17 @@
       </AnchorPane>
    </left>
    <top>
-      <AnchorPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+      <AnchorPane prefHeight="62.0" prefWidth="1000.0" BorderPane.alignment="TOP_CENTER">
          <BorderPane.margin>
             <Insets left="300.0" />
          </BorderPane.margin>
          <children>
-            <HBox alignment="CENTER" layoutX="550.0" layoutY="3.0" prefHeight="52.0" prefWidth="399.0" spacing="30.0">
+            <HBox alignment="CENTER" layoutX="448.0" layoutY="3.0" prefHeight="52.0" prefWidth="501.0" spacing="30.0">
                <children>
-                  <TextField opacity="0.51" prefHeight="34.0" prefWidth="230.0" promptText="Pesquisar" style="-fx-border-radius: 50px; -fx-border-color: #AEB2C3; -fx-background-color: transparent;" text="Pesquisar">
-                     <effect>
-                        <DropShadow>
-                           <color>
-                              
-                           </color>
-                        </DropShadow>
-                     </effect>
-                  </TextField>
-                  <ImageView fitHeight="52.0" fitWidth="43.0" layoutX="267.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                  <TextField opacity="0.51" prefHeight="34.0" prefWidth="268.0" promptText="Pesquisar" style="-fx-border-radius: 50px; -fx-border-color: #AEB2C3; -fx-background-color: transparent; -fx-border-width: 0px 0px 1px 0px;" text="Pesquisar" />
+                  <ImageView fitHeight="43.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                       
+                        <Image url="S:\Web Development\HTML\PORTIFOLIO SMD\Verificador de idade\fotocrianca.png" />
                      </image>
                   </ImageView>
                </children>
