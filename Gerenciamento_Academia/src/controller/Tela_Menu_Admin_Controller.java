@@ -35,21 +35,6 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     private AnchorPane panelGeral;
 
     @FXML
-    private VBox vbox;
-    
-     @FXML
-    private MenuItem Item1; 
-    
-    @FXML
-    private MenuButton lista_menu_cliente;
-
-    @FXML
-    private MenuButton lista_menu_funcionario;
-
-    @FXML
-    private MenuButton lista_menu_instrutor;
-
-    @FXML
     void tela_Admin_Menu_Clientes(MouseEvent event) {
         carregarTela("/view/Tela_Admin_Menu_Clientes");
     }
@@ -74,26 +59,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         carregarTela("/view/Tela_Admin_Menu_Maquinas");    
     }
     
-    @FXML
-    void cliente_menu(ActionEvent event) {
-        
-        lista_menu_cliente.getItems().addAll(Item1);
-    }
-
-    @FXML
-    void funcionario_menu(ActionEvent event) {
-
-    }
-
-    @FXML
-    void instrutor_menu(ActionEvent event) {
-
-    }
-
-    @FXML
-    void tela_admin_menu(MouseEvent event) {
-
-    }
+  
 
     private void carregarTela(String tela) {
         Parent root = null;
