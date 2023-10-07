@@ -25,7 +25,84 @@
             </DropShadow>
          </effect>
          <children>
-            <AnchorPane layoutX="42.0" layoutY="26.0" prefHeight="118.0" prefWidth="914.0" style="-fx-background-color: white; -fx-background-radius: 40px;" />
+            <AnchorPane layoutX="28.0" layoutY="8.0" prefHeight="124.0" prefWidth="914.0" style="-fx-background-color: white; -fx-background-radius: 40px;">
+               <children>
+                  <ImageView fitHeight="44.0" fitWidth="46.0" layoutX="51.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/comercial.png" />
+                     </image>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+                  <Label layoutX="97.0" layoutY="62.0" prefHeight="22.0" prefWidth="114.0" text="Total de Clientes">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="104.0" layoutY="83.0" prefHeight="26.0" prefWidth="50.0" text="2500">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="44.0" fitWidth="42.0" layoutX="246.0" layoutY="64.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/academiaa.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="297.0" layoutY="64.0" text="Total de Instrutores">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="297.0" layoutY="85.0" text="15">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="48.0" fitWidth="46.0" layoutX="454.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/carteira-de-identidade-1.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="505.0" layoutY="63.0" text="Total de Funcionários">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="505.0" layoutY="86.0" text="30">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="749.0" layoutY="86.0" text="45">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="749.0" layoutY="63.0" text="Total de Máquinas">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="48.0" fitWidth="47.0" layoutX="688.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/maquina-de-fabrica-1.png" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="444.0" layoutY="14.0" opacity="0.51" prefHeight="34.0" prefWidth="268.0" promptText="Pesquisar" style="-fx-border-radius: 50px; -fx-border-color: #AEB2C3; -fx-border-width: 0px 0px 1px 0px;" styleClass="pesquisar" text="Pesquisar" />
+                  <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="677.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/lupa.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="39.0" fitWidth="70.0" layoutX="729.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
             <AnchorPane layoutX="42.0" layoutY="176.0" prefHeight="307.0" prefWidth="555.0" style="-fx-background-color: white; -fx-background-radius: 10px;" />
          </children></AnchorPane>
    </center>
@@ -49,7 +126,7 @@
                               <Insets top="15.0" />
                            </VBox.margin>
                            <children>
-                              <Label alignment="CENTER" text="Sra. Mphemo" textFill="WHITE">
+                              <Label alignment="CENTER" text="Sra. Mphemo" textFill="#636262">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -65,13 +142,13 @@
                      <children>
                         <ImageView fitHeight="38.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/painel-de-controle.png" />
+                              <Image url="@../img/painel-de-controlee.png" />
                            </image>
                            <VBox.margin>
                               <Insets top="5.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Dashboard" textFill="WHITE">
+                        <Label text="Dashboard" textFill="#7e7979">
                            <VBox.margin>
                               <Insets top="-5.0" />
                            </VBox.margin>
@@ -81,13 +158,13 @@
                         </Label>
                         <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/cliente.png" />
+                              <Image url="@../img/clientee.png" />
                            </image>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Cliente" textFill="WHITE">
+                        <Label text="Cliente" textFill="#716464">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -97,13 +174,13 @@
                         </Label>
                         <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/carteira-de-identidade.png" />
+                              <Image url="@../img/carteira-de-identidadee.png" />
                            </image>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Funcionário" textFill="WHITE">
+                        <Label text="Funcionário" textFill="#7e7e7e">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -113,13 +190,13 @@
                         </Label>
                         <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/academia.png" />
+                              <Image url="@../img/academiaaa.png" />
                            </image>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Instrutor" textFill="WHITE">
+                        <Label text="Instrutor" textFill="#797979">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -129,13 +206,13 @@
                         </Label>
                         <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../img/maquina-de-fabrica.png" />
+                              <Image url="@../img/maquina-de-fabricaa.png" />
                            </image>
                            <VBox.margin>
                               <Insets top="10.0" />
                            </VBox.margin>
                         </ImageView>
-                        <Label text="Máquina" textFill="WHITE">
+                        <Label text="Máquina" textFill="#6b6464">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -147,10 +224,10 @@
                   </VBox>
                   <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="50.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/sair.png" />
+                        <Image url="@../img/sairr.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="50.0" layoutY="653.0" prefHeight="18.0" prefWidth="25.0" text="Sair" textFill="WHITE" />
+                  <Label layoutX="50.0" layoutY="653.0" prefHeight="18.0" prefWidth="25.0" text="Sair" textFill="#4e4646" />
                </children>
             </AnchorPane>
          </children>
@@ -171,10 +248,14 @@
          <children>
             <HBox alignment="CENTER" layoutX="448.0" layoutY="3.0" prefHeight="52.0" prefWidth="501.0" spacing="30.0">
                <children>
-                  <TextField opacity="0.51" prefHeight="34.0" prefWidth="268.0" promptText="Pesquisar" style="-fx-border-radius: 50px; -fx-border-color: #AEB2C3; -fx-background-color: transparent; -fx-border-width: 0px 0px 1px 0px;" text="Pesquisar" />
-                  <ImageView fitHeight="43.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="36.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="S:\Web Development\HTML\PORTIFOLIO SMD\Verificador de idade\fotocrianca.png" />
+                        <Image url="@../img/notificacao1.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="33.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/notificacao.png" />
                      </image>
                   </ImageView>
                </children>
