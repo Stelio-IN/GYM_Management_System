@@ -7,10 +7,14 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -32,6 +36,18 @@ public class Tela_Menu_Admin_Controller implements Initializable {
 
     @FXML
     private VBox vbox;
+    
+     @FXML
+    private MenuItem Item1; 
+    
+    @FXML
+    private MenuButton lista_menu_cliente;
+
+    @FXML
+    private MenuButton lista_menu_funcionario;
+
+    @FXML
+    private MenuButton lista_menu_instrutor;
 
     @FXML
     void tela_Admin_Menu_Clientes(MouseEvent event) {
@@ -57,6 +73,27 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     void tela_Admin_Menu_Maquinas(MouseEvent event) {
         carregarTela("/view/Tela_Admin_Menu_Maquinas");    
     }
+    
+    @FXML
+    void cliente_menu(ActionEvent event) {
+        
+        lista_menu_cliente.getItems().addAll(Item1);
+    }
+
+    @FXML
+    void funcionario_menu(ActionEvent event) {
+
+    }
+
+    @FXML
+    void instrutor_menu(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tela_admin_menu(MouseEvent event) {
+
+    }
 
     private void carregarTela(String tela) {
         Parent root = null;
@@ -69,6 +106,12 @@ public class Tela_Menu_Admin_Controller implements Initializable {
 
         borderPane.setCenter(root);
     }
+    ///////////////////////////////////////////
+    
+    
+
+    
+ 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
