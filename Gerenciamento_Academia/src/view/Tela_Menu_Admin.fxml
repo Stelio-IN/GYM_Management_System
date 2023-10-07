@@ -3,8 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -18,7 +16,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" styleClass="borderpane" stylesheets="@../../../../../NetBeansProjects/DASHBOARDS/src/dashboards/menu.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="C:\Users\$umeid_ibr\Documents\JAVA_REPOSITORIO\GYM_Management_System\Gerenciamento_Academia\src\controller\Tela_Menu_Admin.fxml">
    <center>
-      <AnchorPane fx:id="panelGeral" prefHeight="689.0" prefWidth="1030.0" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="panelGeral" prefHeight="688.0" prefWidth="1130.0" BorderPane.alignment="CENTER">
          <effect>
             <DropShadow>
                <color>
@@ -27,21 +25,21 @@
             </DropShadow>
          </effect>
          <children>
-            <AnchorPane layoutX="58.0" layoutY="24.0" prefHeight="118.0" prefWidth="914.0" style="-fx-background-color: white; -fx-background-radius: 40px;" />
-            <AnchorPane layoutX="72.0" layoutY="176.0" prefHeight="307.0" prefWidth="555.0" style="-fx-background-color: white; -fx-background-radius: 10px;" />
+            <AnchorPane layoutX="42.0" layoutY="26.0" prefHeight="118.0" prefWidth="914.0" style="-fx-background-color: white; -fx-background-radius: 40px;" />
+            <AnchorPane layoutX="42.0" layoutY="176.0" prefHeight="307.0" prefWidth="555.0" style="-fx-background-color: white; -fx-background-radius: 10px;" />
          </children></AnchorPane>
    </center>
    <left>
-      <AnchorPane prefHeight="769.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="743.0" prefWidth="138.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane id="AnchorPane" layoutY="-7.0" prefHeight="666.0" prefWidth="270.0" styleClass="mainFxmlClass">
+            <AnchorPane id="AnchorPane" layoutX="18.0" layoutY="-20.0" prefHeight="694.0" prefWidth="120.0" styleClass="mainFxmlClass">
                <stylesheets>
                   <URL value="@../../../../../NetBeansProjects/DASHBOARDS/src/dashboards/menu.css" />
                </stylesheets>
                <children>
-                  <VBox alignment="CENTER" layoutX="-1.0" layoutY="-1.0" prefHeight="311.0" prefWidth="270.0" style="-fx-background-radius: 0px 50px 0px 0px;" styleClass="imagemAdmin">
+                  <VBox alignment="CENTER" prefHeight="180.0" prefWidth="130.0" style="-fx-background-radius: 50px 50px 0px 0px;" styleClass="imagemAdmin">
                      <children>
-                        <ImageView fitHeight="214.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="107.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="S:\Web Development\HTML\PORTFOLIO SMD 2\Verificador de idade\fotoidoso.png" />
                            </image>
@@ -51,7 +49,7 @@
                               <Insets top="15.0" />
                            </VBox.margin>
                            <children>
-                              <Label alignment="CENTER" text="Senhora Mphemo" textFill="#51534d">
+                              <Label alignment="CENTER" text="Sra. Mphemo" textFill="WHITE">
                                  <HBox.margin>
                                     <Insets left="10.0" />
                                  </HBox.margin>
@@ -63,183 +61,97 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox layoutX="-1.0" layoutY="311.0" prefHeight="394.0" prefWidth="270.0" spacing="30.0" AnchorPane.topAnchor="311.0">
+                  <VBox alignment="TOP_CENTER" layoutX="1.0" layoutY="211.0" prefHeight="399.0" prefWidth="127.0" spacing="10.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="35.0" prefWidth="270.0" spacing="20.0">
-                           <children>
-                              <ImageView fitHeight="28.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="-60.0" top="2.0" />
-                                 </HBox.margin>
-                                 <image>
-                                    <Image url="S:\Web Development\Icons\painel-de-controle.png" />
-                                 </image>
-                              </ImageView>
-                              <Label fx:id="dashboard" alignment="CENTER" onMouseClicked="#tela_admin_menu" styleClass="dashboard" text="Dashboard" textFill="WHITE">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Bodoni MT Black" size="16.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                          <Color red="0.24313725531101227" green="0.23529411852359772" blue="0.23529411852359772" />
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="35.0" prefWidth="270.0" spacing="20.0">
-                           <children>
-                              <ImageView fitHeight="33.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <image>
-                                    <Image url="S:\Web Development\Icons\carteira-de-identidade.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" onMouseClicked="#tela_Admin_Menu_Funcionarios" text="Funcionario" textFill="WHITE">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Cooper Black" size="16.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                          
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </Label>
-                              <MenuButton fx:id="lista_menu_funcionario" mnemonicParsing="false" onAction="#funcionario_menu" style="-fx-background-color: transparent;" textFill="WHITE">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="Action 1" />
-                                    <MenuItem mnemonicParsing="false" text="Action 2" />
-                                    <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                                 </items>
-                              </MenuButton>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="270.0" spacing="20.0">
-                           <children>
-                              <ImageView fitHeight="31.0" fitWidth="37.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <image>
-                                    <Image url="S:\Web Development\Icons\academia.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" onMouseClicked="#tela_Admin_Menu_Instrutores" text="Instrutor" textFill="WHITE">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Cooper Black" size="16.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                          
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </Label>
-                              <MenuButton fx:id="lista_menu_instrutor" mnemonicParsing="false" onAction="#instrutor_menu" style="-fx-background-color: transparent;">
-                                 <items>
-                                    <MenuItem mnemonicParsing="false" text="Action 1" />
-                                    <MenuItem mnemonicParsing="false" text="Action 2" />
-                                    <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                                 </items>
-                                 <HBox.margin>
-                                    <Insets left="25.0" />
-                                 </HBox.margin>
-                              </MenuButton>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="37.0" prefWidth="270.0" spacing="20.0">
-                           <children>
-                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" top="2.0" />
-                                 </HBox.margin>
-                                 <image>
-                                    <Image url="S:\Web Development\Icons\cliente.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" onMouseClicked="#tela_Admin_Menu_Clientes" text="Cliente" textFill="WHITE">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Cooper Black" size="16.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                         
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </Label>
-                              <MenuButton fx:id="lista_menu_cliente" mnemonicParsing="false" onAction="#cliente_menu" style="-fx-background-color: transparent;">
-                                 <items>
-                                    <MenuItem fx:id="Item1" mnemonicParsing="false" text="Action 1" />
-                                    <MenuItem mnemonicParsing="false" text="Action 2" />
-                                    <MenuItem mnemonicParsing="false" text="Unspecified Action" />
-                                 </items>
-                                 <HBox.margin>
-                                    <Insets left="30.0" />
-                                 </HBox.margin>
-                              </MenuButton>
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="38.0" prefWidth="270.0" spacing="20.0">
-                           <children>
-                              <ImageView fitHeight="29.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
-                                 <HBox.margin>
-                                    <Insets bottom="2.0" left="-70.0" top="2.0" />
-                                 </HBox.margin>
-                                 <image>
-                                    <Image url="S:\Web Development\Icons\maquina-de-fabrica.png" />
-                                 </image>
-                              </ImageView>
-                              <Label alignment="CENTER" onMouseClicked="#tela_Admin_Menu_Maquinas" text="Máquina" textFill="#fff8f8">
-                                 <HBox.margin>
-                                    <Insets left="5.0" />
-                                 </HBox.margin>
-                                 <font>
-                                    <Font name="Cooper Black" size="16.0" />
-                                 </font>
-                                 <effect>
-                                    <DropShadow>
-                                       <color>
-                                         
-                                       </color>
-                                    </DropShadow>
-                                 </effect>
-                              </Label>
-                           </children>
-                        </HBox>
+                        <ImageView fitHeight="38.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/painel-de-controle.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label text="Dashboard" textFill="WHITE">
+                           <VBox.margin>
+                              <Insets top="-5.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="31.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/cliente.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label text="Cliente" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="-5.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/carteira-de-identidade.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label text="Funcionário" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="-7.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="33.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/academia.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label text="Instrutor" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="-7.0" />
+                           </VBox.margin>
+                        </Label>
+                        <ImageView fitHeight="31.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/maquina-de-fabrica.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <Label text="Máquina" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="-6.0" />
+                           </VBox.margin>
+                        </Label>
                      </children>
-                     <padding>
-                        <Insets top="40.0" />
-                     </padding>
                   </VBox>
+                  <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="50.0" layoutY="618.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/sair.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="50.0" layoutY="653.0" prefHeight="18.0" prefWidth="25.0" text="Sair" textFill="WHITE" />
                </children>
-               <effect>
-                  <DropShadow>
-                     <color>
-                       
-                     </color>
-                  </DropShadow>
-               </effect>
             </AnchorPane>
          </children>
          <effect>
