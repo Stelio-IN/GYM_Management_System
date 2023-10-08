@@ -6,7 +6,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.beans.binding.Bindings;
@@ -23,13 +22,8 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import model.Cliente;
 import model.Equipamento;
 import model.Funcionario;
@@ -140,23 +134,6 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         contabilizar();
-
-//        ObservableList<PieChart.Data> pieChartData
-//                = FXCollections.observableArrayList(
-//                        new PieChart.Data("Homens", 40),
-//                        new PieChart.Data("Mulheres", 35),
-//                        new PieChart.Data("Gays", 10),
-//                        new PieChart.Data("Lésbicas", 15)
-//                );
-//
-//        pieChartData.forEach(data -> {
-//            data.nameProperty().bind(
-//                    Bindings.concat(data.getName(), " percentagem: ", data.pieValueProperty())
-//            );
-//        });
-//
-//        pieChart.getData().addAll(pieChartData);
-        // Carregue os dados do banco de dados e calcule quandidade_Homens e quandidade_Mulheres
         carregarDadosDoBanco();
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
@@ -173,6 +150,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
 
         // Configure o PieChart
         pieChart.setData(pieChartData);
+        //chamando o grafico de barra
         GraficoBarra();
 
     }
@@ -189,11 +167,11 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     void GraficoBarra() {
         barChart.setTitle("Clientes Idades");
 
-        // Crie uma série de dados
+        // Criar uma série de dados
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Idades");
 
-        // Adicione os dados ao gráfico (substitua isso com seus próprios dados)
+      
         series.getData().add(new XYChart.Data<>("17-23", 15));
         series.getData().add(new XYChart.Data<>("24-40", 30));
         series.getData().add(new XYChart.Data<>("41-09", 45));
