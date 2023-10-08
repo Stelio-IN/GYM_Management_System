@@ -47,7 +47,7 @@ public abstract class Pessoa implements Serializable {
     protected String naturalidade; 
     protected String email;   
     protected String telefone;
-    
+    protected String nascimento;
     protected String telefone_Alternativo;
 
     @OneToOne(cascade = CascadeType.ALL) // Isso indica uma associação "um para um"
@@ -60,6 +60,16 @@ public abstract class Pessoa implements Serializable {
     protected String password;
     protected boolean isAtivo;
 
+    public String getNascimento() {
+        return nascimento;
+    }
+
+    public void setNascimento(String nascimento) {
+        this.nascimento = nascimento;
+    }
+
+    
+    
     public byte[] getImagem() {
         return imagem;
     }

@@ -20,7 +20,7 @@ public class Cliente extends Pessoa implements Serializable {
     private Double peso;
     private Plano_de_Associacao plano_de_associacao;
     private String nome_Do_Conjuge;
-    private String nascimento;
+   
     private String esporte_que_Pratica;
     private String doenca;
 

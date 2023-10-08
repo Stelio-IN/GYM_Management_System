@@ -10,12 +10,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
  * @author steli
  */
 @Entity
+@NamedQueries({
+    @NamedQuery(name = "Equipamento.findAll", query = "SELECT e FROM Equipamento e")})
 public class Equipamento implements Serializable {
     
     @Id

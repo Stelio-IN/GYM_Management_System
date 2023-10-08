@@ -8,6 +8,7 @@ import model.Administrador;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
@@ -71,6 +72,18 @@ public class GenericDAO {
             }
         }
     }
+
+public List<Pessoa> listarTodosParaRelatorio(Class<Pessoa> classe) {
+    try {
+        TypedQuery<Pessoa> query = gerente.createNamedQuery("Pessoa.findAll", Pessoa.class);
+        List<Pessoa> pessoas = query.getResultList();
+        return pessoas;
+    } catch (Exception e) {
+        e.printStackTrace();
+        return null;
+    }
+}
+// @NamedQuery(name = "Equipamento.findAll", query = "SELECT e FROM equipamento e")
 
     public int contar_Quantidade_Base(Class<?> classe) {
 
@@ -256,7 +269,7 @@ public class GenericDAO {
             }
         }
 
-        return null; 
+        return null;
     }
 
     public List<Pessoa> buscarPessoasPorNome(String nome) {
