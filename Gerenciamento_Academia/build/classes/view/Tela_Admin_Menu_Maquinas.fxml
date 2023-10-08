@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="445.0" prefWidth="639.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Maquinas_Controller">
+   <stylesheets>
+      <URL value="@/css/tela_admin_menu_funcionarios.css" />
+   </stylesheets>
+   <children>
+      <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="369.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/lupa.png" />
+         </image>
+      </ImageView>
+      <Text layoutX="26.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maquinas" wrappingWidth="78.28564453125">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <TableView fx:id="tabela" layoutX="13.0" layoutY="266.0" prefHeight="165.0" prefWidth="608.0">
+         <columns>
+            <TableColumn fx:id="tabela_Modelo" prefWidth="110.39999103546143" text="Modelo" />
+            <TableColumn fx:id="tabela_Nome" prefWidth="172.8000030517578" text="Nome" />
+            <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="172.0" text="Marca" />
+            <TableColumn fx:id="tabela_Imagem" prefWidth="152.0" text="Imagem" />
+         </columns>
+      </TableView>
+      <TextField fx:id="txtNome" layoutX="26.0" layoutY="77.0" promptText="Nome da maquina" />
+      <TextField fx:id="txtModelo" layoutX="26.0" layoutY="129.0" promptText="Modelo" />
+      <TextField fx:id="txtMarca" layoutX="26.0" layoutY="176.0" promptText="Marca" />
+      <Button layoutX="219.0" layoutY="116.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+      <Button layoutX="319.0" layoutY="116.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
+      <Button layoutX="219.0" layoutY="163.0" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
+      <Button layoutX="320.0" layoutY="163.0" mnemonicParsing="false" onAction="#listar" text="Listar" />
+      <TextField fx:id="txtPesquisa" layoutX="205.0" layoutY="40.0" prefHeight="25.0" prefWidth="195.0" promptText="Pesquisar Funcionario" style="-fx-background-color: transparent; -fx-border-color: black;" />
+      <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Button layoutX="365.0" layoutY="41.0" mnemonicParsing="false" onAction="#pesquisar" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: transparent;" />
+      <TextField fx:id="txtId" layoutX="30.0" layoutY="41.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" />
+      <ImageView fx:id="imageCamera" fitHeight="132.0" fitWidth="176.0" layoutX="423.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../Pictures/EDITORIAL_CONTEÜDO/Grande%20Deus.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="423.0" layoutY="210.0" mnemonicParsing="false" onAction="#carregarimg" text="Carregar" />
+   </children>
+</AnchorPane>
