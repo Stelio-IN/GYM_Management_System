@@ -5,7 +5,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_PlanoAss_Controller">
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1080.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_PlanoAss_Controller">
     <stylesheets>
         <URL value="@/css/tela_func_planoass.css" />
     </stylesheets>
