@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -16,12 +15,9 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" layoutX="200.0" layoutY="1.0" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Cadastrar_Cliente_Controller">
-    <stylesheets>
-        <URL value="@/css/tela_cadastrar_cliente.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" layoutX="200.0" layoutY="1.0" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_cadastrar_cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Cadastrar_Cliente_Controller">
    <children>
-      <AnchorPane layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white;" stylesheets="@../css/tela_cadastrar_cliente.css">
+      <AnchorPane layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" stylesheets="@../css/tela_cadastrar_cliente.css">
          <children>
             <TextField fx:id="txtNumeroInsc" layoutX="28.0" layoutY="130.0" prefHeight="30.0" prefWidth="129.0" promptText="FIcha de inscrição" style=": ;" styleClass="textfields_esquerda">
                <font>
@@ -64,7 +60,7 @@
             <ComboBox fx:id="comboBoxNacionalidade" layoutX="32.0" layoutY="236.0" prefHeight="26.0" prefWidth="165.0" promptText="Nacionalidade" styleClass="textfields_esquerda" />
             <ComboBox fx:id="comboBoxCidade" layoutX="41.0" layoutY="471.0" prefHeight="26.0" prefWidth="111.0" promptText="Cidade" styleClass="textfields_esquerda" />
             <ComboBox fx:id="comboBoxBairro" layoutX="191.0" layoutY="471.0" prefHeight="26.0" prefWidth="226.0" promptText="Bairro" styleClass="textfields_esquerda" />
-            <AnchorPane layoutX="458.0" prefHeight="555.0" prefWidth="508.0" styleClass="splitpane">
+            <AnchorPane layoutX="458.0" prefHeight="555.0" prefWidth="508.0" style="-fx-background-radius: 0px 10px 10px 0px;" styleClass="splitpane">
                <children>
                   <TextField fx:id="txtPeso" layoutX="50.0" layoutY="89.0" prefHeight="30.0" prefWidth="126.0" promptText="Peso" styleClass="textfields_direita">
                      <font>
@@ -253,7 +249,7 @@
                   <Font name="System Bold Italic" size="19.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="248.0" prefHeight="139.0" prefWidth="158.0">
+            <AnchorPane layoutX="248.0" prefHeight="139.0" prefWidth="158.0" style="-fx-background-color: #fffffc;">
                <children>
                   <ImageView fx:id="imageCamera" fitHeight="122.0" fitWidth="111.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>

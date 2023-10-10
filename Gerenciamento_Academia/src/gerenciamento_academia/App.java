@@ -4,6 +4,7 @@
  */
 package gerenciamento_academia;
 
+import controller.Tela_Menu_Func_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,6 +47,8 @@ public class App extends Application {
             stage.close();
         }
     }
+    
+    
     public static void main(String[] args) {
         launch(args);
     }
