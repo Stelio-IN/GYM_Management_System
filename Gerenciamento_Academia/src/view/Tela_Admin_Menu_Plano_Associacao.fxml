@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="595.0" prefWidth="1080.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Admin_Menu_Plano_Associacao_Controller">
+    <stylesheets>
+        <URL value="@/css/tela_admin_menu_plano_associacao.css" />
+    </stylesheets>
+   <children>
+      <Text layoutX="185.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela Plano de Associacao">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
