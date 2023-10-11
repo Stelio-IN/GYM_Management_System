@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Administrador;
+import model.Pessoa;
 
 /**
  * FXML Controller class
@@ -45,6 +46,7 @@ public class Tela_Admin_Registrar_Controller implements Initializable {
     private TextField txtPassword;
 
     private String caminhoDoArquivo;
+    
 
     @FXML
     void cadastrar(ActionEvent event) throws IOException {
@@ -115,6 +117,7 @@ public class Tela_Admin_Registrar_Controller implements Initializable {
         }
     }
 
+      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

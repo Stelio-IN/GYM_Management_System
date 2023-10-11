@@ -69,7 +69,7 @@ public class Tela_Login_Controller implements Initializable {
 //        stage.setScene(scene);
 //        stage.show();
 //    }
-   /* @FXML
+    /* @FXML
     public void Tela_de_Entrada(ActionEvent event, String caminho) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(caminho));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -77,54 +77,51 @@ public class Tela_Login_Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }*/
-    
     public void Tela_de_Entrada(ActionEvent event, String caminho, Pessoa pessoa) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource(caminho));
-    Parent root = loader.load();
-    
-    // Acessa o controlador da próxima tela
-    Tela_Menu_Admin_Controller controller = loader.getController();
-    
-    // Passa os dados da pessoa para o controlador
-    controller.setPessoa(pessoa);
-    
-    Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-    Scene scene = new Scene(root);
-    stage.setScene(scene);
-    stage.show();
-}
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(caminho));
+        Parent root = loader.load();
+
+        // Acessa o controlador da próxima tela
+        Tela_Menu_Admin_Controller controller = loader.getController();
+
+        // Passa os dados da pessoa para o controlador
+        controller.setPessoa(pessoa);
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @FXML
-void btnLogar(ActionEvent event) {
-    GenericDAO bb = new GenericDAO();
+    void btnLogar(ActionEvent event) {
+        GenericDAO bb = new GenericDAO();
 
-    Pessoa pessoa = (Pessoa) bb.logarEmailOuCodigo(txtEmail.getText());
+        Pessoa pessoa = (Pessoa) bb.logarEmailOuCodigo(txtEmail.getText());
 
-    if (pessoa != null && pessoa.getPassword().equals(txtPassword.getText())) {
-        try {
-            Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-            alerta.setTitle("Login");
-            alerta.setHeaderText("Login efetuado com sucesso!!!!");
+        if (pessoa != null && pessoa.getPassword().equals(txtPassword.getText())) {
+            try {
+                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
+                alerta.setTitle("Login");
+                alerta.setHeaderText("Login efetuado com sucesso!!!!");
 
-            if (alerta.showAndWait().get() == ButtonType.OK) {
-                if (pessoa instanceof Administrador) {
-                    Tela_de_Entrada(event, "/view/Tela_Menu_Admin.fxml", pessoa);
-                } else if (pessoa instanceof Cliente) {
-                    Tela_de_Entrada(event, "/view/Tela_Menu_Cliente.fxml", pessoa);
-                } else if (pessoa instanceof Funcionario) {
-                    Tela_de_Entrada(event, "/view/Tela_Menu_Func.fxml", pessoa);
+                if (alerta.showAndWait().get() == ButtonType.OK) {
+                    if (pessoa instanceof Administrador) {
+                        Tela_de_Entrada(event, "/view/Tela_Menu_Admin.fxml", pessoa);
+                    } else if (pessoa instanceof Cliente) {
+                        Tela_de_Entrada(event, "/view/Tela_Menu_Cliente.fxml", pessoa);
+                    } else if (pessoa instanceof Funcionario) {
+                        Tela_de_Entrada(event, "/view/Tela_Menu_Func.fxml", pessoa);
+                    }
                 }
+            } catch (IOException e) {
+                e.printStackTrace(); // Trate ou registre erros adequadamente
             }
-        } catch (IOException e) {
-            e.printStackTrace(); // Trate ou registre erros adequadamente
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Credenciais erradas");
         }
-
-    } else {
-        JOptionPane.showMessageDialog(null, "Credenciais erradas");
     }
-}
-
-    
 
 //    @FXML
 //    void btnLogar(ActionEvent event) {
@@ -159,7 +156,6 @@ void btnLogar(ActionEvent event) {
 //
 //        }
 //    }
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

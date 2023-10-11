@@ -16,18 +16,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Equipamento;
@@ -118,7 +123,20 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     }
 
     @FXML
-    void logout(ActionEvent event) {
+    void logout(ActionEvent event) throws IOException {
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("LogOut");
+        alerta.setHeaderText("Quer realmente terminar seccao");
+        alerta.setContentText("Fazer backup antes de sair!");
+        if (alerta.showAndWait().get() == ButtonType.OK) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
 
     }
 
@@ -244,5 +262,21 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             }
         }
     }
+
+    @FXML
+    void Tela_Admin_Planos_Associacao(ActionEvent event) {
+        carregarTela("/view/Tela_Admin_Menu_Plano_Associacao");
+    }
+      @FXML
+    void Tela_Cadastrar_Admin(ActionEvent event) {
+         carregarTela("/view/Tela_Admin_Registrar");
+    }
+    @FXML
+    void Tela_Atualizar_Admin(ActionEvent event) {
+                carregarTela("/view/Tela_Admin_Registrar");
+                
+    }
+
+
 
 }
