@@ -4,7 +4,6 @@
  */
 package gerenciamento_academia;
 
-import controller.Tela_Menu_Func_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -21,8 +20,8 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-       Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Func.fxml"));
-      //Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login_Inicial.fxml"));
+  //     Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
         
         Scene scene = new Scene(root);
         
@@ -38,17 +37,15 @@ public class App extends Application {
     void close(Stage stage) {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("FECHAR");
-        alerta.setHeaderText("Deseja sair?");
-        alerta.setContentText("Deseja realmente fechar");
+        alerta.setHeaderText("Quer realment Fechar");
+        alerta.setContentText("Deseja salvar antes de Fechar");
         if (alerta.showAndWait().get() == ButtonType.OK) {
 
-            System.out.println("Logout efetuado com sucesso!");
+            System.out.println("Exit exito");
   
             stage.close();
         }
     }
-    
-    
     public static void main(String[] args) {
         launch(args);
     }

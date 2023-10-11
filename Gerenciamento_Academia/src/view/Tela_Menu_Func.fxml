@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Menu_Func_Controller">
+   <center>
+      <AnchorPane fx:id="panelGeral" prefHeight="660.0" prefWidth="769.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER" />
+   </center>
    <top>
-      <MenuBar style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+      <MenuBar BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
@@ -34,182 +34,27 @@
             </items>
           </Menu>
         </menus>
-         <effect>
-            <DropShadow>
-               <color>
-                  <Color red="0.6526315808296204" green="0.6332943439483643" blue="0.6332943439483643" />
-               </color>
-            </DropShadow>
-         </effect>
       </MenuBar>
    </top>
    <left>
-      <AnchorPane prefHeight="674.0" prefWidth="149.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="675.0" prefWidth="192.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane prefHeight="642.0" prefWidth="190.0" style="-fx-background-color: white;" stylesheets="@../css/tela_menu_func.css">
-               <children>
-                  <ImageView fitHeight="123.0" fitWidth="141.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/logo1_4.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="21.0" fitWidth="22.0" layoutX="25.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/painel-de-controle_func.png" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="lblDashboard" layoutX="57.0" layoutY="210.0" prefHeight="20.0" prefWidth="93.0" text="Dashboard" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="24.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/academia_func.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="57.0" layoutY="255.0" prefHeight="20.0" prefWidth="93.0" text="Instrutor" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="24.0" layoutY="299.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/clientes_func.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="57.0" layoutY="301.0" prefHeight="20.0" prefWidth="93.0" text="Cliente" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="25.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/caixa.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="58.0" layoutY="352.0" prefHeight="20.0" prefWidth="93.0" text="Pacotes" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="25.0" layoutY="397.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/esteira.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="58.0" layoutY="399.0" prefHeight="20.0" prefWidth="93.0" text="Máquinas" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="19.0" layoutY="551.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/opcao-de-sair.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="52.0" layoutY="553.0" prefHeight="20.0" prefWidth="93.0" text="Sair" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnDashboard" layoutY="205.0" mnemonicParsing="false" onAction="#Tela_Geral" prefHeight="26.0" prefWidth="190.0" style="-fx-background-color: transparent;" />
-                  <Button fx:id="btnInstrutor" layoutY="252.0" mnemonicParsing="false" onAction="#Tela_Instrutores" prefHeight="26.0" prefWidth="205.0" style="-fx-background-color: transparent;" />
-                  <Button fx:id="btnClientes" layoutY="298.0" mnemonicParsing="false" onAction="#tela_Admin_Menu_Clientes" prefHeight="26.0" prefWidth="203.0" style="-fx-background-color: transparent;" />
-                  <Button fx:id="btnPacotes" layoutY="349.0" mnemonicParsing="false" onAction="#plano_Associa" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: transparent;" />
-                  <Button fx:id="btnMaquinas" layoutX="-1.0" layoutY="396.0" mnemonicParsing="false" onAction="#Tela_Maquinas" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: transparent;" />
-                  <Label layoutX="52.0" layoutY="601.0" prefHeight="20.0" prefWidth="137.0" text="Tobias zucula" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="19.0" layoutY="598.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/utilizador.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="17.0" layoutY="550.0" mnemonicParsing="false" onAction="#BtnSair" prefHeight="26.0" prefWidth="94.0" style="-fx-background-color: transparent;" />
-                  <ImageView fitHeight="26.0" fitWidth="24.0" layoutX="24.0" layoutY="446.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/procurar.png" />
-                     </image>
-                  </ImageView>
-                  <Label layoutX="57.0" layoutY="448.0" prefHeight="20.0" prefWidth="93.0" text="Gestão cliente" textFill="#7e7979">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="btnGestaoCliente" layoutY="445.0" mnemonicParsing="false" onAction="#Tela_gestao_cliente" prefHeight="26.0" prefWidth="205.0" style="-fx-background-color: transparent;" />
-               </children>
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="0.8526315689086914" green="0.821052610874176" blue="0.821052610874176" />
-                     </color>
-                  </DropShadow>
-               </effect>
-            </AnchorPane>
+            <ImageView fitHeight="102.0" fitWidth="108.0" layoutX="47.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/logo1_4.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="48.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionario">
+               <font>
+                  <Font name="Bodoni MT Condensed" size="31.0" />
+               </font>
+            </Text>
+            <Button layoutX="-1.0" layoutY="222.0" mnemonicParsing="false" onAction="#tela_Admin_Menu_Clientes" prefHeight="25.0" prefWidth="202.0" text="Cadastrar/Atualizar Clientes" />
+            <Button layoutY="313.0" mnemonicParsing="false" onAction="#Tela_Instrutores" prefHeight="25.0" prefWidth="200.0" text="Instrutores Status" />
+            <Button layoutX="-1.0" layoutY="367.0" mnemonicParsing="false" onAction="#Tela_Maquinas" prefHeight="25.0" prefWidth="201.0" text="Maquinas Status" />
+            <Button layoutX="-2.0" layoutY="267.0" mnemonicParsing="false" onAction="#plano_Associa" prefHeight="25.0" prefWidth="202.0" text="Pacotes" />
+            <Button layoutY="176.0" mnemonicParsing="false" onAction="#Tela_Geral" prefHeight="25.0" prefWidth="201.0" text="Geral" />
          </children>
       </AnchorPane>
    </left>
-   <right>
-      <AnchorPane fx:id="panelGeral" prefHeight="641.0" prefWidth="1109.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_menu_func.css" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane layoutX="38.0" layoutY="29.0" prefHeight="227.0" prefWidth="715.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="0.8421052694320679" green="0.8140350580215454" blue="0.8140350580215454" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <children>
-                  <Label layoutX="229.0" layoutY="96.0" text="Grafico de atividades ou sobre presenca (os dias com maior fluxo)" />
-               </children>
-            </AnchorPane>
-            <AnchorPane fx:id="painelAtividades" layoutX="38.0" layoutY="293.0" prefHeight="338.0" prefWidth="417.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="0.75789475440979" green="0.7185965180397034" blue="0.7185965180397034" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <children>
-                  <ListView fx:id="ListaAtividades" layoutX="57.0" layoutY="52.0" prefHeight="227.0" prefWidth="306.0" />
-                  <Label layoutX="158.0" layoutY="160.0" text="Atividades recentes" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="782.0" layoutY="29.0" prefHeight="227.0" prefWidth="301.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="0.8421052694320679" green="0.8140350580215454" blue="0.8140350580215454" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <children>
-                  <Label layoutX="96.0" layoutY="105.0" text="Informacoes do grafico" />
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="519.0" layoutY="299.0" prefHeight="338.0" prefWidth="494.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="0.75789475440979" green="0.7185965180397034" blue="0.7185965180397034" />
-                     </color>
-                  </DropShadow>
-               </effect>
-               <children>
-                  <Label layoutX="155.0" layoutY="160.0" text="Pagamentos proximos, pendentes (Alertas)" />
-               </children>
-            </AnchorPane>
-         </children></AnchorPane>
-   </right>
-   <center>
-      <AnchorPane prefHeight="674.0" prefWidth="310.0" BorderPane.alignment="CENTER" />
-   </center>
-   <bottom>
-      <AnchorPane prefHeight="33.0" prefWidth="1300.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER" />
-   </bottom>
 </BorderPane>
