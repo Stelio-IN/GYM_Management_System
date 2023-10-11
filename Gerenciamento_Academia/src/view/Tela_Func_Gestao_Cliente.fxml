@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" style="-fx-background-color: blue;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_Gestao_ClienteController">
+    <stylesheets>
+        <URL value="@/css/tela_func_gestao_cliente.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="286.0" layoutY="155.0" text="Label" />
+   </children>
+</AnchorPane>
