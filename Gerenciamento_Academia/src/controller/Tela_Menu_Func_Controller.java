@@ -12,11 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -49,38 +46,6 @@ public class Tela_Menu_Func_Controller implements Initializable {
     void Tela_Maquinas(ActionEvent event) {
         carregarTela("/view/Tela_Func_Maquinas");
     }
-    
-    
-      @FXML
-    void Tela_gestao_cliente(ActionEvent event) {
-        carregarTela("/view/Tela_Func_Gestao_Cliente");
-    }
-    
-     @FXML
-    void BtnSair(ActionEvent event) {
-        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("FECHAR");
-         alerta.setHeaderText("Deseja sair?");
-        alerta.setContentText("Deseja realmente fechar");
-        if (alerta.showAndWait().get() == ButtonType.OK) {
-
-            System.out.println("Logout efetuado com sucesso!");
-        
-    }
-    }
-    
-//     void close(Stage stage) {
-//        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-//        alerta.setTitle("FECHAR");
-//        alerta.setHeaderText("Quer realment Fechar");
-//        alerta.setContentText("Deseja salvar antes de Fechar");
-//        if (alerta.showAndWait().get() == ButtonType.OK) {
-//
-//            System.out.println("Exit exito");
-//  
-//            stage.close();
-//        }
-//    }
 
     @FXML
     private AnchorPane panelGeral;

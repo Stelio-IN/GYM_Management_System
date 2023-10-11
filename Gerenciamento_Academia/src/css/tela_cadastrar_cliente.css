@@ -3,7 +3,7 @@
  */
 
 .mainFxmlClass {
--fx-background-color: rgb(226, 230, 230);
+-fx-background-color: #00ff0011;
 }
 
 .splitpane{
