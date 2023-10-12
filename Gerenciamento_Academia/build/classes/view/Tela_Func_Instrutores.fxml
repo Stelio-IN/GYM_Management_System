@@ -1,19 +1,143 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" style="-fx-background-color: orange;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Instrutores_Controller">
-    <stylesheets>
-        <URL value="@/css/tela_func_instrutores.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_func_instrutores.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Instrutores_Controller">
    <children>
-      <Text layoutX="212.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela Funcionario Instrutores" wrappingWidth="237.818359375">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Text>
+      <AnchorPane id="AnchorPane" layoutX="78.0" layoutY="31.0" prefHeight="578.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@/css/tela_admin_menu_funcionarios.css" />
+         </stylesheets>
+         <children>
+            <TableView fx:id="tabela" layoutX="37.0" layoutY="393.0" prefHeight="166.0" prefWidth="864.0">
+               <columns>
+                  <TableColumn fx:id="tabela_Codigo" prefWidth="53.5999755859375" text="Codigo" />
+                  <TableColumn fx:id="tabela_Nome" prefWidth="137.6000213623047" text="Nome" />
+                  <TableColumn fx:id="tabela_Especializacao" minWidth="0.0" prefWidth="128.79998779296875" text="Especializacao" />
+                  <TableColumn fx:id="tabela_Email" prefWidth="178.4000244140625" text="Email" />
+                  <TableColumn fx:id="tabela_Situacao" prefWidth="77.60003662109375" text="Situação" />
+                  <TableColumn fx:id="tabela_Salario" prefWidth="82.4000244140625" text="Salario" />
+                  <TableColumn fx:id="tabela_Classificacao" prefWidth="92.79998779296875" text="Classificacao" />
+               </columns>
+            </TableView>
+            <TextField fx:id="txtNome" layoutX="38.0" layoutY="156.0" prefHeight="26.0" prefWidth="356.0" promptText="Nome do  Instrutor" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtEspecializacao" layoutX="38.0" layoutY="212.0" prefHeight="26.0" prefWidth="186.0" promptText="Especialização" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtCodigo" layoutX="257.0" layoutY="331.0" prefHeight="26.0" prefWidth="136.0" promptText="Código" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtSalario" layoutX="258.0" layoutY="212.0" prefHeight="26.0" prefWidth="136.0" promptText="Salário" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtEmail" layoutX="38.0" layoutY="272.0" prefWidth="185.0" promptText="E-mail" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtPassword" layoutX="257.0" layoutY="272.0" prefHeight="26.0" prefWidth="136.0" promptText="Palavra-passe" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TextField fx:id="txtId" layoutX="42.0" layoutY="116.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtClassificacao" layoutX="37.0" layoutY="331.0" prefHeight="26.0" prefWidth="186.0" promptText="Classificação" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <AnchorPane layoutX="532.0" layoutY="25.0" prefHeight="346.0" prefWidth="374.0" style="-fx-background-radius: 10px;" styleClass="painelzinho">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.7789473533630371" green="0.7443274855613708" blue="0.7443274855613708" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <AnchorPane layoutX="179.0" layoutY="38.0" prefHeight="157.0" prefWidth="174.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.75789475440979" green="0.7410526275634766" blue="0.7410526275634766" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                     <children>
+                        <ImageView fx:id="imageCamera" fitHeight="180.0" fitWidth="176.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </AnchorPane>
+                  <Label layoutX="33.0" layoutY="232.0" text="Descrição" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button layoutX="33.0" layoutY="108.0" mnemonicParsing="false" onAction="#listar" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 20px;" text="Listar">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <Button layoutX="33.0" layoutY="170.0" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 20px;" text="Atualizar">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <Button layoutX="33.0" layoutY="51.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="  Imagem" textFill="WHITE">
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <TextArea layoutX="33.0" layoutY="261.0" prefHeight="72.0" prefWidth="306.0" text="Aqui vai aparecer uma breve descricao sobre a &#10;especialidade do instrutor em causa assim como &#10;as suas classificacoes. Aqui vai aparecer uma &#10;breve descricao." />
+                  <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="40.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/upload-big-arrow.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <QuadCurve controlX="255.68133544921875" controlY="-213.65289306640625" endX="294.62005615234375" endY="-3.255619525909424" fill="#05a764" layoutX="167.0" layoutY="82.0" rotate="-175.6" startX="-166.9404754638672" startY="33.214115142822266" stroke="WHITE" strokeType="INSIDE" />
+            <Text fill="WHITE" layoutX="59.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de instrutores" underline="true" wrappingWidth="204.6856231689453">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Text>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.6000000238418579" green="0.5888888835906982" blue="0.5888888835906982" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>

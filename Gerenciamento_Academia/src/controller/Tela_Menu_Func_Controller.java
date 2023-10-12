@@ -32,7 +32,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @FXML
     void tela_Admin_Menu_Clientes(ActionEvent event) {
-        carregarTela("/view/Tela_Cadastrar_Cliente");
+        carregarTela("/view/Tela_Cadastrar_Cliente_1");
         
          btnClientes.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
