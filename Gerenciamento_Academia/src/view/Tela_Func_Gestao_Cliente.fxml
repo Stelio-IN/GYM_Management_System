@@ -1,14 +1,310 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" style="-fx-background-color: blue;" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_Gestao_ClienteController">
-    <stylesheets>
-        <URL value="@/css/tela_func_gestao_cliente.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_cadastrar_cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Cadastrar_Cliente_Controller">
    <children>
-      <Label layoutX="286.0" layoutY="155.0" text="Label" />
+      <AnchorPane layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" stylesheets="@../css/tela_cadastrar_cliente.css">
+         <children>
+            <TextField fx:id="txtNumeroInsc" layoutX="28.0" layoutY="130.0" prefHeight="30.0" prefWidth="129.0" promptText="FIcha de inscrição" style=": ;" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtNome" layoutX="28.0" layoutY="179.0" prefHeight="30.0" prefWidth="382.0" promptText="Nome Completo" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtNumeroDaCasa" layoutX="39.0" layoutY="410.0" prefHeight="30.0" prefWidth="110.0" promptText="Nrª da Casa" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <DatePicker fx:id="dataChosser" layoutX="248.0" layoutY="236.0" prefHeight="26.0" prefWidth="158.0" promptText="Data de Nascimento" styleClass="textfields_esquerda" />
+            <RadioButton layoutX="38.0" layoutY="357.0" mnemonicParsing="false" selected="true" text="Masculino">
+               <toggleGroup>
+                  <ToggleGroup fx:id="genero" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="136.0" layoutY="359.0" mnemonicParsing="false" selected="true" text="Feminino" toggleGroup="$genero" />
+            <TextField fx:id="txtRua" layoutX="191.0" layoutY="410.0" prefHeight="30.0" prefWidth="226.0" promptText="Rua" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <RadioButton layoutX="39.0" layoutY="309.0" mnemonicParsing="false" onAction="#desativarCampoConjugue" selected="true" text="Solteiro/a">
+               <toggleGroup>
+                  <ToggleGroup fx:id="grupoestadocivil" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="137.0" layoutY="309.0" mnemonicParsing="false" onAction="#ativarCampoConjugue" selected="true" text="Casado/a" toggleGroup="$grupoestadocivil" />
+            <TextField fx:id="txtNomeConjuge" layoutX="232.0" layoutY="292.0" prefHeight="30.0" prefWidth="184.0" promptText="Nome do Conjuge" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <ComboBox fx:id="comboBoxNacionalidade" layoutX="32.0" layoutY="236.0" prefHeight="26.0" prefWidth="165.0" promptText="Nacionalidade" styleClass="textfields_esquerda" />
+            <ComboBox fx:id="comboBoxCidade" layoutX="41.0" layoutY="471.0" prefHeight="26.0" prefWidth="111.0" promptText="Cidade" styleClass="textfields_esquerda" />
+            <ComboBox fx:id="comboBoxBairro" layoutX="191.0" layoutY="471.0" prefHeight="26.0" prefWidth="226.0" promptText="Bairro" styleClass="textfields_esquerda" />
+            <AnchorPane layoutX="458.0" prefHeight="555.0" prefWidth="508.0" style="-fx-background-radius: 0px 10px 10px 0px;" styleClass="splitpane">
+               <children>
+                  <TextField fx:id="txtPeso" layoutX="50.0" layoutY="29.0" prefHeight="30.0" prefWidth="126.0" promptText="Peso" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtAltura" layoutX="242.0" layoutY="28.0" prefHeight="30.0" prefWidth="158.0" promptText="Altura" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtEmail" layoutX="43.0" layoutY="222.0" prefHeight="30.0" prefWidth="186.0" promptText="Email" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtContacto" layoutX="43.0" layoutY="347.0" prefHeight="30.0" prefWidth="186.0" promptText="Contacto" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtContactoAlternativo" layoutX="43.0" layoutY="396.0" prefHeight="30.0" prefWidth="186.0" promptText="Contacto alternativo" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtPassword" layoutX="260.0" layoutY="222.0" promptText="Password" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtDataInscricao" layoutX="259.0" layoutY="285.0" prefHeight="30.0" prefWidth="174.0" promptText="Data de inscrição" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TextField fx:id="txtCodigoMembro" layoutX="43.0" layoutY="284.0" prefHeight="30.0" prefWidth="186.0" promptText="Código membro" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <RadioButton layoutX="53.0" layoutY="107.0" mnemonicParsing="false" onAction="#desabilitarComboDesportos" selected="true" text="Sim" textFill="WHITE">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="grupoDesport" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton layoutX="128.0" layoutY="107.0" mnemonicParsing="false" onAction="#ativarComboDesportos" text="Não" textFill="WHITE" toggleGroup="$grupoDesport">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </RadioButton>
+                  <ComboBox fx:id="comboBoxDesporto" layoutX="261.0" layoutY="103.0" prefHeight="26.0" prefWidth="166.0" promptText="Desportos" styleClass="textfields_direita">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </ComboBox>
+                  <RadioButton layoutX="130.0" layoutY="174.0" mnemonicParsing="false" onAction="#ativarComboDoencas" selected="true" text="Não" textFill="WHITE">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="grupoDoenca" />
+                     </toggleGroup>
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </RadioButton>
+                  <RadioButton layoutX="52.0" layoutY="174.0" mnemonicParsing="false" onAction="#desativarComboDoencas" selected="true" text="Sim" textFill="WHITE" toggleGroup="$grupoDoenca">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </RadioButton>
+                  <ComboBox fx:id="comboBoxDoencas" layoutX="261.0" layoutY="165.0" prefHeight="26.0" prefWidth="166.0" promptText="Doença" styleClass="textfields_direita">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </ComboBox>
+                  <Label layoutX="56.0" layoutY="81.0" text="Pratica algum desporto?" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="53.0" layoutY="148.0" text="Possui alguma doença?" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtContactoEmergencia" layoutX="259.0" layoutY="347.0" prefHeight="30.0" prefWidth="174.0" promptText="Contacto de Emergẽcia" styleClass="textfields_direita">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </TextField>
+                  <TableView fx:id="tabela" layoutX="23.0" layoutY="437.0" prefHeight="111.0" prefWidth="472.0">
+                     <columns>
+                        <TableColumn fx:id="tabela_Codigo" prefWidth="53.5999755859375" text="Ficha Nr" />
+                        <TableColumn fx:id="tabela_Nome" prefWidth="137.6000213623047" text="Nome" />
+                        <TableColumn fx:id="tabela_Especializacao" minWidth="0.0" prefWidth="128.79998779296875" text="Código" />
+                        <TableColumn fx:id="tabela_Email" prefWidth="178.4000244140625" text="E-mail" />
+                        <TableColumn fx:id="tabela_Situacao" prefWidth="77.60003662109375" text="Situação" />
+                        <TableColumn fx:id="tabela_Salario" prefWidth="82.4000244140625" text="Salario" />
+                        <TableColumn fx:id="tabela_Classificacao" prefWidth="92.79998779296875" text="Classificacao" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="txtIdentificacao" layoutX="232.0" layoutY="354.0" prefHeight="26.0" prefWidth="184.0" promptText="Bilhete de identificação" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button layoutX="255.0" layoutY="142.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #05a764f0; -fx-background-radius: 20px;" text=" Carregar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="31.0" layoutY="39.0" prefHeight="30.0" prefWidth="166.0" text="Ficha de inscrição" textFill="#0a7902" underline="true">
+               <font>
+                  <Font name="System Bold Italic" size="19.0" />
+               </font>
+            </Label>
+            <AnchorPane layoutX="248.0" prefHeight="139.0" prefWidth="158.0" style="-fx-background-color: #fffffc;">
+               <children>
+                  <ImageView fx:id="imageCamera" fitHeight="122.0" fitWidth="111.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/camera_app_basic_icon.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="267.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/upload-big-arrow.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txtId" layoutX="180.0" layoutY="132.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button layoutX="356.0" layoutY="515.0" mnemonicParsing="false" onAction="#Atualizar" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Atualizar" textFill="#169c18">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.27368420362472534" green="0.27368420362472534" blue="0.27368420362472534" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="248.0" layoutY="515.0" mnemonicParsing="false" onAction="#listar" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Listar" textFill="#169c18">
+               <font>
+                  <Font size="13.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.27368420362472534" green="0.27368420362472534" blue="0.27368420362472534" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5157894492149353" green="0.4985964894294739" blue="0.4985964894294739" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
    </children>
 </AnchorPane>
