@@ -4,12 +4,14 @@
  */
 package gerenciamento_academia;
 
+import controller.Tela_Menu_Func_Controller;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -20,11 +22,15 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-       Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login_Inicial.fxml"));
+        Image imagem = new Image("/img/icone.png"); 
+        
+        
+       Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Func.fxml"));
+     //  Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
   //     Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.getIcons().add(imagem);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event -> {
@@ -37,15 +43,17 @@ public class App extends Application {
     void close(Stage stage) {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("FECHAR");
-        alerta.setHeaderText("Quer realment Fechar");
-        alerta.setContentText("Deseja salvar antes de Fechar");
+        alerta.setHeaderText("Deseja sair?");
+        alerta.setContentText("Deseja realmente fechar");
         if (alerta.showAndWait().get() == ButtonType.OK) {
 
-            System.out.println("Exit exito");
+            System.out.println("Logout efetuado com sucesso!");
   
             stage.close();
         }
     }
+    
+    
     public static void main(String[] args) {
         launch(args);
     }
