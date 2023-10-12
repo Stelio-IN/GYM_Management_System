@@ -26,9 +26,39 @@ public class Plano_de_Associacao implements Serializable{
     private String descricao;
     private Double preco;
     private boolean status;
+    
+    private String situacao;
+    private String dataInicio;
+    private String dataTermino;
     @Lob
     protected byte[] imagem;
 
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(String dataTermino) {
+        this.dataTermino = dataTermino;
+    }
+
+    
+    
     public byte[] getImagem() {
         return imagem;
     }

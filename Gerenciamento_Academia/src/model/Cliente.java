@@ -24,6 +24,17 @@ public class Cliente extends Pessoa implements Serializable {
     private String esporte_que_Pratica;
     private String doenca;
 
+    private String objectivo;
+
+    public String getObjectivo() {
+        return objectivo;
+    }
+
+    public void setObjectivo(String objectivo) {
+        this.objectivo = objectivo;
+    }
+    
+    
     public String getDoenca() {
         return doenca;
     }

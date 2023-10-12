@@ -2,9 +2,13 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,40 +20,63 @@
       <URL value="@/css/tela_admin_menu_funcionarios.css" />
    </stylesheets>
    <children>
-      <ImageView fitHeight="20.0" fitWidth="16.0" layoutX="369.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../img/lupa.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="26.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maquinas" wrappingWidth="78.28564453125">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Text>
-      <TableView fx:id="tabela" layoutX="13.0" layoutY="266.0" prefHeight="165.0" prefWidth="608.0">
-         <columns>
-            <TableColumn fx:id="tabela_Modelo" prefWidth="110.39999103546143" text="Modelo" />
-            <TableColumn fx:id="tabela_Nome" prefWidth="172.8000030517578" text="Nome" />
-            <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="172.0" text="Marca" />
-            <TableColumn fx:id="tabela_Imagem" prefWidth="152.0" text="Imagem" />
-         </columns>
-      </TableView>
-      <TextField fx:id="txtNome" layoutX="26.0" layoutY="77.0" promptText="Nome da maquina" />
-      <TextField fx:id="txtModelo" layoutX="26.0" layoutY="129.0" promptText="Modelo" />
-      <TextField fx:id="txtMarca" layoutX="26.0" layoutY="176.0" promptText="Marca" />
-      <Button layoutX="219.0" layoutY="116.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
-      <Button layoutX="319.0" layoutY="116.0" mnemonicParsing="false" onAction="#editar" text="Editar" />
-      <Button layoutX="219.0" layoutY="163.0" mnemonicParsing="false" onAction="#excluir" text="Excluir" />
-      <Button layoutX="320.0" layoutY="163.0" mnemonicParsing="false" onAction="#listar" text="Listar" />
-      <TextField fx:id="txtPesquisa" layoutX="205.0" layoutY="40.0" prefHeight="25.0" prefWidth="195.0" promptText="Pesquisar Funcionario" style="-fx-background-color: transparent; -fx-border-color: black;" />
       <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <Button layoutX="365.0" layoutY="41.0" mnemonicParsing="false" onAction="#pesquisar" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: transparent;" />
-      <TextField fx:id="txtId" layoutX="30.0" layoutY="41.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" />
-      <ImageView fx:id="imageCamera" fitHeight="132.0" fitWidth="176.0" layoutX="423.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../Pictures/EDITORIAL_CONTEÜDO/Grande%20Deus.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="423.0" layoutY="210.0" mnemonicParsing="false" onAction="#carregarimg" text="Carregar" />
+      <AnchorPane layoutX="153.0" layoutY="68.0" prefHeight="306.0" prefWidth="451.0" style="-fx-background-color: green;">
+         <children>
+            <TextField fx:id="txtNome" layoutX="34.0" layoutY="97.0" prefHeight="25.0" prefWidth="236.0" promptText="Nome da maquina" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtModelo" layoutX="34.0" layoutY="128.0" prefHeight="25.0" prefWidth="236.0" promptText="Modelo" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtMarca" layoutX="34.0" layoutY="163.0" prefHeight="25.0" prefWidth="236.0" promptText="Marca" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtId" layoutX="34.0" layoutY="62.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtvidaUtil" layoutX="34.0" layoutY="241.0" prefHeight="25.0" prefWidth="236.0" promptText="Tempo de vida util" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <DatePicker fx:id="dataAquisicao" layoutX="34.0" layoutY="200.0" prefHeight="25.0" prefWidth="236.0" promptText="Data Aquisição" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Button layoutX="297.0" layoutY="111.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="25.0" prefWidth="110.0" text="   Carregar" />
+            <ImageView fx:id="imageCamera" fitHeight="80.0" fitWidth="78.0" layoutX="314.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/camera_app_basic_icon.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="34.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maquina" wrappingWidth="78.28564453125">
+               <font>
+                  <Font name="Bodoni MT Poster Compressed" size="34.0" />
+               </font>
+            </Text>
+            <ImageView fitHeight="17.0" fitWidth="25.0" layoutX="306.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/icons52.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="604.0" layoutY="68.0" prefHeight="306.0" prefWidth="387.0" style="-fx-background-color: aqua;">
+         <children>
+            <TextArea fx:id="txtAreaDiscri" layoutX="16.0" layoutY="153.0" prefHeight="100.0" prefWidth="355.0" promptText="Discricao Da Maquina Como  preco de aquisicao, ano de fabrico cor..." style="-fx-border-width: 1px 1px 1px 1px; -fx-border-color: black;" />
+            <Button layoutX="303.0" layoutY="267.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+            <Text layoutX="37.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+            <RadioButton layoutX="37.0" layoutY="74.0" mnemonicParsing="false" text="Activa">
+               <toggleGroup>
+                  <ToggleGroup fx:id="GroupoStatus" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="123.0" layoutY="74.0" mnemonicParsing="false" text="Inactiva" toggleGroup="$GroupoStatus" />
+            <Text layoutX="26.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discricao" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="151.0" layoutY="428.0" prefHeight="139.0" prefWidth="843.0" style="-fx-background-color: aqua;">
+         <children>
+            <TableView fx:id="tabela" layoutX="14.0" layoutY="3.0" prefHeight="117.0" prefWidth="719.0">
+               <columns>
+                  <TableColumn fx:id="tabela_Nome" prefWidth="157.0" text="Nome" />
+                  <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="151.0" text="Marca" />
+                  <TableColumn fx:id="tabela_Modelo" prefWidth="121.0" text="Modelo" />
+                  <TableColumn fx:id="tabela_VidaUtil" prefWidth="102.0" text="Vida Util" />
+                  <TableColumn fx:id="tabela_Aquisicao" prefWidth="111.0" text="Data de Aquisicao" />
+                  <TableColumn fx:id="tabela_Status" prefWidth="75.0" text="Status" />
+               </columns>
+            </TableView>
+            <Button layoutX="760.0" layoutY="13.0" mnemonicParsing="false" onAction="#listar" prefHeight="25.0" prefWidth="67.0" text="Listar" />
+            <Button layoutX="761.0" layoutY="49.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="67.0" text="Excluir" />
+            <Button layoutX="763.0" layoutY="85.0" mnemonicParsing="false" onAction="#editar" prefHeight="25.0" prefWidth="67.0" text="Editar" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
