@@ -159,12 +159,12 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       btnDashboard.setStyle("-fx-background-color: #00ff001e;");
-        btnPacotes.setStyle("-fx-background-color: transparent;");
-        btnInstrutor.setStyle("-fx-background-color: transparent;");
-        btnMaquinas.setStyle("-fx-background-color: transparent;");
-        btnGestaoCliente.setStyle("-fx-background-color: transparent;");
-        btnClientes.setStyle("-fx-background-color: transparent;");
+//       btnDashboard.setStyle("-fx-background-color: #00ff001e;");
+//        btnPacotes.setStyle("-fx-background-color: transparent;");
+//        btnInstrutor.setStyle("-fx-background-color: transparent;");
+//        btnMaquinas.setStyle("-fx-background-color: transparent;");
+//        btnGestaoCliente.setStyle("-fx-background-color: transparent;");
+//        btnClientes.setStyle("-fx-background-color: transparent;");
     }
 
 }
