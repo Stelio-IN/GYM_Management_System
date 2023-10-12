@@ -30,7 +30,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import model.Equipamento;
 import model.Plano_de_Associacao;
 
 /**
@@ -42,6 +41,11 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
 
     @FXML
     private ToggleGroup statusGroup;
+    @FXML
+    private RadioButton radioButtonActivo = new RadioButton("Activo");
+
+    @FXML
+    private RadioButton radioButtonInactivo = new RadioButton("Inactivo");
 
     @FXML
     private TableView<Plano_de_Associacao> tabela;
@@ -60,7 +64,7 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
 
     @FXML
     private ImageView imageCamera;
-    
+
     @FXML
     private TableColumn<Plano_de_Associacao, Image> colunaIMagem;
 
@@ -72,8 +76,8 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
 
     @FXML
     private TableColumn<Plano_de_Associacao, String> colunaStatus;
-    
-   private ObservableList< Plano_de_Associacao> observableList;
+
+    private ObservableList< Plano_de_Associacao> observableList;
 
     private String caminhoDoArquivo;
 
@@ -102,23 +106,70 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
     }
 
     @FXML
-    void Editar_Plano(ActionEvent event) {
+    void Editar_Plano(ActionEvent event) throws IOException {
+        Class<Plano_de_Associacao> classe = Plano_de_Associacao.class;
+        Plano_de_Associacao plano = new Plano_de_Associacao();
+        GenericDAO dao = new GenericDAO();
 
+        plano.setId(Long.valueOf(txtId.getText()));
+        plano.setNome(txtNome.getText());
+        plano.setPreco(Double.valueOf(txtPreco.getText()));
+        plano.setDescricao(txtAreaDiscr.getText());
+
+        RadioButton pegarGenero = (RadioButton) statusGroup.getSelectedToggle();
+        String status = pegarGenero.getText();
+
+        if (status.equals("Activo")) {
+            plano.setStatus(true);
+        } else if (status.equals("Inactivo")) {
+            plano.setStatus(false);
+        }
+
+        System.out.println(status);
+        if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
+            // Leitura da imagem do arquivo e armazenamento como um array de bytes
+            Path imagePath = Paths.get(caminhoDoArquivo);
+            byte[] imagemBytes = Files.readAllBytes(imagePath);
+
+            plano.setImagem(imagemBytes);
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Nenhuma imagem selecionada");
+        }
+
+        dao.Atualizar(classe, Long.valueOf(txtId.getText()), plano);
+        JOptionPane.showMessageDialog(null, "Dados atualizados", "", JOptionPane.YES_OPTION);
+        txtId.setText("");
+
+        imageCamera.setImage(null);
+        Listar(event);
     }
 
     @FXML
     void Excluir_Plano(ActionEvent event) {
+        GenericDAO dao = new GenericDAO();
 
+        Class<Plano_de_Associacao> plano = Plano_de_Associacao.class;
+        // dao.removerLogico(func_Classe, Long.valueOf(txtId.getText()), dao);
+        dao.removeFisico(plano, Long.valueOf(txtId.getText()));
+        JOptionPane.showMessageDialog(null, "Removido COm sucesso");
+        txtId.setText("");
+
+        txtNome.setText("");
+        txtAreaDiscr.setText("");
+        txtPreco.setText("");
+        imageCamera.setImage(null);
+        Listar(event);
     }
 
     @FXML
     void Gravar_Plano(ActionEvent event) throws IOException {
-         GenericDAO dao = new GenericDAO();
+        GenericDAO dao = new GenericDAO();
         RadioButton pegarGenero = (RadioButton) statusGroup.getSelectedToggle();
         String status = pegarGenero.getText();
 
         Plano_de_Associacao plano = new Plano_de_Associacao();
-        if (status.equals("activo")) {
+        if (status.equals("Activo")) {
             plano.setStatus(true);
         } else if (status.equals("Inactivo")) {
             plano.setStatus(false);
@@ -134,7 +185,7 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
         } else {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
-        
+
         dao.add(plano);
     }
 
@@ -149,9 +200,8 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
         colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
         colunaPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
         colunaStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-     
-        // tabela_Imagem.setCellValueFactory(new PropertyValueFactory<>("Imagem"));
 
+        // tabela_Imagem.setCellValueFactory(new PropertyValueFactory<>("Imagem"));
         observableList = FXCollections.observableArrayList(lista);
         tabela.setItems(observableList);
     }
@@ -159,19 +209,19 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-            tabela.getSelectionModel().selectedItemProperty().addListener(
+        tabela.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
         txtId.setDisable(true);
     }
 
-     public void pegarLinhaSelecionada(Plano_de_Associacao plano) {
+    public void pegarLinhaSelecionada(Plano_de_Associacao plano) {
         if (plano != null) {
             txtId.setText(String.valueOf(plano.getId()));
             txtNome.setText(plano.getNome());
             txtAreaDiscr.setText(plano.getDescricao());
-            txtPreco.setText(String.valueOf(plano.getPreco()));      
-        
+            txtPreco.setText(String.valueOf(plano.getPreco()));
+
             if (plano.getImagem() != null) {
                 // Converta o array de bytes em uma Image
                 byte[] imagemBytes = plano.getImagem();
@@ -190,5 +240,5 @@ public class Tela_Admin_Menu_Plano_Associacao_Controller implements Initializabl
             txtPreco.setText("");
         }
     }
-    
+
 }

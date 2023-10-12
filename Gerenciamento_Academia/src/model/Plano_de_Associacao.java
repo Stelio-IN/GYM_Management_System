@@ -20,7 +20,7 @@ import javax.persistence.Lob;
 public class Plano_de_Associacao implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   
-    private int id;
+    private Long id;
     private int duracao;
     private String nome;
     private String descricao;
@@ -76,13 +76,15 @@ public class Plano_de_Associacao implements Serializable{
         this.status = status;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public int getDuracao() {
         return duracao;
