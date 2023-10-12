@@ -12,6 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -22,11 +23,6 @@
             <URL value="@/css/tela_admin_menu_funcionarios.css" />
          </stylesheets>
          <children>
-            <Text layoutX="50.0" layoutY="63.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de instrutores" underline="true" wrappingWidth="167.88563537597656">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
             <TableView fx:id="tabela" layoutX="37.0" layoutY="393.0" prefHeight="166.0" prefWidth="864.0">
                <columns>
                   <TableColumn fx:id="tabela_Codigo" prefWidth="53.5999755859375" text="Codigo" />
@@ -79,7 +75,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <AnchorPane layoutX="532.0" layoutY="25.0" prefHeight="346.0" prefWidth="374.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
+            <AnchorPane layoutX="532.0" layoutY="25.0" prefHeight="346.0" prefWidth="374.0" style="-fx-background-color: #13b14a; -fx-background-radius: 10px;">
                <effect>
                   <DropShadow>
                      <color>
@@ -128,6 +124,12 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <QuadCurve controlX="255.68133544921875" controlY="-213.65289306640625" endX="294.62005615234375" endY="-3.255619525909424" fill="#13b14a" layoutX="167.0" layoutY="82.0" rotate="-175.6" startX="-166.9404754638672" startY="33.214115142822266" stroke="WHITE" strokeType="INSIDE" />
+            <Text fill="WHITE" layoutX="59.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de instrutores" underline="true" wrappingWidth="204.6856231689453">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Text>
          </children>
          <effect>
             <DropShadow>

@@ -86,7 +86,7 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
-                  <TextField fx:id="txtEmail" layoutX="43.0" layoutY="282.0" prefHeight="30.0" prefWidth="186.0" promptText="Email" styleClass="textfields_direita">
+                  <TextField fx:id="txtEmail" layoutX="43.0" layoutY="327.0" prefHeight="30.0" prefWidth="186.0" promptText="Email" styleClass="textfields_direita">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -98,7 +98,7 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
-                  <TextField fx:id="txtContacto" layoutX="43.0" layoutY="407.0" prefHeight="30.0" prefWidth="186.0" promptText="Contacto" styleClass="textfields_direita">
+                  <TextField fx:id="txtContacto" layoutX="43.0" layoutY="452.0" prefHeight="30.0" prefWidth="186.0" promptText="Contacto" styleClass="textfields_direita">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -110,7 +110,7 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
-                  <TextField fx:id="txtContactoAlternativo" layoutX="43.0" layoutY="467.0" prefHeight="30.0" prefWidth="186.0" promptText="Contacto alternativo" styleClass="textfields_direita">
+                  <TextField fx:id="txtPassword" layoutX="260.0" layoutY="327.0" promptText="Password" styleClass="textfields_direita">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -122,7 +122,7 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
-                  <TextField fx:id="txtPassword" layoutX="260.0" layoutY="282.0" promptText="Password" styleClass="textfields_direita">
+                  <TextField fx:id="txtDataInscricao" layoutX="43.0" layoutY="276.0" prefHeight="30.0" prefWidth="186.0" promptText="Data de inscrição" styleClass="textfields_direita">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -134,19 +134,7 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
-                  <TextField fx:id="txtDataInscricao" layoutX="259.0" layoutY="345.0" prefHeight="30.0" prefWidth="174.0" promptText="Data de inscrição" styleClass="textfields_direita">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                     <effect>
-                        <InnerShadow>
-                           <color>
-                              <Color red="1.0" green="1.0" blue="1.0" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </TextField>
-                  <TextField fx:id="txtCodigoMembro" layoutX="43.0" layoutY="344.0" prefHeight="30.0" prefWidth="186.0" promptText="Código membro" styleClass="textfields_direita">
+                  <TextField fx:id="txtCodigoMembro" layoutX="43.0" layoutY="389.0" prefHeight="30.0" prefWidth="186.0" promptText="Código membro" styleClass="textfields_direita">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -221,7 +209,7 @@
                            </color>
                         </DropShadow>
                      </effect></Button>
-                  <TextField fx:id="txtContactoEmergencia" layoutX="259.0" layoutY="407.0" prefHeight="30.0" prefWidth="174.0" promptText="Contacto de Emergẽcia" styleClass="textfields_direita">
+                  <TextField fx:id="txtContactoEmergencia" layoutX="259.0" layoutY="389.0" prefHeight="30.0" prefWidth="174.0" promptText="Contacto de Emergẽcia" styleClass="textfields_direita">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -233,6 +221,15 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+                  <ComboBox layoutX="259.0" layoutY="278.0" prefHeight="26.0" prefWidth="174.0" promptText="Objectivo" styleClass="textfields_direita">
+                     <effect>
+                        <InnerShadow>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </InnerShadow>
+                     </effect>
+                  </ComboBox>
                </children>
             </AnchorPane>
             <TextField fx:id="txtIdentificacao" layoutX="232.0" layoutY="354.0" prefHeight="26.0" prefWidth="184.0" promptText="Bilhete de identificação" styleClass="textfields_esquerda">
@@ -253,7 +250,7 @@
                <children>
                   <ImageView fx:id="imageCamera" fitHeight="122.0" fitWidth="111.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/camera_app_basic_icon.png" />
+                        <Image url="@../img/adicionar-usuario.png" />
                      </image>
                   </ImageView>
                </children>
