@@ -1,5 +1,6 @@
 /Copias_De_Classes/
 Gerenciamento_Academia/build/built-jar.properties
+<<<<<<< HEAD
 Gerenciamento_Academia/src/gerenciamento_academia/App.java
 Gerenciamento_Academia/build/generated-sources/ap-source-output/model/Tipo_Relatorio_.java
 Gerenciamento_Academia/build/generated-sources/ap-source-output/model/Relatorios_.java
@@ -37,3 +38,10 @@ Gerenciamento_Academia/build/generated-sources/ap-source-output/model/Relatorios
 Gerenciamento_Academia/build/generated-sources/ap-source-output/model/Tipo_Relatorio_.java
 Gerenciamento_Academia/nbproject/private/private.properties
 *.java
+=======
+Gerenciamento_Academia/build/built-jar.properties
+Gerenciamento_Academia/build/built-jar.properties
+Gerenciamento_Academia/build/generated-sources/ap-source-output/model/Tipo_Relatorio_.java
+Gerenciamento_Academia/build/built-jar.properties
+Gerenciamento_Academia/build/built-jar.properties
+>>>>>>> stelio

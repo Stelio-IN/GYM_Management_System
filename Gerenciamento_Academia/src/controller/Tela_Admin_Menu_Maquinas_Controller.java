@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -18,9 +19,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,7 +55,13 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
     private TableColumn<Equipamento, String> tabela_Nome;
 
     @FXML
-    private TableColumn<Equipamento, Byte> tabela_Imagem;
+    private TableColumn<Equipamento, String> tabela_Aquisicao;
+
+    @FXML
+    private TableColumn<Equipamento, Integer> tabela_Status;
+
+    @FXML
+    private TableColumn<Equipamento, String> tabela_VidaUtil;
 
     @FXML
     private TextField txtId;
@@ -65,15 +76,24 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
     private TextField txtNome;
 
     @FXML
-    private TextField txtPesquisa;
-
-    @FXML
     private ImageView imageCamera;
-    
+
     private ObservableList<Equipamento> observableList;
 
     private String caminhoDoArquivo;
 
+    @FXML
+    private ToggleGroup GroupoStatus;
+
+    @FXML
+    private DatePicker dataAquisicao;
+
+    @FXML
+    private TextArea txtAreaDiscri;
+
+    @FXML
+    private TextField txtvidaUtil;
+ 
     /**
      * Método que carrega a imagem do diretório da máquina para o app , que
      * posteriormente será atribuida a maquina que está sendo cadastrada
@@ -117,7 +137,26 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
         equip.setModelo(txtModelo.getText());
+        String dataAtualFormatada = "";
+        if (dataAquisicao.getValue() != null) {
+            // Obtenha o valor selecionado e faça algo com ele
+            java.time.LocalDate dataSelecionada = dataAquisicao.getValue();
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            dataAtualFormatada = dataSelecionada.format(formatter);
 
+        }
+
+        equip.setData_Entrada(dataAtualFormatada);
+        equip.setDiscricao(txtAreaDiscri.getText());
+        equip.setVida_Util(Double.parseDouble(txtvidaUtil.getText()));
+       // equip.setPreco(Double.parseDouble(txtPreco.getText()));
+      
+        RadioButton pegarGenero = (RadioButton) GroupoStatus.getSelectedToggle();
+        String status = pegarGenero.getText();
+        if(status.equals("activo"))
+        equip.setStatus(true);else
+        if(status.equals("Inactivo"))
+            equip.setStatus(false);  
         //Instrução que verifica se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             //Instrução que faz a leitura da imagem do arquivo e armazenamento como um array de bytes
@@ -128,15 +167,6 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
         dao.add(equip);
-    }
-
-    @FXML
-    void pesquisar(ActionEvent event) {
-        if (!txtPesquisa.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, txtPesquisa.getText());
-        } else {
-            JOptionPane.showMessageDialog(null, "Campo de Texto Vazio");
-        }
     }
 
     /**
@@ -206,6 +236,9 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         tabela_Nome.setCellValueFactory(new PropertyValueFactory<>("Nome"));
         tabela_Marca.setCellValueFactory(new PropertyValueFactory<>("Marca"));
         tabela_Modelo.setCellValueFactory(new PropertyValueFactory<>("Modelo"));
+        tabela_VidaUtil.setCellValueFactory(new PropertyValueFactory<>("Vida_Util"));
+        tabela_Aquisicao.setCellValueFactory(new PropertyValueFactory<>("data_Entrada"));
+        tabela_Status.setCellValueFactory(new PropertyValueFactory<>("Status"));
         // tabela_Imagem.setCellValueFactory(new PropertyValueFactory<>("Imagem"));
 
         observableList = FXCollections.observableArrayList(lista);
@@ -224,18 +257,20 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
     /**
      * Método para carregar os dados na tabela para os respectivos campos
      *
-     * @param pessoa
+     * @param maquina
      */
-    public void pegarLinhaSelecionada(Equipamento pessoa) {
-        if (pessoa != null) {
-            txtId.setText(String.valueOf(pessoa.getId()));
-            txtNome.setText(pessoa.getNome());
-            txtMarca.setText(pessoa.getMarca());
-            txtModelo.setText(pessoa.getModelo());
+    public void pegarLinhaSelecionada(Equipamento maquina) {
+        if (maquina != null) {
+            txtId.setText(String.valueOf(maquina.getId()));
+            txtNome.setText(maquina.getNome());
+            txtMarca.setText(maquina.getMarca());
+            txtModelo.setText(maquina.getModelo());
+            txtAreaDiscri.setText(maquina.getDiscricao());
+            //dataAquisicao
 
-            if (pessoa.getImagem() != null) {
+            if (maquina.getImagem() != null) {
                 // Converta o array de bytes em uma Image
-                byte[] imagemBytes = pessoa.getImagem();
+                byte[] imagemBytes = maquina.getImagem();
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                 // Defina a imagem no ImageView
@@ -249,6 +284,8 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
             txtNome.setText("");
             txtMarca.setText("");
             txtModelo.setText("");
+            txtAreaDiscri.setText("");
+            txtvidaUtil.setText("");
 
         }
     }
