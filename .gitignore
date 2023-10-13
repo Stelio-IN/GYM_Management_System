@@ -18,3 +18,6 @@ Gerenciamento_Academia/build/generated-sources/ap-source-output/model/Avaliacoes
 Gerenciamento_Academia/build/generated-sources/ap-source-output/model/Administrador_.java
 Gerenciamento_Academia/build/classes/gerenciamento_academia/App.class
 Gerenciamento_Academia/build/built-jar.properties
+*.java
+*.properties
+*.java
