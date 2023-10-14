@@ -81,11 +81,18 @@ public class Tela_Login_Controller implements Initializable {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(caminho));
         Parent root = loader.load();
 
-        // Acessa o controlador da próxima tela
-        Tela_Menu_Admin_Controller controller = loader.getController();
-
-        // Passa os dados da pessoa para o controlador
-        controller.setPessoa(pessoa);
+        if (pessoa instanceof Administrador) {
+            Tela_Menu_Admin_Controller controller = loader.getController();
+            controller.setPessoa(pessoa);
+        } else if (pessoa instanceof Cliente) {
+            Tela_Menu_Func_Controller controller = loader.getController();
+            controller.setPessoa(pessoa);
+        }
+//        // Acessa o controlador da próxima tela
+//        Tela_Menu_Admin_Controller controller = loader.getController();
+//
+//        // Passa os dados da pessoa para o controlador
+//        controller.setPessoa(pessoa);
 
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);

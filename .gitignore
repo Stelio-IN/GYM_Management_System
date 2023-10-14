@@ -46,3 +46,5 @@ Gerenciamento_Academia/build/built-jar.properties
 Gerenciamento_Academia/build/built-jar.properties
 >>>>>>> stelio
 *.java
+Gerenciamento_Academia/nbproject/private/private.xml
+*.properties

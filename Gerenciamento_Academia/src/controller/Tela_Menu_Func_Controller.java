@@ -5,6 +5,7 @@
 package controller;
 
 import gerenciamento_academia.App;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -17,11 +18,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javax.swing.JOptionPane;
+import model.Pessoa;
 
 /**
  * FXML Controller class
@@ -33,8 +37,8 @@ public class Tela_Menu_Func_Controller implements Initializable {
     @FXML
     void tela_Admin_Menu_Clientes(ActionEvent event) {
         carregarTela("/view/Tela_Cadastrar_Cliente_1");
-        
-         btnClientes.setStyle("-fx-background-color: #00ff001e;");
+
+        btnClientes.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
         btnInstrutor.setStyle("-fx-background-color: transparent;");
         btnMaquinas.setStyle("-fx-background-color: transparent;");
@@ -45,39 +49,36 @@ public class Tela_Menu_Func_Controller implements Initializable {
     @FXML
     void Tela_Geral(ActionEvent event) {
         borderPane.setRight(panelGeral);
-        
-        
+
         btnDashboard.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
         btnInstrutor.setStyle("-fx-background-color: transparent;");
         btnMaquinas.setStyle("-fx-background-color: transparent;");
         btnGestaoCliente.setStyle("-fx-background-color: transparent;");
         btnClientes.setStyle("-fx-background-color: transparent;");
-        
 
-       
     }
-    
-     @FXML
+
+    @FXML
     void plano_Associa(ActionEvent event) {
-          carregarTela("/view/Tela_Func_PlanoAss");
+        carregarTela("/view/Tela_Func_PlanoAss");
         btnPacotes.setStyle("-fx-background-color: #00ff001e;");
         btnDashboard.setStyle("-fx-background-color: transparent;");
         btnInstrutor.setStyle("-fx-background-color: transparent;");
         btnMaquinas.setStyle("-fx-background-color: transparent;");
         btnGestaoCliente.setStyle("-fx-background-color: transparent;");
-         btnClientes.setStyle("-fx-background-color: transparent;");
+        btnClientes.setStyle("-fx-background-color: transparent;");
     }
-    
+
     @FXML
     void Tela_Instrutores(ActionEvent event) {
-         carregarTela("/view/Tela_Func_Instrutores");
+        carregarTela("/view/Tela_Func_Instrutores");
         btnInstrutor.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
         btnDashboard.setStyle("-fx-background-color: transparent;");
         btnMaquinas.setStyle("-fx-background-color: transparent;");
         btnGestaoCliente.setStyle("-fx-background-color: transparent;");
-         btnClientes.setStyle("-fx-background-color: transparent;");
+        btnClientes.setStyle("-fx-background-color: transparent;");
     }
 
     @FXML
@@ -88,11 +89,10 @@ public class Tela_Menu_Func_Controller implements Initializable {
         btnInstrutor.setStyle("-fx-background-color: transparent;");
         btnDashboard.setStyle("-fx-background-color: transparent;");
         btnGestaoCliente.setStyle("-fx-background-color: transparent;");
-         btnClientes.setStyle("-fx-background-color: transparent;");
+        btnClientes.setStyle("-fx-background-color: transparent;");
     }
-    
-    
-      @FXML
+
+    @FXML
     void Tela_gestao_cliente(ActionEvent event) {
         carregarTela("/view/Tela_Func_Gestao_Cliente");
         btnGestaoCliente.setStyle("-fx-background-color: #00ff001e;");
@@ -100,36 +100,33 @@ public class Tela_Menu_Func_Controller implements Initializable {
         btnInstrutor.setStyle("-fx-background-color: transparent;");
         btnMaquinas.setStyle("-fx-background-color: transparent;");
         btnDashboard.setStyle("-fx-background-color: transparent;");
-         btnClientes.setStyle("-fx-background-color: transparent;");
+        btnClientes.setStyle("-fx-background-color: transparent;");
     }
-    
-     @FXML
+
+    @FXML
     void BtnSair(ActionEvent event) {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         alerta.setTitle("FECHAR");
-         alerta.setHeaderText("Deseja sair?");
+        alerta.setHeaderText("Deseja sair?");
         alerta.setContentText("Deseja realmente fechar");
         if (alerta.showAndWait().get() == ButtonType.OK) {
 
             System.out.println("Logout efetuado com sucesso!");
-        
+
         }
     }
-    
-
 
     @FXML
     private AnchorPane panelGeral;
     @FXML
     private BorderPane borderPane = new BorderPane();
-    
+
     @FXML
     private Label lblDashboard;
-    
-       @FXML
+
+    @FXML
     private Button btnDashboard;
-       
-       
+
     @FXML
     private Button btnClientes;
 
@@ -159,12 +156,22 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       btnDashboard.setStyle("-fx-background-color: #00ff001e;");
+        btnDashboard.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
         btnInstrutor.setStyle("-fx-background-color: transparent;");
         btnMaquinas.setStyle("-fx-background-color: transparent;");
         btnGestaoCliente.setStyle("-fx-background-color: transparent;");
         btnClientes.setStyle("-fx-background-color: transparent;");
+    }
+
+    @FXML
+    private Label txtNomeFunc;
+    private Pessoa pessoa;
+
+    public void setPessoa(Pessoa pessoa) {
+       this.pessoa = pessoa;
+        txtNomeFunc.setText(pessoa.getNome());
+        System.out.println(pessoa.getNome());
     }
 
 }
