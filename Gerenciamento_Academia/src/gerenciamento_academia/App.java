@@ -11,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -21,11 +22,15 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-       Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Func.fxml"));
-      //Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
+        Image imagem = new Image("/img/icone.png"); 
+        
+        
+       Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
+     //  Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
+  //     Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
         
         Scene scene = new Scene(root);
-        
+        stage.getIcons().add(imagem);
         stage.setScene(scene);
         stage.show();
         stage.setOnCloseRequest(event -> {
@@ -51,6 +56,7 @@ public class App extends Application {
     
     public static void main(String[] args) {
         launch(args);
+        System.out.println("Banana");
     }
     
 }

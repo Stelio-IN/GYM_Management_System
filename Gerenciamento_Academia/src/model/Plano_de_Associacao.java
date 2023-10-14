@@ -20,15 +20,45 @@ import javax.persistence.Lob;
 public class Plano_de_Associacao implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   
-    private int id;
+    private Long id;
     private int duracao;
     private String nome;
     private String descricao;
     private Double preco;
     private boolean status;
+    
+    private String situacao;
+    private String dataInicio;
+    private String dataTermino;
     @Lob
     protected byte[] imagem;
 
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+
+    public String getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(String dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public String getDataTermino() {
+        return dataTermino;
+    }
+
+    public void setDataTermino(String dataTermino) {
+        this.dataTermino = dataTermino;
+    }
+
+    
+    
     public byte[] getImagem() {
         return imagem;
     }
@@ -46,13 +76,15 @@ public class Plano_de_Associacao implements Serializable{
         this.status = status;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
+
+
 
     public int getDuracao() {
         return duracao;
