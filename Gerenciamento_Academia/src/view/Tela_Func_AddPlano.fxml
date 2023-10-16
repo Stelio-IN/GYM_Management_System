@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="712.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_AddPlano_Controller">
+<AnchorPane id="AnchorPane" prefHeight="494.0" prefWidth="712.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_AddPlano_Controller">
     <stylesheets>
         <URL value="@/css/tela_func_addplano.css" />
     </stylesheets>
@@ -33,7 +33,7 @@
             <TextField fx:id="txtCodigo" layoutX="20.0" layoutY="41.0" promptText="Codigo" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
             <TextField fx:id="txtNomePlano" layoutX="57.0" layoutY="160.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
             <TextField fx:id="txtNome" layoutX="20.0" layoutY="91.0" promptText="Nome" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
-            <Button layoutX="311.0" layoutY="194.0" mnemonicParsing="false" text="Salvar" />
+            <Button layoutX="311.0" layoutY="194.0" mnemonicParsing="false" onAction="#guardarPlano" text="Salvar" />
             <ImageView fx:id="imageView" fitHeight="99.0" fitWidth="128.0" layoutX="238.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/fotocrianca.png" />

@@ -5,7 +5,10 @@
 package model;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,9 +21,11 @@ public class Cliente extends Pessoa implements Serializable {
     private String data_inscricao;
     private Double altura;
     private Double peso;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "plano_de_associacao_id") // Coluna que armazenará a chave estrangeira
     private Plano_de_Associacao plano_de_associacao;
     private String nome_Do_Conjuge;
-   
+
     private String esporte_que_Pratica;
     private String doenca;
 
@@ -33,8 +38,7 @@ public class Cliente extends Pessoa implements Serializable {
     public void setObjectivo(String objectivo) {
         this.objectivo = objectivo;
     }
-    
-    
+
     public String getDoenca() {
         return doenca;
     }
@@ -258,6 +262,5 @@ public class Cliente extends Pessoa implements Serializable {
         sb.append('}');
         return sb.toString();
     }
-
 
 }
