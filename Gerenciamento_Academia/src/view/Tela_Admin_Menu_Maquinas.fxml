@@ -1,82 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="688.0" prefWidth="1109.0" style="-fx-background-color: transparent;" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Maquinas_Controller">
-   <stylesheets>
-      <URL value="@/css/tela_admin_menu_funcionarios.css" />
-   </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_admin_menu_maquinas.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Maquinas_Controller">
    <children>
       <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <AnchorPane layoutX="153.0" layoutY="68.0" prefHeight="306.0" prefWidth="451.0" style="-fx-background-color: green;">
+      <AnchorPane layoutX="14.0" layoutY="51.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" stylesheets="@../css/tela_admin_menu_maquinas.css">
          <children>
-            <TextField fx:id="txtNome" layoutX="34.0" layoutY="97.0" prefHeight="25.0" prefWidth="236.0" promptText="Nome da maquina" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
-            <TextField fx:id="txtModelo" layoutX="34.0" layoutY="128.0" prefHeight="25.0" prefWidth="236.0" promptText="Modelo" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
-            <TextField fx:id="txtMarca" layoutX="34.0" layoutY="163.0" prefHeight="25.0" prefWidth="236.0" promptText="Marca" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
-            <TextField fx:id="txtId" layoutX="34.0" layoutY="62.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
-            <TextField fx:id="txtvidaUtil" layoutX="34.0" layoutY="241.0" prefHeight="25.0" prefWidth="236.0" promptText="Tempo de vida util" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
-            <DatePicker fx:id="dataAquisicao" layoutX="34.0" layoutY="200.0" prefHeight="25.0" prefWidth="236.0" promptText="Data Aquisição" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
-            <Button layoutX="297.0" layoutY="111.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="25.0" prefWidth="110.0" text="   Carregar" />
-            <ImageView fx:id="imageCamera" fitHeight="80.0" fitWidth="78.0" layoutX="314.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../img/camera_app_basic_icon.png" />
-               </image>
-            </ImageView>
-            <Text layoutX="34.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Maquina" wrappingWidth="78.28564453125">
+            <TextField fx:id="txtNome" layoutX="50.0" layoutY="104.0" prefHeight="30.0" prefWidth="369.0" promptText="Nome da máquina" styleClass="textfields_esquerda">
                <font>
-                  <Font name="Bodoni MT Poster Compressed" size="34.0" />
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="txtModelo" layoutX="49.0" layoutY="148.0" prefHeight="30.0" prefWidth="370.0" promptText="Modelo" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="txtMarca" layoutX="49.0" layoutY="194.0" prefHeight="30.0" prefWidth="370.0" promptText="Marca" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="txtId" layoutX="235.0" layoutY="69.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <TextField fx:id="txtvidaUtil" layoutX="48.0" layoutY="237.0" prefHeight="30.0" prefWidth="370.0" promptText="Tempo de vida util" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
+            <DatePicker fx:id="dataAquisicao" layoutX="48.0" layoutY="298.0" prefHeight="26.0" prefWidth="370.0" promptText="Data Aquisição" styleClass="textfields_esquerda" />
+            <RadioButton layoutX="526.0" layoutY="480.0" mnemonicParsing="false" text="Activa">
+               <toggleGroup>
+                  <ToggleGroup fx:id="GroupoStatus" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="511.0" layoutY="405.0" mnemonicParsing="false" text="Inactiva" toggleGroup="$GroupoStatus" />
+            <Text layoutX="515.0" layoutY="390.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
+            <AnchorPane layoutX="475.0" layoutY="38.0" prefHeight="302.0" prefWidth="446.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.8315789699554443" green="0.8192592859268188" blue="0.8192592859268188" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <TextArea fx:id="txtAreaDiscri" layoutX="22.0" layoutY="206.0" prefHeight="78.0" prefWidth="266.0" promptText="Discricao Da Maquina Como  preco de aquisicao, ano de fabrico cor..." style="-fx-border-width: 1px 1px 1px 1px; -fx-border-color: black;" />
+                  <Button layoutX="110.0" layoutY="120.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+                  <Button layoutX="22.0" layoutY="75.0" mnemonicParsing="false" onAction="#listar" prefHeight="25.0" prefWidth="67.0" text="Listar" />
+                  <Button layoutX="22.0" layoutY="120.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="67.0" text="Excluir" />
+                  <Button layoutX="110.0" layoutY="75.0" mnemonicParsing="false" onAction="#editar" prefHeight="25.0" prefWidth="67.0" text="Editar" />
+                  <ImageView fx:id="imageCamera" fitHeight="209.0" fitWidth="152.0" layoutX="237.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/camera_app_basic_icon.png" />
+                     </image>
+                  </ImageView>
+                  <QuadCurve controlX="164.79998779296875" controlY="137.60000610351562" endX="187.79998779296875" endY="9.176856994628906" fill="#079407" layoutX="-25.0" layoutY="-9.0" startX="28.5167293548584" startY="9.176858901977539" stroke="#d7d5d5" strokeType="INSIDE" styleClass="painelcurva" />
+                  <Text layoutX="22.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrição" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="12.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <QuadCurve controlX="333.2322998046875" controlY="-105.37310791015625" endX="367.6959533691406" endY="68.50755310058594" fill="#079407" layoutX="-18.0" layoutY="6.0" rotate="170.1" startX="28.5167293548584" startY="9.176858901977539" stroke="#d7d5d5" strokeType="INSIDE" styleClass="painelcurva" />
+            <Label layoutX="46.0" layoutY="20.0" text="Gestão de máquinas" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
                </font>
-            </Text>
-            <ImageView fitHeight="17.0" fitWidth="25.0" layoutX="306.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.6105263233184814" green="0.6105263233184814" blue="0.6105263233184814" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Label>
+            <TableView fx:id="tabela" layoutX="46.0" layoutY="363.0" prefHeight="174.0" prefWidth="370.0">
+               <columns>
+                  <TableColumn fx:id="tabela_Nome" prefWidth="123.99999618530273" text="Nome" />
+                  <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="139.99998474121094" text="Marca" />
+                  <TableColumn fx:id="tabela_Modelo" prefWidth="132.800048828125" text="Modelo" />
+                  <TableColumn fx:id="tabela_VidaUtil" prefWidth="136.79998779296875" text="Vida Util" />
+                  <TableColumn fx:id="tabela_Aquisicao" prefWidth="111.0" text="Data de Aquisicao" />
+                  <TableColumn fx:id="tabela_Status" prefWidth="75.0" text="Status" />
+               </columns>
+            </TableView>
+            <Button layoutX="511.0" layoutY="439.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="25.0" prefWidth="110.0" text="   Carregar" />
+            <ImageView fitHeight="17.0" fitWidth="25.0" layoutX="523.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/icons52.png" />
                </image>
             </ImageView>
          </children>
-      </AnchorPane>
-      <AnchorPane layoutX="604.0" layoutY="68.0" prefHeight="306.0" prefWidth="387.0" style="-fx-background-color: aqua;">
-         <children>
-            <TextArea fx:id="txtAreaDiscri" layoutX="16.0" layoutY="153.0" prefHeight="100.0" prefWidth="355.0" promptText="Discricao Da Maquina Como  preco de aquisicao, ano de fabrico cor..." style="-fx-border-width: 1px 1px 1px 1px; -fx-border-color: black;" />
-            <Button layoutX="303.0" layoutY="267.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
-            <Text layoutX="37.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" />
-            <RadioButton layoutX="37.0" layoutY="74.0" mnemonicParsing="false" text="Activa">
-               <toggleGroup>
-                  <ToggleGroup fx:id="GroupoStatus" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton layoutX="123.0" layoutY="74.0" mnemonicParsing="false" text="Inactiva" toggleGroup="$GroupoStatus" />
-            <Text layoutX="26.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discricao" />
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="151.0" layoutY="428.0" prefHeight="139.0" prefWidth="843.0" style="-fx-background-color: aqua;">
-         <children>
-            <TableView fx:id="tabela" layoutX="14.0" layoutY="3.0" prefHeight="117.0" prefWidth="719.0">
-               <columns>
-                  <TableColumn fx:id="tabela_Nome" prefWidth="157.0" text="Nome" />
-                  <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="151.0" text="Marca" />
-                  <TableColumn fx:id="tabela_Modelo" prefWidth="121.0" text="Modelo" />
-                  <TableColumn fx:id="tabela_VidaUtil" prefWidth="102.0" text="Vida Util" />
-                  <TableColumn fx:id="tabela_Aquisicao" prefWidth="111.0" text="Data de Aquisicao" />
-                  <TableColumn fx:id="tabela_Status" prefWidth="75.0" text="Status" />
-               </columns>
-            </TableView>
-            <Button layoutX="760.0" layoutY="13.0" mnemonicParsing="false" onAction="#listar" prefHeight="25.0" prefWidth="67.0" text="Listar" />
-            <Button layoutX="761.0" layoutY="49.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="67.0" text="Excluir" />
-            <Button layoutX="763.0" layoutY="85.0" mnemonicParsing="false" onAction="#editar" prefHeight="25.0" prefWidth="67.0" text="Editar" />
-         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5368421077728271" green="0.5249122977256775" blue="0.5249122977256775" />
+               </color>
+            </DropShadow>
+         </effect>
       </AnchorPane>
    </children>
 </AnchorPane>

@@ -13,7 +13,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -104,16 +106,20 @@ public class Tela_Menu_Func_Controller implements Initializable {
     }
 
     @FXML
-    void BtnSair(ActionEvent event) {
+    void BtnSair(ActionEvent event) throws IOException {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
-        alerta.setTitle("FECHAR");
-        alerta.setHeaderText("Deseja sair?");
-        alerta.setContentText("Deseja realmente fechar");
+        alerta.setTitle("LogOut");
+        alerta.setHeaderText("Quer realmente terminar seccao");
+        alerta.setContentText("Fazer backup antes de sair!");
         if (alerta.showAndWait().get() == ButtonType.OK) {
 
-            System.out.println("Logout efetuado com sucesso!");
-
+            Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
         }
+
     }
 
     @FXML

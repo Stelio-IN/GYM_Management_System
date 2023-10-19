@@ -354,7 +354,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         cliente.setNascimento(dataAtualFormatada);
         cliente.setBilhete_Identificacao(txtIdentificacao.getText());
         cliente.setTelefone(txtContacto.getText());
-        cliente.setTelefone_Alternativo(txtContactoAlternativo.getText());
+        //cliente.setTelefone_Alternativo(txtContactoAlternativo.getText());
         cliente.setContato_emergencia(txtContactoEmergencia.getText());
         cliente.setData_inscricao(txtDataInscricao.getText());
         cliente.setCodigo(txtCodigoMembro.getText());
