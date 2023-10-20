@@ -32,9 +32,9 @@
                <children>
                   <AnchorPane layoutX="52.0" layoutY="24.0" prefHeight="94.0" prefWidth="192.0" style="-fx-background-radius: 50px;" styleClass="splitpane">
                      <children>
-                        <Label fx:id="txtPreco" alignment="CENTER" layoutX="22.0" layoutY="53.0" prefHeight="64.0" prefWidth="108.0" text="1500">
+                        <Label fx:id="txtPreco" alignment="CENTER" layoutX="13.0" layoutY="53.0" prefHeight="64.0" prefWidth="108.0" text="1500">
                            <font>
-                              <Font name="System Bold" size="40.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
                         </Label>
                         <Label layoutX="56.0" layoutY="96.0" textFill="WHITE">

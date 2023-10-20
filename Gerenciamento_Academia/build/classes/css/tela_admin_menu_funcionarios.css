@@ -20,6 +20,8 @@
 
     .tabela{
         -fx-background-color: linear-gradient(to left,  #26b07b11, #13537e18); 
+
+        -fx-text-fill: black; 
     }
 
     .botao{
