@@ -9,6 +9,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -16,6 +17,18 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Cliente extends Pessoa implements Serializable {
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clienteAssociado_id")
+    private Cliente clinteAssociado;
+
+    public Cliente getClinteAssociado() {
+        return clinteAssociado;
+    }
+
+    public void setClinteAssociado(Cliente clinteAssociado) {
+        this.clinteAssociado = clinteAssociado;
+    }
 
     private String contato_emergencia;
     private String data_inscricao;
@@ -250,7 +263,7 @@ public class Cliente extends Pessoa implements Serializable {
         sb.append(", imagem=").append(imagem);
         sb.append(", password=").append(password);
         sb.append(", isAtivo=").append(isAtivo);
-        sb.append("contato_emergencia=").append(contato_emergencia);
+        sb.append(", contato_emergencia=").append(contato_emergencia); // Adicione uma vírgula aqui
         sb.append(", data_inscricao=").append(data_inscricao);
         sb.append(", altura=").append(altura);
         sb.append(", peso=").append(peso);
