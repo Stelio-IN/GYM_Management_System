@@ -1,14 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Avalicoes_Clientes_Controller">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Avalicoes_Clientes_Controller">
     <stylesheets>
-        <URL value="@/css/tela_func_avalicoes_clientes.css"/>
+        <URL value="@/css/tela_func_avalicoes_clientes.css" />
     </stylesheets>
+   <children>
+      <AnchorPane layoutX="83.0" layoutY="101.0" prefHeight="533.0" prefWidth="642.0" style="-fx-background-color: aqua;">
+         <children>
+            <Text layoutX="28.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" />
+            <Text layoutX="27.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Altura" />
+            <Text layoutX="30.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="IMC" />
+            <Text layoutX="27.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Força Muscular" />
+            <Text layoutX="28.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso" />
+            <TextField fx:id="txtNomeCliente" layoutX="137.0" layoutY="46.0" prefHeight="26.0" prefWidth="140.0" promptText="Tobias" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtAltura" layoutX="137.0" layoutY="71.0" prefHeight="26.0" prefWidth="140.0" promptText="Altura" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtBraco" layoutX="137.0" layoutY="234.0" promptText="Circ braco" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtCap_Vascular" layoutX="137.0" layoutY="198.0" promptText="Capacidade Vascular" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtIndi_Mass_Corp" layoutX="137.0" layoutY="168.0" promptText="IMC" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtPeso" layoutX="137.0" layoutY="104.0" prefHeight="26.0" prefWidth="140.0" promptText="Peso" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtForca_Muscular" layoutX="137.0" layoutY="135.0" prefHeight="26.0" prefWidth="140.0" promptText="Forca" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtCodigoCliente" layoutX="29.0" layoutY="14.0" prefHeight="26.0" prefWidth="89.0" promptText="Codigo" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="30.0" layoutY="294.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Circ. de Coxa" />
+            <Text layoutX="29.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Circ. de Braço" />
+            <Text layoutX="26.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Circ. de Quadril" />
+            <TextField fx:id="txtQuadril" layoutX="137.0" layoutY="333.0" promptText="Circ Quadrirl" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtPanturrilha" layoutX="137.0" layoutY="301.0" promptText="Circ Panturrilha" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtCoxa" layoutX="137.0" layoutY="268.0" promptText="Circ Coxa" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="26.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Circ. de Panturrilha" />
+            <Text layoutX="30.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cpc. CardioVascular" />
+            <TextArea fx:id="txtAreaDiscricao" layoutX="407.0" layoutY="48.0" prefHeight="200.0" prefWidth="212.0" promptText="Comentarios opcionais sobre a actual situacao do cliente" />
+            <Text layoutX="414.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Discricao da Situacao atual do Cliente" />
+            <Text layoutX="28.0" layoutY="421.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instrutor" />
+            <Text layoutX="22.0" layoutY="443.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Funcionario" />
+            <TextField fx:id="txtNomeInstrutor" layoutX="133.0" layoutY="395.0" promptText="Instrutor" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtNomeFuncionario" layoutX="137.0" layoutY="425.0" promptText="Cliente" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="407.0" layoutY="272.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Instrutor">
+               <font>
+                  <Font name="Bookman Old Style" size="12.0" />
+               </font>
+            </Text>
+            <TableView fx:id="tabelaInstrutor" layoutX="407.0" layoutY="282.0" prefHeight="193.0" prefWidth="212.0">
+              <columns>
+                <TableColumn fx:id="colunaCodigo" prefWidth="115.0" text="Codigo" />
+                  <TableColumn fx:id="colunaNome" prefWidth="96.0" text="Nome" />
+              </columns>
+            </TableView>
+            <Text layoutX="23.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nota da Avalição" wrappingWidth="100.095703125">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtNotaFinal" layoutX="137.0" layoutY="452.0" prefHeight="26.0" prefWidth="149.0" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <ImageView fx:id="imageView" fitHeight="103.0" fitWidth="105.0" layoutX="286.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fotocrianca.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="451.0" layoutY="491.0" mnemonicParsing="false" onAction="#LimparCampos" text="Limpar Campos" />
+            <Button layoutX="568.0" layoutY="491.0" mnemonicParsing="false" onAction="#gravarAvaliacao" text="Gravar" />
+            <Text layoutX="26.0" layoutY="392.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Circ. de Peito" />
+            <TextField fx:id="txtPeito" layoutX="133.0" layoutY="366.0" promptText="Circ Peito" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="84.0" layoutY="30.0" prefHeight="49.0" prefWidth="872.0" style="-fx-background-color: #A2F051; -fx-border-radius: 15px; -fx-border-color: white;">
+         <children>
+            <TextField fx:id="txtPesquisa" layoutX="596.0" layoutY="12.0" onKeyReleased="#listarPesquisa" prefHeight="25.0" prefWidth="172.0" promptText="Pesquisar Cliente" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-radius: 15px;" />
+            <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="741.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/lupa.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="45.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela Avalição Cliente">
+               <font>
+                  <Font name="Franklin Gothic Heavy" size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="scrollPane" layoutX="748.0" layoutY="82.0" prefHeight="200.0" prefWidth="172.0" style="-fx-background-color: transparent;">
+         <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="169.0" style="-fx-background-color: transparent;">
+               <children>
+                  <ListView fx:id="listView" layoutX="-1.0" layoutY="-2.0" prefHeight="200.0" prefWidth="172.0" style="-fx-background-color: transparent;" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
 </AnchorPane>

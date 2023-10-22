@@ -26,9 +26,9 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Image imagem = new Image("/img/icone.png");
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Func_AddPlano.fxml"));
-       //   Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
-       //      Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
+       // Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Func_AddPlano.fxml"));
+        //  Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Func_Avalicoes_Clientes.fxml"));
+             Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
 
         Scene scene = new Scene(root);
         stage.getIcons().add(imagem);

@@ -32,7 +32,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @FXML
     void tela_Admin_Menu_Clientes(ActionEvent event) {
-        carregarTela("/view/Tela_Cadastrar_Cliente_1");
+        carregarTela("/view/Tela_Cadastrar_Cliente_1", pessoa);
 
         btnClientes.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
@@ -57,7 +57,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @FXML
     void plano_Associa(ActionEvent event) {
-        carregarTela("/view/Tela_Func_PlanoAss");
+        carregarTela("/view/Tela_Func_PlanoAss", pessoa);
         btnPacotes.setStyle("-fx-background-color: #00ff001e;");
         btnDashboard.setStyle("-fx-background-color: transparent;");
         btnInstrutor.setStyle("-fx-background-color: transparent;");
@@ -68,7 +68,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @FXML
     void Tela_Instrutores(ActionEvent event) {
-        carregarTela("/view/Tela_Func_Instrutores");
+        carregarTela("/view/Tela_Func_Instrutores", pessoa);
         btnInstrutor.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
         btnDashboard.setStyle("-fx-background-color: transparent;");
@@ -79,7 +79,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @FXML
     void Tela_Maquinas(ActionEvent event) {
-        carregarTela("/view/Tela_Func_Maquinas");
+        carregarTela("/view/Tela_Func_Maquinas", pessoa);
         btnMaquinas.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
         btnInstrutor.setStyle("-fx-background-color: transparent;");
@@ -90,7 +90,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
 
     @FXML
     void Tela_gestao_cliente(ActionEvent event) {
-        carregarTela("/view/Tela_Func_Gestao_Cliente");
+        carregarTela("/view/Tela_Func_Gestao_Cliente", pessoa);
         btnGestaoCliente.setStyle("-fx-background-color: #00ff001e;");
         btnPacotes.setStyle("-fx-background-color: transparent;");
         btnInstrutor.setStyle("-fx-background-color: transparent;");
@@ -143,16 +143,25 @@ public class Tela_Menu_Func_Controller implements Initializable {
     @FXML
     private Button btnPacotes;
 
-    public void carregarTela(String tela) {
+    public void carregarTela(String tela, Pessoa pessoa) {
         Parent root = null;
 
-        try {
-            root = FXMLLoader.load(getClass().getResource(tela + ".fxml"));
-        } catch (IOException ex) {
-            java.util.logging.Logger.getLogger(Tela_Menu_Admin_Controller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+    try {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(tela + ".fxml"));
+        root = loader.load();
 
-        borderPane.setRight(root);
+        // Verifique se a tela carregada possui um controlador associado
+        if (loader.getController() instanceof Tela_Func_Avalicoes_Clientes_Controller) {
+            Tela_Func_Avalicoes_Clientes_Controller controller = loader.getController();
+            
+            // Passe a pessoa para o controlador da tela
+            controller.setPessoa(pessoa);
+        }
+    } catch (IOException ex) {
+        java.util.logging.Logger.getLogger(Tela_Menu_Admin_Controller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+
+    borderPane.setRight(root);
     }
 
     @Override
@@ -173,6 +182,16 @@ public class Tela_Menu_Func_Controller implements Initializable {
         this.pessoa = pessoa;
         txtNomeFunc.setText(pessoa.getNome());
         System.out.println(pessoa.getNome());
+    }
+
+//      @FXML
+//    void Tela_Realizar_Testes(ActionEvent event) {
+//        carregarTela("/view/Tela_Func_Avalicoes_Clientes");
+//    }
+    @FXML
+    void Tela_Realizar_Testes(ActionEvent event) {
+        // Chame o método carregarTela passando a pessoa
+        carregarTela("/view/Tela_Func_Avalicoes_Clientes", pessoa);
     }
 
 }
