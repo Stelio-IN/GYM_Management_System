@@ -201,14 +201,48 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     }
 
     void carregarCidade() {
-        cidade.add("Niassa");
-        cidade.add(" Cabo Delgado");
-        cidade.add(" Nampula");
-        cidade.add("Maputo");
-        cidade.add(" Gaza");
+       cidade.add("Maputo");
+        cidade.add("Matola");
+        cidade.add("Beira");
+        cidade.add("Nampula");
+        cidade.add("Quelimane");
+        cidade.add("Chimoio");
+        cidade.add("Nacala");
+        cidade.add("Tete");
+        cidade.add("Xai-Xai");
+        cidade.add("Maxixe");
         cidade.add("Inhambane");
-        cidade.add(" Tete");
+        cidade.add("Lichinga");
+        cidade.add("Pemba");
+        cidade.add("Cuamba");
+        cidade.add("Montepuez");
         cidade.add("Manica");
+        cidade.add("Dondo");
+        cidade.add("Gurué");
+        cidade.add("Angoche");
+        cidade.add("Mocímboa da Praia");
+        cidade.add("Chokwé");
+        cidade.add("Moatize");
+        cidade.add("Macia");
+        cidade.add("Marracuene");
+        cidade.add("Chibuto");
+        cidade.add("Metangula");
+        cidade.add("Namacurra");
+        cidade.add("Massinga");
+        cidade.add("Mocuba");
+        cidade.add("Ligonha");
+        cidade.add("Vilankulo");
+        cidade.add("Mocubela");
+        cidade.add("Mandimba");
+        cidade.add("Mueda");
+        cidade.add("Marrupa");
+        cidade.add("Nangade");
+        cidade.add("Meluco");
+        cidade.add("Palma");
+        cidade.add("Montepuez");
+        cidade.add("Moma");
+        
+        
         obserCidade = FXCollections.observableArrayList(cidade);
         comboBoxCidade.setItems(obserCidade);
     }
@@ -221,7 +255,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         bairro.add(" Maxaquene");
         bairro.add("Albazine");
         bairro.add(" Costa do Sol");
-        bairro.add("Zimpento");
+        bairro.add("Zimpeto");
         obserBairro = FXCollections.observableArrayList(bairro);
         comboBoxBairro.setItems(obserBairro);
     }
@@ -279,7 +313,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
             }
         };
 
-        // Atribua a fábrica de células ao DatePicker
+        
         dataChosser.setDayCellFactory(dayCellFactory);
     }
 
@@ -399,9 +433,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         ficha.setData_Da_Inscriacao(dataAtualFormatada);
         dao.add(ficha);
         
-//        Tela_Menu_FuncController trocarTela = new Tela_Menu_FuncController();
-//        
-//        trocarTela.carregarTela("/view/Tela_Menu_Admin");
+
         Tela_Principal(event);
     }
         public void Tela_Principal(ActionEvent event) throws IOException {

@@ -32,9 +32,9 @@
                <children>
                   <AnchorPane layoutX="52.0" layoutY="24.0" prefHeight="94.0" prefWidth="192.0" style="-fx-background-radius: 50px;" styleClass="splitpane">
                      <children>
-                        <Label fx:id="txtPreco" layoutX="22.0" layoutY="53.0" prefHeight="64.0" prefWidth="108.0" text="1500">
+                        <Label fx:id="txtPreco" alignment="CENTER" layoutX="13.0" layoutY="53.0" prefHeight="64.0" prefWidth="108.0" text="1500">
                            <font>
-                              <Font name="System Bold" size="21.0" />
+                              <Font name="System Bold" size="30.0" />
                            </font>
                         </Label>
                         <Label layoutX="56.0" layoutY="96.0" textFill="WHITE">
@@ -98,11 +98,11 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <TableView fx:id="tabela" layoutX="438.0" layoutY="341.0" prefHeight="166.0" prefWidth="455.0">
+            <TableView fx:id="tabela" layoutX="438.0" layoutY="341.0" prefHeight="166.0" prefWidth="455.0" styleClass="tabela">
                <columns>
-                  <TableColumn fx:id="colunaNome" prefWidth="110.39999103546143" text="Nome" />
-                  <TableColumn fx:id="colunaPreco" prefWidth="172.8000030517578" text="Preço" />
-                  <TableColumn fx:id="colunaStatus" minWidth="0.0" prefWidth="170.0" text="Status" />
+                  <TableColumn fx:id="colunaNome" prefWidth="110.39999103546143" styleClass="tabelinha" text="Nome" />
+                  <TableColumn fx:id="colunaPreco" prefWidth="172.8000030517578" styleClass="tabelinha" text="Preço" />
+                  <TableColumn fx:id="colunaStatus" minWidth="0.0" prefWidth="170.0" styleClass="tabelinha" text="Status" />
                </columns>
             </TableView>
             <QuadCurve controlX="-66.25228881835938" controlY="-211.08114624023438" endX="50.0" layoutX="809.0" layoutY="-25.0" rotate="-132.6" startX="-306.0330810546875" startY="382.3230895996094" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva">

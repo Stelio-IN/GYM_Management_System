@@ -41,8 +41,7 @@ import model.Pessoa;
  */
 public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
-    @FXML
-    private TextField txtPesquisa;
+    
     @FXML
     private TableView<Funcionario> tabela;
 
@@ -64,80 +63,21 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
     @FXML
     private TableColumn<?, ?> tabela_Situacao;
 
-    @FXML
-    private ScrollPane scrollPane;
+   
 
     /*
     metodo que pega o cliks do botao
      */
     @FXML
     void listarPesquisa(KeyEvent event) {
-        lista();
+        ///lista();
     }
 
-    /*
-    metodo que cria a lista de busca!
-     */
-    void lista() {
-        EntityManagerFactory fabrica;
-        EntityManager gerente;
-        fabrica = Persistence.createEntityManagerFactory("SystemPU");
-        gerente = fabrica.createEntityManager();
+    
 
-        ObservableList<Pessoa> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Pessoa
+  
 
-        TypedQuery<Pessoa> query = gerente.createNamedQuery("Pessoa.findByName", Pessoa.class);
-        query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
-        List<Pessoa> resultados = query.getResultList();
-
-        items.addAll(resultados); // Adicione objetos Pessoa à lista
-
-        listView.setItems(items); // Defina a ObservableList de objetos Pessoa no ListView
-
-        // Defina a célula personalizada para mostrar apenas o nome na lista
-        listView.setCellFactory(new Callback<ListView<Pessoa>, ListCell<Pessoa>>() {
-            public ListCell<Pessoa> call(ListView<Pessoa> param) {
-                return new ListCell<Pessoa>() {
-                    protected void updateItem(Pessoa item, boolean empty) {
-                        super.updateItem(item, empty);
-                        if (empty || item == null) {
-                            setText(null);
-                        } else {
-                            setText(item.getNome());
-                        }
-                    }
-                };
-            }
-        });
-
-        gerente.close(); // Não se esqueça de fechar o EntityManager quando terminar
-        fabrica.close(); // E a EntityManagerFactory também
-    }
-
-    @FXML
-    void pesquisar(ActionEvent event) {
-//        if (!txtPesquisa.getText().isEmpty()) {
-//            GenericDAO dao = new GenericDAO();
-//            List<Pessoa> pessoas = dao.buscarPessoasPorNome(txtPesquisa.getText());
-//
-//            ObservableList<Pessoa> nomes = FXCollections.observableArrayList();
-//
-//            for (Pessoa pessoa : pessoas) {
-//                nomes.add(pessoa.getNome());
-//            }
-//
-//            if (!nomes.isEmpty()) {
-//                listView.setItems(nomes); // Configurar o modelo de dados no ListView
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Nenhum nome de pessoa encontrado.");
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Campo de Texto Vazio");
-//        }
-    }
-
-    @FXML
-    private ListView<Pessoa> listView;
+    
     @FXML
     private TextField txtCargo;
 
@@ -249,26 +189,7 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
         txtId.setDisable(true);
 
-        /*
-        controlar a visibilidade do scroll Pane 
-        */
-        //   scrollPane.setVisible(false);
-        txtPesquisa.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue.isEmpty()) {
-                scrollPane.setVisible(false);
-            } else {
-                scrollPane.setVisible(true);
-                lista(); // Chame a função lista() para atualizar os resultados
-            }
-        });
-
-        /*
-        Metodo para setar os valores da busca google 
-        */
-        // Configurar um evento de seleção para o ListView
-        listView.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> pegarLinhaSelecionada((Funcionario) newValue)
-        );
+       
 
     }
 
