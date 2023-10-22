@@ -3,5 +3,24 @@
  */
 
 .mainFxmlClass {
+-fx-background-color: #e5f8e8;
+}
 
+.textfields_esquerda{
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #ccc;
+    -fx-background-color: transparent;
+}
+
+.textfields_direita{
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #fffbfb;
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}
+
+.painelcurva{
+    -fx-background-color: linear-gradient(to left,  #26b07b, #13537e); 
+
+    -fx-fill: linear-gradient(to right,  #26b07b, #13537e); 
 }

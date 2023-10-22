@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="465.0" prefWidth="680.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_Associar_Clientes_Controller">
+    <stylesheets>
+        <URL value="@/css/tela_func_associar_clientes.css" />
+    </stylesheets>
+</AnchorPane>

@@ -20,7 +20,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="File">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#Tela_Realizar_Testes" text="Realizar Avaliação" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -118,7 +118,7 @@
                   <Button fx:id="btnClientes" layoutY="298.0" mnemonicParsing="false" onAction="#tela_Admin_Menu_Clientes" prefHeight="26.0" prefWidth="203.0" style="-fx-background-color: transparent;" />
                   <Button fx:id="btnPacotes" layoutY="349.0" mnemonicParsing="false" onAction="#plano_Associa" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: transparent;" />
                   <Button fx:id="btnMaquinas" layoutX="-1.0" layoutY="396.0" mnemonicParsing="false" onAction="#Tela_Maquinas" prefHeight="26.0" prefWidth="206.0" style="-fx-background-color: transparent;" />
-                  <Label layoutX="52.0" layoutY="601.0" prefHeight="20.0" prefWidth="137.0" text="Tobias zucula" textFill="#7e7979">
+                  <Label fx:id="txtNomeFunc" layoutX="52.0" layoutY="601.0" prefHeight="20.0" prefWidth="137.0" text="Tobias zucula" textFill="#7e7979">
                      <font>
                         <Font name="System Bold Italic" size="14.0" />
                      </font>

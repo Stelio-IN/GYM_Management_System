@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -21,13 +23,8 @@
             <Font size="23.0" />
          </font>
       </Text>
-      <AnchorPane id="AnchorPane" layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
+      <AnchorPane id="AnchorPane" layoutX="73.0" layoutY="39.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
          <children>
-            <Text layoutX="47.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de máquinas" wrappingWidth="158.28562927246094">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Text>
             <TableView fx:id="tabela" layoutX="29.0" layoutY="358.0" prefHeight="166.0" prefWidth="860.0">
                <columns>
                   <TableColumn fx:id="tabela_Modelo" prefWidth="110.39999103546143" text="Modelo" />
@@ -122,5 +119,15 @@
             </DropShadow>
          </effect>
       </AnchorPane>
+      <QuadCurve controlX="255.68133544921875" controlY="-213.65289306640625" endX="294.62005615234375" endY="-3.255619525909424" fill="#05a764" layoutX="144.0" layoutY="143.0" rotate="-177.0" startX="-66.76294708251953" startY="-22.016277313232422" stroke="WHITE" strokeType="INSIDE">
+         <rotationAxis>
+            <Point3D z="-19.0" />
+         </rotationAxis>
+      </QuadCurve>
+      <Text fill="WHITE" layoutX="130.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de máquinas" underline="true" wrappingWidth="199.08558654785156">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

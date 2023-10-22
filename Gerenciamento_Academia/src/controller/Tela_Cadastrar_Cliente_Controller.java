@@ -4,7 +4,6 @@
  */
 package controller;
 
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -27,8 +26,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
@@ -40,7 +37,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Administrador;
 import model.Cliente;
 import model.Endereco;
 import model.Ficha_Inscricao;
@@ -354,7 +350,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         cliente.setNascimento(dataAtualFormatada);
         cliente.setBilhete_Identificacao(txtIdentificacao.getText());
         cliente.setTelefone(txtContacto.getText());
-        cliente.setTelefone_Alternativo(txtContactoAlternativo.getText());
+        //cliente.setTelefone_Alternativo(txtContactoAlternativo.getText());
         cliente.setContato_emergencia(txtContactoEmergencia.getText());
         cliente.setData_inscricao(txtDataInscricao.getText());
         cliente.setCodigo(txtCodigoMembro.getText());
