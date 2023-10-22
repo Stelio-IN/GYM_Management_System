@@ -21,6 +21,8 @@
           <Menu mnemonicParsing="false" text="File">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#Tela_Realizar_Testes" text="Realizar Avaliação" />
+                  <MenuItem mnemonicParsing="false" onAction="#Tela_Func_AddPlano" text="Adicionar Plano ao Cliente" />
+                  <MenuItem mnemonicParsing="false" onAction="#Tela_Func_Associar_Cliente" text="Associar Clientes" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
