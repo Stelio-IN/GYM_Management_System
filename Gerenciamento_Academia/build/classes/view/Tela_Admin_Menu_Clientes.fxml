@@ -26,15 +26,15 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../css/tela_admin_menu_clientes.css">
          <children>
-            <TableView fx:id="tabela" layoutX="403.0" layoutY="397.0" prefHeight="146.0" prefWidth="462.0" styleClass="tabela">
+            <TableView fx:id="tabela" layoutX="403.0" layoutY="382.0" prefHeight="146.0" prefWidth="462.0" styleClass="tabela">
               <columns>
                 <TableColumn fx:id="colunaCodigo" prefWidth="75.0" styleClass="tabelinha" text="Código" />
                 <TableColumn fx:id="colunaNome" prefWidth="104.0" styleClass="tabelinha" text="Nome" />
                   <TableColumn fx:id="colunaPlanoAssociacao" prefWidth="139.99993896484375" styleClass="tabelinha" text="Plano de associação" />
-                  <TableColumn fx:id="colunaObjectivo" prefWidth="136.00006103515625" styleClass="tabelinha" text="Objectivo" />
+                  <TableColumn fx:id="colunaObjectivo" prefWidth="142.39999999999998" styleClass="tabelinha" text="Objectivo" />
               </columns>
             </TableView>
-            <Button layoutX="780.0" layoutY="547.0" mnemonicParsing="false" onAction="#listar" prefHeight="22.0" prefWidth="82.0" styleClass="botao" text="Listar">
+            <Button layoutX="873.0" layoutY="496.0" mnemonicParsing="false" onAction="#listar" prefHeight="22.0" prefWidth="82.0" styleClass="botao" text="Listar">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
@@ -45,7 +45,7 @@
                      </color>
                   </DropShadow>
                </effect></Button>
-            <AnchorPane layoutX="44.0" layoutY="26.0" prefHeight="540.0" prefWidth="280.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+            <AnchorPane layoutX="44.0" layoutY="21.0" prefHeight="528.0" prefWidth="280.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
                <effect>
                   <DropShadow>
                      <color>
@@ -141,12 +141,12 @@
                   </Label>
                   <ImageView fitHeight="133.0" fitWidth="90.0" layoutX="164.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../img/fotocrianca.png" />
+                        <Image url="@../img/adicionar-usuario.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="399.0" layoutY="26.0" prefHeight="341.0" prefWidth="478.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+            <AnchorPane layoutX="399.0" layoutY="21.0" prefHeight="341.0" prefWidth="478.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
                <effect>
                   <DropShadow>
                      <color>
