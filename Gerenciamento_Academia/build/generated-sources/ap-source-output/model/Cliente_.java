@@ -1,12 +1,14 @@
 package model;
 
 import javax.annotation.processing.Generated;
+import javax.persistence.metamodel.ListAttribute;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
+import model.Avaliacoes_Fisicas;
 import model.Cliente;
 import model.Plano_de_Associacao;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-10-20T14:23:48", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-10-22T20:53:49", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Cliente.class)
 public class Cliente_ extends Pessoa_ {
 
@@ -18,6 +20,7 @@ public class Cliente_ extends Pessoa_ {
     public static volatile SingularAttribute<Cliente, Double> peso;
     public static volatile SingularAttribute<Cliente, String> objectivo;
     public static volatile SingularAttribute<Cliente, String> data_inscricao;
+    public static volatile ListAttribute<Cliente, Avaliacoes_Fisicas> avaliacoes;
     public static volatile SingularAttribute<Cliente, String> contato_emergencia;
     public static volatile SingularAttribute<Cliente, Plano_de_Associacao> plano_de_associacao;
 

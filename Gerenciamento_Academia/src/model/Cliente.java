@@ -4,11 +4,15 @@
  */
 package model;
 
+import java.io.ByteArrayInputStream;
 import java.io.Serializable;
+import java.util.List;
+import javafx.scene.image.Image;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 /**
@@ -17,18 +21,25 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Cliente extends Pessoa implements Serializable {
+    
+    
+    //Logica de negocio
+    public void desvincularPlanoAtivo() {
+        this.plano_de_associacao = null;
+    }
 
+     public Image getImagemComoImage() {
+        if (imagem != null) {
+            return new Image(new ByteArrayInputStream(imagem));
+        } else {
+            return null; // Retorna null se não houver imagem
+        }
+    }
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clienteAssociado_id")
     private Cliente clinteAssociado;
 
-    public Cliente getClinteAssociado() {
-        return clinteAssociado;
-    }
-
-    public void setClinteAssociado(Cliente clinteAssociado) {
-        this.clinteAssociado = clinteAssociado;
-    }
+   
 
     private String contato_emergencia;
     private String data_inscricao;
@@ -43,6 +54,9 @@ public class Cliente extends Pessoa implements Serializable {
     private String doenca;
 
     private String objectivo;
+    
+     @OneToMany(mappedBy = "cliente")
+    private List<Avaliacoes_Fisicas> avaliacoes;
 
     public String getObjectivo() {
         return objectivo;
@@ -52,6 +66,13 @@ public class Cliente extends Pessoa implements Serializable {
         this.objectivo = objectivo;
     }
 
+     public Cliente getClinteAssociado() {
+        return clinteAssociado;
+    }
+
+    public void setClinteAssociado(Cliente clinteAssociado) {
+        this.clinteAssociado = clinteAssociado;
+    }
     public String getDoenca() {
         return doenca;
     }

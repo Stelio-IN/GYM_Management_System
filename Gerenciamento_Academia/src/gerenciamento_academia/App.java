@@ -27,8 +27,8 @@ public class App extends Application {
         Image imagem = new Image("/img/icone.png");
 
         Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Func_AddPlano.fxml"));
-        //  Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
-        //     Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
+       //   Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
+       //      Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
 
         Scene scene = new Scene(root);
         stage.getIcons().add(imagem);
@@ -60,19 +60,19 @@ public class App extends Application {
     }
 
     static void teste() {
-        Cliente cli1Associado = new Cliente();
-        Cliente cli1 = new Cliente();
-        GenericDAO dao = new GenericDAO();
-
-        cli1.setNome("MondlaneTestado");
-        cli1.setAltura(1.30);
-        cli1.setEmail("123@gmail.com");
-        cli1.setGenero("Masculino");
-
-      cli1Associado = (Cliente) dao.buscaId(Cliente.class, 1L);
-        cli1.setClinteAssociado(cli1Associado);
-       // dao.add(cli1);
-        System.out.println(cli1Associado.toString());
+//        Cliente cli1Associado = new Cliente();
+//        Cliente cli1 = new Cliente();
+//        GenericDAO dao = new GenericDAO();
+//
+//        cli1.setNome("MondlaneTestado");
+//        cli1.setAltura(1.30);
+//        cli1.setEmail("123@gmail.com");
+//        cli1.setGenero("Masculino");
+//
+//      cli1Associado = (Cliente) dao.buscaId(Cliente.class, 1L);
+//        cli1.setClinteAssociado(cli1Associado);
+//       // dao.add(cli1);
+//        System.out.println(cli1Associado.toString());
 
     }
 
