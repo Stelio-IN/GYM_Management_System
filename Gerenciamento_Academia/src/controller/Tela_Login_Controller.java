@@ -84,7 +84,7 @@ public class Tela_Login_Controller implements Initializable {
         if (pessoa instanceof Administrador) {
             Tela_Menu_Admin_Controller controller = loader.getController();
             controller.setPessoa(pessoa);
-        } else if (pessoa instanceof Cliente) {
+        } else if (pessoa instanceof Funcionario) {
             Tela_Menu_Func_Controller controller = loader.getController();
             controller.setPessoa(pessoa);
         }

@@ -6,6 +6,7 @@ package controller;
 
 import java.io.ByteArrayInputStream;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -124,8 +125,12 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtNome.setText(cli.getNome());
             txtCodigo.setText(cli.getCodigo());
             txtPlanoAssociacao.setText(cli.getPlano_de_associacao().getNome());
-            txtDataInicio.setText(cli.getPlano_de_associacao().getDataInicio());
-            txtDataFim.setText(cli.getPlano_de_associacao().getDataTermino());
+            //Formatacao de data
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
+            String dateString = sdf.format(cli.getPlano_de_associacao().getDataInicio()); // Convert the date to a string
+            txtDataInicio.setText(dateString);
+            String dateString1 = sdf.format(cli.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
+            txtDataFim.setText(dateString1);
             txtPagamento.setText(cli.getPlano_de_associacao().getSituacao());
 
         } else {
