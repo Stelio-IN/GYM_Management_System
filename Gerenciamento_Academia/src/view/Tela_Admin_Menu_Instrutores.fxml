@@ -14,10 +14,10 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_admin_menu_instrutores.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Instrutores_Controller">
+<AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="1117.0" style="-fx-background-color: #f1fff6f2;" stylesheets="@../css/tela_admin_menu_instrutores.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Instrutores_Controller">
    <children>
       <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <AnchorPane layoutX="49.0" layoutY="33.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
+      <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <effect>
             <DropShadow>
                <color>

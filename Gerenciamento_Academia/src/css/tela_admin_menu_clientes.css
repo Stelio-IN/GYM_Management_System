@@ -54,3 +54,9 @@
         -fx-background-color: transparent;
         -fx-text-fill: #ffffff;
     }
+
+    .botao{
+        -fx-background-color: linear-gradient(to left,  #0d7e534e, #0a3e6048);
+        -fx-text-fill: rgb(255, 255, 255);
+        -fx-background-radius: 10px
+    }

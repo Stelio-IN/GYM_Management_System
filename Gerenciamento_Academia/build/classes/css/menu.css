@@ -12,9 +12,13 @@
 }
 
 .borderpane{
-  -fx-background-color:  #18fa181a;
+  -fx-background-color: rgba(241, 255, 246, 0.95);
 }
 
 .pesquisar{
   -fx-background-color:  #c2b8b841;
 }
+
+.painel{
+  -fx-background-color: #c3fdda52;
+  }
