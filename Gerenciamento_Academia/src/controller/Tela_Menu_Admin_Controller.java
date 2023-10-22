@@ -4,6 +4,7 @@
  */
 package controller;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -15,15 +16,24 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
+import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Equipamento;
 import model.Funcionario;
@@ -83,6 +93,54 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     ///////////////////////////////////////////
 
     @FXML
+    private ImageView imageViewAdmin;
+    @FXML
+    private TextField txtNomeAdmin;
+    private Pessoa pessoa;
+
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+        txtNomeAdmin.setEditable(false);
+        txtNomeAdmin.setAlignment(javafx.geometry.Pos.CENTER);
+        txtNomeAdmin.setText(pessoa.getNome());
+        if (pessoa.getImagem() != null) {
+            // Converta o array de bytes em uma Image
+            byte[] imagemBytes = pessoa.getImagem();
+            Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+            // Defina a imagem no ImageView
+            imageViewAdmin.setImage(imagem);
+
+            // Definir largura e altura desejadas
+            imageViewAdmin.setFitWidth(79); // Largura desejada
+            imageViewAdmin.setFitHeight(93); // Altura desejada
+
+            // Preservar a proporção da imagem enquanto ajusta as dimensões
+            imageViewAdmin.setPreserveRatio(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+        }
+    }
+
+    @FXML
+    void logout(ActionEvent event) throws IOException {
+
+        Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("LogOut");
+        alerta.setHeaderText("Quer realmente terminar seccao");
+        alerta.setContentText("Fazer backup antes de sair!");
+        if (alerta.showAndWait().get() == ButtonType.OK) {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        }
+
+    }
+
+    @FXML
     private Label txtQuanClientes;
 
     @FXML
@@ -99,6 +157,10 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     private int quandidade_Maquinas = 0;
 
     private void contabilizar() {
+        quandidade_Instrutores = 0;
+        quandidade_Funcionarios = 0;
+        quandidade_Clientes = 0;
+
         GenericDAO dao = new GenericDAO();
         Class<Equipamento> classe = Equipamento.class;
         List<Pessoa> pessoas = dao.listarTodosParaRelatorio(Pessoa.class);
@@ -171,7 +233,6 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         XYChart.Series<String, Number> series = new XYChart.Series<>();
         series.setName("Idades");
 
-      
         series.getData().add(new XYChart.Data<>("17-23", 15));
         series.getData().add(new XYChart.Data<>("24-40", 30));
         series.getData().add(new XYChart.Data<>("41-09", 45));
@@ -201,5 +262,21 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             }
         }
     }
+
+    @FXML
+    void Tela_Admin_Planos_Associacao(ActionEvent event) {
+        carregarTela("/view/Tela_Admin_Menu_Plano_Associacao");
+    }
+      @FXML
+    void Tela_Cadastrar_Admin(ActionEvent event) {
+         carregarTela("/view/Tela_Admin_Registrar");
+    }
+    @FXML
+    void Tela_Atualizar_Admin(ActionEvent event) {
+                carregarTela("/view/Tela_Admin_Registrar");
+                
+    }
+
+
 
 }

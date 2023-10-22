@@ -1,18 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_Maquinas_Controller">
-    <stylesheets>
-        <URL value="@/css/tela_func_maquinas.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_func_maquinas.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Maquinas_Controller">
    <children>
       <Text layoutX="191.0" layoutY="169.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela Funcionario Maquinas" wrappingWidth="227.708984375">
          <font>
             <Font size="23.0" />
+         </font>
+      </Text>
+      <AnchorPane id="AnchorPane" layoutX="73.0" layoutY="39.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;">
+         <children>
+            <TableView fx:id="tabela" layoutX="29.0" layoutY="358.0" prefHeight="166.0" prefWidth="860.0">
+               <columns>
+                  <TableColumn fx:id="tabela_Modelo" prefWidth="110.39999103546143" text="Modelo" />
+                  <TableColumn fx:id="tabela_Nome" prefWidth="172.8000030517578" text="Nome" />
+                  <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="172.0" text="Marca" />
+                  <TableColumn fx:id="tabela_Imagem" prefWidth="152.0" text="Imagem" />
+               </columns>
+            </TableView>
+            <TextField fx:id="txtNome" layoutX="30.0" layoutY="205.0" prefHeight="30.0" prefWidth="245.0" promptText="Nome da maquina" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtModelo" layoutX="30.0" layoutY="247.0" prefHeight="30.0" prefWidth="246.0" promptText="Modelo" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtMarca" layoutX="30.0" layoutY="292.0" prefHeight="30.0" prefWidth="246.0" promptText="Marca" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button layoutX="439.0" layoutY="316.0" mnemonicParsing="false" onAction="#editar" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Atualizar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.7368420958518982" green="0.7259259223937988" blue="0.7259259223937988" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Button layoutX="356.0" layoutY="316.0" mnemonicParsing="false" onAction="#listar" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Listar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.75789475440979" green="0.7438596487045288" blue="0.7438596487045288" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <TextField fx:id="txtId" layoutX="30.0" layoutY="158.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" styleClass="textfields_esquerda">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Button layoutX="539.0" layoutY="316.0" mnemonicParsing="false" onAction="#carregarimg" style="-fx-background-color: white; -fx-background-radius: 10px;" text="Carregar">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.6842105388641357" green="0.6791422963142395" blue="0.6791422963142395" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Button>
+            <AnchorPane layoutX="350.0" layoutY="17.0" prefHeight="270.0" prefWidth="524.0" style="-fx-background-color: white; -fx-background-radius: 14px;">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.6315789222717285" green="0.5964912176132202" blue="0.5964912176132202" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <ImageView fx:id="imageCamera" fitHeight="256.0" fitWidth="185.0" layoutX="316.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../Pictures/EDITORIAL_CONTEÜDO/Grande%20Deus.png" />
+                     </image>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.8842105269432068" green="0.8612865209579468" blue="0.8612865209579468" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </ImageView>
+                  <TextArea layoutX="14.0" layoutY="122.0" prefHeight="129.0" prefWidth="274.0" />
+                  <Label layoutX="25.0" layoutY="60.0" text="Funcionalidades" underline="true">
+                     <font>
+                        <Font name="System Bold Italic" size="14.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.7157894968986511" green="0.6839765906333923" blue="0.6839765906333923" />
+               </color>
+            </DropShadow>
+         </effect>
+      </AnchorPane>
+      <QuadCurve controlX="255.68133544921875" controlY="-213.65289306640625" endX="294.62005615234375" endY="-3.255619525909424" fill="#05a764" layoutX="144.0" layoutY="143.0" rotate="-177.0" startX="-66.76294708251953" startY="-22.016277313232422" stroke="WHITE" strokeType="INSIDE">
+         <rotationAxis>
+            <Point3D z="-19.0" />
+         </rotationAxis>
+      </QuadCurve>
+      <Text fill="WHITE" layoutX="130.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de máquinas" underline="true" wrappingWidth="199.08558654785156">
+         <font>
+            <Font name="System Bold Italic" size="16.0" />
          </font>
       </Text>
    </children>

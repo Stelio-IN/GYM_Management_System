@@ -31,6 +31,37 @@ public class Equipamento implements Serializable {
     @Lob
     protected byte[] imagem;
     private boolean status; 
+    
+    private double vida_Util;
+    private String data_Entrada;
+    private String discricao;
+
+    public double getVida_Util() {
+        return vida_Util;
+    }
+
+    public void setVida_Util(double vida_Util) {
+        this.vida_Util = vida_Util;
+    }
+
+    public String getData_Entrada() {
+        return data_Entrada;
+    }
+
+    public void setData_Entrada(String data_Entrada) {
+        this.data_Entrada = data_Entrada;
+    }
+
+    public String getDiscricao() {
+        return discricao;
+    }
+
+    public void setDiscricao(String discricao) {
+        this.discricao = discricao;
+    }
+    
+    
+    
 
     public Long getId() {
         return id;
