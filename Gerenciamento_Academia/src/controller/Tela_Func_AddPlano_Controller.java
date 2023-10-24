@@ -7,21 +7,27 @@ import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import javafx.application.Platform;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Plano_de_Associacao;
@@ -34,135 +40,167 @@ import model.Plano_de_Associacao;
 public class Tela_Func_AddPlano_Controller implements Initializable {
 
     @FXML
-    private TableColumn<Cliente, String> colunaCodigo;
-
-    @FXML
-    private TableColumn<Cliente, Image> colunaImagem;
-
-    @FXML
-    private TableColumn<Cliente, String> colunaNome;
-
-    @FXML
-    private TableColumn<Cliente, String> colunaPlano;
-
-    @FXML
     private TableColumn<Plano_de_Associacao, String> colunaNomePlano;
 
     @FXML
-    private TableColumn<Cliente, String> colunaSituacao;
+    private DatePicker dataPickerInicio;
+
+    @FXML
+    private ImageView imageViewAssociado;
+
+    @FXML
+    private TextField txtCodigoClienteAssociado;
+
+    @FXML
+    private TextField txtCodigoClientePrincipal;
+
+    @FXML
+    private TextField txtDuracaoPlano;
+
+    @FXML
+    private TextField txtGeneroClienteAssociado;
+
+    @FXML
+    private TextField txtGeneroClientePrincipal;
+
+    @FXML
+    private TextField txtNomeClienteAssociado;
+
+    @FXML
+    private TextField txtNomeClientePrincipal;
+
+    @FXML
+    private TextField txtNomePlano;
+
+    @FXML
+    private TextField txtObjectivoClienteAssociado;
+
+    @FXML
+    private TextField txtObjectivoClientePrincipal;
+
+    @FXML
+    private TextField txtPesquisa;
+
+    @FXML
+    private TextField txtPrecoPlano;
 
     @FXML
     private ImageView imageView;
 
     @FXML
-    private TableView<Cliente> tabelaCliente;
+    private ListView<Cliente> listView;
 
+    @FXML
+    private ScrollPane scrollPane;
     @FXML
     private TableView<Plano_de_Associacao> tabelaPlano;
 
-    @FXML
-    private TextField txtCodigo;
-
-    @FXML
-    private TextField txtNome;
-
-    @FXML
-    private TextField txtNomePlano;
-    @FXML
-    private TextField txtConjuge;
-
-    @FXML
-    private TextField txtDuracao;
-    @FXML
-    private DatePicker dataPickerInicio;
-
     Cliente clienteNovosDados = new Cliente();
+    Cliente clienteAssociadoNovosDados = new Cliente();
     Plano_de_Associacao planoSelecionado = new Plano_de_Associacao();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        listarClientes();
+
         ListarPlano();
 
         tabelaPlano.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> Tela_Func_AddPlano_Controller.this.pegarLinhaSelecionada(newValue)
         );
-
-        tabelaCliente.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
+        listView.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> pegarLinhaSelecionada((Cliente) newValue)
         );
 
     }
 
-    private ObservableList< Plano_de_Associacao> observableListe;
-    private ObservableList< Cliente> observableList;
-
-    private void listarClientes() {
-        GenericDAO dao = new GenericDAO();
-        Class<Cliente> classe = Cliente.class;
-
-        List<Cliente> lista = (List<Cliente>) dao.listar(classe);
-
-        // Use FilteredList para filtrar a lista com base em um predicado
-        FilteredList<Cliente> filteredList = new FilteredList<>(FXCollections.observableList(lista));
-
-        // Define o predicado de filtro para incluir apenas clientes com plano ativo
-        filteredList.setPredicate(cliente -> cliente.getPlano_de_associacao() == null);
-
-        Platform.runLater(() -> {
-            colunaNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-            colunaCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-            // colunaImagem.setCellValueFactory(new PropertyValueFactory<>("imagem"));
-
-              colunaImagem.setCellValueFactory(cellData -> {
-                Image imagem = cellData.getValue().getImagemComoImage();
-                return new SimpleObjectProperty<>(imagem);
-            });
-//            colunaImagem.setCellValueFactory(cellData -> {
-//                byte[] imagemBytes = cellData.getValue().getImagem();
-//                if (imagemBytes != null) {
-//                    Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
-//                    return new SimpleObjectProperty<>(imagem);
-//                } else {
-//                    // Trate o caso em que a imagem está ausente, se necessário
-//                    return new SimpleObjectProperty<>();
-//                }
-//            });
-
-            observableList = FXCollections.observableArrayList(filteredList);
-            tabelaCliente.setItems(observableList);
-        });
-    }
-
     public void pegarLinhaSelecionada(Cliente cli) {
-        //   clienteNovosDados.setId(cli.getId());
-        clienteNovosDados = cli;
         if (cli != null) {
-            txtNome.setText(cli.getNome());
-            txtCodigo.setText(String.valueOf(cli.getCodigo()));
-            if (cli.getPlano_de_associacao() == null) {
-                txtNomePlano.setText("");
-            } else {
-                txtNomePlano.setText(cli.getPlano_de_associacao().getNome());
-            }
+            clienteNovosDados = cli;
+            txtNomeClientePrincipal.setText(cli.getNome());
+            txtCodigoClientePrincipal.setText(cli.getCodigo());
+            txtGeneroClientePrincipal.setText(cli.getGenero());
+            txtObjectivoClientePrincipal.setText(cli.getObjectivo());
+            if (cli.getClinteAssociado() != null) {
+                clienteAssociadoNovosDados = cli.getClinteAssociado();
+                txtNomeClienteAssociado.setText(cli.getClinteAssociado().getNome());
+                txtCodigoClienteAssociado.setText(cli.getClinteAssociado().getCodigo());
+                txtGeneroClienteAssociado.setText(cli.getClinteAssociado().getGenero());
+                txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getObjectivo());
+                if (cli.getClinteAssociado().getImagem() != null) {
+                    // Converta o array de bytes em uma Image
+                    byte[] imagemBytes = cli.getImagem();
+                    Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
+                    // Definir largura e altura desejadas
+                    imageViewAssociado.setFitWidth(79); // Largura desejada
+                    imageViewAssociado.setFitHeight(93); // Altura desejada
+                    // Defina a imagem no ImageView
+                    imageViewAssociado.setImage(imagem);
+                } else {
+                    JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+                }
+            }
             if (cli.getImagem() != null) {
+                // Converta o array de bytes em uma Image
                 byte[] imagemBytes = cli.getImagem();
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
-                imageView.setImage(imagem);
-                imageView.setFitWidth(95); // Largura desejada
-                imageView.setFitHeight(91); // Altura desejada
+                // Definir largura e altura desejadas
+                imageView.setFitWidth(79); // Largura desejada
+                imageView.setFitHeight(93); // Altura desejada
+                // Defina a imagem no ImageView
                 imageView.setImage(imagem);
             } else {
                 JOptionPane.showMessageDialog(null, "imagem nao encontrada");
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione Uma linha");
+            JOptionPane.showMessageDialog(null, "Selecione alguem");
         }
     }
+
+    public void listaPesquisa() {
+        EntityManagerFactory fabrica;
+        EntityManager gerente;
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+        gerente = fabrica.createEntityManager();
+
+        ObservableList<Cliente> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Cliente
+
+        TypedQuery<Cliente> query = gerente.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome", Cliente.class);
+        query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
+        List<Cliente> resultados = query.getResultList();
+
+        items.addAll(resultados); // Adicione objetos Cliente à listaPesquisa
+
+        listView.setItems(items); // Defina a ObservableList de objetos Cliente no ListView
+
+        // Defina a célula personalizada para mostrar apenas o nome na listaPesquisa
+        //expressao Lapda
+        listView.setCellFactory((ListView<Cliente> param) -> new ListCell<Cliente>() {
+            @Override
+            protected void updateItem(Cliente item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getNome());
+                }
+            }
+        });
+
+        gerente.close(); // Não se esqueça de fechar o EntityManager quando terminar
+        fabrica.close(); // E a EntityManagerFactory também
+    }
+
+    @FXML
+    void listarPesquisa(KeyEvent event) {
+        listaPesquisa();
+    }
+
+    private ObservableList< Plano_de_Associacao> observableListe;
+    private ObservableList< Cliente> observableList;
 
     private void ListarPlano() {
         GenericDAO dao = new GenericDAO();
@@ -178,10 +216,11 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 
     public void pegarLinhaSelecionada(Plano_de_Associacao plano) {
         clienteNovosDados.setPlano_de_associacao(plano);
+        clienteAssociadoNovosDados.setPlano_de_associacao(plano);
         planoSelecionado = plano;
         if (plano != null) {
             txtNomePlano.setText(plano.getNome());
-
+            txtPrecoPlano.setText(String.valueOf(plano.getPreco()));
         } else {
             JOptionPane.showMessageDialog(null, "Selecione Uma linha");
         }
@@ -190,11 +229,11 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
     @FXML
     void LimparCampos(ActionEvent event) {
         imageView.setImage(null);
-        txtCodigo.setText("");
-        txtNome.setText("");
+        txtCodigoClientePrincipal.setText("");
+        txtNomeClientePrincipal.setText("");
         txtNomePlano.setText("");
-        txtDuracao.setText("");
-        txtConjuge.setText("");
+        txtDuracaoPlano.setText("");
+        txtNomeClienteAssociado.setText("");
     }
 
     @FXML
@@ -210,11 +249,6 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
     }
 
     @FXML
-    void ListarClie_Planos(ActionEvent event) {
-        listarClientes();
-    }
-
-    @FXML
     void guardarPlano(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
         if (clienteNovosDados != null && planoSelecionado != null) {
@@ -223,12 +257,15 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             ZoneId zoneId = ZoneId.systemDefault();
             Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
 
-            planoSelecionado.setDuracao(Integer.parseInt(txtDuracao.getText()));
+            planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
             planoSelecionado.setDataInicio(date);
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
 
             dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-
+            
+            if(clienteAssociadoNovosDados!=null){
+                 dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+            }
             System.out.println(clienteNovosDados.toString());
             System.out.println(planoSelecionado.toString());
             JOptionPane.showMessageDialog(null, "Sucesso");

@@ -1,10 +1,101 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="465.0" prefWidth="680.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_Associar_Clientes_Controller">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Associar_Clientes_Controller">
     <stylesheets>
         <URL value="@/css/tela_func_associar_clientes.css" />
     </stylesheets>
+   <children>
+      <Text layoutX="560.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela Associar Clientes" wrappingWidth="241.25">
+         <font>
+            <Font name="Bodoni MT Poster Compressed" size="32.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtPesquisa" layoutX="568.0" layoutY="81.0" onKeyReleased="#listarPesquisa" prefHeight="25.0" prefWidth="200.0" promptText="Pesquisa Cliente" style="-fx-border-color: black; -fx-border-radius: 20; -fx-background-color: transparent;" />
+      <ScrollPane fx:id="scrollPane" layoutX="568.0" layoutY="120.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+               <children>
+                  <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+      <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="744.0" layoutY="86.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/lupa.png" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutX="67.0" layoutY="44.0" prefHeight="572.0" prefWidth="482.0" style="-fx-background-color: green;">
+         <children>
+            <TextField fx:id="txtCodigoPrimeiroCliente" layoutX="24.0" layoutY="33.0" prefHeight="26.0" prefWidth="100.0" promptText="Codigo" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtNomePrimeiroCliente" layoutX="24.0" layoutY="90.0" promptText="Tobias" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <ImageView fx:id="imageViewPrimeiro" fitHeight="99.0" fitWidth="128.0" layoutX="209.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fotocrianca.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="29.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
+            <TextField fx:id="txtNomeSegundoCliente" layoutX="16.0" layoutY="330.0" promptText="Maria" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="27.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genero" />
+            <TextField fx:id="txtGeneroPrimeiroCliente" layoutX="24.0" layoutY="136.0" promptText="Outro" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtNomePrimeiroAssociado" layoutX="24.0" layoutY="184.0" promptText="Maria" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="26.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente Associado" />
+            <TextField fx:id="txtCodigoSegundoCliente" layoutX="16.0" layoutY="281.0" prefHeight="26.0" prefWidth="100.0" promptText="Codico Associado" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="23.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
+            <Text layoutX="25.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genero" />
+            <Text layoutX="20.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente Associado" />
+            <TextField fx:id="txtNomeSegundoAssociado" layoutX="20.0" layoutY="421.0" promptText="Tobias" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtGeneroSegundoCliente" layoutX="20.0" layoutY="377.0" promptText="Outro" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="20.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente" wrappingWidth="83.1796875">
+               <font>
+                  <Font name="Bodoni MT" size="17.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="imageViewSegundo" fitHeight="99.0" fitWidth="128.0" layoutX="209.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fotocrianca.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="21.0" layoutY="260.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente Para Associar" wrappingWidth="143.0">
+               <font>
+                  <Font name="Bodoni MT" size="17.0" />
+               </font>
+            </Text>
+            <ImageView fx:id="imageViewPrimeiroAssociado" fitHeight="99.0" fitWidth="128.0" layoutX="363.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fotocrianca.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imageViewSegundoAssociado" fitHeight="99.0" fitWidth="128.0" layoutX="363.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fotocrianca.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="60.0" layoutX="302.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/relacionamento.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="42.0" fitWidth="60.0" layoutX="302.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/relacionamento.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <Button layoutX="654.0" layoutY="442.0" mnemonicParsing="false" onAction="#limparCampos" text="Limpar" />
+      <Button layoutX="654.0" layoutY="484.0" mnemonicParsing="false" onAction="#desassociarClientes" text="Desassociar" />
+      <Button layoutX="654.0" layoutY="528.0" mnemonicParsing="false" onAction="#AssociarClientes" text="Associar" />
+   </children>
 </AnchorPane>

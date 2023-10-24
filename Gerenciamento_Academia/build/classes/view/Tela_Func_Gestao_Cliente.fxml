@@ -4,7 +4,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
@@ -15,15 +17,10 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_cadastrar_cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Cadastrar_Cliente_Controller">
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_cadastrar_cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Gestao_Cliente_Controller">
    <children>
       <AnchorPane layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" stylesheets="@../css/tela_cadastrar_cliente.css">
          <children>
-            <TextField fx:id="txtNumeroInsc" layoutX="28.0" layoutY="130.0" prefHeight="30.0" prefWidth="129.0" promptText="FIcha de inscrição" style=": ;" styleClass="textfields_esquerda">
-               <font>
-                  <Font size="14.0" />
-               </font>
-            </TextField>
             <TextField fx:id="txtNome" layoutX="28.0" layoutY="179.0" prefHeight="30.0" prefWidth="382.0" promptText="Nome Completo" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
@@ -200,7 +197,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Button layoutX="362.0" layoutY="491.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Cadastrar" textFill="#169c18">
+                  <Button layoutX="362.0" layoutY="491.0" mnemonicParsing="false" onAction="#Atualizar" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Editar" textFill="#169c18">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -233,6 +230,18 @@
                         </InnerShadow>
                      </effect>
                   </ComboBox>
+                  <Button layoutX="254.0" layoutY="491.0" mnemonicParsing="false" onAction="#Remover" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Remover" textFill="#169c18">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.27368420362472534" green="0.27368420362472534" blue="0.27368420362472534" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
                </children>
             </AnchorPane>
             <TextField fx:id="txtIdentificacao" layoutX="232.0" layoutY="354.0" prefHeight="26.0" prefWidth="184.0" promptText="Bilhete de identificação" styleClass="textfields_esquerda">
@@ -245,11 +254,6 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <Label layoutX="31.0" layoutY="39.0" prefHeight="30.0" prefWidth="166.0" text="Ficha de inscrição" textFill="#0a7902" underline="true">
-               <font>
-                  <Font name="System Bold Italic" size="19.0" />
-               </font>
-            </Label>
             <AnchorPane layoutX="248.0" prefHeight="139.0" prefWidth="158.0" style="-fx-background-color: #fffffc;">
                <children>
                   <ImageView fx:id="imageCamera" fitHeight="122.0" fitWidth="111.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -264,6 +268,21 @@
                   <Image url="@../img/upload-big-arrow.png" />
                </image>
             </ImageView>
+            <ScrollPane fx:id="scrollPane" layoutX="45.0" layoutY="36.0" prefHeight="150.0" prefWidth="158.0" style="-fx-background-color: transparent;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="143.0" prefWidth="151.0" style="-fx-background-color: transparent;">
+                     <children>
+                        <ListView fx:id="listView" layoutX="-1.0" layoutY="-2.0" prefHeight="139.0" prefWidth="145.0" style="-fx-background-color: transparent;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <TextField fx:id="txtPesquisa" layoutX="45.0" layoutY="14.0" onKeyReleased="#listarPesquisa" prefHeight="25.0" prefWidth="158.0" promptText="Pesquisar Cliente" style="-fx-border-color: black; -fx-background-color: transparent; -fx-border-radius: 25;" />
+            <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="181.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/lupa.png" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <DropShadow>
@@ -273,5 +292,10 @@
             </DropShadow>
          </effect>
       </AnchorPane>
+      <Label layoutX="396.0" layoutY="8.0" prefHeight="30.0" prefWidth="166.0" text="Gestao Cliente" textFill="#0a7902" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
