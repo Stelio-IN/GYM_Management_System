@@ -105,7 +105,7 @@
                   <TableColumn fx:id="colunaStatus" minWidth="0.0" prefWidth="170.0" styleClass="tabelinha" text="Status" />
                </columns>
             </TableView>
-            <QuadCurve controlX="-66.25228881835938" controlY="-211.08114624023438" endX="50.0" layoutX="809.0" layoutY="-25.0" rotate="-132.6" startX="-306.0330810546875" startY="382.3230895996094" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva">
+            <QuadCurve controlX="-66.25228881835938" controlY="-211.08114624023438" endX="50.0" layoutX="809.0" layoutY="-22.7" rotate="-132.9" startX="-306.0330810546875" startY="382.3230895996094" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>

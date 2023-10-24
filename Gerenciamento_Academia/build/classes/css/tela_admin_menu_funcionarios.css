@@ -13,25 +13,25 @@
     }
 
     .painelcurva{
-        -fx-background-color: linear-gradient(to left,  #1bb479, #13537e); 
-
-        -fx-fill: linear-gradient(to right,  #26b07b, #13537e); 
+        
+        -fx-background-color: linear-gradient(to right,  #0ce58bd7, #022616d8); 
+        -fx-fill: linear-gradient(to left,  #0ce58bd7, #022616d8); 
     }
-
+    
     .tabela{
-        -fx-background-color: linear-gradient(to left,  #26b07b11, #13537e18); 
-
-        -fx-text-fill: black; 
-    }
-
-    .botao{
-        -fx-background-color: linear-gradient(to left,  #0d7e534e, #0a3e6048);
-        -fx-text-fill: rgb(255, 255, 255);
+        -fx-background-color: linear-gradient(to left,  #0d7e5303, #0a3e6005);
+        -fx-text-fill: rgb(255, 0, 0);
         -fx-background-radius: 10px
     }
-
+    
     .tabelinha{
-        -fx-background-color: linear-gradient(to left,  #ffffff4e, #c2cfd748);
+        -fx-background-color: linear-gradient(to right,  #0ce58b0c, #0ce58b31);
         -fx-text-fill: rgb(255, 255, 255);
         -fx-background-radius: 0px
+    }
+    
+    .botao{
+        -fx-background-color: linear-gradient(to right,  #0ce58b7b, #0226167b);
+        -fx-text-fill: rgb(255, 255, 255);
+        -fx-background-radius: 10px
     }
