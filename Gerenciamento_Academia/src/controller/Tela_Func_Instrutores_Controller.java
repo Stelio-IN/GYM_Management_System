@@ -300,6 +300,7 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
             txtSalario.setText("");
             txtPassword.setText("");
             txtClassificacao.setText("");
+           
         }
     }
 

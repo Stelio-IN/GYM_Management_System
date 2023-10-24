@@ -23,63 +23,63 @@
             <URL value="@/css/tela_admin_menu_funcionarios.css" />
          </stylesheets>
          <children>
-            <TableView fx:id="tabela" layoutX="37.0" layoutY="393.0" prefHeight="166.0" prefWidth="864.0" style="-fx-background-color: red;">
+            <TableView fx:id="tabela" layoutX="538.0" layoutY="396.0" prefHeight="166.0" prefWidth="374.0" style="-fx-background-color: red;">
                <columns>
-                  <TableColumn fx:id="tabela_Codigo" prefWidth="53.5999755859375" text="Codigo" />
-                  <TableColumn fx:id="tabela_Nome" prefWidth="137.6000213623047" text="Nome" />
-                  <TableColumn fx:id="tabela_Especializacao" minWidth="0.0" prefWidth="128.79998779296875" text="Especializacao" />
-                  <TableColumn fx:id="tabela_Email" prefWidth="178.4000244140625" style="-fx-background-color: green;" text="Email" />
+                  <TableColumn fx:id="tabela_Codigo" prefWidth="106.4000244140625" text="Código" />
+                  <TableColumn fx:id="tabela_Nome" prefWidth="123.199951171875" text="Nome" />
+                  <TableColumn fx:id="tabela_Especializacao" minWidth="0.0" prefWidth="146.39996337890625" text="Especialização" />
+                  <TableColumn fx:id="tabela_Email" prefWidth="125.5999755859375" style="-fx-background-color: green;" text="Email" />
                   <TableColumn fx:id="tabela_Situacao" prefWidth="77.60003662109375" text="Situação" />
                   <TableColumn fx:id="tabela_Salario" prefWidth="82.4000244140625" text="Salario" />
                   <TableColumn fx:id="tabela_Classificacao" prefWidth="92.79998779296875" text="Classificacao" />
                </columns>
             </TableView>
-            <TextField fx:id="txtNome" layoutX="38.0" layoutY="156.0" prefHeight="26.0" prefWidth="356.0" promptText="Nome do  Instrutor" styleClass="textfields_esquerda">
+            <TextField fx:id="txtNome" layoutX="32.0" layoutY="218.0" prefHeight="30.0" prefWidth="254.0" promptText="Nome do  Instrutor" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtEspecializacao" layoutX="38.0" layoutY="212.0" prefHeight="26.0" prefWidth="186.0" promptText="Especialização" styleClass="textfields_esquerda">
+            <TextField fx:id="txtEspecializacao" layoutX="31.0" layoutY="280.0" prefHeight="30.0" prefWidth="253.0" promptText="Especialização" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtCodigo" layoutX="257.0" layoutY="331.0" prefHeight="26.0" prefWidth="136.0" promptText="Código" styleClass="textfields_esquerda">
+            <TextField fx:id="txtCodigo" layoutX="309.0" layoutY="280.0" prefHeight="30.0" prefWidth="186.0" promptText="Código" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtSalario" layoutX="258.0" layoutY="212.0" prefHeight="26.0" prefWidth="136.0" promptText="Salário" styleClass="textfields_esquerda">
+            <TextField fx:id="txtSalario" layoutX="30.0" layoutY="336.0" prefHeight="30.0" prefWidth="254.0" promptText="Salário" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtEmail" layoutX="38.0" layoutY="272.0" prefWidth="185.0" promptText="E-mail" styleClass="textfields_esquerda">
+            <TextField fx:id="txtEmail" layoutX="28.0" layoutY="395.0" prefWidth="185.0" promptText="E-mail" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtPassword" layoutX="257.0" layoutY="272.0" prefHeight="26.0" prefWidth="136.0" promptText="Palavra-passe" styleClass="textfields_esquerda">
+            <TextField fx:id="txtPassword" layoutX="307.0" layoutY="336.0" prefHeight="30.0" prefWidth="186.0" promptText="Palavra-passe" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
             <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <TextField fx:id="txtId" layoutX="42.0" layoutY="116.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" styleClass="textfields_esquerda">
+            <TextField fx:id="txtId" layoutX="462.0" layoutY="164.0" prefHeight="25.0" prefWidth="34.0" promptText="ID" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtClassificacao" layoutX="37.0" layoutY="331.0" prefHeight="26.0" prefWidth="186.0" promptText="Classificação" styleClass="textfields_esquerda">
+            <TextField fx:id="txtClassificacao" layoutX="313.0" layoutY="218.0" prefHeight="30.0" prefWidth="186.0" promptText="Classificação" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
-            <AnchorPane layoutX="532.0" layoutY="25.0" prefHeight="346.0" prefWidth="374.0" style="-fx-background-radius: 10px;" styleClass="painelzinho">
+            <AnchorPane layoutX="532.0" layoutY="25.0" prefHeight="346.0" prefWidth="374.0" style="-fx-background-radius: 10px; -fx-background-color: white;">
                <effect>
                   <DropShadow>
                      <color>
-                        <Color red="0.3684210479259491" green="0.34385964274406433" blue="0.34385964274406433" />
+                        <Color red="0.31578946113586426" green="0.31228071451187134" blue="0.31228071451187134" />
                      </color>
                   </DropShadow>
                </effect>
@@ -94,29 +94,29 @@
                      </effect>
                      <children>
                         <ImageView fx:id="imageCamera" fitHeight="180.0" fitWidth="176.0" layoutX="-2.0" pickOnBounds="true" preserveRatio="true" />
+                        <QuadCurve controlX="236.79998779296875" controlY="-114.59999084472656" endX="294.62005615234375" endY="-3.255619525909424" fill="#05a764" layoutX="-239.0" layoutY="21.1" rotate="-179.8" startX="63.20001220703125" startY="-3.2556304931640625" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva" />
+                        <Text fill="WHITE" layoutX="-124.0" layoutY="-9.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Operações" wrappingWidth="90.40000000000009">
+                           <font>
+                              <Font name="System Bold Italic" size="17.0" />
+                           </font>
+                        </Text>
                      </children>
                   </AnchorPane>
-                  <Label layoutX="33.0" layoutY="232.0" text="Descrição" underline="true">
-                     <font>
-                        <Font name="System Bold Italic" size="14.0" />
-                     </font>
-                  </Label>
-                  <Button layoutX="33.0" layoutY="108.0" mnemonicParsing="false" onAction="#listar" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 20px;" text="Listar">
+                  <Button layoutX="33.0" layoutY="218.0" mnemonicParsing="false" onAction="#listar" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 20px;" text="Listar">
                      <effect>
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button layoutX="33.0" layoutY="170.0" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 20px;" text="Atualizar">
+                  <Button layoutX="33.0" layoutY="280.0" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: white; -fx-background-radius: 20px;" text="Atualizar">
                      <effect>
                         <DropShadow />
                      </effect>
                   </Button>
-                  <Button layoutX="33.0" layoutY="51.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="  Imagem" textFill="WHITE">
+                  <Button layoutX="33.0" layoutY="161.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="26.0" prefWidth="90.0" style="-fx-background-color: black; -fx-background-radius: 20px;" text="  Imagem" textFill="WHITE">
                      <effect>
                         <DropShadow />
                      </effect>
                   </Button>
-                  <TextArea layoutX="33.0" layoutY="261.0" prefHeight="72.0" prefWidth="306.0" text="Aqui vai aparecer uma breve descricao sobre a &#10;especialidade do instrutor em causa assim como &#10;as suas classificacoes. Aqui vai aparecer uma &#10;breve descricao." />
                   <ImageView fitHeight="16.0" fitWidth="16.0" layoutX="40.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/upload-big-arrow.png" />
@@ -124,10 +124,61 @@
                   </ImageView>
                </children>
             </AnchorPane>
-            <QuadCurve controlX="255.68133544921875" controlY="-213.65289306640625" endX="294.62005615234375" endY="-3.255619525909424" fill="#05a764" layoutX="167.0" layoutY="82.0" rotate="-175.6" startX="-166.9404754638672" startY="33.214115142822266" stroke="WHITE" strokeType="INSIDE" />
+            <QuadCurve controlX="255.68133544921875" controlY="-213.65289306640625" endX="294.62005615234375" endY="-3.255619525909424" fill="#05a764" layoutX="167.0" layoutY="82.0" rotate="-175.6" startX="-166.9404754638672" startY="33.214115142822266" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva" />
             <Text fill="WHITE" layoutX="59.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gestão de instrutores" underline="true" wrappingWidth="204.6856231689453">
                <font>
                   <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Text>
+            <TextArea layoutX="24.0" layoutY="464.0" prefHeight="72.0" prefWidth="306.0" text="Aqui vai aparecer uma breve descricao sobre a &#10;especialidade do instrutor em causa assim como &#10;as suas classificacoes. Aqui vai aparecer uma &#10;breve descricao." />
+            <Label layoutX="32.0" layoutY="199.0" text="Nome do instrutor" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="259.0" text="Especialização" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="30.0" layoutY="318.0" text="Salário" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="309.0" layoutY="201.0" text="Classificação" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="376.0" text="E-mail" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="310.0" layoutY="319.0" text="Palavra-passe" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="312.0" layoutY="255.0" text="Código" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="28.0" layoutY="436.0" text="Descrição" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="443.0" layoutY="170.0" text="Id:" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Text fill="#035605" layoutX="28.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Informações gerais" underline="true" wrappingWidth="204.6856231689453">
+               <font>
+                  <Font name="System Bold Italic" size="17.0" />
                </font>
             </Text>
          </children>

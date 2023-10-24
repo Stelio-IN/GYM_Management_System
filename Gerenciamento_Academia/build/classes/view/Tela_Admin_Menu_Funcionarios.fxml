@@ -36,7 +36,7 @@
                   <TableColumn fx:id="tabela_Salario" prefWidth="78.0" text="Salario" />
               </columns>
             </TableView>
-            <QuadCurve controlX="-66.25228881835938" controlY="-211.08114624023438" endX="50.0" layoutX="811.0" layoutY="-31.0" rotate="-132.5" startX="-306.0330810546875" startY="382.3230895996094" stroke="#ffffff00" strokeType="INSIDE" styleClass="painelcurva">
+            <QuadCurve controlX="-66.25228881835938" controlY="-211.08114624023438" endX="50.0" layoutX="819.0" layoutY="-22.62" rotate="-132.91" startX="-306.0330810546875" startY="382.3230895996094" stroke="#ffffff00" strokeType="INSIDE" styleClass="painelcurva">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -53,15 +53,8 @@
                      </stops>
                   </LinearGradient>
                </fill>
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="0.4526315927505493" green="0.4241325557231903" blue="0.4241325557231903" />
-                     </color>
-                  </DropShadow>
-               </effect>
             </QuadCurve>
-            <AnchorPane layoutX="439.0" prefHeight="122.0" prefWidth="523.0" styleClass="painelcurva">
+            <AnchorPane layoutX="449.0" prefHeight="122.0" prefWidth="523.0" styleClass="painelcurva">
                <children>
                   <Label layoutX="63.0" layoutY="60.0" text="Gestão de Funcionários" textFill="WHITE">
                      <font>
