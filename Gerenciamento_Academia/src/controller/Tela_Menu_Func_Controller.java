@@ -194,4 +194,14 @@ public class Tela_Menu_Func_Controller implements Initializable {
         carregarTela("/view/Tela_Func_Avalicoes_Clientes", pessoa);
     }
 
+       @FXML
+    void Tela_Func_AddPlano(ActionEvent event) {
+         carregarTela("/view/Tela_Func_AddPlano", pessoa);
+    }
+
+    @FXML
+    void Tela_Func_Associar_Cliente(ActionEvent event) {
+        carregarTela("/view/Tela_Func_Associar_Clientes", pessoa);
+    }
+
 }
