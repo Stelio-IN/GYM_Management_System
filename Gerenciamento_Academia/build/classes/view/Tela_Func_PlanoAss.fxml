@@ -98,7 +98,7 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <TableView fx:id="tabela" layoutX="438.0" layoutY="341.0" prefHeight="166.0" prefWidth="455.0" styleClass="tabela">
+            <TableView fx:id="tabela" layoutX="438.0" layoutY="341.0" prefHeight="166.0" prefWidth="455.0" style="-fx-border-color: white;" styleClass="tabela">
                <columns>
                   <TableColumn fx:id="colunaNome" prefWidth="110.39999103546143" styleClass="tabelinha" text="Nome" />
                   <TableColumn fx:id="colunaPreco" prefWidth="172.8000030517578" styleClass="tabelinha" text="Preço" />

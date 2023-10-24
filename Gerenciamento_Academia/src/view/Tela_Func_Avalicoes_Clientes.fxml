@@ -26,7 +26,7 @@
       <AnchorPane layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../css/tela_func_avalicoes_clientes.css">
          <children>
             <SplitPane prefHeight="555.0" prefWidth="502.0" style="-fx-background-radius: 20px 0px  0px 20px;" styleClass="splitpane" />
-            <TextField fx:id="txtNomeCliente" layoutX="40.0" layoutY="87.0" prefHeight="30.0" prefWidth="185.0" promptText="Tobias" styleClass="textfields_direita">
+            <TextField fx:id="txtNomeCliente" layoutX="40.0" layoutY="87.0" prefHeight="30.0" prefWidth="185.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -37,7 +37,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtAltura" layoutX="40.0" layoutY="142.0" prefHeight="30.0" prefWidth="186.0" promptText="65.5" styleClass="textfields_direita">
+            <TextField fx:id="txtAltura" layoutX="40.0" layoutY="142.0" prefHeight="30.0" prefWidth="186.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -48,7 +48,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtBraco" layoutX="37.0" layoutY="436.0" prefHeight="30.0" prefWidth="187.0" promptText="22 cm" styleClass="textfields_direita">
+            <TextField fx:id="txtBraco" layoutX="37.0" layoutY="436.0" prefHeight="30.0" prefWidth="187.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -59,7 +59,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtCap_Vascular" layoutX="37.0" layoutY="378.0" prefHeight="30.0" prefWidth="186.0" promptText="236" styleClass="textfields_direita">
+            <TextField fx:id="txtCap_Vascular" layoutX="37.0" layoutY="378.0" prefHeight="30.0" prefWidth="186.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -70,7 +70,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtIndi_Mass_Corp" layoutX="37.0" layoutY="319.0" prefHeight="30.0" prefWidth="186.0" promptText="114" styleClass="textfields_direita">
+            <TextField fx:id="txtIndi_Mass_Corp" layoutX="37.0" layoutY="319.0" prefHeight="30.0" prefWidth="186.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -81,7 +81,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtPeso" layoutX="40.0" layoutY="199.0" prefHeight="30.0" prefWidth="186.0" promptText="55.42" styleClass="textfields_direita">
+            <TextField fx:id="txtPeso" layoutX="40.0" layoutY="199.0" prefHeight="30.0" prefWidth="186.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -92,7 +92,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtForca_Muscular" layoutX="40.0" layoutY="261.0" prefHeight="30.0" prefWidth="186.0" promptText="20.14" styleClass="textfields_direita">
+            <TextField fx:id="txtForca_Muscular" layoutX="40.0" layoutY="261.0" prefHeight="30.0" prefWidth="186.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -103,7 +103,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtCodigoCliente" layoutX="256.0" layoutY="436.0" prefHeight="30.0" prefWidth="179.0" promptText="20230002" styleClass="textfields_direita">
+            <TextField fx:id="txtCodigoCliente" layoutX="256.0" layoutY="436.0" prefHeight="30.0" prefWidth="179.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -114,7 +114,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtQuadril" layoutX="256.0" layoutY="199.0" prefHeight="30.0" prefWidth="179.0" promptText="19 cm" styleClass="textfields_direita">
+            <TextField fx:id="txtQuadril" layoutX="256.0" layoutY="199.0" prefHeight="30.0" prefWidth="179.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -125,7 +125,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtPanturrilha" layoutX="257.0" layoutY="142.0" prefHeight="30.0" prefWidth="179.0" promptText="14 cm" styleClass="textfields_direita">
+            <TextField fx:id="txtPanturrilha" layoutX="257.0" layoutY="142.0" prefHeight="30.0" prefWidth="179.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -136,7 +136,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtCoxa" layoutX="259.0" layoutY="88.0" promptText="35 cm" styleClass="textfields_direita">
+            <TextField fx:id="txtCoxa" layoutX="259.0" layoutY="88.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -148,7 +148,7 @@
                   </InnerShadow>
                </effect></TextField>
             <TextArea fx:id="txtAreaDiscricao" layoutX="551.0" layoutY="257.0" prefHeight="103.0" prefWidth="212.0" promptText="Comentarios opcionais sobre a actual situacao do cliente" />
-            <TextField fx:id="txtNomeInstrutor" layoutX="256.0" layoutY="319.0" prefHeight="30.0" prefWidth="179.0" promptText="Zucula mphemo" styleClass="textfields_direita">
+            <TextField fx:id="txtNomeInstrutor" layoutX="256.0" layoutY="319.0" prefHeight="30.0" prefWidth="179.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -159,7 +159,7 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TextField fx:id="txtNomeFuncionario" layoutX="256.0" layoutY="378.0" prefHeight="30.0" prefWidth="179.0" promptText="Tocozinha zucula mphemo" styleClass="textfields_direita">
+            <TextField fx:id="txtNomeFuncionario" layoutX="256.0" layoutY="378.0" prefHeight="30.0" prefWidth="179.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -170,13 +170,13 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <TableView fx:id="tabelaInstrutor" layoutX="552.0" layoutY="397.0" prefHeight="141.0" prefWidth="370.0" styleClass="tabela">
+            <TableView fx:id="tabelaInstrutor" layoutX="552.0" layoutY="397.0" prefHeight="141.0" prefWidth="370.0" style="-fx-border-color: white;" styleClass="tabela">
               <columns>
                 <TableColumn fx:id="colunaCodigo" prefWidth="189.60003662109375" styleClass="tabelinha" text="Código" />
                   <TableColumn fx:id="colunaNome" prefWidth="179.99993896484375" styleClass="tabelinha" text="Nome" />
               </columns>
             </TableView>
-            <TextField fx:id="txtNotaFinal" layoutX="37.0" layoutY="501.0" prefHeight="30.0" prefWidth="186.0" promptText="5" styleClass="textfields_direita">
+            <TextField fx:id="txtNotaFinal" layoutX="37.0" layoutY="501.0" prefHeight="30.0" prefWidth="186.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -210,7 +210,7 @@
                   </DropShadow>
                </effect>
             </Button>
-            <TextField fx:id="txtPeito" layoutX="256.0" layoutY="259.0" prefHeight="30.0" prefWidth="179.0" promptText="25 cm" styleClass="textfields_direita">
+            <TextField fx:id="txtPeito" layoutX="256.0" layoutY="259.0" prefHeight="30.0" prefWidth="179.0" styleClass="textfields_direita">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -221,16 +221,19 @@
                      </color>
                   </InnerShadow>
                </effect></TextField>
-            <ScrollPane fx:id="scrollPane" layoutX="760.0" layoutY="55.0" prefHeight="200.0" prefWidth="172.0">
+            <ScrollPane fx:id="scrollPane" layoutX="726.0" layoutY="55.0" prefHeight="200.0" prefWidth="206.0" style="-fx-background-color: white;">
                <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="169.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="196.0" prefWidth="204.0" style="-fx-background-color: white;">
                      <children>
-                        <ListView fx:id="listView" layoutX="-1.0" layoutY="-2.0" prefHeight="200.0" prefWidth="172.0" style="-fx-background-color: transparent;" />
+                        <ListView fx:id="listView" layoutX="-3.0" layoutY="-2.0" prefHeight="200.0" prefWidth="206.0" style="-fx-background-color: white;" />
                      </children>
                   </AnchorPane>
                </content>
             </ScrollPane>
-            <TextField fx:id="txtPesquisa" layoutX="726.0" layoutY="28.0" onKeyReleased="#listarPesquisa" prefHeight="27.0" prefWidth="206.0" promptText="Pesquisar Cliente" style="-fx-background-color: transparent; -fx-border-color: #8c8484; -fx-border-radius: 15px;" />
+            <TextField fx:id="txtPesquisa" layoutX="726.0" layoutY="28.0" onKeyReleased="#listarPesquisa" prefHeight="27.0" prefWidth="206.0" promptText="Pesquise aqui" style="-fx-border-color: #cccccc; -fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent;">
+               <font>
+                  <Font size="14.0" />
+               </font></TextField>
             <ImageView fitHeight="17.0" fitWidth="21.0" layoutX="894.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/lupa.png" />
@@ -326,21 +329,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <AnchorPane layoutX="554.0" layoutY="26.0" prefHeight="178.0" prefWidth="160.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
-               <effect>
-                  <DropShadow>
-                     <color>
-                        <Color red="0.8315789699554443" green="0.8192592859268188" blue="0.8192592859268188" />
-                     </color></DropShadow>
-               </effect>
-               <children>
-                  <ImageView fx:id="imageView" fitHeight="133.0" fitWidth="127.0" layoutX="17.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../img/adicionar-usuario.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </AnchorPane>
+            <ImageView fx:id="imageView" fitHeight="150.0" fitWidth="158.0" layoutX="556.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/adicionar-usuario.png" />
+               </image>
+            </ImageView>
          </children>
          <effect>
             <DropShadow>

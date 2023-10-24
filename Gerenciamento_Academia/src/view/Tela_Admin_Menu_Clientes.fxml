@@ -26,7 +26,7 @@
    <children>
       <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../css/tela_admin_menu_clientes.css">
          <children>
-            <TableView fx:id="tabela" layoutX="403.0" layoutY="382.0" prefHeight="146.0" prefWidth="462.0" styleClass="tabela">
+            <TableView fx:id="tabela" layoutX="403.0" layoutY="382.0" prefHeight="146.0" prefWidth="462.0" style="-fx-border-color: white;" styleClass="tabela">
               <columns>
                 <TableColumn fx:id="colunaCodigo" prefWidth="75.0" styleClass="tabelinha" text="Código" />
                 <TableColumn fx:id="colunaNome" prefWidth="104.0" styleClass="tabelinha" text="Nome" />

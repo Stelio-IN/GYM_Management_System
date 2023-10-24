@@ -26,7 +26,7 @@
             </DropShadow>
          </effect>
          <children>
-            <TableView fx:id="tabela" layoutX="444.0" layoutY="342.0" prefHeight="194.0" prefWidth="493.0" styleClass="tabela" stylesheets="@../css/tela_admin_menu_funcionarios.css">
+            <TableView fx:id="tabela" layoutX="444.0" layoutY="342.0" prefHeight="194.0" prefWidth="493.0" style="-fx-border-color: white;" styleClass="tabela" stylesheets="@../css/tela_admin_menu_funcionarios.css">
               <columns>
                 <TableColumn fx:id="tabela_Codigo" prefWidth="88.79998779296875" styleClass="tabelinha" text="Codigo" />
                 <TableColumn fx:id="tabela_Nome" prefWidth="108.800048828125" styleClass="tabelinha" text="Nome" />

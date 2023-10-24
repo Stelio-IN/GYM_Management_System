@@ -2,8 +2,17 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
+ .mainFxmlClass {
+    -fx-background-color: #f1fff6f2;
+    }
+.textfields_esquerda{
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #ccc;
+    -fx-background-color: transparent;
+}
 
+.painelzinho{
+    -fx-background-color: #05a764;
 }
 
 .painelcurva{
@@ -13,19 +22,19 @@
 }
 
 .tabela{
-    -fx-background-color: linear-gradient(to left,  #0d7e5303, #0a3e6005);
-    -fx-text-fill: rgb(255, 0, 0);
+    -fx-background-color: linear-gradient(to left,  #580bff03, #059bff05);
+    -fx-text-fill: rgb(0, 0, 0);
     -fx-background-radius: 10px
 }
 
 .tabelinha{
-    -fx-background-color: linear-gradient(to right,  #0ce58b0c, #0ce58b31);
-    -fx-text-fill: rgb(255, 255, 255);
-    -fx-background-radius: 0px
-}
+    -fx-background-color: linear-gradient(to right,  #0ce58b0c, #0ce58b07);
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-background-radius: 0px;}
 
 .botao{
     -fx-background-color: linear-gradient(to right,  #0ce58b8f, #0226169a);
     -fx-text-fill: rgb(255, 255, 255);
     -fx-background-radius: 10px
 }
+

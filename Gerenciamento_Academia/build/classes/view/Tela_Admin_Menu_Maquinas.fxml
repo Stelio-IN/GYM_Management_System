@@ -21,7 +21,7 @@
 <AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="1117.0" style="-fx-background-color: #f1fff6f2;" stylesheets="@../css/tela_admin_menu_maquinas.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Maquinas_Controller">
    <children>
       <Text layoutX="219.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" />
-      <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" stylesheets="@../css/tela_admin_menu_maquinas.css">
+      <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../css/tela_admin_menu_maquinas.css">
          <children>
             <TextField fx:id="txtNome" layoutX="50.0" layoutY="123.0" prefHeight="30.0" prefWidth="369.0" promptText="Nome da máquina" styleClass="textfields_esquerda">
                <font>
@@ -133,7 +133,7 @@
                   </DropShadow>
                </effect>
             </Label>
-            <TableView fx:id="tabela" layoutX="481.0" layoutY="358.0" prefHeight="174.0" prefWidth="439.0" styleClass="tabela">
+            <TableView fx:id="tabela" layoutX="481.0" layoutY="358.0" prefHeight="174.0" prefWidth="439.0" style="-fx-border-color: white;" styleClass="tabela">
                <columns>
                   <TableColumn fx:id="tabela_Nome" prefWidth="123.99999618530273" styleClass="tabelinha" text="Nome" />
                   <TableColumn fx:id="tabela_Marca" minWidth="0.0" prefWidth="139.99998474121094" styleClass="tabelinha" text="Marca" />
