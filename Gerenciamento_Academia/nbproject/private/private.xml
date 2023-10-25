@@ -3,14 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/model/Avaliacoes_Fisicas.java</file>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Func_AddPlano_Controller.java</file>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/gerenciamento_academia/App.java</file>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/model/Cliente.java</file>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Menu_Func_Controller.java</file>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Func_Associar_Clientes_Controller.java</file>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Func_Avalicoes_Clientes_Controller.java</file>
-            <file>file:/C:/Users/steli/Documents/Repositorio_GitHub_Local/GYM_Management_System/Gerenciamento_Academia/src/model/Pagamento_Mensalidade.java</file>
+            <file>file:/C:/Users/$umeid_ibr/Documents/JAVA_REPOSITORIO/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Func_Associar_Clientes_Controller.java</file>
+            <file>file:/C:/Users/$umeid_ibr/Documents/JAVA_REPOSITORIO/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Admin_Menu_Maquinas_Controller.java</file>
+            <file>file:/C:/Users/$umeid_ibr/Documents/JAVA_REPOSITORIO/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Menu_Admin_Controller.java</file>
+            <file>file:/C:/Users/$umeid_ibr/Documents/JAVA_REPOSITORIO/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Admin_Menu_Instrutores_Controller.java</file>
+            <file>file:/C:/Users/$umeid_ibr/Documents/JAVA_REPOSITORIO/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Func_Avalicoes_Clientes_Controller.java</file>
+            <file>file:/C:/Users/$umeid_ibr/Documents/JAVA_REPOSITORIO/GYM_Management_System/Gerenciamento_Academia/src/gerenciamento_academia/App.java</file>
+            <file>file:/C:/Users/$umeid_ibr/Documents/JAVA_REPOSITORIO/GYM_Management_System/Gerenciamento_Academia/src/controller/Tela_Func_AddPlano_Controller.java</file>
         </group>
     </open-files>
 </project-private>

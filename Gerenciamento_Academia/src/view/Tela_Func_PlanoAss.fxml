@@ -78,11 +78,11 @@
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="98.0" layoutY="15.0" prefHeight="83.0" prefWidth="81.0" style="-fx-background-color: white;">
+                        <AnchorPane layoutX="89.0" layoutY="34.0" prefHeight="83.0" prefWidth="81.0" style="-fx-background-color: white;">
                            <children>
                               <ImageView fx:id="imageView" fitHeight="84.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/graduado.png" />
+                                    <Image url="@../img/carregar.png" />
                                  </image>
                               </ImageView>
                            </children>
