@@ -21,6 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Plano_de_Associacao;
@@ -70,6 +71,8 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
     @FXML
     private TextField txtPlanoAssociacao;
+    @FXML
+    private ImageView imageView;
 
     private ObservableList<Cliente> observableListe;
 
@@ -108,8 +111,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 //        seriesV1.getData().add(new XYChart.Data("3", 3));
 //        seriesV1.getData().add(new XYChart.Data("4", 2));
 //        seriesV1.getData().add(new XYChart.Data("5", 8));
-
-       grafico.getData().add(series);
+        grafico.getData().add(series);
         //grafico.getData().addAll(series, seriesV1);
 
         tabela.getSelectionModel().selectedItemProperty().addListener(
@@ -124,15 +126,34 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtId.setText(String.valueOf(cli.getId()));
             txtNome.setText(cli.getNome());
             txtCodigo.setText(cli.getCodigo());
-            txtPlanoAssociacao.setText(cli.getPlano_de_associacao().getNome());
-            //Formatacao de data
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
-            String dateString = sdf.format(cli.getPlano_de_associacao().getDataInicio()); // Convert the date to a string
-            txtDataInicio.setText(dateString);
-            String dateString1 = sdf.format(cli.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
-            txtDataFim.setText(dateString1);
-            txtPagamento.setText(cli.getPlano_de_associacao().getSituacao());
 
+            if (cli.getImagem() != null) {
+                // Converta o array de bytes em uma Image
+                byte[] imagemBytes = cli.getImagem();
+                Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+                // Defina a imagem no ImageView
+                imageView.setImage(imagem);
+
+                // Definir largura e altura desejadas
+                imageView.setFitWidth(79); // Largura desejada
+                imageView.setFitHeight(93); // Altura desejada
+
+                // Preservar a proporção da imagem enquanto ajusta as dimensões
+                imageView.setPreserveRatio(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+            }
+            if (cli.getPlano_de_associacao() != null) {
+                txtPlanoAssociacao.setText(cli.getPlano_de_associacao().getNome());
+                //Formatacao de data
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
+                String dateString = sdf.format(cli.getPlano_de_associacao().getDataInicio()); // Convert the date to a string
+                txtDataInicio.setText(dateString);
+                String dateString1 = sdf.format(cli.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
+                txtDataFim.setText(dateString1);
+                txtPagamento.setText(cli.getPlano_de_associacao().getSituacao());
+            }
         } else {
             txtId.setText("");
             txtNome.setText("");
