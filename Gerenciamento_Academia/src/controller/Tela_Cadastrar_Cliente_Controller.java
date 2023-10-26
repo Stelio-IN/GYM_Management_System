@@ -4,6 +4,7 @@
  */
 package controller;
 
+import static com.sun.xml.fastinfoset.org.apache.xerces.util.XMLChar.isValidName;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +18,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -105,7 +108,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
     @FXML
     private TextField txtRua;
-    
+
     @FXML
     private TextField txtPassword;
 
@@ -135,7 +138,6 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     private TextField txtIdentificacao;
 
     String caminhoDoArquivo;
-    
 
     @FXML
     void carregarimg(ActionEvent event) {
@@ -162,6 +164,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     }
 
     private String idFatura;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         limitarDatePicker();
@@ -198,10 +201,17 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         txtNumeroInsc.setText(idFatura);
 
         txtNumeroInsc.setDisable(true);
+        txtNome.setOnKeyReleased(event -> {
+            if (!isValidName(txtNome.getText())) {
+                txtNome.setStyle("-fx-border-color: red;");
+            } else {
+                txtNome.setStyle("-fx-border-color: #DDDDDD;");
+            }
+        });
     }
 
     void carregarCidade() {
-       cidade.add("Maputo");
+        cidade.add("Maputo");
         cidade.add("Matola");
         cidade.add("Beira");
         cidade.add("Nampula");
@@ -241,8 +251,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         cidade.add("Palma");
         cidade.add("Montepuez");
         cidade.add("Moma");
-        
-        
+
         obserCidade = FXCollections.observableArrayList(cidade);
         comboBoxCidade.setItems(obserCidade);
     }
@@ -313,7 +322,6 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
             }
         };
 
-        
         dataChosser.setDayCellFactory(dayCellFactory);
     }
 
@@ -401,11 +409,11 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
         cliente.setEndereco(endereco);
         cliente.setIsAtivo(true);
-        
+
         cliente.setPeso(Double.valueOf(txtPeso.getText()));
-        
+
         cliente.setAltura(Double.valueOf(txtAltura.getText()));
-        
+
         // Verifique se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
@@ -418,31 +426,44 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
 
-        
         //System.out.println(cliente);
         dao.add(cliente);
-        
+
         /*
         Ficha de inscricao sala
-        */
-        
+         */
         Ficha_Inscricao ficha = new Ficha_Inscricao();
         ficha.setNumero_Da_Ficha(idFatura);
         ficha.setCliente(txtNome.getText());
         ficha.setFuncionario("Funcionario maluco");
         ficha.setData_Da_Inscriacao(dataAtualFormatada);
         dao.add(ficha);
-        
 
         Tela_Principal(event);
     }
-        public void Tela_Principal(ActionEvent event) throws IOException {
-            
+
+    public void Tela_Principal(ActionEvent event) throws IOException {
+
         Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Func.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
+
+    /*
+        Metodos para validacoes 
+     */
+    
+    private boolean isValidFullName(String name) {
+        return name.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s'-]+$");
+    }
+    public boolean isValidEmail(String email) {
+    String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+    Pattern pattern = Pattern.compile(regex);
+    Matcher matcher = pattern.matcher(email);
+
+    return matcher.matches();
+}
 
 }

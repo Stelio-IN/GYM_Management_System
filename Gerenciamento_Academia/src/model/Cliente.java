@@ -21,14 +21,13 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Cliente extends Pessoa implements Serializable {
-    
-    
+
     //Logica de negocio
     public void desvincularPlanoAtivo() {
         this.plano_de_associacao = null;
     }
 
-     public Image getImagemComoImage() {
+    public Image getImagemComoImage() {
         if (imagem != null) {
             return new Image(new ByteArrayInputStream(imagem));
         } else {
@@ -38,8 +37,6 @@ public class Cliente extends Pessoa implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clienteAssociado_id")
     private Cliente clinteAssociado;
-
-   
 
     private String contato_emergencia;
     private String data_inscricao;
@@ -54,9 +51,19 @@ public class Cliente extends Pessoa implements Serializable {
     private String doenca;
 
     private String objectivo;
-    
-     @OneToMany(mappedBy = "cliente")
+
+    @OneToMany(mappedBy = "cliente")
     private List<Avaliacoes_Fisicas> avaliacoes;
+
+    public void associarCasal(Cliente parceiro) {
+        if (parceiro != null && this.getGenero()!= parceiro.getGenero()) {
+            this.clinteAssociado = parceiro;
+            parceiro.clinteAssociado = this;
+        } else {
+            // Lógica de tratamento para quando os clientes não são de sexo oposto
+            System.out.println("A associação só é permitida entre pessoas de sexo oposto.");
+        }
+    }
 
     public String getObjectivo() {
         return objectivo;
@@ -66,13 +73,14 @@ public class Cliente extends Pessoa implements Serializable {
         this.objectivo = objectivo;
     }
 
-     public Cliente getClinteAssociado() {
+    public Cliente getClinteAssociado() {
         return clinteAssociado;
     }
 
     public void setClinteAssociado(Cliente clinteAssociado) {
         this.clinteAssociado = clinteAssociado;
     }
+
     public String getDoenca() {
         return doenca;
     }
