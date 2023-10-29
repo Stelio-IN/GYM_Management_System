@@ -34,6 +34,7 @@ import model.Avaliacoes_Fisicas;
 import model.Cliente;
 import model.Funcionario;
 import model.Instrutor;
+import model.Notificacao;
 import model.Pessoa;
 
 /**
@@ -175,18 +176,28 @@ public class Tela_Func_Avalicoes_Clientes_Controller implements Initializable {
         avaliacao.setAltura(Double.valueOf(txtAltura.getText()));
         avaliacao.setPeso(Double.valueOf(txtPeso.getText()));
         avaliacao.setIndice_Massa_corporal(avaliacao.calcularIMC());
+        
         avaliacao.setCapacidade_cardiovascular(Double.valueOf(txtCap_Vascular.getText()));
         avaliacao.setCircunferência_braco(Double.valueOf(txtBraco.getText()));
         avaliacao.setCircunferência_coxa(Double.valueOf(txtCoxa.getText()));
         avaliacao.setCircunferência_panturrilha(Double.valueOf(txtPanturrilha.getText()));
         avaliacao.setCircunferência_quadril(Double.valueOf(txtQuadril.getText()));
         avaliacao.setCircunferência_peito(Double.valueOf(txtPeito.getText()));
+        avaliacao.setNota_da_avaliacao(Double.valueOf(txtNotaFinal.getText()));
+        avaliacao.setDiscricao_comentarios(txtAreaDiscricao.getText());
         
         dao.add(avaliacao);
         
         
         //Limpar os campos
         LimparCampos(event);
+        
+        Notificacao notificacao = new Notificacao();
+        notificacao.setCliente(cliente);
+        notificacao.setMensagem("Realizacao de Avaliacao");
+        notificacao.setStatus(true);
+        dao.add(avaliacao);
+        
         
     }
 
