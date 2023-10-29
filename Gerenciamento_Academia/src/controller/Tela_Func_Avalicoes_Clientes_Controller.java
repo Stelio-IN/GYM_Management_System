@@ -206,8 +206,8 @@ public class Tela_Func_Avalicoes_Clientes_Controller implements Initializable {
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                 // Definir largura e altura desejadas
-                imageView.setFitWidth(79); // Largura desejada
-                imageView.setFitHeight(93); // Altura desejada
+                imageView.setFitWidth(120); // Largura desejada
+                imageView.setFitHeight(143); // Altura desejada
                 // Defina a imagem no ImageView
                 imageView.setImage(imagem);
             } else {

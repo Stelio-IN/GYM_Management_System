@@ -244,7 +244,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AreaChart layoutX="24.0" layoutY="42.0" prefHeight="228.0" prefWidth="506.0">
+                  <AreaChart fx:id="GraficoArea" layoutX="24.0" layoutY="42.0" prefHeight="228.0" prefWidth="506.0" style="-fx-background-color: white;">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>

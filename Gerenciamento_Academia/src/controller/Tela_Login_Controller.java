@@ -7,6 +7,12 @@ package controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javafx.application.Platform;
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,9 +21,17 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
 import model.Administrador;
@@ -34,18 +48,43 @@ public class Tela_Login_Controller implements Initializable {
 
     @FXML
     private TextField txtEmail;
+    
+        @FXML
+    private Button botaoLogin;
 
+   
     @FXML
     private TextField txtPassword;
 
+    
     @FXML
     private AnchorPane PainelTelaLogin;
+    
+    private BooleanProperty emailValido = new SimpleBooleanProperty(false);
     @FXML
     private Stage stage;
     @FXML
     private Scene scene;
     @FXML
     private Parent root;
+    
+       @FXML
+    private ImageView visualizarPassword;
+       
+           @FXML
+    private Label atencao;
+           
+               @FXML
+    private ImageView NaovisualizarPassword;
+        
+        
+    @FXML
+    private Text passwordRequisitos;
+    
+    private Scene cena;
+    
+     @FXML
+    private Label lblDadosIncorrectos;
 
     @FXML
     void close(ActionEvent event) {
@@ -102,6 +141,7 @@ public class Tela_Login_Controller implements Initializable {
 
     @FXML
     void btnLogar(ActionEvent event) {
+         String email = txtEmail.getText();
         GenericDAO bb = new GenericDAO();
 
         Pessoa pessoa = (Pessoa) bb.logarEmailOuCodigo(txtEmail.getText());
@@ -126,46 +166,117 @@ public class Tela_Login_Controller implements Initializable {
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Credenciais erradas");
+            lblDadosIncorrectos.setVisible(true);
+            atencao.setVisible(true);
+            passwordRequisitos.setVisible(true);
+            
         }
     }
 
-//    @FXML
-//    void btnLogar(ActionEvent event) {
-//        GenericDAO bb = new GenericDAO();
-//
-//        Pessoa pessoa = (Pessoa) bb.logarEmailOuCodigo(txtEmail.getText());
-//
-//        if (pessoa != null && pessoa.getPassword().equals(txtPassword.getText())) {
-//            try {
-//                Alert alerta = new Alert(Alert.AlertType.INFORMATION);
-//                alerta.setTitle("Login");
-//                alerta.setHeaderText("Login efetuado com sucesso!!!!");
-//                // alerta.setContentText("Deseja salvar antes de Fechar");
-//                if (alerta.showAndWait().get() == ButtonType.OK) {
-//
-//                    if (pessoa instanceof Administrador) {
-//                        Tela_de_Entrada(event, "/view/Tela_Menu_Admin.fxml");
-//                    } else if (pessoa instanceof Cliente) {
-//                        Tela_de_Entrada(event, "/view/Tela_Menu_Cliente.fxml");
-//                    } else if (pessoa instanceof Funcionario) {
-//                        Tela_de_Entrada(event, "/view/Tela_Menu_Func.fxml");
-//                    }
-//
-//                }
-//
-//            } catch (IOException e) {
-//                e.printStackTrace(); // Trate ou registre erros adequadamente
-//            }
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Credencias erradas");
-//
-//        }
-//    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+         lblDadosIncorrectos.setVisible(false);
+       // Carregar o arquivo CSS quando a cena estiver disponível
+        Platform.runLater(() -> {
+            cena = txtEmail.getScene();
+            if (cena != null) {
+                cena.getStylesheets().add(getClass().getResource("/css/tela_login.css").toExternalForm());
+            }
+        });
+        
+       // Configurar um ouvinte para verificar o conteúdo do TextField enquanto o usuário digita
+        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (validarEmail(newValue)) {
+                txtEmail.getStyleClass().clear();
+                txtEmail.getStyleClass().add("txtfield_confirmado");
+                emailValido.set(true);
+            } else {
+                txtEmail.getStyleClass().clear();
+                txtEmail.getStyleClass().add("txtfield_nao_confirmado");
+                emailValido.set(false);
+            }
+        });
+        
+        // PASSWORD
+        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
+            if(validarPassword(pass)){
+               txtPassword.getStyleClass().clear();
+                txtPassword.getStyleClass().add("txtfield_confirmado");
+                emailValido.set(true);
+            } else {
+                txtPassword.getStyleClass().clear();
+                txtPassword.getStyleClass().add("txtfield_nao_confirmado");
+                emailValido.set(false);
+//                 atencao.setVisible(true);
+//                passwordRequisitos.setVisible(true);
+               
+            }
+        });
+
+        // Vincular o botão a propriedade emailValido para habilitar/desabilitar
+        botaoLogin.disableProperty().bind(Bindings.not(emailValido));
+
+        // Configurar um evento para o botão de login
+        //botaoLogin.setOnAction(this::btnLogar);
+        
+        
+        // Visibilidade iniciais
+         atencao.setVisible(false);
+         passwordRequisitos.setVisible(false);
+        NaovisualizarPassword.setVisible(false);
+        visualizarPassword.setVisible(true);
+        
+ 
+    }
+    
+
+    
+     private boolean validarEmail(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+     
+      private boolean validarPassword(String password) {
+         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+     
+     
+
+    private void exibirAlerta(String titulo, String mensagem) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensagem);
+        alert.showAndWait();
+    }
+
+  
+   @FXML
+    void verPassword(MouseEvent event) {
+
+    }
+    
+    
+    @FXML
+    void NaoverPassword(MouseEvent event) {
+
+    }
+    
+    @FXML
+    void mostrarsenha(MouseDragEvent event) {
+
+    }
+
+    @FXML
+    void naomostrarsenha(MouseDragEvent event) {
+
     }
 
 }

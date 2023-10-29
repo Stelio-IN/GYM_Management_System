@@ -16,14 +16,14 @@
 
 <AnchorPane id="AnchorPane" fx:id="PainelTelaLogin" prefHeight="700.0" prefWidth="1300.0" style="-fx-background-color: transparent;" stylesheets="@../css/tela_login.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Login_Controller">
    <children>
-      <AnchorPane layoutX="603.0" layoutY="164.0" prefHeight="447.0" prefWidth="354.0" style="-fx-border-radius: 0px 10px 10px 0px;" styleClass="painel">
+      <AnchorPane layoutX="882.0" layoutY="115.0" prefHeight="502.0" prefWidth="354.0" style="-fx-border-radius: 0px 10px 10px 0px;" styleClass="painel">
          <children>
-            <Text fill="#054807" layoutX="122.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tela Login">
+            <Text fill="#046924" layoutX="106.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seja Bem Vindo!">
                <font>
-                  <Font name="Bodoni MT Black" size="26.0" />
+                  <Font name="Bookman Old Style" size="19.0" />
                </font>
             </Text>
-            <ImageView fitHeight="103.0" fitWidth="110.0" layoutX="123.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="129.0" fitWidth="139.0" layoutX="115.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logo1_4.png" />
                </image>
@@ -34,48 +34,79 @@
                   <Image url="@../img/cross.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtEmail" layoutX="64.0" layoutY="204.0" prefHeight="30.0" prefWidth="206.0" promptText="E-mail" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 1px; -fx-border-width: 0px 0px 1px 0px;">
+            <TextField fx:id="txtEmail" layoutX="64.0" layoutY="204.0" prefHeight="30.0" prefWidth="236.0" promptText="E-mail" styleClass="txtfield_confirmado">
                <effect>
                   <InnerShadow />
                </effect>
                <font>
-                  <Font name="System Italic" size="12.0" />
+                  <Font name="System Italic" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="txtPassword" layoutX="63.0" layoutY="247.0" prefHeight="30.0" prefWidth="206.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 1px; -fx-border-width: 0px 0px 1px 0px;">
+            <PasswordField fx:id="txtPassword" layoutX="63.0" layoutY="247.0" onMouseDragEntered="#mostrarsenha" onMouseDragExited="#naomostrarsenha" prefHeight="30.0" prefWidth="236.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 1px; -fx-border-width: 0px 0px 1px 0px;">
                <effect>
                   <InnerShadow />
                </effect>
                <font>
-                  <Font name="System Italic" size="12.0" />
+                  <Font name="System Italic" size="14.0" />
                </font></PasswordField>
-            <Button layoutX="193.0" layoutY="320.0" mnemonicParsing="false" onAction="#btnLogar" prefHeight="27.0" prefWidth="78.0" style="-fx-border-color: black; -fx-border-radius: 7px; -fx-background-radius: 5px;" styleClass="botao" text="Entrar" textFill="WHITE">
+            <Button fx:id="botaoLogin" layoutX="215.0" layoutY="309.0" mnemonicParsing="false" onAction="#btnLogar" prefHeight="27.0" prefWidth="86.0" style="-fx-border-color: transparent; -fx-border-radius: 7px; -fx-background-radius: 5px;" styleClass="botao" text="Entrar" textFill="WHITE">
                <effect>
                   <DropShadow>
                      <color>
-                        <Color red="0.3684210479259491" green="0.3670565187931061" blue="0.3670565187931061" />
+                        <Color red="0.4526315927505493" green="0.4341910183429718" blue="0.4341910183429718" />
                      </color>
                   </DropShadow>
                </effect>
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Label layoutX="43.0" layoutY="362.0" text="Esqueceu a password?  Clique aqui para recuperar" textFill="#2c6b05" />
+            <Label layoutX="53.0" layoutY="313.0" text="Esqueceu a password? " textFill="#046b0f">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <ImageView fitHeight="18.0" fitWidth="22.0" layoutX="40.0" layoutY="213.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/e-mail.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="18.0" fitWidth="22.0" layoutX="40.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/cadeado.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="lblDadosIncorrectos" layoutX="64.0" layoutY="277.0" text="E-mail ou palavra-passe incorrectos" textFill="#ff0606">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <Text fx:id="passwordRequisitos" fill="RED" layoutX="63.0" layoutY="373.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A palavra-passe deve conter pelo menos: Uma letra maiúscula, uma letra minúscula, um número, um símbolo;" wrappingWidth="228.6761474609375" />
+            <Label fx:id="atencao" layoutX="63.0" layoutY="343.0" text="Atenção:" textFill="RED" />
+            <ImageView fx:id="visualizarPassword" fitHeight="26.0" fitWidth="33.0" layoutX="268.0" layoutY="249.0" onMouseClicked="#verPassword" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fechar-o-olho.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="NaovisualizarPassword" fitHeight="26.0" fitWidth="33.0" layoutX="268.0" layoutY="250.0" onMouseClicked="#NaoverPassword" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/opcao-de-interface-de-olho-aberto-visivel.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <AnchorPane layoutX="336.0" layoutY="164.0" prefHeight="447.0" prefWidth="267.0" style="-fx-border-radius: 10px 0px 0px 10px;" styleClass="painel">
+      <AnchorPane layoutX="616.0" layoutY="115.0" prefHeight="502.0" prefWidth="267.0" style="-fx-border-radius: 10px 0px 0px 10px;" styleClass="painel">
          <children>
-            <ImageView fitHeight="137.0" fitWidth="155.0" layoutX="63.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="165.0" fitWidth="171.0" layoutX="56.0" layoutY="73.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logo1_2.png" />
                </image>
             </ImageView>
-            <Text fill="#202020" layoutX="83.0" layoutY="252.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bem Vindo ao Ginasio">
+            <Text fill="#0b0b0b" layoutX="44.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="&quot;Obtenha a barriga lisa">
                <font>
-                  <Font name="Bernard MT Condensed" size="14.0" />
-               </font></Text>
-            <Text fill="#202020" layoutX="64.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema em densevolvimento">
+                  <Font name="Bookman Old Style" size="17.0" />
+               </font>
+            </Text>
+            <Text fill="#0b0b0b" layoutX="34.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="que você sempre sonhou!&quot;">
                <font>
-                  <Font name="Bernard MT Condensed" size="14.0" />
+                  <Font name="Bookman Old Style" size="17.0" />
                </font>
             </Text>
          </children>

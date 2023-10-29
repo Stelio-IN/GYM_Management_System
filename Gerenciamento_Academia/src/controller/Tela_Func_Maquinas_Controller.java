@@ -24,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -70,6 +71,9 @@ public class Tela_Func_Maquinas_Controller implements Initializable {
 
     @FXML
     private TextField txtPesquisa;
+    
+    @FXML
+    private TextArea txtAreaDiscri;
 
     @FXML
     private ImageView imageCamera;
@@ -121,6 +125,7 @@ public class Tela_Func_Maquinas_Controller implements Initializable {
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
         equip.setModelo(txtModelo.getText());
+        equip.setDiscricao(txtAreaDiscri.getText());
 
         //Instrução que verifica se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
@@ -159,6 +164,7 @@ public class Tela_Func_Maquinas_Controller implements Initializable {
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
         equip.setModelo(txtModelo.getText());
+        equip.setDiscricao(txtAreaDiscri.getText());
         // Verifique se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
@@ -236,7 +242,8 @@ public class Tela_Func_Maquinas_Controller implements Initializable {
             txtNome.setText(pessoa.getNome());
             txtMarca.setText(pessoa.getMarca());
             txtModelo.setText(pessoa.getModelo());
-
+            txtAreaDiscri.setText(pessoa.getDiscricao());
+            
             if (pessoa.getImagem() != null) {
                 // Converta o array de bytes em uma Image
                 byte[] imagemBytes = pessoa.getImagem();
@@ -253,6 +260,7 @@ public class Tela_Func_Maquinas_Controller implements Initializable {
             txtNome.setText("");
             txtMarca.setText("");
             txtModelo.setText("");
+            txtAreaDiscri.setText("");
 
         }
     }    

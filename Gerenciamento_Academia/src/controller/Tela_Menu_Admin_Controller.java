@@ -8,7 +8,10 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,11 +22,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -40,6 +46,14 @@ import model.Funcionario;
 import model.Instrutor;
 import model.Pessoa;
 
+import javafx.fxml.FXML;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
+import javafx.scene.chart.XYChart.Series;
+import javafx.scene.layout.HBox;
+import javafx.util.Duration;
+
 /**
  * FXML Controller class
  *
@@ -52,6 +66,10 @@ public class Tela_Menu_Admin_Controller implements Initializable {
 
     @FXML
     private AnchorPane panelGeral;
+    
+    
+    @FXML
+    private AreaChart<String, Number> GraficoArea;
 
     @FXML
     void tela_Admin_Menu_Clientes(ActionEvent event) {
@@ -214,9 +232,78 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         pieChart.setData(pieChartData);
         //chamando o grafico de barra
         GraficoBarra();
+        //////////////////////////////////////////////////////////////////////////////////////////   
+//           // Inicialize o gráfico
+        Series<String, Number> series = new Series<>();
+        series.setName("Série de Dados Fictícios");
+        GraficoArea.getData().add(series);
 
+        // Crie um Timeline para atualizar automaticamente o gráfico a cada 5 segundos
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            // Limpe os dados existentes no gráfico
+            series.getData().clear();
+
+            // Adicione novos dados fictícios à série
+            Random random = new Random();
+            for (int i = 1; i <= 10; i++) {
+                series.getData().add(new Data<>("Mês " + i, random.nextInt(100)));
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+//         CategoryAxis xAxis = new CategoryAxis();
+//        NumberAxis yAxis = new NumberAxis();
+//
+//        AreaChart<String, Number> grafico1 = new AreaChart<>(xAxis, yAxis);
+//        grafico1.setTitle("Gráfico de Área 1");
+//        grafico1.setPrefWidth(400); // Largura do primeiro gráfico
+//
+//        AreaChart<String, Number> grafico2 = new AreaChart<>(xAxis, yAxis);
+//        grafico2.setTitle("Gráfico de Área 2");
+//        grafico2.setPrefWidth(400); // Largura do segundo gráfico
+//
+//        // Série de dados para o primeiro gráfico
+//        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
+//        series1.setName("Série 1");
+//
+//        // Série de dados para o segundo gráfico
+//        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
+//        series2.setName("Série 2");
+//
+//        // Adicione os gráficos ao contêiner
+//        graficoContainer.getChildren().addAll(grafico1, grafico2);
+//
+//        // Crie um Timeline para atualizar automaticamente os gráficos a cada 5 segundos
+//        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+//            // Limpe os dados existentes nos gráficos
+//            series1.getData().clear();
+//            series2.getData().clear();
+//
+//            // Adicione novos dados fictícios às séries
+//            Random random = new Random();
+//            for (int i = 1; i <= 10; i++) {
+//                series1.getData().add(new XYChart.Data<>("Mês " + i, random.nextInt(100)));
+//                series2.getData().add(new XYChart.Data<>("Mês " + i, random.nextInt(100)));
+//            }
+//        }));
+//        timeline.setCycleCount(Timeline.INDEFINITE);
+//        timeline.play();
+//
+//        // Adicione as séries aos gráficos
+//        grafico1.getData().add(series1);
+//        grafico2.getData().add(series2);
     }
 
+//      @FXML
+//    private HBox graficoContainer;
+      
+      
     //private BarChart<?, ?> barChart;
     // Crie os eixos
     CategoryAxis xAxis = new CategoryAxis();
@@ -241,6 +328,24 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         // Adicione a série ao gráfico
         barChart.getData().add(series);
     }
+    
+//     public void inserirDadosNoGraficoArea() {
+//        // Limpe os dados existentes no gráfico
+//        GraficoArea.getData().clear();
+//
+//        // Crie uma série de dados fictícios
+//        Series<String, Number> seriess = new Series<>();
+//        seriess.setName("Série de Dados Fictícios");
+//
+//        // Adicione dados fictícios à série
+//        Random random = new Random();
+//        for (int i = 1; i <= 10; i++) {
+//            seriess.getData().add(new Data<>("Mês " + i, random.nextInt(100)));
+//        }
+//
+//        // Adicione a série de dados ao gráfico
+//        GraficoArea.getData().add(seriess);
+//    }
 
     private int quandidade_Homens = 0;
     private int quandidade_Mulheres = 0;
@@ -262,6 +367,9 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             }
         }
     }
+    
+   
+
 
     @FXML
     void Tela_Admin_Planos_Associacao(ActionEvent event) {

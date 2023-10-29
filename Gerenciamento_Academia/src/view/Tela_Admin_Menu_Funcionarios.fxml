@@ -149,7 +149,7 @@
                   </DropShadow>
                </effect>
             </AnchorPane>
-            <Button layoutX="444.0" layoutY="302.0" mnemonicParsing="false" onAction="#excluir" prefHeight="26.0" prefWidth="97.0" styleClass="botao" text="Eliminar">
+            <Button fx:id="btnexcluir" layoutX="444.0" layoutY="302.0" mnemonicParsing="false" onAction="#excluir" prefHeight="26.0" prefWidth="97.0" styleClass="botao" text="Eliminar">
                <effect>
                   <DropShadow>
                      <color>
@@ -173,7 +173,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="705.0" layoutY="302.0" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="97.0" style="-fx-background-radius: 10px;" styleClass="botao" text="Atualizar">
+            <Button fx:id="btneditar" layoutX="705.0" layoutY="302.0" mnemonicParsing="false" onAction="#editar" prefHeight="26.0" prefWidth="97.0" style="-fx-background-radius: 10px;" styleClass="botao" text="Atualizar">
                <effect>
                   <DropShadow>
                      <color>
@@ -185,7 +185,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="835.0" layoutY="302.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="26.0" prefWidth="97.0" styleClass="botao" text="Cadastrar">
+            <Button fx:id="btncadastrar" layoutX="835.0" layoutY="302.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="26.0" prefWidth="97.0" styleClass="botao" text="Cadastrar">
                <effect>
                   <DropShadow>
                      <color>

@@ -13,6 +13,10 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +24,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -89,6 +94,10 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
     @FXML
     private TextField txtClassificacao;
 
+    
+    @FXML
+    private TextArea txtDescricao;
+    
     @FXML
     private ImageView imageCamera;
 
@@ -153,6 +162,7 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
         Instruto.setCodigo(txtCodigo.getText());
         Instruto.setEmail(txtEmail.getText());
         Instruto.setClassificacao(Double.valueOf(txtClassificacao.getText()));
+        Instruto.setDescricao(txtDescricao.getText());
 
         // Instrução que verifica se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
@@ -186,6 +196,7 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
         Instru.setSalario(Double.valueOf(txtSalario.getText()));
         Instru.setPassword(txtPassword.getText());
         Instru.setClassificacao(Double.valueOf(txtClassificacao.getText()));
+        Instru.setDescricao(txtDescricao.getText());
 
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
@@ -262,6 +273,17 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
         txtId.setDisable(true);
+        
+        Bloqueio();
+        
+        txtId.setDisable(true);
+            txtCodigo.setDisable(true);
+            txtEmail.setDisable(true);
+            txtEspecializacao.setDisable(true);
+            txtSalario.setDisable(true);
+            txtPassword.setDisable(true);
+            txtClassificacao.setDisable(true);
+            txtDescricao.setDisable(true);
     }
 
     /**
@@ -272,13 +294,14 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
     public void pegarLinhaSelecionada(Instrutor pessoa) {
         if (pessoa != null) {
             txtId.setText(pessoa.getId().toString());
-            txtCodigo.setText(String.valueOf(pessoa.getCodigo()));
+            txtCodigo.setText(pessoa.getCodigo());
             txtEmail.setText(pessoa.getEmail());
             txtNome.setText(pessoa.getNome());
             txtEspecializacao.setText(pessoa.getEspecializacao());
             txtSalario.setText(pessoa.getSalario().toString());
             txtPassword.setText(pessoa.getPassword());
             txtClassificacao.setText(pessoa.getClassificacao().toString());
+            txtDescricao.setText(pessoa.getDescricao());
 
             if (pessoa.getImagem() != null) {
                 //Instrução que converte o array de bytes em uma Image
@@ -305,6 +328,117 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
     }
 
     
+    // VALIDACAO
+     private boolean validarPassword(String password) {
+         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+     
+       private boolean validarEmail(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+       
+        private boolean validarClassificacao(String peso){
+            String regex = "^[0-5]{1}+(\\.[0-9]+)?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(peso);
+            return matcher.matches();
+        }
+        
+         private boolean validarSalario(String altura){
+            String regex = "^[0-9]+(\\.[0-9]+)?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(altura);
+            return matcher.matches();
+        }
+    
+     public void Bloqueio(){
+            
+            // NOME
+             txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
+            if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
+               txtNome.setStyle("-fx-text-fill: red;");
+               
+//                txtEspecializacao.setDisable(true);
+//                txtPassword.setDisable(true);
+               
+            }else{
+            txtNome.setStyle("");
+           // txtEspecializacao.setDisable(false);           
+            }
+        });
+             
+             // Especializacao
+             txtEspecializacao.textProperty().addListener((observable, oldValue, newValue) -> {
+            if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
+               txtEspecializacao.setStyle("-fx-text-fill: red;");
+               
+              //  txtSalario.setDisable(true);
+             
+               
+            }else{
+            txtEspecializacao.setStyle("");
+           // txtSalario.setDisable(false);           
+            }
+        });
+             
+          
+         
+       
+          // E-MAIL
+          txtEmail.textProperty().addListener((observable, oldvalue, newValue) -> {
+              if(validarEmail(newValue)){
+                  txtEmail.setStyle("");
+                  // txtPassword.setDisable(false);
+              }else{
+                  txtEmail.setStyle("-fx-text-fill: red");
+                  // txtPassword.setDisable(true);
+              }
+          });
+          
+        
+          
+          
+          
+          
+          
+          // Classificacao
+          txtClassificacao.textProperty().addListener((obersavable, oldvalue, newValue) -> {
+              if(validarClassificacao(newValue)){
+                  txtClassificacao.setStyle("");
+                  //txtAltura.setDisable(false);
+              }else{
+                  txtClassificacao.setStyle("-fx-text-fill: red");
+                 // txtAltura.setDisable(true);
+                  
+               
+              }
+          });
+          
+          // Salario
+           txtSalario.textProperty().addListener((obersavable, oldvalue, newValue) -> {
+              if(validarSalario(newValue)){
+                txtSalario.setStyle("");
+              // txtEmail.setDisable(false);
+               
+                
+              }else{
+                txtSalario.setStyle("-fx-text-fill: red");
+                // txtEmail.setDisable(true);
+                
+               
+              }
+          });
+           
+          
+          
+          
+        }
     
     
      
