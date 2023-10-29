@@ -364,12 +364,12 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
             if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
                txtNome.setStyle("-fx-text-fill: red;");
                
-//                txtEspecializacao.setDisable(true);
-//                txtPassword.setDisable(true);
+                txtEspecializacao.setDisable(true);
+                txtPassword.setDisable(true);
                
             }else{
             txtNome.setStyle("");
-           // txtEspecializacao.setDisable(false);           
+            txtEspecializacao.setDisable(false);           
             }
         });
              
@@ -378,12 +378,12 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
             if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
                txtEspecializacao.setStyle("-fx-text-fill: red;");
                
-              //  txtSalario.setDisable(true);
+                txtSalario.setDisable(true);
              
                
             }else{
             txtEspecializacao.setStyle("");
-           // txtSalario.setDisable(false);           
+            txtSalario.setDisable(false);           
             }
         });
              
@@ -394,10 +394,12 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
           txtEmail.textProperty().addListener((observable, oldvalue, newValue) -> {
               if(validarEmail(newValue)){
                   txtEmail.setStyle("");
-                  // txtPassword.setDisable(false);
+                  txtClassificacao.setDisable(false);
+                  txtDescricao.setDisable(false);
               }else{
                   txtEmail.setStyle("-fx-text-fill: red");
-                  // txtPassword.setDisable(true);
+                  txtClassificacao.setDisable(true);
+                   txtDescricao.setDisable(true);
               }
           });
           
@@ -411,10 +413,10 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
           txtClassificacao.textProperty().addListener((obersavable, oldvalue, newValue) -> {
               if(validarClassificacao(newValue)){
                   txtClassificacao.setStyle("");
-                  //txtAltura.setDisable(false);
+                  txtPassword.setDisable(false);
               }else{
                   txtClassificacao.setStyle("-fx-text-fill: red");
-                 // txtAltura.setDisable(true);
+                 txtPassword.setDisable(true);
                   
                
               }
@@ -424,12 +426,12 @@ public class Tela_Func_Instrutores_Controller implements Initializable {
            txtSalario.textProperty().addListener((obersavable, oldvalue, newValue) -> {
               if(validarSalario(newValue)){
                 txtSalario.setStyle("");
-              // txtEmail.setDisable(false);
+               txtEmail.setDisable(false);
                
                 
               }else{
                 txtSalario.setStyle("-fx-text-fill: red");
-                // txtEmail.setDisable(true);
+                 txtEmail.setDisable(true);
                 
                
               }

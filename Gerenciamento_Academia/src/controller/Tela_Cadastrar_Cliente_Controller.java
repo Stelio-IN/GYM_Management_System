@@ -699,46 +699,50 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
               if(validarAltura(newValue)){
                 txtAltura.setStyle("");
                 comboBoxDesporto.setDisable(false);
+                comboBoxDoencas.setDisable(false);
+                ComboBoxObjectivo.setDisable(false);
                
                 
               }else{
                 txtAltura.setStyle("-fx-text-fill: red");
                   comboBoxDesporto.setDisable(true);
+                   comboBoxDoencas.setDisable(true);
+                   ComboBoxObjectivo.setDisable(true);
                 
                
               }
           });
            
-            // Desporto
-           comboBoxDesporto.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue != null) {
-                   comboBoxDoencas.setDisable(false);
-                    
-               
-                } else {
-                   comboBoxDoencas.setDisable(true);
-                }
-            }
-        });
-           
-            // Doencas
-           comboBoxDoencas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if (newValue != null) {
-                   ComboBoxObjectivo.setDisable(false);
-                    
-               
-                } else {
-                   ComboBoxObjectivo.setDisable(true);
-                }
-            }
-        });
+//            // Desporto
+//           comboBoxDesporto.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                if (newValue != null) {
+//                   comboBoxDoencas.setDisable(false);
+//                    
+//               
+//                } else {
+//                   comboBoxDoencas.setDisable(true);
+//                }
+//            }
+//        });
+//           
+//            // Doencas
+//           comboBoxDoencas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                if (newValue != null) {
+//                   ComboBoxObjectivo.setDisable(false);
+//                    
+//               
+//                } else {
+//                   ComboBoxObjectivo.setDisable(true);
+//                }
+//            }
+//        });
            
            // objectivo
-           comboBoxDoencas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+           ComboBoxObjectivo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 if (newValue != null) {
@@ -773,7 +777,8 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
             if(validarPassword(pass)){
                 txtPassword.setStyle("");
-               btncadastrar.setVisible(false);
+               btncadastrar.setVisible(true);
+               btncadastrar.setDisable(false);
                txtContacto.setDisable(false);
             } else {
                
