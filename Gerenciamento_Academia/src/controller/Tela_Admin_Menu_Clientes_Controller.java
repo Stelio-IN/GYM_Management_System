@@ -129,8 +129,6 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
                 // Preservar a proporção da imagem enquanto ajusta as dimensões
                 imageView.setPreserveRatio(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
             }
             if (cliente.getPlano_de_associacao() != null) {
                 txtPlanoAssociacao.setText(cliente.getPlano_de_associacao().getNome());
