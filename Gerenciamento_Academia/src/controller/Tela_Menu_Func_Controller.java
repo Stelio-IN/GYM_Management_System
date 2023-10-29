@@ -14,6 +14,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -172,6 +175,38 @@ public class Tela_Menu_Func_Controller implements Initializable {
         btnMaquinas.setStyle("-fx-background-color: transparent;");
         btnGestaoCliente.setStyle("-fx-background-color: transparent;");
         btnClientes.setStyle("-fx-background-color: transparent;");
+        
+      //  addThinks();
+
+    // Suponha que você tenha um array com os dados de presença, onde cada índice representa um dia da semana.
+    // Substitua este exemplo pelos seus próprios dados.
+    int[] presencas = {30, 45, 60, 80, 95, 75, 40};
+
+    // Crie uma série de dados
+    XYChart.Series<Number, Number> series = new XYChart.Series<>();
+    for (int i = 0; i < presencas.length; i++) {
+        series.getData().add(new XYChart.Data<>(i, presencas[i]));
+    }
+
+    // Adicione a série ao gráfico
+    grafico_Linha.getData().add(series);
+
+    // Encontre o dia da semana com o maior número de presenças
+    int diaMaisMovimentado = 0;
+    int maiorPresenca = 0;
+    for (int i = 0; i < presencas.length; i++) {
+        if (presencas[i] > maiorPresenca) {
+            diaMaisMovimentado = i;
+            maiorPresenca = presencas[i];
+        }
+    }
+
+    // Destaque o dia da semana mais movimentado usando CSS
+    for (XYChart.Data<Number, Number> data : series.getData()) {
+        if (data.getXValue().intValue() == diaMaisMovimentado) {
+            data.getNode().getStyleClass().add("max-presenca-point");
+        }
+    }
     }
 
     @FXML
@@ -203,5 +238,42 @@ public class Tela_Menu_Func_Controller implements Initializable {
     void Tela_Func_Associar_Cliente(ActionEvent event) {
         carregarTela("/view/Tela_Func_Associar_Clientes", pessoa);
     }
- 
+
+    @FXML
+    private LineChart<Number, Number> grafico_Linha;
+    NumberAxis xAxis = new NumberAxis();
+    NumberAxis yAxis = new NumberAxis();
+
+    void addThinks() {
+        xAxis.setLabel("Dia da Semana");
+        yAxis.setLabel("Presenças");
+        grafico_Linha.setTitle("Presenças ao longo da semana");
+
+        // Suponha que você tenha um array com os dados de presença, onde cada índice representa um dia da semana.
+        // Substitua este exemplo pelos seus próprios dados.
+        int[] presencas = {30, 45, 60, 80, 95, 75, 40};
+
+        // Crie uma série de dados
+        XYChart.Series<Number, Number> series = new XYChart.Series<>();
+        for (int i = 0; i < presencas.length; i++) {
+            series.getData().add(new XYChart.Data<>(i, presencas[i]));
+        }
+
+        // Adicione a série ao gráfico
+        grafico_Linha.getData().add(series);
+
+        // Encontre o dia da semana com o maior número de presenças
+        int diaMaisMovimentado = 0;
+        int maiorPresenca = 0;
+        for (int i = 0; i < presencas.length; i++) {
+            if (presencas[i] > maiorPresenca) {
+                diaMaisMovimentado = i;
+                maiorPresenca = presencas[i];
+            }
+        }
+
+        // Destaque o dia da semana mais movimentado
+        series.getData().get(diaMaisMovimentado).getNode().setStyle("-fx-background-color: red;");
+    }
+
 }

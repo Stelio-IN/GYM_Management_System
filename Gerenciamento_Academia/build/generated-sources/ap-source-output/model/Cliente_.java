@@ -8,7 +8,7 @@ import model.Avaliacoes_Fisicas;
 import model.Cliente;
 import model.Plano_de_Associacao;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-10-30T08:15:34", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-10-30T08:49:44", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Cliente.class)
 public class Cliente_ extends Pessoa_ {
 
