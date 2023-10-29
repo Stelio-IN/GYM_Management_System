@@ -185,6 +185,7 @@ public class Tela_Admin_Menu_Maquinas_Controller implements Initializable {
         equip.setNome(txtNome.getText());
         equip.setMarca(txtMarca.getText());
         equip.setModelo(txtModelo.getText());
+        equip.setDiscricao(txtAreaDiscri.getText());
         // Verifique se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes

@@ -32,7 +32,7 @@
                <children>
                   <AnchorPane layoutX="52.0" layoutY="24.0" prefHeight="94.0" prefWidth="192.0" style="-fx-background-radius: 50px;" styleClass="splitpane">
                      <children>
-                        <Label fx:id="txtPreco" alignment="CENTER" layoutX="13.0" layoutY="53.0" prefHeight="64.0" prefWidth="108.0" text="1500">
+                        <Label fx:id="txtPreco" alignment="CENTER" layoutX="13.0" layoutY="53.0" prefHeight="64.0" prefWidth="108.0" text="0000">
                            <font>
                               <Font name="System Bold" size="30.0" />
                            </font>
@@ -47,7 +47,7 @@
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="txtNomePlano" layoutX="42.0" layoutY="14.0" text="Estudante" textFill="#4e4e4e">
+                        <Label fx:id="txtNomePlano" layoutX="42.0" layoutY="14.0" text="Pacote" textFill="#4e4e4e">
                            <font>
                               <Font name="System Bold" size="23.0" />
                            </font>
@@ -68,7 +68,7 @@
                               <Font name="System Bold" size="16.0" />
                            </font>
                         </Label>
-                        <Text fx:id="txtDiscr" fill="#615858" layoutX="13.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Neste exemplo, criamos um retângulo e definimos um gradiente linear como seu preenchimento. O gradiente começa no ponto (0,0) " textAlignment="JUSTIFY" wrappingWidth="236.53672790527344">
+                        <Text fx:id="txtDiscr" fill="#615858" layoutX="13.0" layoutY="159.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="JUSTIFY" wrappingWidth="236.53672790527344">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>
@@ -78,11 +78,11 @@
                               <Font name="System Bold Italic" size="14.0" />
                            </font>
                         </Label>
-                        <AnchorPane layoutX="98.0" layoutY="15.0" prefHeight="83.0" prefWidth="81.0" style="-fx-background-color: white;">
+                        <AnchorPane layoutX="89.0" layoutY="34.0" prefHeight="83.0" prefWidth="81.0" style="-fx-background-color: white;">
                            <children>
                               <ImageView fx:id="imageView" fitHeight="84.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../img/graduado.png" />
+                                    <Image url="@../img/carregar.png" />
                                  </image>
                               </ImageView>
                            </children>

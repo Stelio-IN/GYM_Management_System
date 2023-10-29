@@ -19,6 +19,7 @@ public class Instrutor extends Pessoa implements Serializable {
     private String especializacao;
     private Double classificacao;
     private Double salario;
+    private String descricao;
     @OneToMany(mappedBy = "instrutor")
     private List<Avaliacoes_Fisicas> avaliacoesFisicas;
 
@@ -30,6 +31,16 @@ public class Instrutor extends Pessoa implements Serializable {
         this.especializacao = especializacao;
     }
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    
+    
     public Double getClassificacao() {
         return classificacao;
     }
