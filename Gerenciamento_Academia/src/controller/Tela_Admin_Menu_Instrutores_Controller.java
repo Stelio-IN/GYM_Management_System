@@ -1,4 +1,3 @@
-
 package controller;
 
 import java.io.ByteArrayInputStream;
@@ -8,6 +7,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Year;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -258,6 +258,14 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
         txtId.setDisable(true);
+
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar_Quantidade_Base(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "INST" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        txtCodigo.setText(idUnico);
     }
 
     /**
@@ -298,7 +306,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtClassificacao.setText("");
         }
     }
-    
+
     public void setPessoaAdmin(Pessoa pessoa) {
         if (pessoa instanceof Instrutor instrutor) { // Realiza o type casting para Instrutor
             txtNome.setText(instrutor.getNome());

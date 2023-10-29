@@ -190,7 +190,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         int quant = dao.contar_Quantidade_Base(classe);
         System.out.println(quant);
         int anoAtual = Year.now().getValue(); // Obtém o ano atual
-        String idUnico = "CG" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        String idUnico = "CLIE" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
         System.out.println(idUnico);
         txtCodigoMembro.setText(idUnico);
         txtCodigoMembro.setDisable(true);
@@ -201,13 +201,14 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         txtNumeroInsc.setText(idFatura);
 
         txtNumeroInsc.setDisable(true);
-        txtNome.setOnKeyReleased(event -> {
-            if (!isValidName(txtNome.getText())) {
-                txtNome.setStyle("-fx-border-color: red;");
-            } else {
-                txtNome.setStyle("-fx-border-color: #DDDDDD;");
-            }
-        });
+        
+//        txtNome.setOnKeyReleased(event -> {
+//            if (!isValidName(txtNome.getText())) {
+//                txtNome.setStyle("-fx-border-color: red;");
+//            } else {
+//                txtNome.setStyle("-fx-border-color: #DDDDDD;");
+//            }
+//        });
     }
 
     void carregarCidade() {
@@ -454,16 +455,16 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     /*
         Metodos para validacoes 
      */
-    
-    private boolean isValidFullName(String name) {
-        return name.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s'-]+$");
-    }
-    public boolean isValidEmail(String email) {
-    String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-    Pattern pattern = Pattern.compile(regex);
-    Matcher matcher = pattern.matcher(email);
-
-    return matcher.matches();
-}
+//    private boolean isValidFullName(String name) {
+//        return name.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s'-]+$");
+//    }
+//
+//    public boolean isValidEmail(String email) {
+//        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+//        Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(email);
+//
+//        return matcher.matches();
+//    }
 
 }
