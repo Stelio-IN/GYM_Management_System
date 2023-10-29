@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/javafx/FXMLController.java to edit this template
- */
+
 package controller;
 
 import java.io.ByteArrayInputStream;
@@ -27,13 +24,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import model.Equipamento;
 import model.Instrutor;
 import model.Pessoa;
 
 /**
- * Está classe permite ao administrador tratar de todos os dados relativos ao instrutor
- * 
+ * Está classe permite ao administrador tratar de todos os dados relativos ao
+ * instrutor
+ *
  * @author steli
  */
 public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
@@ -65,7 +62,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     private TableColumn<?, ?> tabela_Situacao;
 
     @FXML
-    private TextField txtEspecializacao; 
+    private TextField txtEspecializacao;
 
     @FXML
     private TextField txtCodigo;
@@ -92,7 +89,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     private ImageView imageCamera;
 
     private String caminhoDoArquivo;
-    
+
     private ObservableList<Instrutor> observableListe;
 
     @FXML
@@ -230,7 +227,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         txtClassificacao.setText("");
         listar(event);
     }
-    
+
     /**
      * Método para apresentar todos os instrutores ativos no sistema
      *
@@ -301,5 +298,27 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtClassificacao.setText("");
         }
     }
+    
+    public void setPessoaAdmin(Pessoa pessoa) {
+        if (pessoa instanceof Instrutor instrutor) { // Realiza o type casting para Instrutor
+            txtNome.setText(instrutor.getNome());
+            txtId.setText(String.valueOf(instrutor.getId()));
+            txtCodigo.setText(String.valueOf(instrutor.getCodigo()));
+            txtEmail.setText(instrutor.getEmail());
+            txtEspecializacao.setText(instrutor.getEspecializacao());
+            txtSalario.setText(String.valueOf(instrutor.getSalario()));
+            txtPassword.setText(instrutor.getPassword());
+            txtClassificacao.setText(String.valueOf(instrutor.getClassificacao()));
+            if (instrutor.getImagem() != null) {
+                //Instrução que converte o array de bytes em uma Image
+                byte[] imagemBytes = instrutor.getImagem();
+                Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
+                //Intrução que define a imagem no ImageView
+                imageCamera.setImage(imagem);
+            } else {
+                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+            }
+        }
+    }
 }

@@ -27,12 +27,20 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Equipamento;
@@ -192,9 +200,17 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     @FXML
     private PieChart pieChart;
 
+    @FXML
+    private ScrollPane scrollPanePesquisa;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+
+        listView.setVisible(false);
+        painelPesquisa.setVisible(false);
+        scrollPanePesquisa.setVisible(false);
+
         contabilizar();
         carregarDadosDoBanco();
 
@@ -215,6 +231,54 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         //chamando o grafico de barra
         GraficoBarra();
 
+//        listView.getSelectionModel().selectedItemProperty().addListener(
+//                (observable, oldValue, newValue) -> pegarLinhaSelecionada((Cliente) newValue)
+//        );
+        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                pegarLinhaSelecionada(newValue);
+            }
+        });
+
+        txtPesquisa.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Se o foco for perdido (newValue == false)
+                txtPesquisa.clear(); // Limpe o conteúdo do TextField
+                listView.setVisible(false);
+                painelPesquisa.setVisible(false);
+                scrollPanePesquisa.setVisible(false);
+            }
+        });
+
+    }
+
+    public void pegarLinhaSelecionada(Pessoa pessoa) {
+        try {
+            if (pessoa instanceof Cliente) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Tela_Admin_Menu_Clientes.fxml"));
+                Parent root = loader.load();
+                Tela_Admin_Menu_Clientes_Controller controller = loader.getController();
+                controller.setPessoaAdmin(pessoa);
+                borderPane.setRight(root);
+            } else if (pessoa instanceof Funcionario) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Tela_Admin_Menu_Funcionarios.fxml"));
+                Parent root = loader.load();
+                Tela_Admin_Menu_Funcionarios_Controller controller = loader.getController();
+                controller.setPessoaAdmin(pessoa);
+                borderPane.setRight(root);
+            } else if (pessoa instanceof Instrutor) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Tela_Admin_Menu_Instrutores.fxml"));
+                Parent root = loader.load();
+                Tela_Admin_Menu_Instrutores_Controller controller = loader.getController();
+                controller.setPessoaAdmin(pessoa);
+                borderPane.setRight(root);
+            } else {
+                // Trate o caso em que a instância não corresponda a nenhum dos tipos conhecidos
+                // Pode ser apropriado lançar uma exceção ou tomar outra ação, se necessário.
+            }
+        } catch (IOException ex) {
+            // Lida com exceções de carregamento de FXML
+            ex.printStackTrace();
+        }
     }
 
     //private BarChart<?, ?> barChart;
@@ -267,16 +331,103 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     void Tela_Admin_Planos_Associacao(ActionEvent event) {
         carregarTela("/view/Tela_Admin_Menu_Plano_Associacao");
     }
-      @FXML
+
+    @FXML
     void Tela_Cadastrar_Admin(ActionEvent event) {
-         carregarTela("/view/Tela_Admin_Registrar");
+        carregarTela("/view/Tela_Admin_Registrar");
     }
+
     @FXML
     void Tela_Atualizar_Admin(ActionEvent event) {
-                carregarTela("/view/Tela_Admin_Registrar");
-                
+        carregarTela("/view/Tela_Admin_Registrar");
+
     }
 
+    @FXML
+    private TextField txtPesquisa;
 
+    @FXML
+    private AnchorPane painelPesquisa;
+    @FXML
+    private ListView<Pessoa> listView;
 
+    @FXML
+    void listarPesquisa(KeyEvent event) {
+        listaPesquisa();
+    }
+
+    public void listaPesquisa() {
+        EntityManagerFactory fabrica;
+        EntityManager gerente;
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+        gerente = fabrica.createEntityManager();
+
+        ObservableList<Pessoa> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Pessoa
+
+        TypedQuery<Pessoa> query = gerente.createQuery(
+                "SELECT p FROM Pessoa p WHERE p.nome LIKE :nome AND NOT TYPE(p) = model.Administrador",
+                Pessoa.class
+        );
+        query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
+        List<Pessoa> resultados = query.getResultList();
+        listView.setVisible(true);
+        painelPesquisa.setVisible(true);
+        scrollPanePesquisa.setVisible(true);
+
+        items.addAll(resultados); // Adicione objetos Pessoa à listaPesquisa
+
+        listView.setItems(items); // Defina a ObservableList de objetos Pessoa no ListView
+
+        // Defina a célula personalizada para mostrar apenas o nome na listaPesquisa
+        listView.setCellFactory((ListView<Pessoa> param) -> new ListCell<Pessoa>() {
+            @Override
+            protected void updateItem(Pessoa item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getNome());
+                }
+            }
+        });
+
+        gerente.close(); // Não se esqueça de fechar o EntityManager quando terminar
+        fabrica.close(); // E a EntityManagerFactory também
+    }
+
+//    public void listaPesquisa() {
+//        EntityManagerFactory fabrica;
+//        EntityManager gerente;
+//        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+//        gerente = fabrica.createEntityManager();
+//
+//        ObservableList<Pessoa> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Cliente
+//
+//        TypedQuery<Pessoa> query = gerente.createQuery("SELECT p FROM Pessoa p WHERE p.nome LIKE :nome", Pessoa.class);
+//        query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
+//        List<Pessoa> resultados = query.getResultList();
+//
+//        items.addAll(resultados); // Adicione objetos Cliente à listaPesquisa
+//
+//        listView.setItems(items); // Defina a ObservableList de objetos Cliente no ListView
+//
+//        // Defina a célula personalizada para mostrar apenas o nome na listaPesquisa
+//        //expressao Lapda
+//        listView.setCellFactory((ListView<Pessoa> param) -> new ListCell<Pessoa>() {
+//            @Override
+//            protected void updateItem(Pessoa item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (empty || item == null) {
+//                    setText(null);
+//                } else {
+//
+//                    setText(item.getNome());
+//
+//                }
+//            }
+//        });
+//
+//        gerente.close(); // Não se esqueça de fechar o EntityManager quando terminar
+//        fabrica.close(); // E a EntityManagerFactory também
+//    }
 }

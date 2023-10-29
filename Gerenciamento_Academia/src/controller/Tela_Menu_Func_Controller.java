@@ -146,22 +146,22 @@ public class Tela_Menu_Func_Controller implements Initializable {
     public void carregarTela(String tela, Pessoa pessoa) {
         Parent root = null;
 
-    try {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(tela + ".fxml"));
-        root = loader.load();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(tela + ".fxml"));
+            root = loader.load();
 
-        // Verifique se a tela carregada possui um controlador associado
-        if (loader.getController() instanceof Tela_Func_Avalicoes_Clientes_Controller) {
-            Tela_Func_Avalicoes_Clientes_Controller controller = loader.getController();
-            
-            // Passe a pessoa para o controlador da tela
-            controller.setPessoa(pessoa);
+            // Verifique se a tela carregada possui um controlador associado
+            if (loader.getController() instanceof Tela_Func_Avalicoes_Clientes_Controller) {
+                Tela_Func_Avalicoes_Clientes_Controller controller = loader.getController();
+
+                // Passe a pessoa para o controlador da tela
+                controller.setPessoa(pessoa);
+            }
+        } catch (IOException ex) {
+            java.util.logging.Logger.getLogger(Tela_Menu_Admin_Controller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (IOException ex) {
-        java.util.logging.Logger.getLogger(Tela_Menu_Admin_Controller.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
 
-    borderPane.setRight(root);
+        borderPane.setRight(root);
     }
 
     @Override
@@ -194,14 +194,14 @@ public class Tela_Menu_Func_Controller implements Initializable {
         carregarTela("/view/Tela_Func_Avalicoes_Clientes", pessoa);
     }
 
-       @FXML
+    @FXML
     void Tela_Func_AddPlano(ActionEvent event) {
-         carregarTela("/view/Tela_Func_AddPlano", pessoa);
+        carregarTela("/view/Tela_Func_AddPlano", pessoa);
     }
 
     @FXML
     void Tela_Func_Associar_Cliente(ActionEvent event) {
         carregarTela("/view/Tela_Func_Associar_Clientes", pessoa);
     }
-
+ 
 }

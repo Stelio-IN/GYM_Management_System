@@ -7,29 +7,17 @@ package controller;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Callback;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Funcionario;
 import model.Pessoa;
@@ -41,7 +29,6 @@ import model.Pessoa;
  */
 public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
-    
     @FXML
     private TableView<Funcionario> tabela;
 
@@ -63,7 +50,20 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
     @FXML
     private TableColumn<?, ?> tabela_Situacao;
 
-   
+    private Pessoa pessoa;
+
+    public void setPessoaAdmin(Pessoa pessoa) {
+        if (pessoa instanceof Funcionario funcionario) {
+            txtNome.setText(funcionario.getNome());
+            txtId.setText(funcionario.getId().toString());
+            txtCodigo.setText(String.valueOf(funcionario.getCodigo()));
+            txtEmail.setText(funcionario.getEmail());
+            txtCargo.setText(funcionario.getCargo());
+            txtSalario.setText(funcionario.getSalario().toString());
+            txtPassword.setText(funcionario.getPassword());
+
+        }
+    }
 
     /*
     metodo que pega o cliks do botao
@@ -73,11 +73,6 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
         ///lista();
     }
 
-    
-
-  
-
-    
     @FXML
     private TextField txtCargo;
 
@@ -189,8 +184,6 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
         txtId.setDisable(true);
 
-       
-
     }
 
     public void pegarLinhaSelecionada(Funcionario pessoa) {
@@ -213,4 +206,5 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
             txtPassword.setText("");
         }
     }
+
 }

@@ -25,8 +25,8 @@ public class App extends Application {
         
         
     //   Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
-  // Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
-     Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Cadastrar_Cliente_1.fxml"));
+   Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
+   //  Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Cadastrar_Cliente_1.fxml"));
         
         Scene scene = new Scene(root);
         stage.getIcons().add(imagem);
