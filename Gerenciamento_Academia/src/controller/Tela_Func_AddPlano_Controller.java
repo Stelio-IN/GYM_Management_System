@@ -23,7 +23,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Callback;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -98,6 +97,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
     Cliente clienteNovosDados = new Cliente();
     Cliente clienteAssociadoNovosDados = new Cliente();
     Plano_de_Associacao planoSelecionado = new Plano_de_Associacao();
+    Plano_de_Associacao planoClienteAssociado = new Plano_de_Associacao();
+    Plano_de_Associacao planoCliente = new Plano_de_Associacao();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,16 +121,22 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             txtNomeClientePrincipal.setText(cli.getNome());
             txtCodigoClientePrincipal.setText(cli.getCodigo());
             txtGeneroClientePrincipal.setText(cli.getGenero());
-            txtObjectivoClientePrincipal.setText(cli.getObjectivo());
+            if(cli.getPlano_de_associacao().getNome()!=null)
+            txtObjectivoClientePrincipal.setText(cli.getPlano_de_associacao().getNome());
+
             if (cli.getClinteAssociado() != null) {
                 clienteAssociadoNovosDados = cli.getClinteAssociado();
                 txtNomeClienteAssociado.setText(cli.getClinteAssociado().getNome());
                 txtCodigoClienteAssociado.setText(cli.getClinteAssociado().getCodigo());
                 txtGeneroClienteAssociado.setText(cli.getClinteAssociado().getGenero());
-                txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getObjectivo());
+                if(cli.getClinteAssociado().getPlano_de_associacao().getNome()!=null)
+                txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getPlano_de_associacao().getNome());
+                if (clienteAssociadoNovosDados.getPlano_de_associacao() != null) {
+                    planoClienteAssociado = clienteAssociadoNovosDados.getPlano_de_associacao();
+                }
                 if (cli.getClinteAssociado().getImagem() != null) {
                     // Converta o array de bytes em uma Image
-                    byte[] imagemBytes = cli.getImagem();
+                    byte[] imagemBytes = cli.getClinteAssociado().getImagem();
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                     // Definir largura e altura desejadas
@@ -137,8 +144,6 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                     imageViewAssociado.setFitHeight(93); // Altura desejada
                     // Defina a imagem no ImageView
                     imageViewAssociado.setImage(imagem);
-                } else {
-                    JOptionPane.showMessageDialog(null, "imagem nao encontrada");
                 }
             }
             if (cli.getImagem() != null) {
@@ -151,12 +156,10 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                 imageView.setFitHeight(170); // Altura desejada
                 // Defina a imagem no ImageView
                 imageView.setImage(imagem);
-            } else {
-                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
             }
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione alguem");
+            if (cli.getPlano_de_associacao() != null) {
+                planoCliente = cli.getPlano_de_associacao();
+            }
         }
     }
 
@@ -221,8 +224,6 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         if (plano != null) {
             txtNomePlano.setText(plano.getNome());
             txtPrecoPlano.setText(String.valueOf(plano.getPreco()));
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione Uma linha");
         }
     }
 
@@ -240,40 +241,98 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
     void RemoverPlano(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
         Class<Cliente> classe = Cliente.class;
-        if (clienteNovosDados != null && planoSelecionado != null) {
-            clienteNovosDados.desvincularPlanoAtivo();
 
+        if (clienteNovosDados != null && planoSelecionado != null && clienteAssociadoNovosDados != null) {
+            clienteNovosDados.desvincularPlanoAtivo();
             dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
 
         }
     }
 
+    public boolean isPlanoVigente(Date dataInicio, Date dataTermino) {
+        Date dataAtual = new Date(); // Obtenha a data atual
+
+        // Verifique se a data atual está entre a data de início e a data de término
+        return dataAtual.after(dataInicio) && dataAtual.before(dataTermino);
+    }
+    Class<Cliente> classe = Cliente.class;
+
     @FXML
     void guardarPlano(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
-        if (clienteNovosDados != null && planoSelecionado != null) {
-            Class<Cliente> classe = Cliente.class;
-            LocalDate localDate = dataPickerInicio.getValue();
-            ZoneId zoneId = ZoneId.systemDefault();
-            Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
+
+        LocalDate localDate = dataPickerInicio.getValue();
+        ZoneId zoneId = ZoneId.systemDefault();
+        Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
+
+        if (planoSelecionado.getNome().equals("Plano Casal")) {
+            if (clienteNovosDados != null && clienteAssociadoNovosDados
+                    != null && planoCliente.equals(planoClienteAssociado)) {
+                ///Metodo Importante para disveeicular plano fora da data
+
+                if (!isPlanoVigente(planoCliente.getDataInicio(), planoCliente.getDataTermino())) {
+                    clienteNovosDados.desvincularPlanoAtivo();
+                    clienteAssociadoNovosDados.desvincularPlanoAtivo();
+
+                    planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
+                    planoSelecionado.setDataInicio(date);
+                    planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
+
+                    clienteAssociadoNovosDados.setPlano_de_associacao(planoSelecionado);
+                    clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+
+                    dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
+                    dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+
+                }
+            }
+            JOptionPane.showMessageDialog(null, "Não cumpre com os requesitos");
+        }
+        if (clienteNovosDados.getPlano_de_associacao() == null || !isPlanoVigente(planoCliente.getDataInicio(), planoCliente.getDataTermino())) {
 
             planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
             planoSelecionado.setDataInicio(date);
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
 
+            clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+
             dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-            
-            if(clienteAssociadoNovosDados!=null){
-                 dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-            }
+
+//            if (clienteAssociadoNovosDados != null) {
+//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+//            }
             System.out.println(clienteNovosDados.toString());
             System.out.println(planoSelecionado.toString());
             JOptionPane.showMessageDialog(null, "Sucesso");
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione um cliente e um plano antes de salvar.");
         }
-
     }
 
+//    @FXML
+//    void guardarPlano(ActionEvent event) {
+//        GenericDAO dao = new GenericDAO();
+//        if (clienteNovosDados != null && planoSelecionado != null) {
+//            Class<Cliente> classe = Cliente.class;
+//            LocalDate localDate = dataPickerInicio.getValue();
+//            ZoneId zoneId = ZoneId.systemDefault();
+//            Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
+//
+//            planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
+//            planoSelecionado.setDataInicio(date);
+//            planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
+//
+//            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
+//
+//            if (clienteAssociadoNovosDados != null) {
+//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+//            }
+//            System.out.println(clienteNovosDados.toString());
+//            System.out.println(planoSelecionado.toString());
+//            JOptionPane.showMessageDialog(null, "Sucesso");
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Selecione um cliente e um plano antes de salvar.");
+//        }
+//
+//    }
 }

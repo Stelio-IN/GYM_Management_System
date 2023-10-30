@@ -70,7 +70,7 @@
                   <ToggleGroup fx:id="metodoPagamento" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton layoutX="144.0" layoutY="96.0" mnemonicParsing="false" onAction="#AtivarCartao" text="Cartão de crédito" textFill="#045314" toggleGroup="$metodoPagamento">
+            <RadioButton layoutX="144.0" layoutY="96.0" mnemonicParsing="false" onAction="#AtivarCartao" selected="true" text="Cartão de crédito" textFill="#045314" toggleGroup="$metodoPagamento">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
