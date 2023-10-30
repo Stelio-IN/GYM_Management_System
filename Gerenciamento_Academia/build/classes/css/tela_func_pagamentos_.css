@@ -14,7 +14,7 @@
 }
 
 .cartao{
-    -fx-background-color: linear-gradient(to right,  #0a85528f, #0226169a);
+    -fx-background-color: linear-gradient(to right,  #0ac1758f, #055c36bb);
 }
 
 .textfields_cartao{
@@ -22,4 +22,11 @@
     -fx-border-color: #cccccc00;
     -fx-background-color: transparent;
     -fx-text-fill: #ffffff;
+}
+.titulosCartao{
+    -fx-text-fill: linear-gradient(to right,  #07b46c8f, #055c36bb);
+}
+
+.botao{
+    -fx-background-color: linear-gradient(to right,  #0ac1758f, #055c36bb);
 }
