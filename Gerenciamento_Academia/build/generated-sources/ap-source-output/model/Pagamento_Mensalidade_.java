@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import model.Cliente;
 import model.Funcionario;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-10-30T21:38:39", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-10-31T01:39:41", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Pagamento_Mensalidade.class)
 public class Pagamento_Mensalidade_ { 
 
