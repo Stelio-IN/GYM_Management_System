@@ -5,6 +5,7 @@
 package controller;
 
 import java.net.URL;
+import java.time.Year;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -217,6 +218,14 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
         btncadastrar.setDisable(true);
         btneditar.setDisable(true);
         btnexcluir.setDisable(true);
+
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar_Quantidade_Base(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "FUNC" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        txtCodigo.setText(idUnico);
 
     }
 

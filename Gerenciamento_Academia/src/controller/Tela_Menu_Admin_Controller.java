@@ -268,7 +268,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             }
         });
         listView.setVisible(false);
-        painelPesquisa.setVisible(false);
+        painelPesquisaGoogle.setVisible(false);
         scrollPanePesquisa.setVisible(false);
 
     }
@@ -303,8 +303,6 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     @FXML
     private TextField txtPesquisa;
 
-    @FXML
-    private AnchorPane painelPesquisa;
     @FXML
     private ListView<Pessoa> listView;
     @FXML

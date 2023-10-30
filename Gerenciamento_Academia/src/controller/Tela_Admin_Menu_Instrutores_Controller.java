@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Year;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -31,7 +32,6 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import model.Equipamento;
 import model.Instrutor;
 import model.Pessoa;
 
@@ -67,7 +67,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     private TableColumn<Instrutor, String> tabela_Classificacao;
 
     @FXML
-    private TableColumn<?, ?> tabela_Situacao;
+    private TableColumn<Instrutor, String> tabela_Situacao;
 
     @FXML
     private TextField txtEspecializacao;
@@ -203,7 +203,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         Instru.setPassword(txtPassword.getText());
         Instru.setClassificacao(Double.valueOf(txtClassificacao.getText()));
         Instru.setDescricao(txtDescricao.getText());
-
+        
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
             Path imagePath = Paths.get(caminhoDoArquivo);
@@ -292,6 +292,15 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         btncadastrar.setDisable(true);
         btneditar.setDisable(true);
         btnexcluir.setDisable(true);
+        
+        
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar_Quantidade_Base(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "INST" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        txtCodigo.setText(idUnico);
     }
 
     /**
