@@ -5,3 +5,21 @@
 .mainFxmlClass {
 
 }
+
+
+.textfields_esquerda{
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #ccc;
+    -fx-background-color: transparent;
+}
+
+.cartao{
+    -fx-background-color: linear-gradient(to right,  #0a85528f, #0226169a);
+}
+
+.textfields_cartao{
+    -fx-border-width: 0px 0px 1px 0px;
+    -fx-border-color: #cccccc00;
+    -fx-background-color: transparent;
+    -fx-text-fill: #ffffff;
+}

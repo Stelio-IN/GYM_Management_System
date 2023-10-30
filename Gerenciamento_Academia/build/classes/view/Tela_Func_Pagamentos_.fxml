@@ -1,16 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/20.0.1" fx:controller="controller.Tela_Func_Pagamentos_Controller">
-    <stylesheets>
-        <URL value="@/css/tela_func_pagamentos_.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="435.0" prefWidth="652.0" style="-fx-background-color: white;" styleClass="mainFxmlClass" stylesheets="@../css/tela_func_pagamentos_.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Pagamentos_Controller">
    <children>
-      <TextField fx:id="txtEmail" layoutX="67.0" layoutY="107.0" prefHeight="26.0" prefWidth="260.0" />
-      <Button fx:id="btnLogin" layoutX="274.0" layoutY="151.0" mnemonicParsing="false" text="Button" />
+      <TextField fx:id="txtNome" layoutX="50.0" layoutY="275.0" prefHeight="26.0" prefWidth="249.0" styleClass="textfields_esquerda" />
+      <TextField fx:id="txtEmail" layoutX="50.0" layoutY="328.0" prefHeight="26.0" prefWidth="249.0" styleClass="textfields_esquerda" />
+      <TextField fx:id="txtContacto" layoutX="50.0" layoutY="384.0" prefHeight="26.0" prefWidth="249.0" styleClass="textfields_esquerda" />
+      <Label layoutX="48.0" layoutY="33.0" prefHeight="28.0" prefWidth="217.0" text="Método de pagamento">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <AnchorPane layoutX="330.0" layoutY="14.0" prefHeight="187.0" prefWidth="295.0" style="-fx-background-radius: 10px;" styleClass="cartao">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5368421077728271" green="0.5129824280738831" blue="0.5129824280738831" />
+               </color>
+            </DropShadow>
+         </effect>
+         <children>
+            <ImageView fitHeight="40.0" fitWidth="40.0" layoutX="33.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/chip-de-cartao-de-credito.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="204.0" layoutY="13.0" prefHeight="28.0" prefWidth="56.0" text="VISA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="25.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtExpireDate" layoutX="16.0" layoutY="139.0" prefHeight="28.0" prefWidth="114.0" promptText="23/06" styleClass="textfields_cartao">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtNumberCard" layoutX="13.0" layoutY="80.0" prefHeight="26.0" prefWidth="249.0" promptText="2021 7896 7452 1265" styleClass="textfields_cartao">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </TextField>
+            <TextField fx:id="txtCvvCard" layoutX="184.0" layoutY="135.0" prefHeight="38.0" prefWidth="67.0" promptText="1256" styleClass="textfields_cartao">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="14.0" layoutY="59.0" prefHeight="28.0" prefWidth="217.0" text="Card number" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="119.0" prefHeight="28.0" prefWidth="217.0" text="Expire date" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="193.0" layoutY="118.0" prefHeight="28.0" prefWidth="67.0" text="Cvv" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="458.0" layoutY="209.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/privacidade.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="34.0" fitWidth="34.0" layoutX="516.0" layoutY="207.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/garantido.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="40.0" fitWidth="42.0" layoutX="577.0" layoutY="204.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/pagamento-seguro.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="50.0" layoutY="245.0" prefHeight="28.0" prefWidth="217.0" text="Nome">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="302.0" prefHeight="28.0" prefWidth="217.0" text="E-mail">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="356.0" prefHeight="28.0" prefWidth="217.0" text="Telefone">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="50.0" layoutY="89.0" mnemonicParsing="false" text="Mpesa">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="metodoPagamento" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton layoutX="157.0" layoutY="89.0" mnemonicParsing="false" text="Cartão de crédito" toggleGroup="$metodoPagamento">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="50.0" layoutY="147.0" mnemonicParsing="false" text="E-mola" toggleGroup="$metodoPagamento">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <RadioButton layoutX="158.0" layoutY="147.0" mnemonicParsing="false" text="Mkesh" toggleGroup="$metodoPagamento">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </RadioButton>
+      <TextField fx:id="txtTitular" layoutX="342.0" layoutY="271.0" prefHeight="26.0" prefWidth="249.0" styleClass="textfields_esquerda" />
+      <TextField fx:id="txtDataExpiracao" layoutX="344.0" layoutY="384.0" prefHeight="26.0" prefWidth="114.0" styleClass="textfields_esquerda" />
+      <Label layoutX="342.0" layoutY="244.0" prefHeight="28.0" prefWidth="217.0" text="Titular da conta">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="364.0" prefHeight="28.0" prefWidth="128.0" text="Data de expiração">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="528.0" layoutY="364.0" prefHeight="28.0" prefWidth="34.0" text="Cvv">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtNumeroCartao" layoutX="342.0" layoutY="328.0" prefHeight="26.0" prefWidth="249.0" styleClass="textfields_esquerda" />
+      <Label layoutX="342.0" layoutY="304.0" prefHeight="28.0" prefWidth="217.0" text="Número do cartão">
+         <font>
+            <Font name="System Italic" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="50.0" layoutY="204.0" prefHeight="28.0" prefWidth="217.0" text="Detalhes do pagamento">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtCvv" layoutX="526.0" layoutY="384.0" prefHeight="26.0" prefWidth="67.0" styleClass="textfields_esquerda" />
    </children>
 </AnchorPane>
