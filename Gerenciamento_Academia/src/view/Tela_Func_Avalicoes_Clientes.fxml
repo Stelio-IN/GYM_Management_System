@@ -241,77 +241,77 @@
             </ImageView>
             <Label layoutX="42.0" layoutY="70.0" text="Nome do cliente" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="125.0" text="Altura" textFill="WHITE">
+            <Label layoutX="42.0" layoutY="125.0" text="Altura?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="183.0" text="Peso" textFill="WHITE">
+            <Label layoutX="42.0" layoutY="183.0" text="Peso?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="42.0" layoutY="243.0" text="Força" textFill="WHITE">
+            <Label layoutX="42.0" layoutY="243.0" text="Força?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="301.0" text="Imc" textFill="WHITE">
+            <Label layoutX="40.0" layoutY="301.0" text="Imc?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="360.0" text="Capacidade cardiovascular" textFill="WHITE">
+            <Label layoutX="40.0" layoutY="360.0" text="Capacidade cardiovascular?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="40.0" layoutY="419.0" text="Circunfêrencia do braço" textFill="WHITE">
+            <Label layoutX="40.0" layoutY="419.0" text="Circunfêrencia do braço?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="259.0" layoutY="70.0" text="Circunfêrencia da coxa" textFill="WHITE">
+            <Label layoutX="258.0" layoutY="70.0" text="Circunfêrencia da coxa?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="256.0" layoutY="125.0" text="Circunfêrencia panturrilha" textFill="WHITE">
+            <Label layoutX="256.0" layoutY="125.0" text="Circunfêrencia panturrilha?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="257.0" layoutY="183.0" text="Circunfêrencia do quadril" textFill="WHITE">
+            <Label layoutX="257.0" layoutY="183.0" text="Circunfêrencia do quadril?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="255.0" layoutY="243.0" text="Circunfêrencia do peito" textFill="WHITE">
+            <Label layoutX="255.0" layoutY="243.0" text="Circunfêrencia do peito?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="255.0" layoutY="301.0" text="Instrutor" textFill="WHITE">
+            <Label layoutX="255.0" layoutY="301.0" text="Instrutor?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="255.0" layoutY="360.0" text="Funcionário" textFill="WHITE">
+            <Label layoutX="255.0" layoutY="360.0" text="Funcionário?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="255.0" layoutY="419.0" text="Código" textFill="WHITE">
+            <Label layoutX="255.0" layoutY="419.0" text="Código?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="37.0" layoutY="479.0" text="Nota de avaliação" textFill="WHITE">
+            <Label layoutX="37.0" layoutY="479.0" text="Nota de avaliação?" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Italic" size="15.0" />
                </font>
             </Label>
             <Label layoutX="43.0" layoutY="19.0" text="Teste de Avaliação do cliente" textFill="#daffe8" underline="true">

@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 import model.Avaliacoes_Fisicas;
 import model.Cliente;
 import model.Pessoa;
+import model.Plano_de_Associacao;
 
 /**
  * FXML Controller class
@@ -96,7 +97,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
     @FXML
     private LineChart<String, Number> grafico;
-    XYChart.Series series = new XYChart.Series();
+    XYChart.Series series;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -108,7 +109,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
     }
 
-    public void pegarLinhaSelecionada(Cliente cliente) {
+       public void pegarLinhaSelecionada(Cliente cliente) {
         grafico.getData().clear();
         if (cliente != null) {
             txtId.setText(String.valueOf(cliente.getId()));
@@ -129,8 +130,6 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
                 // Preservar a proporção da imagem enquanto ajusta as dimensões
                 imageView.setPreserveRatio(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
             }
             if (cliente.getPlano_de_associacao() != null) {
                 txtPlanoAssociacao.setText(cliente.getPlano_de_associacao().getNome());
@@ -142,15 +141,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
                 txtDataFim.setText(dateString1);
                 txtPagamento.setText(cliente.getPlano_de_associacao().getSituacao());
             }
-//            List<Avaliacoes_Fisicas> avaliacoe = cliente.getAvaliacoes();
-//            if (cliente.getAvaliacoes() != null) {
-//                series.getData().add(new XYChart.Data("1", cliente.getAvaliacoes().get(0).getNota_da_avaliacao()));
-//                series.getData().add(new XYChart.Data("2", cliente.getAvaliacoes().get(1).getNota_da_avaliacao()));
-//              //  series.getData().add(new XYChart.Data("3", cliente.getAvaliacoes().get(2)));
-//              //  series.getData().add(new XYChart.Data("4", 3));
-//              //  series.getData().add(new XYChart.Data("5", 1));
-//                grafico.getData().add(series);
-//            }
+
 
             List<Avaliacoes_Fisicas> avaliacoes = cliente.getAvaliacoes();
 

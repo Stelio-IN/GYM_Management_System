@@ -139,7 +139,7 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Text>
-            <TextArea layoutX="24.0" layoutY="464.0" prefHeight="72.0" prefWidth="306.0" text="Aqui vai aparecer uma breve descricao sobre a &#10;especialidade do instrutor em causa assim como &#10;as suas classificacoes. Aqui vai aparecer uma &#10;breve descricao." />
+            <TextArea fx:id="txtDescricao" layoutX="24.0" layoutY="464.0" prefHeight="72.0" prefWidth="306.0" promptText="Aqui vai aparecer uma breve descricao sobre a especialidade do instrutor em causa assim como as suas classificacoes. Aqui vai aparecer uma breve descricao." />
             <Label layoutX="32.0" layoutY="199.0" text="Nome do instrutor" textFill="#847e7e">
                <font>
                   <Font name="System Bold" size="15.0" />

@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -128,11 +129,12 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                 txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getObjectivo());
                 if (cli.getClinteAssociado().getImagem() != null) {
                     // Converta o array de bytes em uma Image
-                    byte[] imagemBytes = cli.getClinteAssociado().getImagem();
+                    byte[] imagemBytes = cli.getImagem();
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
                     // Definir largura e altura desejadas
-                    imageViewAssociado.setFitWidth(158); // Largura desejada
-                    imageViewAssociado.setFitHeight(130); // Altura desejada
+                    imageViewAssociado.setFitWidth(79); // Largura desejada
+                    imageViewAssociado.setFitHeight(93); // Altura desejada
                     // Defina a imagem no ImageView
                     imageViewAssociado.setImage(imagem);
                 } else {
@@ -145,8 +147,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                 // Definir largura e altura desejadas
-                imageView.setFitWidth(158); // Largura desejada
-                imageView.setFitHeight(130); // Altura desejada
+                imageView.setFitWidth(150); // Largura desejada
+                imageView.setFitHeight(170); // Altura desejada
                 // Defina a imagem no ImageView
                 imageView.setImage(imagem);
             } else {
@@ -226,29 +228,12 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 
     @FXML
     void LimparCampos(ActionEvent event) {
-        Image imageLimpar = new Image("/img/adicionar-usuario.png");
-        imageView.setImage(imageLimpar);
-        imageViewAssociado.setImage(imageLimpar);
-
-        imageView.setFitWidth(158); // Largura desejada
-        imageView.setFitHeight(130); // Altura desejada
-
-        imageViewAssociado.setFitWidth(158); // Largura desejada
-        imageViewAssociado.setFitHeight(130); // Altura desejada
-
+        imageView.setImage(null);
         txtCodigoClientePrincipal.setText("");
-        txtCodigoClienteAssociado.setText("");
         txtNomeClientePrincipal.setText("");
-        txtNomeClienteAssociado.setText("");
         txtNomePlano.setText("");
         txtDuracaoPlano.setText("");
         txtNomeClienteAssociado.setText("");
-        txtObjectivoClientePrincipal.setText("");
-        txtObjectivoClienteAssociado.setText("");
-
-        clienteNovosDados = null;
-        clienteAssociadoNovosDados = null;
-
     }
 
     @FXML
@@ -277,9 +262,9 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
 
             dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-
-            if (clienteAssociadoNovosDados != null) {
-                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+            
+            if(clienteAssociadoNovosDados!=null){
+                 dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
             }
             System.out.println(clienteNovosDados.toString());
             System.out.println(planoSelecionado.toString());

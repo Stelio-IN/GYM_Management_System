@@ -4,7 +4,6 @@
  */
 package controller;
 
-import static com.sun.xml.fastinfoset.org.apache.xerces.util.XMLChar.isValidName;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -20,6 +19,8 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,14 +30,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -76,6 +80,11 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     private ComboBox<String> comboBoxNacionalidade;
     private final List<String> nacionalidade = new ArrayList<>();
     private ObservableList<String> obserNacionalidade;
+    
+        @FXML
+    private ComboBox<String> ComboBoxObjectivo;
+    private final List<String> objectivo = new ArrayList<>();
+    private ObservableList<String> obserObjectivo;
 
     @FXML
     private ToggleGroup genero;
@@ -94,9 +103,8 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
     @FXML
     private TextField txtContactoEmergencia;
-
-    @FXML
-    private TextField txtNomeConjuge;
+     
+    
 
     @FXML
     private TextField txtNumeroDaCasa;
@@ -108,7 +116,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
     @FXML
     private TextField txtRua;
-
+    
     @FXML
     private TextField txtPassword;
 
@@ -136,8 +144,12 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     private TextField txtCodigoMembro;
     @FXML
     private TextField txtIdentificacao;
+    
+       @FXML
+    private Button btncadastrar;
 
     String caminhoDoArquivo;
+    
 
     @FXML
     void carregarimg(ActionEvent event) {
@@ -164,10 +176,34 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
     }
 
     private String idFatura;
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        limitarDatePicker();
+        // Inicializando com campos desabiliados
+                comboBoxNacionalidade.setDisable(true);
+                comboBoxDesporto.setDisable(true);
+                comboBoxDoencas.setDisable(true);
+                dataChosser.setDisable(true);
+                txtIdentificacao.setDisable(true);
+                txtNumeroDaCasa.setDisable(true);
+                txtRua.setDisable(true);
+                comboBoxCidade.setDisable(true);
+                comboBoxBairro.setDisable(true);
+                txtPeso.setDisable(true);
+                txtAltura.setDisable(true);
+                ComboBoxObjectivo.setDisable(true);
+                txtEmail.setDisable(true);
+                txtPassword.setDisable(true);
+                txtContacto.setDisable(true);
+                txtContactoEmergencia.setDisable(true);
+                
+                btncadastrar.setDisable(true); 
+        
+      Inicializacao_1();
+      Inicializacao_2();
+    }
+    
+    public void Inicializacao_1(){
+          limitarDatePicker();
         // Desabilite a edição manual da data
         dataChosser.setEditable(false);
         //Carregar combo
@@ -176,6 +212,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         carregarNacionalidade();
         carregarBairros();
         carregarCidade();
+        carregarObjectivos();
 
         //Inicializando ficha de Inscricao e Data de inscriacao
         LocalDate dataAtual = LocalDate.now();
@@ -190,7 +227,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         int quant = dao.contar_Quantidade_Base(classe);
         System.out.println(quant);
         int anoAtual = Year.now().getValue(); // Obtém o ano atual
-        String idUnico = "CLIE" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        String idUnico = "CG" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
         System.out.println(idUnico);
         txtCodigoMembro.setText(idUnico);
         txtCodigoMembro.setDisable(true);
@@ -201,18 +238,18 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         txtNumeroInsc.setText(idFatura);
 
         txtNumeroInsc.setDisable(true);
-        
-//        txtNome.setOnKeyReleased(event -> {
-//            if (!isValidName(txtNome.getText())) {
-//                txtNome.setStyle("-fx-border-color: red;");
-//            } else {
-//                txtNome.setStyle("-fx-border-color: #DDDDDD;");
-//            }
-//        });
+        btncadastrar.setVisible(false);
+       
     }
 
+    public void Inicializacao_2(){
+        Bloqueio();
+        
+        
+        
+    }
     void carregarCidade() {
-        cidade.add("Maputo");
+       cidade.add("Maputo");
         cidade.add("Matola");
         cidade.add("Beira");
         cidade.add("Nampula");
@@ -252,7 +289,8 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         cidade.add("Palma");
         cidade.add("Montepuez");
         cidade.add("Moma");
-
+        
+        
         obserCidade = FXCollections.observableArrayList(cidade);
         comboBoxCidade.setItems(obserCidade);
     }
@@ -302,6 +340,14 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         obserNacionalidade = FXCollections.observableArrayList(nacionalidade);
         comboBoxNacionalidade.setItems(obserNacionalidade);
     }
+    void carregarObjectivos(){
+        objectivo.add("Perder Peso");
+        objectivo.add("Definir o abdômen");
+        objectivo.add("Musculação");
+        objectivo.add("Corpo em forma");
+        obserObjectivo = FXCollections.observableArrayList(objectivo);
+        ComboBoxObjectivo.setItems(obserObjectivo);
+    }
 
     private void limitarDatePicker() {
         // Defina as datas mínimas e máximas que você deseja permitir
@@ -323,13 +369,11 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
             }
         };
 
+        
         dataChosser.setDayCellFactory(dayCellFactory);
     }
 
-    @FXML
-    void ativarCampoConjugue(ActionEvent event) {
-        txtNomeConjuge.setDisable(false);
-    }
+ 
 
     @FXML
     void ativarComboDesportos(ActionEvent event) {
@@ -341,10 +385,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         comboBoxDoencas.setDisable(true);
     }
 
-    @FXML
-    void desativarCampoConjugue(ActionEvent event) {
-        txtNomeConjuge.setDisable(true);
-    }
+    
 
     @FXML
     void desativarComboDoencas(ActionEvent event) {
@@ -364,15 +405,15 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         //Radio Button 
         RadioButton pegarGenero = (RadioButton) genero.getSelectedToggle();
         String genero = pegarGenero.getText();
-
+ 
         RadioButton pegarEsporte = (RadioButton) grupoDesport.getSelectedToggle();
         String esporte = pegarEsporte.getText();
 
         RadioButton pegarDoenca = (RadioButton) grupoDoenca.getSelectedToggle();
         String doenca = pegarDoenca.getText();
 
-        RadioButton pegarEstadoCivil = (RadioButton) grupoestadocivil.getSelectedToggle();
-        String estadoCivil = pegarEstadoCivil.getText();
+//        RadioButton pegarEstadoCivil = (RadioButton) grupoestadocivil.getSelectedToggle();
+//        String estadoCivil = pegarEstadoCivil.getText();
         //Pegando a data do 
         String dataAtualFormatada = "";
         if (dataChosser.getValue() != null) {
@@ -389,7 +430,7 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         cliente.setNome(txtNome.getText());
         cliente.setNacionalidade(comboBoxNacionalidade.getValue());
         cliente.setGenero(genero);
-        cliente.setEstado_Civil(estadoCivil);
+        //cliente.setEstado_Civil(estadoCivil);
         cliente.setNascimento(dataAtualFormatada);
         cliente.setBilhete_Identificacao(txtIdentificacao.getText());
         cliente.setTelefone(txtContacto.getText());
@@ -401,8 +442,9 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         cliente.setDoenca(comboBoxDoencas.getValue());
         cliente.setEmail(txtEmail.getText());
         cliente.setNaturalidade(comboBoxCidade.getValue());
-        cliente.setNome_Do_Conjuge(txtNomeConjuge.getText());
+        //cliente.setNome_Do_Conjuge(txtNomeConjuge.getText());
         cliente.setPassword(txtPassword.getText());
+        cliente.setObjectivo(ComboBoxObjectivo.getValue());
         Endereco endereco = new Endereco();
         endereco.setBairro(comboBoxBairro.getValue());
         endereco.setRua(txtRua.getText());
@@ -410,11 +452,11 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
 
         cliente.setEndereco(endereco);
         cliente.setIsAtivo(true);
-
+        
         cliente.setPeso(Double.valueOf(txtPeso.getText()));
-
+        
         cliente.setAltura(Double.valueOf(txtAltura.getText()));
-
+        
         // Verifique se o caminho do arquivo não é nulo ou vazio
         if (caminhoDoArquivo != null && !caminhoDoArquivo.isEmpty()) {
             // Leitura da imagem do arquivo e armazenamento como um array de bytes
@@ -427,24 +469,26 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
             System.out.println("Nenhum arquivo de imagem selecionado.");
         }
 
+        
         //System.out.println(cliente);
         dao.add(cliente);
-
+        
         /*
         Ficha de inscricao sala
-         */
+        */
+        
         Ficha_Inscricao ficha = new Ficha_Inscricao();
         ficha.setNumero_Da_Ficha(idFatura);
         ficha.setCliente(txtNome.getText());
         ficha.setFuncionario("Funcionario maluco");
         ficha.setData_Da_Inscriacao(dataAtualFormatada);
         dao.add(ficha);
+        
 
         Tela_Principal(event);
     }
-
-    public void Tela_Principal(ActionEvent event) throws IOException {
-
+        public void Tela_Principal(ActionEvent event) throws IOException {
+            
         Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Func.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         Scene scene = new Scene(root);
@@ -452,19 +496,326 @@ public class Tela_Cadastrar_Cliente_Controller implements Initializable {
         stage.show();
     }
 
-    /*
-        Metodos para validacoes 
-     */
-//    private boolean isValidFullName(String name) {
-//        return name.matches("^[A-Za-zÀ-ÖØ-öø-ÿ\\s'-]+$");
-//    }
-//
-//    public boolean isValidEmail(String email) {
-//        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
-//        Pattern pattern = Pattern.compile(regex);
-//        Matcher matcher = pattern.matcher(email);
-//
-//        return matcher.matches();
-//    }
-
+        
+        ////////////// VALIDACOES ///////////////////////////
+        
+         private boolean validarBI(String BI){
+        String regex = "^[0-9]{11}[A-Za-z]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(BI);
+        return matcher.matches();
+    }
+         
+         private boolean validarNome(String nome){
+        String regex = "[A-Za-z]$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(nome);
+        return matcher.matches();
+    }
+         
+        private boolean validarEmail(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+        
+        private boolean validarNrCasa(String Nrcasa) {
+        String regex = "^[0-9]{3}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(Nrcasa);
+        return matcher.matches();
+    }
+        
+        private boolean validarPeso(String peso){
+            String regex = "^[0-9]+(\\.[0-9]+)?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(peso);
+            return matcher.matches();
+        }
+        
+         private boolean validarAltura(String altura){
+            String regex = "^[0-9]+(\\.[0-9]+)?$";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(altura);
+            return matcher.matches();
+        }
+         
+     
+      private boolean validarPassword(String password) {
+         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+      
+       private boolean validarContato(String contacto) {
+         String regex = "^[8]+[2-7]+[0-9]{7}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(contacto);
+        return matcher.matches();
+    }
+       
+       private boolean validarContatoAlternativo(String contacto) {
+         String regex = "^[8]+[2-7]+[0-9]{7}";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(contacto);
+        return matcher.matches();
+    }
+      
+        
+        
+        ///////////// BLOQUEIO DE CAMPOS ////////////////////////
+        
+        public void Bloqueio(){
+            
+            // NOME
+             txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
+            if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
+               txtNome.setStyle("-fx-text-fill: red;");
+                comboBoxNacionalidade.setDisable(true);
+                dataChosser.setDisable(true);
+                
+                txtIdentificacao.setDisable(true);
+                txtNumeroDaCasa.setDisable(true);
+                txtRua.setDisable(true);
+                comboBoxCidade.setDisable(true);
+                comboBoxBairro.setDisable(true);
+                txtPeso.setDisable(true);
+                txtAltura.setDisable(true);
+                ComboBoxObjectivo.setDisable(true);
+                txtEmail.setDisable(true);
+                txtPassword.setDisable(true);
+                txtContacto.setDisable(true);
+                txtContactoEmergencia.setDisable(true);
+                
+                
+                
+               
+            }else{
+            txtNome.setStyle("");
+              
+                  comboBoxNacionalidade.setDisable(false);
+                dataChosser.setDisable(false);
+                
+                
+            }
+        });
+             
+             //Nacionalidade
+            // Adicione um ChangeListener à ComboBox
+        comboBoxNacionalidade.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue != null) {
+                    txtIdentificacao.setDisable(false);
+                    
+               
+                } else {
+                    txtIdentificacao.setDisable(true);
+                }
+            }
+        });
+             
+             // BI
+       txtIdentificacao.textProperty().addListener((observable, oldvalue, newValue) -> {
+           if (validarBI(newValue) && newValue.length() <= 12) {
+                // BI válido e comprimento igual ou menor que 12 caracteres, estilo padrão
+                txtIdentificacao.setStyle("");
+                txtNumeroDaCasa.setDisable(false);
+            } else {
+                // BI inválido ou comprimento maior que 12 caracteres, estilo de texto vermelho
+                txtIdentificacao.setStyle("-fx-text-fill: red;");
+                txtNumeroDaCasa.setDisable(true);
+            }
+       });
+       
+          // E-MAIL
+          txtEmail.textProperty().addListener((observable, oldvalue, newValue) -> {
+              if(validarEmail(newValue)){
+                  txtEmail.setStyle("");
+              }else{
+                  txtEmail.setStyle("-fx-text-fill: red");
+              }
+          });
+          
+          // NR CASA
+          txtNumeroDaCasa.textProperty().addListener((observable, oldvalue, newValue) -> {
+              if(validarNrCasa(newValue)){
+                  txtNumeroDaCasa.setStyle("");
+                  txtRua.setDisable(false);
+                  comboBoxCidade.setDisable(false);
+              }else{
+                   txtNumeroDaCasa.setStyle("-fx-text-fill: red");
+                   txtRua.setDisable(true);
+                  comboBoxCidade.setDisable(true);
+                   
+                
+              }
+          });
+          
+          comboBoxCidade.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue != null) {
+                    comboBoxBairro.setDisable(false);
+                    
+               
+                } else {
+                    comboBoxBairro.setDisable(true);
+                }
+            }
+        });
+          
+          comboBoxBairro.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue != null) {
+                    txtPeso.setDisable(false);
+                    
+               
+                } else {
+                   txtPeso.setDisable(true);
+                }
+            }
+        });
+          
+          
+          // PESO
+          txtPeso.textProperty().addListener((obersavable, oldvalue, newValue) -> {
+              if(validarPeso(newValue)){
+                  txtPeso.setStyle("");
+                  txtAltura.setDisable(false);
+              }else{
+                  txtPeso.setStyle("-fx-text-fill: red");
+                  txtAltura.setDisable(true);
+                  
+               
+              }
+          });
+          
+          // ALTURA
+           txtAltura.textProperty().addListener((obersavable, oldvalue, newValue) -> {
+              if(validarAltura(newValue)){
+                txtAltura.setStyle("");
+                comboBoxDesporto.setDisable(false);
+                comboBoxDoencas.setDisable(false);
+                ComboBoxObjectivo.setDisable(false);
+               
+                
+              }else{
+                txtAltura.setStyle("-fx-text-fill: red");
+                  comboBoxDesporto.setDisable(true);
+                   comboBoxDoencas.setDisable(true);
+                   ComboBoxObjectivo.setDisable(true);
+                
+               
+              }
+          });
+           
+//            // Desporto
+//           comboBoxDesporto.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                if (newValue != null) {
+//                   comboBoxDoencas.setDisable(false);
+//                    
+//               
+//                } else {
+//                   comboBoxDoencas.setDisable(true);
+//                }
+//            }
+//        });
+//           
+//            // Doencas
+//           comboBoxDoencas.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+//            @Override
+//            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+//                if (newValue != null) {
+//                   ComboBoxObjectivo.setDisable(false);
+//                    
+//               
+//                } else {
+//                   ComboBoxObjectivo.setDisable(true);
+//                }
+//            }
+//        });
+           
+           // objectivo
+           ComboBoxObjectivo.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if (newValue != null) {
+                   txtEmail.setDisable(false);
+                    
+               
+                } else {
+                   txtEmail.setDisable(true);
+                }
+            }
+        });
+           
+           
+           
+           // EMAIL
+           txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (validarEmail(newValue)) {
+               // txtEmail.getStyleClass().clear();
+                txtEmail.setStyle("");
+                 txtPassword.setDisable(false);
+               
+            } else {
+                ///txtEmail.getStyleClass().clear();
+                txtEmail.setStyle("-fx-text-fill: red");
+                txtPassword.setDisable(true);
+                
+                
+            }
+        });
+        
+        // PASSWORD
+        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
+            if(validarPassword(pass)){
+                txtPassword.setStyle("");
+               btncadastrar.setVisible(true);
+               btncadastrar.setDisable(false);
+               txtContacto.setDisable(false);
+            } else {
+               
+                txtPassword.setStyle("-fx-text-fill: red");
+                txtContacto.setDisable(true);
+                
+                
+                txtContactoEmergencia.setDisable(true);
+            }
+        });
+        
+        // CONTACTO
+        txtContacto.textProperty().addListener((observable, oldvalue, contato) -> {
+            if(validarContato(contato)){
+            //   txtContacto.getStyleClass().clear();
+                txtContacto.setStyle("");
+               txtContactoEmergencia.setDisable(false);
+            } else {
+               // txtContacto.getStyleClass().clear();
+                txtContacto.setStyle("-fx-text-fill: red");
+                txtContactoEmergencia.setDisable(true);
+            }
+        });
+        
+        // CONTACTO ALTERNATIVO
+         txtContactoEmergencia.textProperty().addListener((observable, oldvalue, contato) -> {
+            if(validarContatoAlternativo(contato)){
+              /// txtContacto.getStyleClass().clear();
+              txtContactoEmergencia.setStyle("");
+             
+            } else {
+            ///  txtContactoAlternativo.getStyleClass().clear();
+               txtContactoEmergencia.setStyle("-fx-text-fill: red");
+               
+           }
+        });
+          
+          
+        }
 }

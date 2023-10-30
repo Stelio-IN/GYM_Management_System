@@ -187,8 +187,8 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                     // Definir largura e altura desejadas
-                    imageViewSegundo.setFitWidth(79); // Largura desejada
-                    imageViewSegundo.setFitHeight(93); // Altura desejada
+                    imageViewSegundo.setFitWidth(99); // Largura desejada
+                    imageViewSegundo.setFitHeight(113); // Altura desejada
                     // Defina a imagem no ImageView
                     imageViewSegundo.setImage(imagem);
                 } else {

@@ -11,8 +11,18 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.NamedQuery;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.swing.JOptionPane;
+import model.Ficha_Inscricao;
 import model.Pessoa;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
 
 /**
  *
@@ -311,4 +321,33 @@ public List<Pessoa> listarTodosParaRelatorio(Class<Pessoa> classe) {
     }
     }
      */
+    
+//    Configuration configuration = new Configuration().configure("persistence.xml");
+//ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+//SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+//
+//    
+//    public List<Ficha_Inscricao> obterNotificacoesDeCadastroNaoLidas() {
+//    Session session = sessionFactory.openSession();
+//    try {
+//        CriteriaBuilder builder = session.getCriteriaBuilder();
+//        CriteriaQuery<Ficha_Inscricao> query = builder.createQuery(Ficha_Inscricao.class);
+//        Root<Ficha_Inscricao> root = query.from(Ficha_Inscricao.class);
+//
+//        // Critério para notificações não lidas de cadastro
+//        Predicate criteria = builder.and(
+//            //builder.equal(root.get("lida"), false),
+//            builder.equal(root.get("funcionario"), "Funcionario maluco")
+//        );
+//
+//        query.select(root).where(criteria);
+//
+//        return session.createQuery(query).getResultList();
+//    } finally {
+//        session.close();
+//    }
+//}
+    
+     
+    
 }

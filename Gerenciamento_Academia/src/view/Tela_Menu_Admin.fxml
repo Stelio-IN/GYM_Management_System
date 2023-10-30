@@ -246,7 +246,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AreaChart layoutX="24.0" layoutY="42.0" prefHeight="228.0" prefWidth="506.0">
+                  <AreaChart fx:id="GraficoArea" layoutX="24.0" layoutY="42.0" prefHeight="228.0" prefWidth="506.0" style="-fx-background-color: white;">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -302,11 +302,11 @@
                   <Image url="@../img/notificacao.png" />
                </image>
             </ImageView>
-            <ScrollPane fx:id="scrollPanePesquisa" layoutX="699.0" layoutY="21.0" prefHeight="200.0" prefWidth="268.0" style="-fx-background-color: transparente;">
+            <ScrollPane fx:id="scrollPanePesquisa" layoutX="699.0" layoutY="14.0" prefHeight="200.0" prefWidth="267.0" style="-fx-background-color: transparent;">
               <content>
-                <AnchorPane fx:id="painelPesquisa" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="251.0" style="-fx-background-color: transparent;">
+                <AnchorPane fx:id="painelPesquisaGoogle" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="254.0" style="-fx-background-color: transparent;">
                      <children>
-                        <ListView fx:id="listView" layoutY="-1.0" prefHeight="215.0" prefWidth="251.0" style="-fx-background-color: transparent;" />
+                        <ListView fx:id="listView" prefHeight="200.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
                      </children>
                   </AnchorPane>
               </content>
