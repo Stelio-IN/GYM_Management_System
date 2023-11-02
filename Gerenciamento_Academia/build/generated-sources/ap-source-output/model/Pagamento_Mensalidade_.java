@@ -7,7 +7,7 @@ import model.Cliente;
 import model.Funcionario;
 import model.Plano_de_Associacao;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-02T19:01:05", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-02T14:07:22", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Pagamento_Mensalidade.class)
 public class Pagamento_Mensalidade_ { 
 

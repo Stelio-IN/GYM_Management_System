@@ -135,11 +135,16 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
                 txtPlanoAssociacao.setText(cliente.getPlano_de_associacao().getNome());
                 //Formatacao de data
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
+                if(cliente.getPlano_de_associacao().getDataInicio() != null){
+                    
+                
                 String dateString = sdf.format(cliente.getPlano_de_associacao().getDataInicio()); // Convert the date to a string
                 txtDataInicio.setText(dateString);
-                String dateString1 = sdf.format(cliente.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
+                 String dateString1 = sdf.format(cliente.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
                 txtDataFim.setText(dateString1);
                 txtPagamento.setText(cliente.getPlano_de_associacao().getSituacao());
+                }
+               
             }
 
 

@@ -2,9 +2,10 @@
  * Empty Stylesheet file.
  */
 
-.mainFxmlClass {
+ .mainFxmlClass {
+    -fx-background-color: #e5f8e8;
+    }
 
-}
 
 
 .textfields_esquerda{
@@ -30,3 +31,8 @@
 .botao{
     -fx-background-color: linear-gradient(to right,  #0ac1758f, #055c36bb);
 }
+
+.tabelinha{
+    -fx-background-color: linear-gradient(to right,  #0ce58b0c, #0ce58b07);
+    -fx-text-fill: rgb(0, 0, 0);
+    -fx-background-radius: 0px;}
