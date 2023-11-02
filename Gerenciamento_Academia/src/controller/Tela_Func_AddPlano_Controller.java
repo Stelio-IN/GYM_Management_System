@@ -29,6 +29,7 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import model.Cliente;
+import model.Pagamento_Mensalidade;
 import model.Plano_de_Associacao;
 
 /**
@@ -266,8 +267,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 
         }
     }
-
-    @FXML
+      @FXML
     void guardarPlano(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
         if (clienteNovosDados != null && planoSelecionado != null) {
@@ -279,14 +279,24 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
             planoSelecionado.setDataInicio(date);
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
-
+            planoSelecionado.setStatus(false);
+            
+            clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+            
             dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
 
-            if (clienteAssociadoNovosDados != null) {
-                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-            }
-            System.out.println(clienteNovosDados.toString());
-            System.out.println(planoSelecionado.toString());
+//            if (clienteAssociadoNovosDados != null) {
+//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+//            }
+            
+            Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
+            pagamento.setCliente(clienteNovosDados);
+            pagamento.setPlano_de_Associacao(planoSelecionado);
+            pagamento.setValor(planoSelecionado.getPreco());
+            
+            dao.add(pagamento);
+            
+            
             JOptionPane.showMessageDialog(null, "Sucesso");
 
         } else {
@@ -294,5 +304,33 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         }
 
     }
+
+//    @FXML
+//    void guardarPlano(ActionEvent event) {
+//        GenericDAO dao = new GenericDAO();
+//        if (clienteNovosDados != null && planoSelecionado != null) {
+//            Class<Cliente> classe = Cliente.class;
+//            LocalDate localDate = dataPickerInicio.getValue();
+//            ZoneId zoneId = ZoneId.systemDefault();
+//            Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
+//
+//            planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
+//            planoSelecionado.setDataInicio(date);
+//            planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
+//
+//            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
+//
+//            if (clienteAssociadoNovosDados != null) {
+//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+//            }
+//            System.out.println(clienteNovosDados.toString());
+//            System.out.println(planoSelecionado.toString());
+//            JOptionPane.showMessageDialog(null, "Sucesso");
+//
+//        } else {
+//            JOptionPane.showMessageDialog(null, "Selecione um cliente e um plano antes de salvar.");
+//        }
+//
+//    }
 
 }

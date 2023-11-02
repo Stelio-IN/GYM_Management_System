@@ -7,7 +7,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import model.Cliente;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-02T14:07:22", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-03T03:51:31", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Plano_de_Associacao.class)
 public class Plano_de_Associacao_ { 
 

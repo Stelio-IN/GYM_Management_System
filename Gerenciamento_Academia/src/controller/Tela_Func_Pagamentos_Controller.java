@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import model.Cliente;
+import model.Funcionario;
 import model.Instrutor;
 import model.Pagamento_Mensalidade;
 import model.Plano_de_Associacao;
@@ -52,8 +54,8 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
     @FXML
     private TableColumn<Pagamento_Mensalidade, Double> coluna_Valor;
 
-    @FXML
-    private TableColumn<Pagamento_Mensalidade, String> coluna_Funcionario;
+   // @FXML
+   // private TableColumn<Pagamento_Mensalidade, String> coluna_Funcionario;
 
     @FXML
     private ImageView emola;
@@ -238,20 +240,26 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
 //    }
     private ObservableList<Pagamento_Mensalidade> observableListe;
 
-    void listar() {
+ void listar() {
         GenericDAO dao = new GenericDAO();
 
-        Class<Pagamento_Mensalidade> pagamento_Classe = Pagamento_Mensalidade.class;
-        List<Pagamento_Mensalidade> lista = (List<Pagamento_Mensalidade>) dao.listar(pagamento_Classe);
+        
+    Class<Pagamento_Mensalidade> pagamento_Classe = Pagamento_Mensalidade.class;
+    List<Pagamento_Mensalidade> lista = (List<Pagamento_Mensalidade>) dao.listar(pagamento_Classe);
 
-        coluna_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        coluna_Cliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
-        coluna_Pacote.setCellValueFactory(new PropertyValueFactory<>("plano_de_Associacao"));
-        coluna_Valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        coluna_Funcionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
+    // Filter the list to include only payments with status == false
+    List<Pagamento_Mensalidade> filteredList = lista.stream()
+            .filter(p -> !p.isStatus())  // Assuming isStatus() returns the boolean status
+            .collect(Collectors.toList());
 
-        observableListe = FXCollections.observableArrayList(lista);
-        tabela_Pagemento.setItems(observableListe);
+    coluna_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    coluna_Cliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+    coluna_Pacote.setCellValueFactory(new PropertyValueFactory<>("plano_de_Associacao"));
+    coluna_Valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+  //  coluna_Funcionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
+
+    observableListe = FXCollections.observableArrayList(filteredList);
+    tabela_Pagemento.setItems(observableListe);
     }
 
     @Override
@@ -265,15 +273,37 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
     }
 
     private Cliente cliente = new  Cliente();
+   GenericDAO dao = new GenericDAO();
+   //   private Funcionario funcionario;
+    private Pagamento_Mensalidade pagamento;
     
     
-    public void pegarLinhaSelecionada(Pagamento_Mensalidade pagamento) {
+    @FXML
+    void efetuarPagamento(ActionEvent event) {
         if (pagamento != null) {
-            cliente = pagamento.getCliente();
+
+            pagamento.setStatus(true);
+
+            Cliente cliente = pagamento.getCliente();
+            
+            cliente.getPlano_de_associacao().setStatus(true);
+            dao.Atualizar(Cliente.class, cliente.getId(), cliente);
+            dao.Atualizar(Pagamento_Mensalidade.class, pagamento.getId(), pagamento);
+            
+
+            JOptionPane.showMessageDialog(null, "Pago");
+        } else {
+            JOptionPane.showMessageDialog(null, "Fail");
+        }
+    }
+    public void pegarLinhaSelecionada(Pagamento_Mensalidade factura) {
+        if (factura != null) {
+            pagamento = factura;
+            cliente = factura.getCliente();
             txtNome.setText(cliente.getNome());
             txtEmail.setText(cliente.getEmail());
             txtContacto.setText(cliente.getTelefone());
-            txtValor.setText(pagamento.getValor().toString());
+            txtValor.setText(factura.getValor().toString());
             //JOptionPane.showMessageDialog(null,"Stelio");       
         }
     }

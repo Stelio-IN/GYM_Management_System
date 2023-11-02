@@ -204,7 +204,7 @@
                   <Image url="@../img/emola.png" />
                </image>
             </ImageView>
-            <Button fx:id="btnPagamento" layoutX="364.0" layoutY="472.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="162.0" styleClass="botao" text="Efetuar pagamento" textFill="WHITE">
+            <Button fx:id="btnPagamento" layoutX="364.0" layoutY="472.0" mnemonicParsing="false" onAction="#efetuarPagamento" prefHeight="30.0" prefWidth="162.0" styleClass="botao" text="Efetuar pagamento" textFill="WHITE">
                <effect>
                   <DropShadow>
                      <color>
@@ -237,7 +237,6 @@
                       <TableColumn fx:id="coluna_Cliente" prefWidth="95.2000732421875" styleClass="tabelinha" text="Cliente" />
                         <TableColumn fx:id="coluna_Valor" prefWidth="79.199951171875" styleClass="tabelinha" text="Valor " />
                         <TableColumn fx:id="coluna_Pacote" prefWidth="100.0" text="Pacote" />
-                        <TableColumn fx:id="coluna_Funcionario" prefWidth="132.0" text="Funcionario" />
                     </columns>
                   </TableView>
                   <QuadCurve controlX="209.79998779296875" controlY="100.00001525878906" endX="294.62005615234375" endY="-3.255619525909424" fill="#108952" layoutX="-32.0" layoutY="3.0" startX="63.20001220703125" startY="-3.2556304931640625" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva" />
