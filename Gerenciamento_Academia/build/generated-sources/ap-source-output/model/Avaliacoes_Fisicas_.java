@@ -7,7 +7,7 @@ import model.Cliente;
 import model.Funcionario;
 import model.Instrutor;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-02T14:07:22", comments="EclipseLink-2.7.10.v20211216-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-02T15:15:52", comments="EclipseLink-2.7.10.v20211216-rNA")
 @StaticMetamodel(Avaliacoes_Fisicas.class)
 public class Avaliacoes_Fisicas_ { 
 
