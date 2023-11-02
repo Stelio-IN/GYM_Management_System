@@ -25,6 +25,9 @@ public class Pagamento_Mensalidade implements Serializable {
     private Cliente cliente;
     @ManyToOne
     private Funcionario funcionario;
+    
+    @ManyToOne
+    private Plano_de_Associacao plano_de_Associacao;
     private String data_Pagamento;
     private Double valor;
 

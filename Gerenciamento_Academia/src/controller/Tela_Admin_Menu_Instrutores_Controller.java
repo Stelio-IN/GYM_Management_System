@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Year;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
@@ -31,13 +32,13 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import model.Equipamento;
 import model.Instrutor;
 import model.Pessoa;
 
 /**
- * Está classe permite ao administrador tratar de todos os dados relativos ao instrutor
- * 
+ * Está classe permite ao administrador tratar de todos os dados relativos ao
+ * instrutor
+ *
  * @author steli
  */
 public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
@@ -66,10 +67,10 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
     private TableColumn<Instrutor, String> tabela_Classificacao;
 
     @FXML
-    private TableColumn<?, ?> tabela_Situacao;
+    private TableColumn<Instrutor, String> tabela_Situacao;
 
     @FXML
-    private TextField txtEspecializacao; 
+    private TextField txtEspecializacao;
 
     @FXML
     private TextField txtCodigo;
@@ -91,8 +92,8 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
 
     @FXML
     private TextField txtClassificacao;
-    
-     @FXML
+
+    @FXML
     private Button btncadastrar;
 
     @FXML
@@ -100,15 +101,15 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
 
     @FXML
     private Button btnexcluir;
-    
-     @FXML
+
+    @FXML
     private TextArea txtDescricao;
 
     @FXML
     private ImageView imageCamera;
 
     private String caminhoDoArquivo;
-    
+
     private ObservableList<Instrutor> observableListe;
 
     @FXML
@@ -247,7 +248,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
         txtClassificacao.setText("");
         listar(event);
     }
-    
+
     /**
      * Método para apresentar todos os instrutores ativos no sistema
      *
@@ -278,19 +279,28 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
         txtId.setDisable(true);
-        
+
         Bloqueio();
         txtId.setDisable(true);
-            txtCodigo.setDisable(true);
-            txtEmail.setDisable(true);
-            txtEspecializacao.setDisable(true);
-            txtSalario.setDisable(true);
-            txtPassword.setDisable(true);
-            txtClassificacao.setDisable(true);
-            txtDescricao.setDisable(true);
-            btncadastrar.setDisable(true);
-            btneditar.setDisable(true);
-            btnexcluir.setDisable(true);
+        txtCodigo.setDisable(true);
+        txtEmail.setDisable(true);
+        txtEspecializacao.setDisable(true);
+        txtSalario.setDisable(true);
+        txtPassword.setDisable(true);
+        txtClassificacao.setDisable(true);
+        txtDescricao.setDisable(true);
+        btncadastrar.setDisable(true);
+        btneditar.setDisable(true);
+        btnexcluir.setDisable(true);
+        
+        
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar_Quantidade_Base(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "INST" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        txtCodigo.setText(idUnico);
     }
 
     /**
@@ -309,7 +319,7 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtPassword.setText(pessoa.getPassword());
             txtClassificacao.setText(pessoa.getClassificacao().toString());
             txtDescricao.setText(pessoa.getDescricao());
-            
+
             if (pessoa.getImagem() != null) {
                 //Instrução que converte o array de bytes em uma Image
                 byte[] imagemBytes = pessoa.getImagem();
@@ -333,132 +343,137 @@ public class Tela_Admin_Menu_Instrutores_Controller implements Initializable {
             txtDescricao.setText("");
         }
     }
-    
+
+    public void setPessoaAdmin(Pessoa pessoa) {
+        if (pessoa instanceof Instrutor instrutor) { // Realiza o type casting para Instrutor
+            txtNome.setText(instrutor.getNome());
+            txtId.setText(String.valueOf(instrutor.getId()));
+            txtCodigo.setText(String.valueOf(instrutor.getCodigo()));
+            txtEmail.setText(instrutor.getEmail());
+            txtEspecializacao.setText(instrutor.getEspecializacao());
+            txtSalario.setText(String.valueOf(instrutor.getSalario()));
+            txtPassword.setText(instrutor.getPassword());
+            txtClassificacao.setText(String.valueOf(instrutor.getClassificacao()));
+            if (instrutor.getImagem() != null) {
+                //Instrução que converte o array de bytes em uma Image
+                byte[] imagemBytes = instrutor.getImagem();
+                Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+
+                //Intrução que define a imagem no ImageView
+                imageCamera.setImage(imagem);
+            }
+        }
+    }
+
     // VALIDACAO
-     private boolean validarPassword(String password) {
-         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
+    private boolean validarPassword(String password) {
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-     
-       private boolean validarEmail(String email) {
+
+    private boolean validarEmail(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-       
-        private boolean validarClassificacao(String peso){
-            String regex = "^[0-5]{1}+(\\.[0-9]+)?$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(peso);
-            return matcher.matches();
-        }
-        
-         private boolean validarSalario(String altura){
-            String regex = "^[0-9]+(\\.[0-9]+)?$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(altura);
-            return matcher.matches();
-        }
-    
-     public void Bloqueio(){
-            
-            // NOME
-             txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
-               txtNome.setStyle("-fx-text-fill: red;");
-               
+
+    private boolean validarClassificacao(String peso) {
+        String regex = "^[0-5]{1}+(\\.[0-9]+)?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(peso);
+        return matcher.matches();
+    }
+
+    private boolean validarSalario(String altura) {
+        String regex = "^[0-9]+(\\.[0-9]+)?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(altura);
+        return matcher.matches();
+    }
+
+    public void Bloqueio() {
+
+        // NOME
+        txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
+                txtNome.setStyle("-fx-text-fill: red;");
+
                 txtEspecializacao.setDisable(true);
                 txtPassword.setDisable(true);
-               
-            }else{
-            txtNome.setStyle("");
-            txtEspecializacao.setDisable(false);           
-            }
-        });
-             
-             // Especializacao
-             txtEspecializacao.textProperty().addListener((observable, oldValue, newValue) -> {
-            if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
-               txtEspecializacao.setStyle("-fx-text-fill: red;");
-               
-                txtClassificacao.setDisable(true);
-             
-               
-            }else{
-            txtEspecializacao.setStyle("");
-            txtClassificacao.setDisable(false);           
-            }
-        });
-             
-          
-         
-       
-          // E-MAIL
-          txtEmail.textProperty().addListener((observable, oldvalue, newValue) -> {
-              if(validarEmail(newValue)){
-                  txtEmail.setStyle("");
-                   txtPassword.setDisable(false);
-              }else{
-                  txtEmail.setStyle("-fx-text-fill: red");
-                   txtPassword.setDisable(true);
-              }
-          });
-          
-        
-          
-          
-          
-          
-          
-          // Classificacao
-          txtClassificacao.textProperty().addListener((obersavable, oldvalue, newValue) -> {
-              if(validarClassificacao(newValue)){
-                  txtClassificacao.setStyle("");
-                  txtSalario.setDisable(false);
-              }else{
-                  txtClassificacao.setStyle("-fx-text-fill: red");
-                 txtSalario.setDisable(true);
-                  
-               
-              }
-          });
-          
-          // Salario
-           txtSalario.textProperty().addListener((obersavable, oldvalue, newValue) -> {
-              if(validarSalario(newValue)){
-                txtSalario.setStyle("");
-               txtEmail.setDisable(false);
-               
-                
-              }else{
-                txtSalario.setStyle("-fx-text-fill: red");
-                 txtEmail.setDisable(true);
-                
-               
-              }
-          });
-           
-           // PASSWORD
-        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
-            if(validarPassword(pass)){
-                txtPassword.setStyle("");
-               btncadastrar.setDisable(false);
-            btneditar.setDisable(false);
-            btnexcluir.setDisable(false);
-            txtDescricao.setDisable(false);
+
             } else {
-               
-                txtPassword.setStyle("-fx-text-fill: red");
-                 
-                
+                txtNome.setStyle("");
+                txtEspecializacao.setDisable(false);
             }
         });
-          
-          
-        }
-    
+
+        // Especializacao
+        txtEspecializacao.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
+                txtEspecializacao.setStyle("-fx-text-fill: red;");
+
+                txtClassificacao.setDisable(true);
+
+            } else {
+                txtEspecializacao.setStyle("");
+                txtClassificacao.setDisable(false);
+            }
+        });
+
+        // E-MAIL
+        txtEmail.textProperty().addListener((observable, oldvalue, newValue) -> {
+            if (validarEmail(newValue)) {
+                txtEmail.setStyle("");
+                txtPassword.setDisable(false);
+            } else {
+                txtEmail.setStyle("-fx-text-fill: red");
+                txtPassword.setDisable(true);
+            }
+        });
+
+        // Classificacao
+        txtClassificacao.textProperty().addListener((obersavable, oldvalue, newValue) -> {
+            if (validarClassificacao(newValue)) {
+                txtClassificacao.setStyle("");
+                txtSalario.setDisable(false);
+            } else {
+                txtClassificacao.setStyle("-fx-text-fill: red");
+                txtSalario.setDisable(true);
+
+            }
+        });
+
+        // Salario
+        txtSalario.textProperty().addListener((obersavable, oldvalue, newValue) -> {
+            if (validarSalario(newValue)) {
+                txtSalario.setStyle("");
+                txtEmail.setDisable(false);
+
+            } else {
+                txtSalario.setStyle("-fx-text-fill: red");
+                txtEmail.setDisable(true);
+
+            }
+        });
+
+        // PASSWORD
+        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
+            if (validarPassword(pass)) {
+                txtPassword.setStyle("");
+                btncadastrar.setDisable(false);
+                btneditar.setDisable(false);
+                btnexcluir.setDisable(false);
+                txtDescricao.setDisable(false);
+            } else {
+
+                txtPassword.setStyle("-fx-text-fill: red");
+
+            }
+        });
+
+    }
 
 }

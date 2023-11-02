@@ -5,34 +5,23 @@
 package controller;
 
 import java.net.URL;
+import java.time.Year;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Callback;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Funcionario;
 import model.Pessoa;
@@ -44,7 +33,6 @@ import model.Pessoa;
  */
 public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
-    
     @FXML
     private TableView<Funcionario> tabela;
 
@@ -66,8 +54,6 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
     @FXML
     private TableColumn<?, ?> tabela_Situacao;
 
-   
-
     /*
     metodo que pega o cliks do botao
      */
@@ -76,11 +62,6 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
         ///lista();
     }
 
-    
-
-  
-
-    
     @FXML
     private TextField txtCargo;
 
@@ -92,7 +73,7 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
     @FXML
     private TextField txtNome;
-    
+
     @FXML
     private Button btncadastrar;
 
@@ -101,7 +82,6 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
     @FXML
     private Button btnexcluir;
-
 
     @FXML
     private TextField txtPassword;
@@ -190,6 +170,19 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
         tabela.setItems(observableListe);
     }
 
+    public void setPessoaAdmin(Pessoa pessoa) {
+        if (pessoa instanceof Funcionario funcionario) {
+            txtNome.setText(funcionario.getNome());
+            txtId.setText(funcionario.getId().toString());
+            txtCodigo.setText(String.valueOf(funcionario.getCodigo()));
+            txtEmail.setText(funcionario.getEmail());
+            txtCargo.setText(funcionario.getCargo());
+            txtSalario.setText(funcionario.getSalario().toString());
+            txtPassword.setText(funcionario.getPassword());
+
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -204,15 +197,23 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
 
         Bloqueio();
         txtId.setDisable(true);
-            txtCodigo.setDisable(true);
-            txtEmail.setDisable(true);
-            txtCargo.setDisable(true);
-            txtSalario.setDisable(true);
-            txtPassword.setDisable(true);
-           
-            btncadastrar.setDisable(true);
-            btneditar.setDisable(true);
-            btnexcluir.setDisable(true);
+        txtCodigo.setDisable(true);
+        txtEmail.setDisable(true);
+        txtCargo.setDisable(true);
+        txtSalario.setDisable(true);
+        txtPassword.setDisable(true);
+
+        btncadastrar.setDisable(true);
+        btneditar.setDisable(true);
+        btnexcluir.setDisable(true);
+
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar_Quantidade_Base(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "FUNC" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        txtCodigo.setText(idUnico);
 
     }
 
@@ -236,120 +237,104 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
             txtPassword.setText("");
         }
     }
-    
+
     // VALIDACAO
-     private boolean validarPassword(String password) {
-         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
+    private boolean validarPassword(String password) {
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-     
-       private boolean validarEmail(String email) {
+
+    private boolean validarEmail(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-       
-        private boolean validarClassificacao(String peso){
-            String regex = "^[0-5]{1}+(\\.[0-9]+)?$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(peso);
-            return matcher.matches();
-        }
-        
-         private boolean validarSalario(String altura){
-            String regex = "^[0-9]+(\\.[0-9]+)?$";
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(altura);
-            return matcher.matches();
-        }
-    
-     public void Bloqueio(){
-            
-            // NOME
-             txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
-               txtNome.setStyle("-fx-text-fill: red;");
-               
+
+    private boolean validarClassificacao(String peso) {
+        String regex = "^[0-5]{1}+(\\.[0-9]+)?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(peso);
+        return matcher.matches();
+    }
+
+    private boolean validarSalario(String altura) {
+        String regex = "^[0-9]+(\\.[0-9]+)?$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(altura);
+        return matcher.matches();
+    }
+
+    public void Bloqueio() {
+
+        // NOME
+        txtNome.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
+                txtNome.setStyle("-fx-text-fill: red;");
+
                 txtCargo.setDisable(true);
                 txtPassword.setDisable(true);
-               
-            }else{
-            txtNome.setStyle("");
-            txtCargo.setDisable(false);           
-            }
-        });
-             
-             // Cargo
-             txtCargo.textProperty().addListener((observable, oldValue, newValue) -> {
-            if ( newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
-               txtCargo.setStyle("-fx-text-fill: red;");
-               
-                txtSalario.setDisable(true);
-             
-               
-            }else{
-            txtCargo.setStyle("");
-            txtSalario.setDisable(false);           
-            }
-        });
-             
-          
-         
-       
-          // E-MAIL
-          txtEmail.textProperty().addListener((observable, oldvalue, newValue) -> {
-              if(validarEmail(newValue)){
-                  txtEmail.setStyle("");
-                   txtPassword.setDisable(false);
-              }else{
-                  txtEmail.setStyle("-fx-text-fill: red");
-                   txtPassword.setDisable(true);
-              }
-          });
-          
-        
-          
-          
-          
-          
-          
-         
-          
-          // Salario
-           txtSalario.textProperty().addListener((obersavable, oldvalue, newValue) -> {
-              if(validarSalario(newValue)){
-                txtSalario.setStyle("");
-               txtEmail.setDisable(false);
-               
-                
-              }else{
-                txtSalario.setStyle("-fx-text-fill: red");
-                 txtEmail.setDisable(true);
-                
-               
-              }
-          });
-           
-           // PASSWORD
-        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
-            if(validarPassword(pass)){
-                txtPassword.setStyle("");
-               btncadastrar.setDisable(false);
-            btneditar.setDisable(false);
-            btnexcluir.setDisable(false);
-           
+
             } else {
-               
-                txtPassword.setStyle("-fx-text-fill: red");
-                 
-                
+                txtNome.setStyle("");
+                txtCargo.setDisable(false);
             }
         });
-          
-          
-        }
-    
+
+        // Cargo
+        txtCargo.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.length() < 7 && !newValue.matches(".*\\d.*")) {
+                txtCargo.setStyle("-fx-text-fill: red;");
+
+                txtSalario.setDisable(true);
+
+            } else {
+                txtCargo.setStyle("");
+                txtSalario.setDisable(false);
+            }
+        });
+
+        // E-MAIL
+        txtEmail.textProperty().addListener((observable, oldvalue, newValue) -> {
+            if (validarEmail(newValue)) {
+                txtEmail.setStyle("");
+                txtPassword.setDisable(false);
+            } else {
+                txtEmail.setStyle("-fx-text-fill: red");
+                txtPassword.setDisable(true);
+            }
+        });
+
+        // Salario
+        txtSalario.textProperty().addListener((obersavable, oldvalue, newValue) -> {
+            if (validarSalario(newValue)) {
+                txtSalario.setStyle("");
+                txtEmail.setDisable(false);
+
+            } else {
+                txtSalario.setStyle("-fx-text-fill: red");
+                txtEmail.setDisable(true);
+
+            }
+        });
+
+        // PASSWORD
+        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
+            if (validarPassword(pass)) {
+                txtPassword.setStyle("");
+                btncadastrar.setDisable(false);
+                btneditar.setDisable(false);
+                btnexcluir.setDisable(false);
+
+            } else {
+
+                txtPassword.setStyle("-fx-text-fill: red");
+
+            }
+        });
+
+    }
+
 }

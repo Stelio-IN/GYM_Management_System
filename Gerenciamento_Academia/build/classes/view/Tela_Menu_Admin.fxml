@@ -7,9 +7,11 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.image.Image?>
@@ -289,7 +291,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <TextField layoutX="699.0" layoutY="-13.0" opacity="0.51" prefHeight="22.0" prefWidth="268.0" promptText="Pesquisar" style="-fx-border-radius: 50px; -fx-border-color: #AEB2C3; -fx-border-width: 1px 1px 1px 1px;" styleClass="pesquisar" text="Pesquisar" />
+            <TextField fx:id="txtPesquisa" layoutX="699.0" layoutY="-13.0" onKeyReleased="#listarPesquisa" opacity="0.51" prefHeight="22.0" prefWidth="268.0" promptText="Pesquisar" style="-fx-border-radius: 50px; -fx-border-color: #AEB2C3; -fx-border-width: 1px 1px 1px 1px;" styleClass="pesquisar" />
             <ImageView fitHeight="23.0" fitWidth="26.0" layoutX="934.0" layoutY="-11.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/lupa.png" />
@@ -300,6 +302,15 @@
                   <Image url="@../img/notificacao.png" />
                </image>
             </ImageView>
+            <ScrollPane fx:id="scrollPanePesquisa" layoutX="699.0" layoutY="14.0" prefHeight="200.0" prefWidth="267.0" style="-fx-background-color: transparent;">
+              <content>
+                <AnchorPane fx:id="painelPesquisaGoogle" minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="254.0" style="-fx-background-color: transparent;">
+                     <children>
+                        <ListView fx:id="listView" prefHeight="200.0" prefWidth="253.0" style="-fx-background-color: transparent;" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
          </children>
          <BorderPane.margin>
             <Insets top="20.0" />

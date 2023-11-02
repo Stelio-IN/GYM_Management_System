@@ -23,7 +23,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javax.swing.JOptionPane;
+import model.Avaliacoes_Fisicas;
 import model.Cliente;
+import model.Pessoa;
 import model.Plano_de_Associacao;
 
 /**
@@ -94,25 +96,11 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
     }
 
     @FXML
-    private LineChart<?, ?> grafico;
+    private LineChart<String, Number> grafico;
+    XYChart.Series series;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        XYChart.Series series = new XYChart.Series();
-        series.getData().add(new XYChart.Data("1", 5));
-        series.getData().add(new XYChart.Data("2", 4));
-        series.getData().add(new XYChart.Data("3", 6));
-        series.getData().add(new XYChart.Data("4", 3));
-        series.getData().add(new XYChart.Data("5", 1));
-
-//        XYChart.Series seriesV1 = new XYChart.Series();
-//        seriesV1.getData().add(new XYChart.Data("1", 1));
-//        seriesV1.getData().add(new XYChart.Data("2", 2));
-//        seriesV1.getData().add(new XYChart.Data("3", 3));
-//        seriesV1.getData().add(new XYChart.Data("4", 2));
-//        seriesV1.getData().add(new XYChart.Data("5", 8));
-        grafico.getData().add(series);
-        //grafico.getData().addAll(series, seriesV1);
 
         tabela.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
@@ -121,15 +109,16 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
     }
 
-    public void pegarLinhaSelecionada(Cliente cli) {
-        if (cli != null) {
-            txtId.setText(String.valueOf(cli.getId()));
-            txtNome.setText(cli.getNome());
-            txtCodigo.setText(cli.getCodigo());
+       public void pegarLinhaSelecionada(Cliente cliente) {
+        grafico.getData().clear();
+        if (cliente != null) {
+            txtId.setText(String.valueOf(cliente.getId()));
+            txtNome.setText(cliente.getNome());
+            txtCodigo.setText(cliente.getCodigo());
 
-            if (cli.getImagem() != null) {
+            if (cliente.getImagem() != null) {
                 // Converta o array de bytes em uma Image
-                byte[] imagemBytes = cli.getImagem();
+                byte[] imagemBytes = cliente.getImagem();
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                 // Defina a imagem no ImageView
@@ -141,19 +130,42 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
                 // Preservar a proporção da imagem enquanto ajusta as dimensões
                 imageView.setPreserveRatio(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
             }
-            if (cli.getPlano_de_associacao() != null) {
-                txtPlanoAssociacao.setText(cli.getPlano_de_associacao().getNome());
+            if (cliente.getPlano_de_associacao() != null) {
+                txtPlanoAssociacao.setText(cliente.getPlano_de_associacao().getNome());
                 //Formatacao de data
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
-                String dateString = sdf.format(cli.getPlano_de_associacao().getDataInicio()); // Convert the date to a string
+                if(cliente.getPlano_de_associacao().getDataInicio() != null){
+                    
+                
+                String dateString = sdf.format(cliente.getPlano_de_associacao().getDataInicio()); // Convert the date to a string
                 txtDataInicio.setText(dateString);
-                String dateString1 = sdf.format(cli.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
+                 String dateString1 = sdf.format(cliente.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
                 txtDataFim.setText(dateString1);
-                txtPagamento.setText(cli.getPlano_de_associacao().getSituacao());
+                txtPagamento.setText(cliente.getPlano_de_associacao().getSituacao());
+                }
+               
             }
+
+
+            List<Avaliacoes_Fisicas> avaliacoes = cliente.getAvaliacoes();
+
+            if (avaliacoes != null) {
+                XYChart.Series<String, Number> series = new XYChart.Series<>();
+
+                for (int i = 0; i < avaliacoes.size(); i++) {
+                    Avaliacoes_Fisicas avaliacao = avaliacoes.get(i);
+                    Number nota = avaliacao.getNota_da_avaliacao();
+
+                    if (nota != null) {
+                        series.getData().add(new XYChart.Data(Integer.toString(i + 1), nota.doubleValue()));
+                    }
+                }
+
+                grafico.getData().add(series);
+
+            }
+
         } else {
             txtId.setText("");
             txtNome.setText("");
@@ -162,7 +174,47 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtPlanoAssociacao.setText("");
             txtDataFim.setText("");
             txtDataInicio.setText("");
+            txtObjectivo.setText("");
 
+        }
+    }
+
+    public void setPessoaAdmin(Pessoa pessoa) {
+        if (pessoa instanceof Cliente cliente) {
+            txtNome.setText(cliente.getNome());
+            txtId.setText(String.valueOf(cliente.getId()));
+            txtCodigo.setText(String.valueOf(cliente.getCodigo()));
+            if (cliente.getPlano_de_associacao() != null) {
+                txtPagamento.setText(cliente.getPlano_de_associacao().getSituacao());
+                txtDataFim.setText(cliente.getPlano_de_associacao().getDataTermino().toString());
+                txtDataInicio.setText(cliente.getPlano_de_associacao().getDataInicio().toString());
+            }
+            txtObjectivo.setText(cliente.getObjectivo());
+            if (cliente.getImagem() != null) {
+                byte[] imagemBytes = cliente.getImagem();
+                Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+                imageView.setImage(imagem);
+
+                imageView.setFitWidth(79); // Largura desejada
+                imageView.setFitHeight(93); // Altura desejada
+                imageView.setPreserveRatio(true);
+            }
+            List<Avaliacoes_Fisicas> avaliacoes = cliente.getAvaliacoes();
+
+            if (avaliacoes != null) {
+                XYChart.Series<String, Number> series = new XYChart.Series<>();
+
+                for (int i = 0; i < avaliacoes.size(); i++) {
+                    Avaliacoes_Fisicas avaliacao = avaliacoes.get(i);
+                    Number nota = avaliacao.getNota_da_avaliacao();
+
+                    if (nota != null) {
+                        series.getData().add(new XYChart.Data(Integer.toString(i + 1), nota.doubleValue()));
+                    }
+                }
+
+                grafico.getData().add(series);
+            }
         }
     }
 

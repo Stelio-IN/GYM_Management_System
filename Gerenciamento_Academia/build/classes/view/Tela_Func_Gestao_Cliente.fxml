@@ -60,7 +60,7 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
-                  <TextField fx:id="txtAltura" layoutX="242.0" layoutY="88.0" prefHeight="30.0" prefWidth="158.0" promptText="Altura" styleClass="textfields_direita">
+                  <TextField fx:id="txtAltura" layoutX="265.0" layoutY="89.0" prefHeight="30.0" prefWidth="158.0" promptText="Altura" styleClass="textfields_direita">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -145,7 +145,7 @@
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
-                  <ComboBox fx:id="comboBoxDesporto" layoutX="261.0" layoutY="163.0" prefHeight="26.0" prefWidth="166.0" promptText="Desportos" styleClass="textfields_direita">
+                  <ComboBox fx:id="comboBoxDesporto" layoutX="264.0" layoutY="164.0" prefHeight="26.0" prefWidth="166.0" promptText="Desportos" styleClass="textfields_direita">
                      <effect>
                         <InnerShadow>
                            <color>
@@ -277,7 +277,7 @@
                   <Image url="@../img/lupa.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtId" layoutX="357.0" layoutY="457.0" prefHeight="26.0" prefWidth="55.0" />
+            <TextField fx:id="txtId" layoutX="375.0" layoutY="449.0" prefHeight="26.0" prefWidth="35.0" />
          </children>
          <effect>
             <DropShadow>

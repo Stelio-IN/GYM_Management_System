@@ -16,20 +16,15 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.chart.XYChart.Data;
-import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
@@ -39,7 +34,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Equipamento;
 import model.Funcionario;
@@ -51,8 +45,15 @@ import javafx.scene.chart.AreaChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
-import javafx.scene.layout.HBox;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.input.KeyEvent;
 import javafx.util.Duration;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 /**
  * FXML Controller class
@@ -66,8 +67,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
 
     @FXML
     private AnchorPane panelGeral;
-    
-    
+
     @FXML
     private AreaChart<String, Number> GraficoArea;
 
@@ -135,8 +135,6 @@ public class Tela_Menu_Admin_Controller implements Initializable {
 
             // Preservar a proporção da imagem enquanto ajusta as dimensões
             imageViewAdmin.setPreserveRatio(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "imagem nao encontrada");
         }
     }
 
@@ -157,6 +155,9 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         }
 
     }
+
+    @FXML
+    private AnchorPane painelPesquisaGoogle;
 
     @FXML
     private Label txtQuanClientes;
@@ -251,59 +252,29 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-///////////////////////////////////////////////////////////////////////////////////
 
+        listView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                pegarLinhaSelecionada(newValue);
+            }
+        });
 
+        txtPesquisa.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) { // Se o foco for perdido (newValue == false)
+                txtPesquisa.clear(); // Limpe o conteúdo do TextField
+                listView.setVisible(false);
+                painelPesquisaGoogle.setVisible(false);
+                scrollPanePesquisa.setVisible(false);
+            }
+        });
+        listView.setVisible(false);
+        painelPesquisaGoogle.setVisible(false);
+        scrollPanePesquisa.setVisible(false);
 
-
-
-//         CategoryAxis xAxis = new CategoryAxis();
-//        NumberAxis yAxis = new NumberAxis();
-//
-//        AreaChart<String, Number> grafico1 = new AreaChart<>(xAxis, yAxis);
-//        grafico1.setTitle("Gráfico de Área 1");
-//        grafico1.setPrefWidth(400); // Largura do primeiro gráfico
-//
-//        AreaChart<String, Number> grafico2 = new AreaChart<>(xAxis, yAxis);
-//        grafico2.setTitle("Gráfico de Área 2");
-//        grafico2.setPrefWidth(400); // Largura do segundo gráfico
-//
-//        // Série de dados para o primeiro gráfico
-//        XYChart.Series<String, Number> series1 = new XYChart.Series<>();
-//        series1.setName("Série 1");
-//
-//        // Série de dados para o segundo gráfico
-//        XYChart.Series<String, Number> series2 = new XYChart.Series<>();
-//        series2.setName("Série 2");
-//
-//        // Adicione os gráficos ao contêiner
-//        graficoContainer.getChildren().addAll(grafico1, grafico2);
-//
-//        // Crie um Timeline para atualizar automaticamente os gráficos a cada 5 segundos
-//        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
-//            // Limpe os dados existentes nos gráficos
-//            series1.getData().clear();
-//            series2.getData().clear();
-//
-//            // Adicione novos dados fictícios às séries
-//            Random random = new Random();
-//            for (int i = 1; i <= 10; i++) {
-//                series1.getData().add(new XYChart.Data<>("Mês " + i, random.nextInt(100)));
-//                series2.getData().add(new XYChart.Data<>("Mês " + i, random.nextInt(100)));
-//            }
-//        }));
-//        timeline.setCycleCount(Timeline.INDEFINITE);
-//        timeline.play();
-//
-//        // Adicione as séries aos gráficos
-//        grafico1.getData().add(series1);
-//        grafico2.getData().add(series2);
     }
 
 //      @FXML
 //    private HBox graficoContainer;
-      
-      
     //private BarChart<?, ?> barChart;
     // Crie os eixos
     CategoryAxis xAxis = new CategoryAxis();
@@ -328,27 +299,61 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         // Adicione a série ao gráfico
         barChart.getData().add(series);
     }
-    
-//     public void inserirDadosNoGraficoArea() {
-//        // Limpe os dados existentes no gráfico
-//        GraficoArea.getData().clear();
-//
-//        // Crie uma série de dados fictícios
-//        Series<String, Number> seriess = new Series<>();
-//        seriess.setName("Série de Dados Fictícios");
-//
-//        // Adicione dados fictícios à série
-//        Random random = new Random();
-//        for (int i = 1; i <= 10; i++) {
-//            seriess.getData().add(new Data<>("Mês " + i, random.nextInt(100)));
-//        }
-//
-//        // Adicione a série de dados ao gráfico
-//        GraficoArea.getData().add(seriess);
-//    }
+
+    @FXML
+    private TextField txtPesquisa;
+
+    @FXML
+    private ListView<Pessoa> listView;
+    @FXML
+    private ScrollPane scrollPanePesquisa;
 
     private int quandidade_Homens = 0;
     private int quandidade_Mulheres = 0;
+
+    @FXML
+    void listarPesquisa(KeyEvent event) {
+        listaPesquisa();
+    }
+
+    public void listaPesquisa() {
+        EntityManagerFactory fabrica;
+        EntityManager gerente;
+        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+        gerente = fabrica.createEntityManager();
+
+        ObservableList<Pessoa> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Pessoa
+
+        TypedQuery<Pessoa> query = gerente.createQuery(
+                "SELECT p FROM Pessoa p WHERE p.nome LIKE :nome AND NOT TYPE(p) = model.Administrador",
+                Pessoa.class
+        );
+        query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
+        List<Pessoa> resultados = query.getResultList();
+        listView.setVisible(true);
+        painelPesquisaGoogle.setVisible(true);
+        scrollPanePesquisa.setVisible(true);
+
+        items.addAll(resultados); // Adicione objetos Pessoa à listaPesquisa
+
+        listView.setItems(items); // Defina a ObservableList de objetos Pessoa no ListView
+
+        // Defina a célula personalizada para mostrar apenas o nome na listaPesquisa
+        listView.setCellFactory((ListView<Pessoa> param) -> new ListCell<Pessoa>() {
+            @Override
+            protected void updateItem(Pessoa item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty || item == null) {
+                    setText(null);
+                } else {
+                    setText(item.getNome());
+                }
+            }
+        });
+
+        gerente.close(); // Não se esqueça de fechar o EntityManager quando terminar
+        fabrica.close(); // E a EntityManagerFactory também
+    }
 
     private void carregarDadosDoBanco() {
         GenericDAO dao = new GenericDAO();
@@ -367,24 +372,51 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             }
         }
     }
-    
-   
-
 
     @FXML
     void Tela_Admin_Planos_Associacao(ActionEvent event) {
         carregarTela("/view/Tela_Admin_Menu_Plano_Associacao");
     }
-      @FXML
+
+    @FXML
     void Tela_Cadastrar_Admin(ActionEvent event) {
-         carregarTela("/view/Tela_Admin_Registrar");
+        carregarTela("/view/Tela_Admin_Registrar");
     }
+
     @FXML
     void Tela_Atualizar_Admin(ActionEvent event) {
-                carregarTela("/view/Tela_Admin_Registrar");
-                
+        carregarTela("/view/Tela_Admin_Registrar");
+
     }
 
-
+    public void pegarLinhaSelecionada(Pessoa pessoa) {
+        try {
+            if (pessoa instanceof Cliente) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Tela_Admin_Menu_Clientes.fxml"));
+                Parent root = loader.load();
+                Tela_Admin_Menu_Clientes_Controller controller = loader.getController();
+                controller.setPessoaAdmin(pessoa);
+                borderPane.setRight(root);
+            } else if (pessoa instanceof Funcionario) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Tela_Admin_Menu_Funcionarios.fxml"));
+                Parent root = loader.load();
+                Tela_Admin_Menu_Funcionarios_Controller controller = loader.getController();
+                controller.setPessoaAdmin(pessoa);
+                borderPane.setRight(root);
+            } else if (pessoa instanceof Instrutor) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Tela_Admin_Menu_Instrutores.fxml"));
+                Parent root = loader.load();
+                Tela_Admin_Menu_Instrutores_Controller controller = loader.getController();
+                controller.setPessoaAdmin(pessoa);
+                borderPane.setRight(root);
+            } else {
+                // Trate o caso em que a instância não corresponda a nenhum dos tipos conhecidos
+                // Pode ser apropriado lançar uma exceção ou tomar outra ação, se necessário.
+            }
+        } catch (IOException ex) {
+            // Lida com exceções de carregamento de FXML
+            ex.printStackTrace();
+        }
+    }
 
 }

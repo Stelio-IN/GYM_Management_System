@@ -95,7 +95,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="214.0" text="Objetivo" textFill="#847e7e">
+            <Label layoutX="31.0" layoutY="214.0" text="Plano" textFill="#847e7e">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -110,7 +110,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="456.0" text="Objetivo" textFill="#847e7e">
+            <Label layoutX="28.0" layoutY="456.0" text="Plano" textFill="#847e7e">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
