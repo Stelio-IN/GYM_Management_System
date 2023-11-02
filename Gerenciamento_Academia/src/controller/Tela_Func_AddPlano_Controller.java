@@ -29,6 +29,9 @@ import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import model.Cliente;
+import model.Funcionario;
+import model.Pagamento_Mensalidade;
+import model.Pessoa;
 import model.Plano_de_Associacao;
 
 /**
@@ -279,20 +282,38 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
             planoSelecionado.setDataInicio(date);
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
-
+            planoSelecionado.setStatus(false);
+            
+            clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+            
             dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
 
-            if (clienteAssociadoNovosDados != null) {
-                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-            }
-            System.out.println(clienteNovosDados.toString());
-            System.out.println(planoSelecionado.toString());
+//            if (clienteAssociadoNovosDados != null) {
+//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+//            }
+            
+            Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
+            pagamento.setCliente(clienteNovosDados);
+            pagamento.setPlano_de_Associacao(planoSelecionado);
+            pagamento.setValor(planoSelecionado.getPreco());
+            
+            dao.add(pagamento);
+            
+            
             JOptionPane.showMessageDialog(null, "Sucesso");
 
         } else {
             JOptionPane.showMessageDialog(null, "Selecione um cliente e um plano antes de salvar.");
         }
 
+    }
+    private Funcionario funcionario = new Funcionario();
+    private Pessoa pessoa; 
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
+        funcionario =(Funcionario) pessoa;
+       // txtNomeFuncionario.setText(pessoa.getNome());
+        // ... Configure outros campos conforme necessário
     }
 
 }

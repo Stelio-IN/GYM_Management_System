@@ -204,7 +204,11 @@
                   <Image url="@../img/emola.png" />
                </image>
             </ImageView>
+<<<<<<< Updated upstream
             <Button fx:id="btnPagamento" layoutX="364.0" layoutY="472.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="162.0" styleClass="botao" text="Efetuar pagamento" textFill="WHITE">
+=======
+            <Button fx:id="btnPagamento" layoutX="464.0" layoutY="436.0" mnemonicParsing="false" onAction="#efetuarPagamento" prefHeight="30.0" prefWidth="162.0" styleClass="botao" text="Efetuar pagamento" textFill="WHITE">
+>>>>>>> Stashed changes
                <effect>
                   <DropShadow>
                      <color>
