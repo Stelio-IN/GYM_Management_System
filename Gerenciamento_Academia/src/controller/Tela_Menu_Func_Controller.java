@@ -6,8 +6,6 @@ package controller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,7 +24,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javax.persistence.Persistence;
 import model.Ficha_Inscricao;
 import model.Pessoa;
 
@@ -130,6 +127,10 @@ public class Tela_Menu_Func_Controller implements Initializable {
         carregarTela("/view/Tela_Func_Associar_Clientes", pessoa);
     }
 
+       @FXML
+    void Tela_Func_Pagamento(ActionEvent event) {
+        carregarTela("/view/Tela_Func_Pagamentos_", pessoa);
+    }
 
     
     @FXML

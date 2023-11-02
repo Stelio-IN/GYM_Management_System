@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.util.Callback;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -77,7 +78,6 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
     @FXML
     private TextField txtPesquisa;
-
     private Cliente cliente1 = new Cliente();
     private Cliente cliente2 = new Cliente();
     private Cliente cliente3 = new Cliente();
@@ -85,39 +85,6 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
     GenericDAO dao = new GenericDAO();
     Class<Cliente> classe = Cliente.class;
-
-    @FXML
-    void listarPesquisa(KeyEvent event) {
-        listaPesquisa();
-    }
-
-    @FXML
-    void desassociarClientes(ActionEvent event) {
-        cliente1.desvincularPlanoAtivo();
-        // cliente2.desvincularPlanoAtivo();
-        cliente3.desvincularPlanoAtivo();
-        // cliente4.desvincularPlanoAtivo();
-        dao.Atualizar(classe, cliente1.getId(), cliente1);
-        dao.Atualizar(classe, cliente3.getId(), cliente3);
-        // dao.Atualizar(classe, cliente2.getId(), cliente2);
-        //  dao.Atualizar(classe, cliente4.getId(), cliente4);
-        JOptionPane.showMessageDialog(null, "imagem nao encontrada");
-    }
-
-    @FXML
-    void AssociarClientes(ActionEvent event) {
-        if (cliente1 != null && cliente3 != null) {
-            cliente1.associarCasal(cliente3);
-            System.out.println("Primeiro: " + cliente1.getClinteAssociado().getNome());
-            System.out.println("Segundo: " + cliente3.getClinteAssociado().getNome());
-            dao.Atualizar(classe, cliente1.getId(), cliente3);
-            dao.Atualizar(classe, cliente3.getId(), cliente3);
-            limparCampos(event);
-        } else {
-            System.out.println("A associação só é permitida entre pessoas de sexo oposto.");
-        }
-
-    }
 
     public void pegarLinhaSelecionada(Cliente cli) {
         if (cli != null) {
@@ -141,8 +108,6 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                         imageViewPrimeiroAssociado.setFitHeight(93); // Altura desejada
                         // Defina a imagem no ImageView
                         imageViewPrimeiroAssociado.setImage(imagem);
-                    } else {
-                        //  JOptionPane.showMessageDialog(null, "imagem nao encontrada");  
                     }
                 }
                 if (cli.getImagem() != null) {
@@ -155,9 +120,7 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                     imageViewPrimeiro.setFitHeight(93); // Altura desejada
                     // Defina a imagem no ImageView
                     imageViewPrimeiro.setImage(imagem);
-                } else {
-                    //   JOptionPane.showMessageDialog(null, "imagem nao encontrada");
-                }
+                } 
             } else if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false) && (txtGeneroPrimeiroCliente.getText().equals(cli.getGenero())) == false) {
                 cliente3 = cli;
                 txtNomeSegundoCliente.setText(cli.getNome());
@@ -187,8 +150,8 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                     // Definir largura e altura desejadas
-                    imageViewSegundo.setFitWidth(99); // Largura desejada
-                    imageViewSegundo.setFitHeight(113); // Altura desejada
+                    imageViewSegundo.setFitWidth(79); // Largura desejada
+                    imageViewSegundo.setFitHeight(93); // Altura desejada
                     // Defina a imagem no ImageView
                     imageViewSegundo.setImage(imagem);
                 } else {
@@ -198,7 +161,108 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
         }
     }
 
-    public void listaPesquisa() {
+//    public void pegarLinhaSelecionada(Cliente cli) {
+//        if (cli != null) {
+//            if (txtNomePrimeiroCliente.getText().equals("")) {
+//
+//                txtNomePrimeiroCliente.setText(cli.getNome());
+//                txtCodigoPrimeiroCliente.setText(cli.getCodigo());
+//                txtGeneroPrimeiroCliente.setText(cli.getGenero());
+//
+//                if (cli.getClinteAssociado() != null) {
+//                    txtNomePrimeiroAssociado.setText(cli.getClinteAssociado().getNome());
+//                    if (cli.getClinteAssociado().getImagem() != null) {
+//                        // Converta o array de bytes em uma Image
+//                        byte[] imagemBytes = cli.getImagem();
+//                        Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+//
+//                        // Definir largura e altura desejadas
+//                        imageViewPrimeiroAssociado.setFitWidth(79); // Largura desejada
+//                        imageViewPrimeiroAssociado.setFitHeight(93); // Altura desejada
+//                        // Defina a imagem no ImageView
+//                        imageViewPrimeiroAssociado.setImage(imagem);
+//                    }
+//                }
+//                if (cli.getImagem() != null) {
+//                    // Converta o array de bytes em uma Image
+//                    byte[] imagemBytes = cli.getImagem();
+//                    Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+//
+//                    // Definir largura e altura desejadas
+//                    imageViewPrimeiro.setFitWidth(79); // Largura desejada
+//                    imageViewPrimeiro.setFitHeight(93); // Altura desejada
+//                    // Defina a imagem no ImageView
+//                    imageViewPrimeiro.setImage(imagem);
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+//                }
+//            } else if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false) && (txtGeneroPrimeiroCliente.getText().equals(cli.getGenero())) == false) {
+//                txtNomeSegundoCliente.setText(cli.getNome());
+//                txtCodigoSegundoCliente.setText(cli.getCodigo());
+//                txtGeneroSegundoCliente.setText(cli.getGenero());
+//
+//                if (cli.getClinteAssociado() != null) {
+//                    txtNomeSegundoAssociado.setText(cli.getClinteAssociado().getNome());
+//                    if (cli.getClinteAssociado().getImagem() != null) {
+//                        // Converta o array de bytes em uma Image
+//                        byte[] imagemBytes = cli.getImagem();
+//                        Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+//
+//                        // Definir largura e altura desejadas
+//                        imageViewSegundoAssociado.setFitWidth(79); // Largura desejada
+//                        imageViewSegundoAssociado.setFitHeight(93); // Altura desejada
+//                        // Defina a imagem no ImageView
+//                        imageViewSegundoAssociado.setImage(imagem);
+//                    }
+//                }
+//                if (cli.getImagem() != null) {
+//                    // Converta o array de bytes em uma Image
+//                    byte[] imagemBytes = cli.getImagem();
+//                    Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
+//
+//                    // Definir largura e altura desejadas
+//                    imageViewSegundo.setFitWidth(99); // Largura desejada
+//                    imageViewSegundo.setFitHeight(113); // Altura desejada
+//                    // Defina a imagem no ImageView
+//                    imageViewSegundo.setImage(imagem);
+//                }
+//            }
+//        }
+//    }
+//    public void listaPesquisa() {
+//        EntityManagerFactory fabrica;
+//        EntityManager gerente;
+//        fabrica = Persistence.createEntityManagerFactory("SystemPU");
+//        gerente = fabrica.createEntityManager();
+//
+//        ObservableList<Cliente> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Cliente
+//
+//        TypedQuery<Cliente> query = gerente.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome", Cliente.class);
+//        query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
+//        List<Cliente> resultados = query.getResultList();
+//
+//        items.addAll(resultados); // Adicione objetos Cliente à listaPesquisa
+//
+//        listView.setItems(items); // Defina a ObservableList de objetos Cliente no ListView
+//
+//        // Defina a célula personalizada para mostrar apenas o nome na listaPesquisa
+//        //expressao Lapda
+//        listView.setCellFactory((ListView<Cliente> param) -> new ListCell<Cliente>() {
+//            @Override
+//            protected void updateItem(Cliente item, boolean empty) {
+//                super.updateItem(item, empty);
+//                if (empty || item == null) {
+//                    setText(null);
+//                } else {
+//                    setText(item.getNome());
+//                }
+//            }
+//        });
+//
+//        gerente.close(); // Não se esqueça de fechar o EntityManager quando terminar
+//        fabrica.close(); // E a EntityManagerFactory também
+//    }
+    public void listarPesquisa() {
         EntityManagerFactory fabrica;
         EntityManager gerente;
         fabrica = Persistence.createEntityManagerFactory("SystemPU");
@@ -206,7 +270,7 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
         ObservableList<Cliente> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Cliente
 
-        TypedQuery<Cliente> query = gerente.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome", Cliente.class);
+        TypedQuery<Cliente> query = gerente.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome AND c.isAtivo = true", Cliente.class);
         query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
         List<Cliente> resultados = query.getResultList();
 
@@ -215,16 +279,20 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
         listView.setItems(items); // Defina a ObservableList de objetos Cliente no ListView
 
         // Defina a célula personalizada para mostrar apenas o nome na listaPesquisa
-        //expressao Lapda
-        listView.setCellFactory((ListView<Cliente> param) -> new ListCell<Cliente>() {
+        listView.setCellFactory(new Callback<ListView<Cliente>, ListCell<Cliente>>() {
             @Override
-            protected void updateItem(Cliente item, boolean empty) {
-                super.updateItem(item, empty);
-                if (empty || item == null) {
-                    setText(null);
-                } else {
-                    setText(item.getNome());
-                }
+            public ListCell<Cliente> call(ListView<Cliente> param) {
+                return new ListCell<Cliente>() {
+                    @Override
+                    protected void updateItem(Cliente item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty || item == null) {
+                            setText(null);
+                        } else {
+                            setText(item.getNome());
+                        }
+                    }
+                };
             }
         });
 
@@ -233,17 +301,52 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
     }
 
     @FXML
+    void listarPesquisa(KeyEvent event) {
+        //   listaPesquisa();
+        listarPesquisa();
+    }
+
+    @FXML
+    void AssociarClientes(ActionEvent event) {
+        if (cliente1 != null && cliente3 != null) {
+            cliente1.associarCasal(cliente3);
+
+            dao.Atualizar(classe, cliente1.getId(), cliente1);
+            dao.Atualizar(classe, cliente3.getId(), cliente3);
+
+            limparCampos(event);
+        } else {
+            System.out.println("A associação só é permitida entre pessoas de sexo oposto.");
+        }
+    }
+
+    @FXML
+    void desassociarClientes(ActionEvent event) {
+        if (cliente1 != null && cliente2 != null) {
+            cliente1.desassociarCasal(cliente2);
+            dao.Atualizar(classe, cliente1.getId(), cliente1);
+            dao.Atualizar(classe, cliente2.getId(), cliente2);
+            limparCampos(event);
+            System.out.println(cliente1.toString());
+            System.out.println(cliente2.toString());
+            System.out.println("Desassociado");
+        } else {
+            System.out.println("Erro ao Desassociar");
+        }
+    }
+
+    @FXML
     void limparCampos(ActionEvent event) {
         txtCodigoPrimeiroCliente.setText("");
         txtNomePrimeiroCliente.setText("");
         txtGeneroPrimeiroCliente.setText("");
         txtNomePrimeiroAssociado.setText("");
-       
+
         txtCodigoSegundoCliente.setText("");
         txtNomeSegundoCliente.setText("");
         txtGeneroSegundoCliente.setText("");
         txtNomeSegundoAssociado.setText("");
-           
+
         Image imageLimpar = new Image("/img/adicionar-usuario.png");
         imageViewPrimeiro.setImage(imageLimpar);
         imageViewPrimeiroAssociado.setImage(imageLimpar);
@@ -252,16 +355,15 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
         imageViewPrimeiro.setFitWidth(158); // Largura desejada
         imageViewPrimeiro.setFitHeight(130); // Altura desejada
-        
+
         imageViewSegundo.setFitWidth(158); // Largura desejada
         imageViewSegundo.setFitHeight(130); // Altura desejada
 
         imageViewSegundoAssociado.setFitWidth(158); // Largura desejada
         imageViewSegundoAssociado.setFitHeight(130); // Altura desejada
-       
+
         imageViewPrimeiroAssociado.setFitWidth(158); // Largura desejada
         imageViewPrimeiroAssociado.setFitHeight(130); // Altura desejada
-
     }
 
     @Override

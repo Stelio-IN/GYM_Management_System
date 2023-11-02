@@ -37,7 +37,7 @@ public class Cliente extends Pessoa implements Serializable {
     }
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "clienteAssociado_id")
-    private Cliente clinteAssociado;
+    private Cliente clienteAssociado;
 
     private String contato_emergencia;
     private String data_inscricao;
@@ -69,13 +69,23 @@ public class Cliente extends Pessoa implements Serializable {
 
     public void associarCasal(Cliente parceiro) {
         if (parceiro != null && this.getGenero() != parceiro.getGenero()) {
-            this.clinteAssociado = parceiro;
-            parceiro.clinteAssociado = this;
+            this.clienteAssociado = parceiro;
+            parceiro.clienteAssociado = this;
         } else {
             // Lógica de tratamento para quando os clientes não são de sexo oposto
             System.out.println("A associação só é permitida entre pessoas de sexo oposto.");
         }
     }
+    
+    public void desassociarCasal(Cliente parceiro) {
+    if (parceiro != null && parceiro == this.clienteAssociado) {
+        this.clienteAssociado = null;
+        parceiro.clienteAssociado = null;
+        System.out.println("O casal foi desassociado com sucesso.");
+    } else {
+        System.out.println("Não há um casal associado para desassociar.");
+    }
+}
 
     public String getObjectivo() {
         return objectivo;
@@ -86,11 +96,11 @@ public class Cliente extends Pessoa implements Serializable {
     }
 
     public Cliente getClinteAssociado() {
-        return clinteAssociado;
+        return clienteAssociado;
     }
 
     public void setClinteAssociado(Cliente clinteAssociado) {
-        this.clinteAssociado = clinteAssociado;
+        this.clienteAssociado = clinteAssociado;
     }
 
     public String getDoenca() {

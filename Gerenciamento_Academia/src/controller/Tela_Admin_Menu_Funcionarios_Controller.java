@@ -5,34 +5,23 @@
 package controller;
 
 import java.net.URL;
+import java.time.Year;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TreeItem;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TreeItemPropertyValueFactory;
 import javafx.scene.input.KeyEvent;
-import javafx.util.Callback;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import model.Funcionario;
 import model.Pessoa;
@@ -217,6 +206,14 @@ public class Tela_Admin_Menu_Funcionarios_Controller implements Initializable {
         btncadastrar.setDisable(true);
         btneditar.setDisable(true);
         btnexcluir.setDisable(true);
+
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar_Quantidade_Base(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "FUNC" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        txtCodigo.setText(idUnico);
 
     }
 
