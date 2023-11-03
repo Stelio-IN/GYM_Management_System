@@ -4,7 +4,6 @@
  */
 package controller;
 
-import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -22,13 +21,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import model.Cliente;
-import model.Funcionario;
-import model.Instrutor;
 import model.Pagamento_Mensalidade;
 import model.Plano_de_Associacao;
 

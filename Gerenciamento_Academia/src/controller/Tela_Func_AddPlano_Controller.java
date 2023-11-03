@@ -267,45 +267,80 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 
         }
     }
-      @FXML
+
+    @FXML
     void guardarPlano(ActionEvent event) {
-        GenericDAO dao = new GenericDAO();
-        if (clienteNovosDados != null && planoSelecionado != null) {
+
+        if (clienteNovosDados != null && planoSelecionado != null && dataPickerInicio.getValue() != null) {
+            GenericDAO dao = new GenericDAO();
+            Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
+            double valor = 0;
             Class<Cliente> classe = Cliente.class;
             LocalDate localDate = dataPickerInicio.getValue();
             ZoneId zoneId = ZoneId.systemDefault();
             Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
-
             planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
             planoSelecionado.setDataInicio(date);
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
             planoSelecionado.setStatus(false);
-            
             clienteNovosDados.setPlano_de_associacao(planoSelecionado);
-            
-            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
 
-//            if (clienteAssociadoNovosDados != null) {
-//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-//            }
-            
-            Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
             pagamento.setCliente(clienteNovosDados);
             pagamento.setPlano_de_Associacao(planoSelecionado);
-            pagamento.setValor(planoSelecionado.getPreco());
-            
+            valor = planoSelecionado.getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
+            pagamento.setValor(valor);
+
+            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
             dao.add(pagamento);
-            
-            
-            JOptionPane.showMessageDialog(null, "Sucesso");
-
+            JOptionPane.showMessageDialog(null, "Sucesso " + valor);
+//
+//            /*
+//                Plano casal
+//             */
+//            if (planoSelecionado.getNome().equals("Plano casal") && clienteNovosDados.getClinteAssociado() != null
+//                    && clienteNovosDados.getPlano_de_associacao().isStatus() == false
+//                    && clienteAssociadoNovosDados.getPlano_de_associacao().isStatus() == false) {
+//
+//                planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
+//                planoSelecionado.setDataInicio(date);
+//                planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
+//                planoSelecionado.setStatus(false);
+//                clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+//
+//                dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
+//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+//                pagamento.setCliente(clienteNovosDados);
+//                pagamento.setPlano_de_Associacao(planoSelecionado);
+//                valor = planoSelecionado.getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
+//                pagamento.setValor(valor);
+//                dao.add(pagamento);
+//                JOptionPane.showMessageDialog(null, "Sucesso Plano casal" + valor);
+//            }
+//            if (clienteNovosDados.getPlano_de_associacao().isStatus() == false || clienteNovosDados.getPlano_de_associacao() == null) {
+//                /*
+//            Outros planos
+//                 */
+//                planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
+//                planoSelecionado.setDataInicio(date);
+//                planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
+//                planoSelecionado.setStatus(false);
+//                clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+//
+//                pagamento.setCliente(clienteNovosDados);
+//                pagamento.setPlano_de_Associacao(planoSelecionado);
+//                valor = planoSelecionado.getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
+//                pagamento.setValor(valor);
+//
+//                dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
+//                dao.add(pagamento);
+//                JOptionPane.showMessageDialog(null, "Sucesso " + valor);
+//
+//            }
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione um cliente e um plano antes de salvar.");
+            JOptionPane.showMessageDialog(null, "Preencha os campos");
         }
-
     }
-
-//    @FXML
+//      @FXML
 //    void guardarPlano(ActionEvent event) {
 //        GenericDAO dao = new GenericDAO();
 //        if (clienteNovosDados != null && planoSelecionado != null) {
@@ -317,14 +352,24 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 //            planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
 //            planoSelecionado.setDataInicio(date);
 //            planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
-//
+//            planoSelecionado.setStatus(false);
+//            
+//            clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+//            
 //            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
 //
-//            if (clienteAssociadoNovosDados != null) {
-//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-//            }
-//            System.out.println(clienteNovosDados.toString());
-//            System.out.println(planoSelecionado.toString());
+////            if (clienteAssociadoNovosDados != null) {
+////                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+////            }
+//            
+//            Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
+//            pagamento.setCliente(clienteNovosDados);
+//            pagamento.setPlano_de_Associacao(planoSelecionado);
+//            pagamento.setValor(planoSelecionado.getPreco());
+//            
+//            dao.add(pagamento);
+//            
+//            
 //            JOptionPane.showMessageDialog(null, "Sucesso");
 //
 //        } else {
