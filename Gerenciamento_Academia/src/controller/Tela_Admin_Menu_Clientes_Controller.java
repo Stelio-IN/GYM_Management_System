@@ -22,11 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javax.swing.JOptionPane;
 import model.Avaliacoes_Fisicas;
 import model.Cliente;
 import model.Pessoa;
-import model.Plano_de_Associacao;
 
 /**
  * FXML Controller class
@@ -109,7 +107,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
 
     }
 
-       public void pegarLinhaSelecionada(Cliente cliente) {
+    public void pegarLinhaSelecionada(Cliente cliente) {
         grafico.getData().clear();
         if (cliente != null) {
             txtId.setText(String.valueOf(cliente.getId()));
@@ -131,22 +129,23 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
                 // Preservar a proporção da imagem enquanto ajusta as dimensões
                 imageView.setPreserveRatio(true);
             }
-            if (cliente.getPlano_de_associacao() != null) {
-                txtPlanoAssociacao.setText(cliente.getPlano_de_associacao().getNome());
+            if (cliente.getPlanoCliente() != null) {
+                txtPlanoAssociacao.setText(cliente.getPlanoCliente().getPlano().getNome());
                 //Formatacao de data
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
-                if(cliente.getPlano_de_associacao().getDataInicio() != null){
-                    
-                
-                String dateString = sdf.format(cliente.getPlano_de_associacao().getDataInicio()); // Convert the date to a string
-                txtDataInicio.setText(dateString);
-                 String dateString1 = sdf.format(cliente.getPlano_de_associacao().getDataTermino()); // Convert the date to a string
-                txtDataFim.setText(dateString1);
-                txtPagamento.setText(cliente.getPlano_de_associacao().getSituacao());
-                }
-               
-            }
+                if (cliente.getPlanoCliente().getDataInicio() != null) {
 
+                    String dateString = sdf.format(cliente.getPlanoCliente().getDataInicio()); // Convert the date to a string
+                    txtDataInicio.setText(dateString);
+                    String dateString1 = sdf.format(cliente.getPlanoCliente().getDataFim()); // Convert the date to a string
+                    txtDataFim.setText(dateString1);
+                    if (cliente.getPlanoCliente().isStatus() == true) {
+                        txtPagamento.setText("Ativo");
+                    }
+                    txtPagamento.setText("Inativo");
+                }
+
+            }
 
             List<Avaliacoes_Fisicas> avaliacoes = cliente.getAvaliacoes();
 
@@ -184,10 +183,13 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtNome.setText(cliente.getNome());
             txtId.setText(String.valueOf(cliente.getId()));
             txtCodigo.setText(String.valueOf(cliente.getCodigo()));
-            if (cliente.getPlano_de_associacao() != null) {
-                txtPagamento.setText(cliente.getPlano_de_associacao().getSituacao());
-                txtDataFim.setText(cliente.getPlano_de_associacao().getDataTermino().toString());
-                txtDataInicio.setText(cliente.getPlano_de_associacao().getDataInicio().toString());
+            if (cliente.getPlanoCliente() != null) {
+                if (cliente.getPlanoCliente().isStatus() == true) {
+                    txtPagamento.setText("Ativo");
+                }
+                txtPagamento.setText("Inativo");
+                txtDataFim.setText(cliente.getPlanoCliente().getDataFim().toString());
+                txtDataInicio.setText(cliente.getPlanoCliente().getDataInicio().toString());
             }
             txtObjectivo.setText(cliente.getObjectivo());
             if (cliente.getImagem() != null) {

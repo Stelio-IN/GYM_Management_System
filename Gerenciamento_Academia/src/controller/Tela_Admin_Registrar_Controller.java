@@ -11,6 +11,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.Year;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +47,6 @@ public class Tela_Admin_Registrar_Controller implements Initializable {
     private TextField txtPassword;
 
     private String caminhoDoArquivo;
-    
 
     @FXML
     void cadastrar(ActionEvent event) throws IOException {
@@ -99,7 +99,7 @@ public class Tela_Admin_Registrar_Controller implements Initializable {
 
     /*
     metodo para preencher a imageview 
-    */
+     */
     void retornar_Imagem_Banco(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
         Administrador administrador = (Administrador) dao.logarEmail("admin");
@@ -117,10 +117,16 @@ public class Tela_Admin_Registrar_Controller implements Initializable {
         }
     }
 
-      
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        GenericDAO dao = new GenericDAO();
+        Class<Pessoa> classe = Pessoa.class;
+        int quant = dao.contar_Quantidade_Base(classe);
+        System.out.println(quant);
+        int anoAtual = Year.now().getValue(); // Obtém o ano atual
+        String idUnico = "ADMN" + anoAtual + String.format("%04d", quant); // Formata o número com 4 dígitos
+        txtCodigo.setText(idUnico);
     }
 
 }

@@ -280,13 +280,12 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
 
             pagamento.setStatus(true);
 
-            Cliente cliente = pagamento.getCliente();
+            Cliente cliente = pagamento.getPlanoCliente().getCliente();
             
-            cliente.getPlano_de_associacao().setStatus(true);
+            cliente.getPlanoCliente().setStatus(true);
+            
             dao.Atualizar(Cliente.class, cliente.getId(), cliente);
             dao.Atualizar(Pagamento_Mensalidade.class, pagamento.getId(), pagamento);
-            
-
             JOptionPane.showMessageDialog(null, "Pago");
         } else {
             JOptionPane.showMessageDialog(null, "Fail");
@@ -295,7 +294,7 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
     public void pegarLinhaSelecionada(Pagamento_Mensalidade factura) {
         if (factura != null) {
             pagamento = factura;
-            cliente = factura.getCliente();
+            cliente = factura.getPlanoCliente().getCliente();
             txtNome.setText(cliente.getNome());
             txtEmail.setText(cliente.getEmail());
             txtContacto.setText(cliente.getTelefone());

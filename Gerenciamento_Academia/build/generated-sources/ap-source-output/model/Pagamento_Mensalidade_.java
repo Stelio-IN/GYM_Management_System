@@ -3,15 +3,13 @@ package model;
 import javax.annotation.processing.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
-import model.Cliente;
-import model.Plano_de_Associacao;
+import model.PlanoCliente;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-03T09:43:07", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2023-11-05T05:45:28", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Pagamento_Mensalidade.class)
 public class Pagamento_Mensalidade_ { 
 
-    public static volatile SingularAttribute<Pagamento_Mensalidade, Cliente> cliente;
-    public static volatile SingularAttribute<Pagamento_Mensalidade, Plano_de_Associacao> plano_de_Associacao;
+    public static volatile SingularAttribute<Pagamento_Mensalidade, PlanoCliente> planoCliente;
     public static volatile SingularAttribute<Pagamento_Mensalidade, Double> valor;
     public static volatile SingularAttribute<Pagamento_Mensalidade, Long> id;
     public static volatile SingularAttribute<Pagamento_Mensalidade, String> data_Pagamento;

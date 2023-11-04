@@ -30,6 +30,7 @@ import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Pagamento_Mensalidade;
+import model.PlanoCliente;
 import model.Plano_de_Associacao;
 
 /**
@@ -40,7 +41,7 @@ import model.Plano_de_Associacao;
 public class Tela_Func_AddPlano_Controller implements Initializable {
 
     @FXML
-    private TableColumn<Plano_de_Associacao, String> colunaNomePlano;
+    private TableColumn<PlanoCliente, String> colunaNomePlano;
 
     @FXML
     private DatePicker dataPickerInicio;
@@ -97,7 +98,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 
     Cliente clienteNovosDados = new Cliente();
     Cliente clienteAssociadoNovosDados = new Cliente();
-    Plano_de_Associacao planoSelecionado = new Plano_de_Associacao();
+    PlanoCliente planoSelecionado = new PlanoCliente();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -120,16 +121,16 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             txtNomeClientePrincipal.setText(cli.getNome());
             txtCodigoClientePrincipal.setText(cli.getCodigo());
             txtGeneroClientePrincipal.setText(cli.getGenero());
-            if (cli.getPlano_de_associacao() != null) {
-                txtObjectivoClientePrincipal.setText(cli.getPlano_de_associacao().getNome());
+            if (cli.getPlanoCliente() != null) {
+                txtObjectivoClientePrincipal.setText(cli.getPlanoCliente().getPlano().getNome());
             }
             if (cli.getClinteAssociado() != null) {
                 clienteAssociadoNovosDados = cli.getClinteAssociado();
                 txtNomeClienteAssociado.setText(cli.getClinteAssociado().getNome());
                 txtCodigoClienteAssociado.setText(cli.getClinteAssociado().getCodigo());
                 txtGeneroClienteAssociado.setText(cli.getClinteAssociado().getGenero());
-                if (cli.getClinteAssociado().getPlano_de_associacao() != null) {
-                    txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getPlano_de_associacao().getNome());
+                if (cli.getClinteAssociado().getPlanoCliente() != null) {
+                    txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getPlanoCliente().getPlano().getNome());
                 }
                 if (cli.getClinteAssociado().getImagem() != null) {
                     // Converta o array de bytes em uma Image
@@ -217,13 +218,15 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         tabelaPlano.setItems(observableListe);
     }
 
-    public void pegarLinhaSelecionada(Plano_de_Associacao plano) {
-        clienteNovosDados.setPlano_de_associacao(plano);
-        clienteAssociadoNovosDados.setPlano_de_associacao(plano);
-        planoSelecionado = plano;
-        if (plano != null) {
-            txtNomePlano.setText(plano.getNome());
-            txtPrecoPlano.setText(String.valueOf(plano.getPreco()));
+    public void pegarLinhaSelecionada(Plano_de_Associacao plano_de_Associacao) {
+        PlanoCliente planoCliente = new PlanoCliente();
+        planoCliente.setPlano(plano_de_Associacao);
+        clienteNovosDados.setPlanoCliente(planoCliente);
+        clienteAssociadoNovosDados.setPlanoCliente(planoCliente);
+        planoSelecionado = planoCliente;
+        if (plano_de_Associacao != null) {
+            txtNomePlano.setText(plano_de_Associacao.getNome());
+            txtPrecoPlano.setText(String.valueOf(plano_de_Associacao.getPreco()));
         } else {
             JOptionPane.showMessageDialog(null, "Selecione Uma linha");
         }
@@ -279,19 +282,26 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             LocalDate localDate = dataPickerInicio.getValue();
             ZoneId zoneId = ZoneId.systemDefault();
             Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
+
             planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
             planoSelecionado.setDataInicio(date);
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
             planoSelecionado.setStatus(false);
-            clienteNovosDados.setPlano_de_associacao(planoSelecionado);
+            planoSelecionado.setCliente(clienteNovosDados);
 
-            pagamento.setCliente(clienteNovosDados);
-            pagamento.setPlano_de_Associacao(planoSelecionado);
-            valor = planoSelecionado.getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
+            pagamento.setPlanoCliente(planoSelecionado);
+            valor = planoSelecionado.getPlano().getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
             pagamento.setValor(valor);
 
-            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-            dao.add(pagamento);
+//            clienteNovosDados.setPlanoCliente(planoSelecionado);
+//            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
+//            dao.add(planoSelecionado);
+//            dao.add(pagamento);
+            dao.add(planoSelecionado); // Persista o planoSelecionado
+            dao.add(pagamento); // Persista o pagamento
+            clienteNovosDados.setPlanoCliente(planoSelecionado); // Associe clienteNovosDados com planoSelecionado
+            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados); // Atualize clienteNovosDados
+
             JOptionPane.showMessageDialog(null, "Sucesso " + valor);
 //
 //            /*
