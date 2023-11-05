@@ -422,8 +422,11 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
                 imageView.setPreserveRatio(true);
             }
             List<Avaliacoes_Fisicas> avaliacoes = cliente.getAvaliacoes();
-
+            
+           
             if (avaliacoes != null) {
+               int quantidade =  avaliacoes.size();
+               txtNumeroDeAvaliacoes.setText(String.valueOf(quantidade));
                 XYChart.Series<String, Number> series = new XYChart.Series<>();
 
                 for (int i = 0; i < avaliacoes.size(); i++) {
