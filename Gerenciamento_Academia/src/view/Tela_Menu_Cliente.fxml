@@ -110,7 +110,7 @@
                   <Image url="@../img/adicionar-usuario.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="90.0" fitWidth="103.0" layoutX="29.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="90.0" fitWidth="103.0" layoutX="21.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/logo1_4.png" />
                </image>
@@ -126,6 +126,36 @@
                </font>
             </Label>
             <Button fx:id="btnLogOut" layoutX="108.0" layoutY="532.0" mnemonicParsing="false" onAction="#logout" prefHeight="49.0" prefWidth="52.0" style="-fx-background-color: transparent;" />
+            <QuadCurve controlX="63.0" controlY="140.26934814453125" endX="40.0" endY="168.0" layoutX="225.0" layoutY="428.0" startX="-209.0" startY="168.0" stroke="#ffffff00" strokeType="INSIDE" styleClass="painelcurva">
+               <fill>
+                  <LinearGradient endX="1.0" endY="1.0">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.4526315927505493" green="0.4241325557231903" blue="0.4241325557231903" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </QuadCurve>
+            <Label layoutX="143.0" layoutY="14.0" text="Dados Cliente" textFill="#057326">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="336.0" layoutY="456.0" prefHeight="157.0" prefWidth="407.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
@@ -172,7 +202,7 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <ImageView fx:id="imageView1" fitHeight="93.0" fitWidth="79.0" layoutX="147.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageView1" fitHeight="93.0" fitWidth="79.0" layoutX="144.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/adicionar-usuario.png" />
                </image>
@@ -197,7 +227,7 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <ImageView fx:id="imageViewAssociado" fitHeight="93.0" fitWidth="79.0" layoutX="154.0" layoutY="278.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageViewAssociado" fitHeight="93.0" fitWidth="79.0" layoutX="151.0" layoutY="298.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/adicionar-usuario.png" />
                </image>
@@ -247,12 +277,12 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="310.0" layoutY="545.0" mnemonicParsing="false" onAction="#RemoverPlano" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Remover Plano">
+            <Button layoutX="311.0" layoutY="545.0" mnemonicParsing="false" onAction="#RemoverPlano" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Remover Plano">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
             </Button>
-            <Button layoutX="310.0" layoutY="490.0" mnemonicParsing="false" onAction="#guardarPlano" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Adicionar">
+            <Button layoutX="311.0" layoutY="507.0" mnemonicParsing="false" onAction="#guardarPlano" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Adicionar">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font>
@@ -278,11 +308,11 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <AnchorPane layoutX="282.0" layoutY="46.0" prefHeight="438.0" prefWidth="186.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../css/tela_func_addplano.css">
+            <AnchorPane layoutX="282.0" layoutY="56.0" prefHeight="441.0" prefWidth="186.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../css/tela_func_addplano.css">
                <children>
                   <TextField fx:id="txtDuracaoPlano" layoutX="23.0" layoutY="341.0" prefHeight="26.0" prefWidth="152.0" promptText="duracao" styleClass="textfields_esquerda" />
                   <DatePicker fx:id="dataPickerInicio" layoutX="24.0" layoutY="405.0" prefHeight="25.0" prefWidth="152.0" />
-                  <TableView fx:id="tabelaPlano" layoutX="21.0" layoutY="79.0" prefHeight="110.0" prefWidth="152.0" style="-fx-border-color: white;" styleClass="tabela">
+                  <TableView fx:id="tabelaPlano" layoutX="19.0" layoutY="73.0" prefHeight="110.0" prefWidth="152.0" style="-fx-border-color: white;" styleClass="tabela">
                      <columns>
                         <TableColumn fx:id="colunaNomePlano" prefWidth="155.0" styleClass="tabelinha" text="Planos" />
                      </columns>
@@ -319,7 +349,7 @@
                   </Label>
                   <Label layoutX="19.0" layoutY="32.0" text="Select Plano" textFill="#057326">
                      <font>
-                        <Font name="System Bold Italic" size="18.0" />
+                        <Font name="System Bold Italic" size="13.0" />
                      </font>
                   </Label>
                   <QuadCurve controlX="-91.0" controlY="15.89715576171875" endX="-64.0" endY="-21.0" fill="#05a764" layoutX="238.0" layoutY="21.0" startX="-226.0" startY="-21.0" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva" />
@@ -332,6 +362,11 @@
                   </DropShadow>
                </effect>
             </AnchorPane>
+            <Label layoutX="261.0" layoutY="14.0" text="Seção para adicionar planos" textFill="#057326">
+               <font>
+                  <Font name="System Bold Italic" size="18.0" />
+               </font>
+            </Label>
          </children>
          <effect>
             <DropShadow>
@@ -350,7 +385,7 @@
             </DropShadow>
          </effect>
          <children>
-            <LineChart fx:id="grafico" layoutX="-1.0" layoutY="91.0" prefHeight="264.0" prefWidth="400.0">
+            <LineChart fx:id="grafico" layoutX="-1.0" layoutY="91.0" prefHeight="289.0" prefWidth="407.0" stylesheets="@../css/tela_menu_cliente.css">
                <xAxis>
                   <CategoryAxis side="BOTTOM" />
                </xAxis>
@@ -358,7 +393,7 @@
                   <NumberAxis side="LEFT" />
                </yAxis>
             </LineChart>
-            <QuadCurve controlX="-128.2726287841797" controlY="299.7262878417969" endX="-6.914721965789795" endY="34.71459197998047" layoutX="290.0" layoutY="-158.0" rotate="49.1" startX="-219.53453063964844" startY="280.16961669921875" stroke="#ffffff00" strokeType="INSIDE" styleClass="painelcurva">
+            <QuadCurve controlX="-157.0775146484375" controlY="288.6658020019531" endX="-6.914721965789795" endY="34.71459197998047" layoutX="290.0" layoutY="-158.0" rotate="49.1" startX="-219.53453063964844" startY="280.2518005371094" stroke="#ffffff00" strokeType="INSIDE" styleClass="painelcurva">
                <fill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -383,7 +418,7 @@
                   </DropShadow>
                </effect>
             </QuadCurve>
-            <Label layoutX="48.0" layoutY="47.0" text="Desempenho" textFill="#15713b" underline="true">
+            <Label layoutX="264.0" layoutY="14.0" text="Desempenho" textFill="#15713b" underline="true">
                <font>
                   <Font name="System Bold Italic" size="19.0" />
                </font>
