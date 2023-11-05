@@ -22,3 +22,8 @@
 .painel{
   -fx-background-color: #c3fdda52;
   }
+
+  .painelinho {
+    -fx-background-color: linear-gradient(to right,  #025e388f, #000503bb);
+  
+  }
