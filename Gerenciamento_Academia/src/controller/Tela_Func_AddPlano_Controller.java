@@ -297,6 +297,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             planoSelecionado.setStatus(false);
             pagamento.setPlanoCliente(planoSelecionado);
             valor = planoSelecionado.getPlano().getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
+            pagamento.setSituacao("Pendente");
             pagamento.setValor(valor);
 
             if (!planoSelecionado.getPlano().getNome().equals("Plano Casal")) {
@@ -305,6 +306,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
                         dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                         pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                        pagamento.setSituacao("Pendente");
                         dao.add(pagamento);
                         JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
                     } else {
@@ -321,73 +323,114 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 
             if (planoSelecionado.getPlano().getNome().equals("Plano Casal")) {
                 if (clienteAssociadoNovosDados != null) {
-                    if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() != null) {
-                        // Ambos os clientes têm planos associados
-                        if (!clienteNovosDados.getPlanoCliente().isStatus() && !clienteAssociadoNovosDados.getPlanoCliente().isStatus()) {
-                            // Ambos têm planos inativos, portanto, você pode associá-los ao Plano Casal
-
-                            clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
-                            clienteAssociadoNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
-                            dao.Atualizar(classePlano, clienteNovosDados.getPlanoCliente().getId(), planoSelecionado);
-                            dao.Atualizar(classePlano, clienteAssociadoNovosDados.getPlanoCliente().getId(), planoSelecionado);
-                            pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
-                            dao.add(pagamento);
-                            JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
-                        } else {
-                            // Pelo menos um dos clientes já possui um plano ativo, não é possível associá-los ao Plano Casal.
-                            JOptionPane.showMessageDialog(null, "Pelo menos um dos clientes já possui um plano ativo.");
-                        }
-                    } else if (clienteNovosDados.getPlanoCliente() == null && clienteAssociadoNovosDados.getPlanoCliente() != null) {
-                        if (!clienteAssociadoNovosDados.getPlanoCliente().isStatus()) {
-                            // O cliente normal não tem plano associado, mas o cliente associado tem um plano inativo, portanto, você pode associá-los ao Plano Casal
-                            clienteNovosDados.setPlanoCliente(planoSelecionado);
-                            clienteAssociadoNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
-                            dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
-                            dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-                            pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
-                            dao.add(pagamento);
-                            JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
-                        } else {
-                            // O cliente associado já possui um plano ativo, não é possível associá-los ao Plano Casal.
-                            JOptionPane.showMessageDialog(null, "O cliente associado já possui um plano ativo.");
-                        }
-                    } else if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() == null) {
-                        if (!clienteNovosDados.getPlanoCliente().isStatus()) {
-                            // O cliente associado não tem plano associado, mas o cliente normal tem um plano inativo, portanto, você pode associá-los ao Plano Casal
-                            clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
-                            clienteAssociadoNovosDados.setPlanoCliente(planoSelecionado);
-                            dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
-                            dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-                            pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
-                            dao.add(pagamento);
-                            JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
-                        } else {
-                            // O cliente normal já possui um plano ativo, não é possível associá-los ao Plano Casal.
-                            JOptionPane.showMessageDialog(null, "O cliente normal já possui um plano ativo.");
-                        }
-                    } else {
+                    if (clienteNovosDados.getPlanoCliente() == null && clienteAssociadoNovosDados.getPlanoCliente() == null) {
                         // Nenhum dos clientes tem planos associados, você pode associá-los ao Plano Casal
-                        clienteNovosDados.setPlanoCliente(planoSelecionado);
-                        clienteAssociadoNovosDados.setPlanoCliente(planoSelecionado);
-                        planoSelecionado.setCliente(clienteNovosDados); // Define o cliente para o plano
-                        dao.add(planoSelecionado); // Persiste o Plano Casal
 
-                        // Agora você precisa criar uma cópia do Plano Casal, pois não pode salvar o mesmo objeto duas vezes
-                        PlanoCliente planoAssociado = new PlanoCliente();
-                        planoAssociado.setCliente(clienteAssociadoNovosDados);
-                        planoAssociado.setPlano(planoSelecionado.getPlano());
-                        planoAssociado.setDuracao(planoSelecionado.getDuracao());
-                        planoAssociado.setDataInicio(planoSelecionado.getDataInicio());
-                        planoAssociado.setDuracaoEmMeses(planoSelecionado.getDuracao());
-                        planoAssociado.setStatus(planoSelecionado.isStatus());
+                        // Crie um PlanoCliente para o cliente principal
+                        PlanoCliente planoClienteNovo = new PlanoCliente();
+                        planoClienteNovo.setCliente(clienteNovosDados);
+                        planoClienteNovo.setPlano(planoAssociacaoAtualizar);
+                        planoClienteNovo.setDuracao(planoSelecionado.getDuracao());
+                        planoClienteNovo.setDataInicio(planoSelecionado.getDataInicio());
+                        planoClienteNovo.setDuracaoEmMeses(planoSelecionado.getDuracao());
+                        planoClienteNovo.setStatus(planoSelecionado.isStatus());
 
-                        dao.add(planoAssociado); // Persiste a cópia do Plano Casal para o cliente associado
+                        // Crie um PlanoCliente para o cliente associado
+                        PlanoCliente planoClienteAssociadoNovo = new PlanoCliente();
+                        planoClienteAssociadoNovo.setCliente(clienteAssociadoNovosDados);
+                        planoClienteAssociadoNovo.setPlano(planoAssociacaoAtualizar);
+                        planoClienteAssociadoNovo.setDuracao(planoSelecionado.getDuracao());
+                        planoClienteAssociadoNovo.setDataInicio(planoSelecionado.getDataInicio());
+                        planoClienteAssociadoNovo.setDuracaoEmMeses(planoSelecionado.getDuracao());
+                        planoClienteAssociadoNovo.setStatus(planoSelecionado.isStatus());
 
-                        pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                        // Persista ambos os Planos Clientes
+                        dao.add(planoClienteNovo);
+                        dao.add(planoClienteAssociadoNovo);
+                        
+                        
+
+                        // Atualize o status do pagamento
+                        pagamento.setPlanoCliente(planoClienteNovo);
+                        pagamento.setSituacao("Pendente");
+                        dao.add(pagamento);
+
+                        // Atualize o status dos clientes
+                        clienteNovosDados.setPlanoCliente(planoClienteNovo);
+                        clienteAssociadoNovosDados.setPlanoCliente(planoClienteAssociadoNovo);
                         dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-                        dao.add(pagamento);
+
                         JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                    }
+                    if (clienteNovosDados.getPlanoCliente() == null && clienteAssociadoNovosDados.getPlanoCliente() != null
+                            && !clienteAssociadoNovosDados.getPlanoCliente().isStatus()) {
+                        // O cliente normal não tem plano associado, mas o cliente associado tem um plano inativo, portanto, você pode associá-los ao Plano Casal
+
+                        clienteNovosDados.setPlanoCliente(planoSelecionado);
+                        clienteAssociadoNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+
+                        //Gravar o planoCliente na base antes de gerar o pagamento
+                        // Crie um PlanoCliente para o cliente principal
+                        PlanoCliente planoClienteNovo = new PlanoCliente();
+                        planoClienteNovo.setCliente(clienteNovosDados);
+                        planoClienteNovo.setPlano(planoAssociacaoAtualizar);
+                        planoClienteNovo.setDuracao(planoSelecionado.getDuracao());
+                        planoClienteNovo.setDataInicio(planoSelecionado.getDataInicio());
+                        planoClienteNovo.setDuracaoEmMeses(planoSelecionado.getDuracao());
+                        planoClienteNovo.setStatus(planoSelecionado.isStatus());
+
+                        dao.add(planoClienteNovo);
+
+                        // Atualize o status do pagamento
+                        pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                        pagamento.setSituacao("Pendente");
+                        dao.add(pagamento);
+
+                        // Atualize os clientes e o Plano Cliente do associado
+                        dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                        dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+
+                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                    }
+                    if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() == null
+                            && !clienteNovosDados.getPlanoCliente().isStatus()) {
+                        // O cliente associado não tem plano associado, mas o cliente normal tem um plano inativo, portanto, você pode associá-los ao Plano Casal
+                        clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                        clienteAssociadoNovosDados.setPlanoCliente(planoSelecionado);
+                        // Crie um PlanoCliente para o cliente associado
+                        PlanoCliente planoClienteAssociadoNovo = new PlanoCliente();
+                        planoClienteAssociadoNovo.setCliente(clienteAssociadoNovosDados);
+                        planoClienteAssociadoNovo.setPlano(planoAssociacaoAtualizar);
+                        planoClienteAssociadoNovo.setDuracao(planoSelecionado.getDuracao());
+                        planoClienteAssociadoNovo.setDataInicio(planoSelecionado.getDataInicio());
+                        planoClienteAssociadoNovo.setDuracaoEmMeses(planoSelecionado.getDuracao());
+                        planoClienteAssociadoNovo.setStatus(planoSelecionado.isStatus());
+
+                        dao.add(planoClienteAssociadoNovo);
+
+                        // Atualize o status do pagamento
+                        pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                        pagamento.setSituacao("Pendente");
+                        dao.add(pagamento);
+
+                        // Atualize os clientes e o Plano Cliente do associado
+                        dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                        dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+
+                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                    }
+                    if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() != null
+                            && !clienteNovosDados.getPlanoCliente().isStatus() && !clienteNovosDados.getPlanoCliente().isStatus()) {
+                        clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                        clienteAssociadoNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                        pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                        pagamento.setSituacao("Pendente");
+                        dao.add(pagamento);
+
+                        // Atualize os clientes e o Plano Cliente do associado
+                        dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                        dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
                     }
 
                 } else {

@@ -27,7 +27,19 @@ public class Pagamento_Mensalidade implements Serializable {
     private String data_Pagamento;
     private Double valor;
     private boolean status;
+    
+    //Pendente, pago , cancelado 
+    private String situacao;
 
+    public String getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(String situacao) {
+        this.situacao = situacao;
+    }
+    
+    
     public PlanoCliente getPlanoCliente() {
         return planoCliente;
     }
