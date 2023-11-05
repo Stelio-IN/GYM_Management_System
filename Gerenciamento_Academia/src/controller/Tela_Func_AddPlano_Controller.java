@@ -33,11 +33,6 @@ import model.Pagamento_Mensalidade;
 import model.PlanoCliente;
 import model.Plano_de_Associacao;
 
-/**
- * FXML Controller class
- *
- * @author steli
- */
 public class Tela_Func_AddPlano_Controller implements Initializable {
 
     @FXML
@@ -99,23 +94,28 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
     Cliente clienteNovosDados = new Cliente();
     Cliente clienteAssociadoNovosDados = new Cliente();
     PlanoCliente planoSelecionado = new PlanoCliente();
+    Plano_de_Associacao planoAssociacaoAtualizar = new Plano_de_Associacao();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-
         ListarPlano();
 
         tabelaPlano.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> Tela_Func_AddPlano_Controller.this.pegarLinhaSelecionada(newValue)
+                (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
         listView.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada((Cliente) newValue)
         );
 
+        clienteNovosDados = null;
+        clienteAssociadoNovosDados = null;
+        planoSelecionado = null;
+        planoAssociacaoAtualizar = null;
     }
 
     public void pegarLinhaSelecionada(Cliente cli) {
+        clienteNovosDados = null;
+        clienteAssociadoNovosDados = null;
         if (cli != null) {
             clienteNovosDados = cli;
             txtNomeClientePrincipal.setText(cli.getNome());
@@ -133,34 +133,26 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                     txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getPlanoCliente().getPlano().getNome());
                 }
                 if (cli.getClinteAssociado().getImagem() != null) {
-                    // Converta o array de bytes em uma Image
                     byte[] imagemBytes = cli.getClinteAssociado().getImagem();
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
-                    // Definir largura e altura desejadas
-                    imageViewAssociado.setFitWidth(158); // Largura desejada
-                    imageViewAssociado.setFitHeight(130); // Altura desejada
-                    // Defina a imagem no ImageView
+                    imageViewAssociado.setFitWidth(158);
+                    imageViewAssociado.setFitHeight(130);
                     imageViewAssociado.setImage(imagem);
                 } else {
                     JOptionPane.showMessageDialog(null, "imagem nao encontrada");
                 }
             }
             if (cli.getImagem() != null) {
-                // Converta o array de bytes em uma Image
                 byte[] imagemBytes = cli.getImagem();
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
-
-                // Definir largura e altura desejadas
-                imageView.setFitWidth(158); // Largura desejada
-                imageView.setFitHeight(130); // Altura desejada
-                // Defina a imagem no ImageView
+                imageView.setFitWidth(158);
+                imageView.setFitHeight(130);
                 imageView.setImage(imagem);
             } else {
                 JOptionPane.showMessageDialog(null, "imagem nao encontrada");
             }
-
         } else {
-            JOptionPane.showMessageDialog(null, "Selecione alguem");
+            JOptionPane.showMessageDialog(null, "Selecione alguém");
         }
     }
 
@@ -170,18 +162,16 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         fabrica = Persistence.createEntityManagerFactory("SystemPU");
         gerente = fabrica.createEntityManager();
 
-        ObservableList<Cliente> items = FXCollections.observableArrayList(); // Crie uma ObservableList de Cliente
+        ObservableList<Cliente> items = FXCollections.observableArrayList();
 
         TypedQuery<Cliente> query = gerente.createQuery("SELECT c FROM Cliente c WHERE c.nome LIKE :nome", Cliente.class);
-        query.setParameter("nome", "%" + txtPesquisa.getText() + "%"); // O operador % é usado para consultas "LIKE"
+        query.setParameter("nome", "%" + txtPesquisa.getText() + "%");
         List<Cliente> resultados = query.getResultList();
 
-        items.addAll(resultados); // Adicione objetos Cliente à listaPesquisa
+        items.addAll(resultados);
 
-        listView.setItems(items); // Defina a ObservableList de objetos Cliente no ListView
+        listView.setItems(items);
 
-        // Defina a célula personalizada para mostrar apenas o nome na listaPesquisa
-        //expressao Lapda
         listView.setCellFactory((ListView<Cliente> param) -> new ListCell<Cliente>() {
             @Override
             protected void updateItem(Cliente item, boolean empty) {
@@ -194,8 +184,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             }
         });
 
-        gerente.close(); // Não se esqueça de fechar o EntityManager quando terminar
-        fabrica.close(); // E a EntityManagerFactory também
+        gerente.close();
+        fabrica.close();
     }
 
     @FXML
@@ -203,30 +193,29 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         listaPesquisa();
     }
 
-    private ObservableList< Plano_de_Associacao> observableListe;
-    private ObservableList< Cliente> observableList;
+    private ObservableList<Plano_de_Associacao> observableListPlano;
+    private ObservableList<Cliente> observableListCliente;
 
     private void ListarPlano() {
         GenericDAO dao = new GenericDAO();
-        Class<Plano_de_Associacao> classe = Plano_de_Associacao.class;
+        Class<Plano_de_Associacao> classePlano = Plano_de_Associacao.class;
 
-        List<Plano_de_Associacao> lista = (List<Plano_de_Associacao>) dao.listar(classe);
+        List<Plano_de_Associacao> lista = (List<Plano_de_Associacao>) dao.listar(classePlano);
 
         colunaNomePlano.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
-        observableListe = FXCollections.observableArrayList(lista);
-        tabelaPlano.setItems(observableListe);
+        observableListPlano = FXCollections.observableArrayList(lista);
+        tabelaPlano.setItems(observableListPlano);
     }
 
-    public void pegarLinhaSelecionada(Plano_de_Associacao plano_de_Associacao) {
-        PlanoCliente planoCliente = new PlanoCliente();
-        planoCliente.setPlano(plano_de_Associacao);
-        clienteNovosDados.setPlanoCliente(planoCliente);
-        clienteAssociadoNovosDados.setPlanoCliente(planoCliente);
-        planoSelecionado = planoCliente;
-        if (plano_de_Associacao != null) {
-            txtNomePlano.setText(plano_de_Associacao.getNome());
-            txtPrecoPlano.setText(String.valueOf(plano_de_Associacao.getPreco()));
+    public void pegarLinhaSelecionada(Plano_de_Associacao plano) {
+        if (plano != null) {
+            PlanoCliente planoCliente = new PlanoCliente();
+            planoCliente.setPlano(plano);
+            planoAssociacaoAtualizar = plano;
+            planoSelecionado = planoCliente;
+            txtNomePlano.setText(plano.getNome());
+            txtPrecoPlano.setText(String.valueOf(plano.getPreco()));
         } else {
             JOptionPane.showMessageDialog(null, "Selecione Uma linha");
         }
@@ -238,11 +227,11 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         imageView.setImage(imageLimpar);
         imageViewAssociado.setImage(imageLimpar);
 
-        imageView.setFitWidth(158); // Largura desejada
-        imageView.setFitHeight(130); // Altura desejada
+        imageView.setFitWidth(158);
+        imageView.setFitHeight(130);
 
-        imageViewAssociado.setFitWidth(158); // Largura desejada
-        imageViewAssociado.setFitHeight(130); // Altura desejada
+        imageViewAssociado.setFitWidth(158);
+        imageViewAssociado.setFitHeight(130);
 
         txtCodigoClientePrincipal.setText("");
         txtCodigoClienteAssociado.setText("");
@@ -253,139 +242,85 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         txtNomeClienteAssociado.setText("");
         txtObjectivoClientePrincipal.setText("");
         txtObjectivoClienteAssociado.setText("");
+        txtGeneroClientePrincipal.setText("");
+        txtGeneroClienteAssociado.setText("");
+        txtPrecoPlano.setText("");
 
         clienteNovosDados = null;
         clienteAssociadoNovosDados = null;
-
+        planoSelecionado = null;
+        planoAssociacaoAtualizar = null;
     }
 
     @FXML
     void RemoverPlano(ActionEvent event) {
         GenericDAO dao = new GenericDAO();
         Class<Cliente> classe = Cliente.class;
-        if (clienteNovosDados != null && planoSelecionado != null) {
-            clienteNovosDados.desvincularPlanoAtivo();
-
+        if (clienteNovosDados != null && clienteNovosDados.getPlanoCliente() != null) {
+              clienteNovosDados.getPlanoCliente().setStatus(false);
             dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-
-        }
+            JOptionPane.showMessageDialog(null,"Plano Removido");
+        }else
+            JOptionPane.showMessageDialog(null,"Impossivel remover Plano");
     }
 
     @FXML
     void guardarPlano(ActionEvent event) {
+        GenericDAO dao = new GenericDAO();
+        double valor = 0;
+        Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
+        Class<Cliente> classeCliente = Cliente.class;
+        Class<PlanoCliente> classePlano = PlanoCliente.class;
 
-        if (clienteNovosDados != null && planoSelecionado != null && dataPickerInicio.getValue() != null) {
-            GenericDAO dao = new GenericDAO();
-            Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
-            double valor = 0;
-            Class<Cliente> classe = Cliente.class;
+        if (clienteNovosDados != null && planoSelecionado != null && dataPickerInicio.getValue() != null
+                && !txtDuracaoPlano.getText().isEmpty()) {
+
             LocalDate localDate = dataPickerInicio.getValue();
             ZoneId zoneId = ZoneId.systemDefault();
             Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
-
+            planoSelecionado.setCliente(clienteNovosDados);
             planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
             planoSelecionado.setDataInicio(date);
             planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
             planoSelecionado.setStatus(false);
-            planoSelecionado.setCliente(clienteNovosDados);
-
             pagamento.setPlanoCliente(planoSelecionado);
             valor = planoSelecionado.getPlano().getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
             pagamento.setValor(valor);
 
-//            clienteNovosDados.setPlanoCliente(planoSelecionado);
-//            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-//            dao.add(planoSelecionado);
-//            dao.add(pagamento);
-            dao.add(planoSelecionado); // Persista o planoSelecionado
-            dao.add(pagamento); // Persista o pagamento
-            clienteNovosDados.setPlanoCliente(planoSelecionado); // Associe clienteNovosDados com planoSelecionado
-            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados); // Atualize clienteNovosDados
+            if (!planoSelecionado.getPlano().getNome().equals("Plano Casal")) {
+                if (clienteNovosDados.getPlanoCliente() != null) {
+                    if (clienteNovosDados.getPlanoCliente().isStatus() == false) {
+                        clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                        dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                        pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                        dao.add(pagamento);
+                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Cliente com plano: " + clienteNovosDados.getPlanoCliente().getPlano().getNome() + "__ Estado: " + clienteNovosDados.getPlanoCliente().isStatus());
+                    }
+                } else {
+                    dao.add(planoSelecionado);
+                    dao.add(pagamento);
+                    clienteNovosDados.setPlanoCliente(planoSelecionado);
+                    dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                    JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
+                }
+            }
 
-            JOptionPane.showMessageDialog(null, "Sucesso " + valor);
-//
-//            /*
-//                Plano casal
-//             */
-//            if (planoSelecionado.getNome().equals("Plano casal") && clienteNovosDados.getClinteAssociado() != null
-//                    && clienteNovosDados.getPlano_de_associacao().isStatus() == false
-//                    && clienteAssociadoNovosDados.getPlano_de_associacao().isStatus() == false) {
-//
-//                planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
-//                planoSelecionado.setDataInicio(date);
-//                planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
-//                planoSelecionado.setStatus(false);
-//                clienteNovosDados.setPlano_de_associacao(planoSelecionado);
-//
-//                dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-//                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-//                pagamento.setCliente(clienteNovosDados);
-//                pagamento.setPlano_de_Associacao(planoSelecionado);
-//                valor = planoSelecionado.getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
-//                pagamento.setValor(valor);
-//                dao.add(pagamento);
-//                JOptionPane.showMessageDialog(null, "Sucesso Plano casal" + valor);
-//            }
-//            if (clienteNovosDados.getPlano_de_associacao().isStatus() == false || clienteNovosDados.getPlano_de_associacao() == null) {
-//                /*
-//            Outros planos
-//                 */
-//                planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
-//                planoSelecionado.setDataInicio(date);
-//                planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
-//                planoSelecionado.setStatus(false);
-//                clienteNovosDados.setPlano_de_associacao(planoSelecionado);
-//
-//                pagamento.setCliente(clienteNovosDados);
-//                pagamento.setPlano_de_Associacao(planoSelecionado);
-//                valor = planoSelecionado.getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
-//                pagamento.setValor(valor);
-//
-//                dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-//                dao.add(pagamento);
-//                JOptionPane.showMessageDialog(null, "Sucesso " + valor);
-//
-//            }
+            if (planoSelecionado.getPlano().getNome().equals("Plano Casal")) {
+                if (clienteAssociadoNovosDados != null) {
+                    if (clienteAssociadoNovosDados.getPlanoCliente() != null || clienteNovosDados.getPlanoCliente() != null) {
+
+                    }
+                    if (clienteAssociadoNovosDados.getPlanoCliente().isStatus() && clienteNovosDados.getPlanoCliente().isStatus()) {
+
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Sem cliente Associado");
+                }
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Preencha os campos");
         }
     }
-//      @FXML
-//    void guardarPlano(ActionEvent event) {
-//        GenericDAO dao = new GenericDAO();
-//        if (clienteNovosDados != null && planoSelecionado != null) {
-//            Class<Cliente> classe = Cliente.class;
-//            LocalDate localDate = dataPickerInicio.getValue();
-//            ZoneId zoneId = ZoneId.systemDefault();
-//            Date date = Date.from(localDate.atStartOfDay(zoneId).toInstant());
-//
-//            planoSelecionado.setDuracao(Integer.parseInt(txtDuracaoPlano.getText()));
-//            planoSelecionado.setDataInicio(date);
-//            planoSelecionado.setDuracaoEmMeses(planoSelecionado.getDuracao());
-//            planoSelecionado.setStatus(false);
-//            
-//            clienteNovosDados.setPlano_de_associacao(planoSelecionado);
-//            
-//            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-//
-////            if (clienteAssociadoNovosDados != null) {
-////                dao.Atualizar(classe, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-////            }
-//            
-//            Pagamento_Mensalidade pagamento = new Pagamento_Mensalidade();
-//            pagamento.setCliente(clienteNovosDados);
-//            pagamento.setPlano_de_Associacao(planoSelecionado);
-//            pagamento.setValor(planoSelecionado.getPreco());
-//            
-//            dao.add(pagamento);
-//            
-//            
-//            JOptionPane.showMessageDialog(null, "Sucesso");
-//
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Selecione um cliente e um plano antes de salvar.");
-//        }
-//
-//    }
-
 }

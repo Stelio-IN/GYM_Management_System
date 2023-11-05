@@ -23,18 +23,14 @@ import javax.persistence.OneToOne;
 public class Cliente extends Pessoa implements Serializable {
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clienteAssociado_id")
+    private Cliente clienteAssociado;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "planoCliente_id")
     private PlanoCliente planoCliente;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clienteAssociado_id")
-    private Cliente clienteAssociado;
-    
-     //Logica de negocio
-    public void desvincularPlanoAtivo() {
-        this.planoCliente = null;
-    }
-
+  
     private String contato_emergencia;
     private String data_inscricao;
     private Double altura;
@@ -83,7 +79,6 @@ public class Cliente extends Pessoa implements Serializable {
     public void setPlanoCliente(PlanoCliente planoCliente) {
         this.planoCliente = planoCliente;
     }
-    
 
     public void desassociarCasal(Cliente parceiro) {
         if (parceiro != null && parceiro == this.clienteAssociado) {

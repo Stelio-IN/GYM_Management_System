@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -24,7 +25,7 @@ public class PlanoCliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @OneToOne
     private Cliente cliente;
 
     @ManyToOne
@@ -39,11 +40,21 @@ public class PlanoCliente {
     private boolean status;
     private int duracao;
 
+    
+    
+    public void atualizarPlano(Plano_de_Associacao novoPlano, Date novaDataInicio, boolean novoStatus, int novaDuracao) {
+        this.plano = novoPlano;
+        this.dataInicio = novaDataInicio;
+        this.status = novoStatus;
+        this.duracao = novaDuracao;
+         setDuracaoEmMeses(novaDuracao); 
+    }
+    
     public void setDuracaoEmMeses(int duracaoEmMeses) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dataInicio);
         calendar.add(Calendar.MONTH, duracaoEmMeses);
-        dataFim = calendar.getTime();
+        this.dataFim = calendar.getTime();
     }
     public Long getId() {
         return id;
