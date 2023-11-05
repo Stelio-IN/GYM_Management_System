@@ -26,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Pagamento_Mensalidade;
+import static model.PlanoCliente_.plano;
 import model.Plano_de_Associacao;
 
 /**
@@ -50,9 +51,8 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
     @FXML
     private TableColumn<Pagamento_Mensalidade, Double> coluna_Valor;
 
-   // @FXML
-   // private TableColumn<Pagamento_Mensalidade, String> coluna_Funcionario;
-
+    // @FXML
+    // private TableColumn<Pagamento_Mensalidade, String> coluna_Funcionario;
     @FXML
     private ImageView emola;
 
@@ -112,7 +112,7 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
 
     @FXML
     private Button btnPagamento;
-        @FXML
+    @FXML
     private TextField txtValor;
 
     public void EscritaSimultanea() {
@@ -236,61 +236,73 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
 //    }
     private ObservableList<Pagamento_Mensalidade> observableListe;
 
- void listar() {
+    void listar() {
         GenericDAO dao = new GenericDAO();
 
-        
-    Class<Pagamento_Mensalidade> pagamento_Classe = Pagamento_Mensalidade.class;
-    List<Pagamento_Mensalidade> lista = (List<Pagamento_Mensalidade>) dao.listar(pagamento_Classe);
+        Class<Pagamento_Mensalidade> pagamento_Classe = Pagamento_Mensalidade.class;
+        List<Pagamento_Mensalidade> lista = (List<Pagamento_Mensalidade>) dao.listar(pagamento_Classe);
 
-    // Filter the list to include only payments with status == false
-    List<Pagamento_Mensalidade> filteredList = lista.stream()
-            .filter(p -> !p.isStatus())  // Assuming isStatus() returns the boolean status
-            .collect(Collectors.toList());
+        // Filter the list to include only payments with status == false
+        List<Pagamento_Mensalidade> filteredList = lista.stream()
+                .filter(p -> !p.isStatus()) // Assuming isStatus() returns the boolean status
+                .collect(Collectors.toList());
 
-    coluna_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-    coluna_Cliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
-    coluna_Pacote.setCellValueFactory(new PropertyValueFactory<>("plano_de_Associacao"));
-    coluna_Valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-  //  coluna_Funcionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
+        coluna_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
+        coluna_Cliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+        coluna_Pacote.setCellValueFactory(new PropertyValueFactory<>("plano_de_Associacao"));
+        coluna_Valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+        //  coluna_Funcionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
 
-    observableListe = FXCollections.observableArrayList(filteredList);
-    tabela_Pagemento.setItems(observableListe);
+        observableListe = FXCollections.observableArrayList(filteredList);
+        tabela_Pagemento.setItems(observableListe);
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         EscritaSimultanea();
         listar();
-    
+
         tabela_Pagemento.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
     }
 
-    private Cliente cliente = new  Cliente();
-   GenericDAO dao = new GenericDAO();
-   //   private Funcionario funcionario;
+    private Cliente cliente = new Cliente();
+    GenericDAO dao = new GenericDAO();
+    //   private Funcionario funcionario;
     private Pagamento_Mensalidade pagamento;
-    
-    
+
     @FXML
-    void efetuarPagamento(ActionEvent event) {
-        if (pagamento != null) {
+  void efetuarPagamento(ActionEvent event) {
+    if (pagamento != null) {
+        pagamento.setStatus(true);
 
-            pagamento.setStatus(true);
-
+        if (pagamento.getPlanoCliente().getPlano().getNome().equalsIgnoreCase("plano casal")) {
+            // Se for "Plano Casal", atualize o status de ambos os clientes associados
             Cliente cliente = pagamento.getPlanoCliente().getCliente();
-            
+            Cliente clienteAssociado = pagamento.getPlanoCliente().getCliente().getClienteAssociado();
+
             cliente.getPlanoCliente().setStatus(true);
-            
+            clienteAssociado.getPlanoCliente().setStatus(true);
+
             dao.Atualizar(Cliente.class, cliente.getId(), cliente);
-            dao.Atualizar(Pagamento_Mensalidade.class, pagamento.getId(), pagamento);
-            JOptionPane.showMessageDialog(null, "Pago");
+            dao.Atualizar(Cliente.class, clienteAssociado.getId(), clienteAssociado);
         } else {
-            JOptionPane.showMessageDialog(null, "Fail");
+            // Se não for "Plano Casal", atualize apenas o cliente principal
+            Cliente cliente = pagamento.getPlanoCliente().getCliente();
+            cliente.getPlanoCliente().setStatus(true);
+            dao.Atualizar(Cliente.class, cliente.getId(), cliente);
         }
+
+        // Atualize o status do pagamento e exiba uma mensagem de sucesso
+        dao.Atualizar(Pagamento_Mensalidade.class, pagamento.getId(), pagamento);
+        JOptionPane.showMessageDialog(null, "Pago");
+    } else {
+        JOptionPane.showMessageDialog(null, "Fail");
     }
+}
+
+
     public void pegarLinhaSelecionada(Pagamento_Mensalidade factura) {
         if (factura != null) {
             pagamento = factura;

@@ -91,6 +91,12 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
     @FXML
     private TableView<Plano_de_Associacao> tabelaPlano;
 
+    @FXML
+    private TextField txtStatusClienteAssociado;
+
+    @FXML
+    private TextField txtStatusClientePrincipal;
+
     Cliente clienteNovosDados = new Cliente();
     Cliente clienteAssociadoNovosDados = new Cliente();
     PlanoCliente planoSelecionado = new PlanoCliente();
@@ -118,22 +124,25 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         clienteAssociadoNovosDados = null;
         if (cli != null) {
             clienteNovosDados = cli;
-            txtNomeClientePrincipal.setText(cli.getNome());
-            txtCodigoClientePrincipal.setText(cli.getCodigo());
-            txtGeneroClientePrincipal.setText(cli.getGenero());
-            if (cli.getPlanoCliente() != null) {
-                txtObjectivoClientePrincipal.setText(cli.getPlanoCliente().getPlano().getNome());
+            txtNomeClientePrincipal.setText(clienteNovosDados.getNome());
+            txtCodigoClientePrincipal.setText(clienteNovosDados.getCodigo());
+            txtGeneroClientePrincipal.setText(clienteNovosDados.getGenero());
+            if (clienteNovosDados.getPlanoCliente() != null) {
+                txtObjectivoClientePrincipal.setText(clienteNovosDados.getPlanoCliente().getPlano().getNome());
+                txtStatusClientePrincipal.setText(clienteNovosDados.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
+
             }
             if (cli.getClinteAssociado() != null) {
                 clienteAssociadoNovosDados = cli.getClinteAssociado();
-                txtNomeClienteAssociado.setText(cli.getClinteAssociado().getNome());
-                txtCodigoClienteAssociado.setText(cli.getClinteAssociado().getCodigo());
-                txtGeneroClienteAssociado.setText(cli.getClinteAssociado().getGenero());
-                if (cli.getClinteAssociado().getPlanoCliente() != null) {
-                    txtObjectivoClienteAssociado.setText(cli.getClinteAssociado().getPlanoCliente().getPlano().getNome());
+                txtNomeClienteAssociado.setText(clienteAssociadoNovosDados.getNome());
+                txtCodigoClienteAssociado.setText(clienteAssociadoNovosDados.getCodigo());
+                txtGeneroClienteAssociado.setText(clienteAssociadoNovosDados.getGenero());
+                if (clienteAssociadoNovosDados.getPlanoCliente() != null) {
+                    txtObjectivoClienteAssociado.setText(clienteAssociadoNovosDados.getPlanoCliente().getPlano().getNome());
+                    txtStatusClienteAssociado.setText(clienteAssociadoNovosDados.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
                 }
-                if (cli.getClinteAssociado().getImagem() != null) {
-                    byte[] imagemBytes = cli.getClinteAssociado().getImagem();
+                if (clienteAssociadoNovosDados.getImagem() != null) {
+                    byte[] imagemBytes = clienteAssociadoNovosDados.getImagem();
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
                     imageViewAssociado.setFitWidth(158);
                     imageViewAssociado.setFitHeight(130);
@@ -142,8 +151,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                     JOptionPane.showMessageDialog(null, "imagem nao encontrada");
                 }
             }
-            if (cli.getImagem() != null) {
-                byte[] imagemBytes = cli.getImagem();
+            if (clienteNovosDados.getImagem() != null) {
+                byte[] imagemBytes = clienteNovosDados.getImagem();
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
                 imageView.setFitWidth(158);
                 imageView.setFitHeight(130);
@@ -257,11 +266,14 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         GenericDAO dao = new GenericDAO();
         Class<Cliente> classe = Cliente.class;
         if (clienteNovosDados != null && clienteNovosDados.getPlanoCliente() != null) {
-              clienteNovosDados.getPlanoCliente().setStatus(false);
-            dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-            JOptionPane.showMessageDialog(null,"Plano Removido");
-        }else
-            JOptionPane.showMessageDialog(null,"Impossivel remover Plano");
+            if (clienteNovosDados.getPlanoCliente().isStatus() == true) {
+                clienteNovosDados.getPlanoCliente().setStatus(false);
+                dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
+                JOptionPane.showMessageDialog(null, "Plano Removido");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Impossivel remover Plano");
+        }
     }
 
     @FXML
@@ -309,16 +321,80 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
 
             if (planoSelecionado.getPlano().getNome().equals("Plano Casal")) {
                 if (clienteAssociadoNovosDados != null) {
-                    if (clienteAssociadoNovosDados.getPlanoCliente() != null || clienteNovosDados.getPlanoCliente() != null) {
+                    if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() != null) {
+                        // Ambos os clientes têm planos associados
+                        if (!clienteNovosDados.getPlanoCliente().isStatus() && !clienteAssociadoNovosDados.getPlanoCliente().isStatus()) {
+                            // Ambos têm planos inativos, portanto, você pode associá-los ao Plano Casal
 
-                    }
-                    if (clienteAssociadoNovosDados.getPlanoCliente().isStatus() && clienteNovosDados.getPlanoCliente().isStatus()) {
+                            clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                            clienteAssociadoNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                            dao.Atualizar(classePlano, clienteNovosDados.getPlanoCliente().getId(), planoSelecionado);
+                            dao.Atualizar(classePlano, clienteAssociadoNovosDados.getPlanoCliente().getId(), planoSelecionado);
+                            pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                            dao.add(pagamento);
+                            JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        } else {
+                            // Pelo menos um dos clientes já possui um plano ativo, não é possível associá-los ao Plano Casal.
+                            JOptionPane.showMessageDialog(null, "Pelo menos um dos clientes já possui um plano ativo.");
+                        }
+                    } else if (clienteNovosDados.getPlanoCliente() == null && clienteAssociadoNovosDados.getPlanoCliente() != null) {
+                        if (!clienteAssociadoNovosDados.getPlanoCliente().isStatus()) {
+                            // O cliente normal não tem plano associado, mas o cliente associado tem um plano inativo, portanto, você pode associá-los ao Plano Casal
+                            clienteNovosDados.setPlanoCliente(planoSelecionado);
+                            clienteAssociadoNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                            dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                            dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+                            pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                            dao.add(pagamento);
+                            JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        } else {
+                            // O cliente associado já possui um plano ativo, não é possível associá-los ao Plano Casal.
+                            JOptionPane.showMessageDialog(null, "O cliente associado já possui um plano ativo.");
+                        }
+                    } else if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() == null) {
+                        if (!clienteNovosDados.getPlanoCliente().isStatus()) {
+                            // O cliente associado não tem plano associado, mas o cliente normal tem um plano inativo, portanto, você pode associá-los ao Plano Casal
+                            clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
+                            clienteAssociadoNovosDados.setPlanoCliente(planoSelecionado);
+                            dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                            dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+                            pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                            dao.add(pagamento);
+                            JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        } else {
+                            // O cliente normal já possui um plano ativo, não é possível associá-los ao Plano Casal.
+                            JOptionPane.showMessageDialog(null, "O cliente normal já possui um plano ativo.");
+                        }
+                    } else {
+                        // Nenhum dos clientes tem planos associados, você pode associá-los ao Plano Casal
+                        clienteNovosDados.setPlanoCliente(planoSelecionado);
+                        clienteAssociadoNovosDados.setPlanoCliente(planoSelecionado);
+                        planoSelecionado.setCliente(clienteNovosDados); // Define o cliente para o plano
+                        dao.add(planoSelecionado); // Persiste o Plano Casal
 
+                        // Agora você precisa criar uma cópia do Plano Casal, pois não pode salvar o mesmo objeto duas vezes
+                        PlanoCliente planoAssociado = new PlanoCliente();
+                        planoAssociado.setCliente(clienteAssociadoNovosDados);
+                        planoAssociado.setPlano(planoSelecionado.getPlano());
+                        planoAssociado.setDuracao(planoSelecionado.getDuracao());
+                        planoAssociado.setDataInicio(planoSelecionado.getDataInicio());
+                        planoAssociado.setDuracaoEmMeses(planoSelecionado.getDuracao());
+                        planoAssociado.setStatus(planoSelecionado.isStatus());
+
+                        dao.add(planoAssociado); // Persiste a cópia do Plano Casal para o cliente associado
+
+                        pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
+                        dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
+                        dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+                        dao.add(pagamento);
+                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
                     }
+
                 } else {
                     JOptionPane.showMessageDialog(null, "Sem cliente Associado");
                 }
             }
+
         } else {
             JOptionPane.showMessageDialog(null, "Preencha os campos");
         }

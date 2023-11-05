@@ -45,7 +45,7 @@
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
-            <TextField fx:id="txtObjectivoClientePrincipal" layoutX="28.0" layoutY="233.0" prefHeight="30.0" prefWidth="238.0" promptText="Fazer Perna" styleClass="textfields_esquerda">
+            <TextField fx:id="txtObjectivoClientePrincipal" layoutX="28.0" layoutY="233.0" prefHeight="31.0" prefWidth="120.0" promptText="Plano casal" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
@@ -53,7 +53,7 @@
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
-            <TextField fx:id="txtObjectivoClienteAssociado" layoutX="30.0" layoutY="475.0" prefHeight="30.0" prefWidth="238.0" promptText="Perder Peso" styleClass="textfields_esquerda">
+            <TextField fx:id="txtObjectivoClienteAssociado" layoutX="30.0" layoutY="475.0" prefHeight="31.0" prefWidth="120.0" promptText="Plano casal" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
@@ -148,6 +148,26 @@
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
             <QuadCurve controlX="-159.39999389648438" controlY="76.19999694824219" endX="73.0" endY="-21.511882781982422" fill="#05a764" layoutX="234.0" layoutY="21.0" startX="-217.6005096435547" startY="-21.511890411376953" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva" />
+            <Label layoutX="184.0" layoutY="214.0" text="Status" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="184.0" layoutY="456.0" text="Status" textFill="#847e7e">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtStatusClientePrincipal" layoutX="181.0" layoutY="233.0" prefHeight="31.0" prefWidth="82.0" promptText="Activo" styleClass="textfields_esquerda">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
+            <TextField fx:id="txtStatusClienteAssociado" layoutX="181.0" layoutY="477.0" prefHeight="31.0" prefWidth="82.0" promptText="Activo" styleClass="textfields_esquerda">
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
          </children>
          <effect>
             <DropShadow>
