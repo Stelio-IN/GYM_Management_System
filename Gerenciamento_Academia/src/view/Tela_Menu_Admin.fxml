@@ -246,7 +246,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AreaChart fx:id="GraficoArea" layoutX="24.0" layoutY="42.0" prefHeight="228.0" prefWidth="506.0" style="-fx-background-color: white;">
+                  <AreaChart fx:id="GraficoArea" layoutX="15.0" layoutY="26.0" prefHeight="242.0" prefWidth="525.0" style="-fx-background-color: white;">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -256,7 +256,7 @@
                   </AreaChart>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="597.0" layoutY="362.0" prefHeight="190.0" prefWidth="446.0" style="-fx-background-color: white; -fx-background-radius: 30px;">
+            <AnchorPane layoutX="594.0" layoutY="362.0" prefHeight="186.0" prefWidth="113.0" style="-fx-background-radius: 30px; -fx-background-color: white;" styleClass="painelinho">
                <effect>
                   <DropShadow>
                      <color>
@@ -264,6 +264,23 @@
                      </color>
                   </DropShadow>
                </effect>
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="69.0" layoutX="28.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/casamento.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="42.0" layoutY="60.0" text="17" textFill="#185104">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="10.0" layoutY="16.0" text="Plano Casal" textFill="#185104">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
             </AnchorPane>
             <AnchorPane layoutX="13.0" layoutY="424.0" prefHeight="122.0" prefWidth="556.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
                <effect>
@@ -274,7 +291,7 @@
                   </DropShadow>
                </effect>
             </AnchorPane>
-            <AnchorPane layoutX="597.0" layoutY="121.0" prefHeight="228.0" prefWidth="459.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="597.0" layoutY="121.0" prefHeight="228.0" prefWidth="486.0" style="-fx-background-color: white;">
                <effect>
                   <DropShadow>
                      <color>
@@ -283,7 +300,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <PieChart fx:id="pieChart" layoutX="12.0" layoutY="30.0" prefHeight="192.0" prefWidth="436.0" />
+                  <PieChart fx:id="pieChart" layoutX="19.0" layoutY="6.0" prefHeight="216.0" prefWidth="460.0" />
                   <Label layoutX="205.0" layoutY="8.0" text="Clientes" textFill="#c9a514">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
@@ -311,6 +328,99 @@
                   </AnchorPane>
               </content>
             </ScrollPane>
+            <AnchorPane layoutX="719.0" layoutY="362.0" prefHeight="186.0" prefWidth="113.0" style="-fx-background-radius: 30px;" styleClass="painelinho">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.6117647290229797" green="0.5843137502670288" blue="0.5843137502670288" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="69.0" layoutX="28.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/graduado.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="42.0" layoutY="60.0" text="23" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="14.0" text="Plano " textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="34.0" text="Estudante" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="844.0" layoutY="362.0" prefHeight="186.0" prefWidth="113.0" style="-fx-background-radius: 30px; -fx-background-color: white;">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.6117647290229797" green="0.5843137502670288" blue="0.5843137502670288" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="69.0" layoutX="28.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/halteres.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="42.0" layoutY="60.0" text="09" textFill="#185104">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="14.0" text="Plano " textFill="#185104">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="34.0" text="Normal" textFill="#185104">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="973.0" layoutY="362.0" prefHeight="186.0" prefWidth="113.0" style="-fx-background-radius: 30px;" styleClass="painelinho">
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.6117647290229797" green="0.5843137502670288" blue="0.5843137502670288" />
+                     </color>
+                  </DropShadow>
+               </effect>
+               <children>
+                  <ImageView fitHeight="60.0" fitWidth="69.0" layoutX="28.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../img/privacidade.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="42.0" layoutY="60.0" text="12" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="27.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="14.0" text="Plano " textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="18.0" layoutY="34.0" text="Especial" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
          </children>
          <BorderPane.margin>
             <Insets top="20.0" />

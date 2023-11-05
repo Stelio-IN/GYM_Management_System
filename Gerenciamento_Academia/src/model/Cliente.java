@@ -12,7 +12,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -23,10 +22,27 @@ import javax.persistence.OneToOne;
 @Entity
 public class Cliente extends Pessoa implements Serializable {
 
-    //Logica de negocio
-    public void desvincularPlanoAtivo() {
-        this.plano_de_associacao = null;
-    }
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "clienteAssociado_id")
+    private Cliente clienteAssociado;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "planoCliente_id")
+    private PlanoCliente planoCliente;
+
+  
+    private String contato_emergencia;
+    private String data_inscricao;
+    private Double altura;
+    private Double peso;
+
+    private String esporte_que_Pratica;
+    private String doenca;
+
+    private String objectivo;
+
+    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
+    private List<Avaliacoes_Fisicas> avaliacoes;
 
     public Image getImagemComoImage() {
         if (imagem != null) {
@@ -35,30 +51,9 @@ public class Cliente extends Pessoa implements Serializable {
             return null; // Retorna null se não houver imagem
         }
     }
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clienteAssociado_id")
-    private Cliente clienteAssociado;
 
-    private String contato_emergencia;
-    private String data_inscricao;
-    private Double altura;
-    private Double peso;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "plano_de_associacao_id") // Coluna que armazenará a chave estrangeira
-    private Plano_de_Associacao plano_de_associacao;
-    private String nome_Do_Conjuge;
-
-    private String esporte_que_Pratica;
-    private String doenca;
-
-    private String objectivo;
-
-   // @OneToMany(mappedBy = "cliente")
-   // private List<Avaliacoes_Fisicas> avaliacoes;
-    
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.EAGER)
-    private List<Avaliacoes_Fisicas> avaliacoes;
-
+    // @OneToMany(mappedBy = "cliente")
+    // private List<Avaliacoes_Fisicas> avaliacoes;
     public List<Avaliacoes_Fisicas> getAvaliacoes() {
         return avaliacoes;
     }
@@ -76,16 +71,24 @@ public class Cliente extends Pessoa implements Serializable {
             System.out.println("A associação só é permitida entre pessoas de sexo oposto.");
         }
     }
-    
-    public void desassociarCasal(Cliente parceiro) {
-    if (parceiro != null && parceiro == this.clienteAssociado) {
-        this.clienteAssociado = null;
-        parceiro.clienteAssociado = null;
-        System.out.println("O casal foi desassociado com sucesso.");
-    } else {
-        System.out.println("Não há um casal associado para desassociar.");
+
+    public PlanoCliente getPlanoCliente() {
+        return planoCliente;
     }
-}
+
+    public void setPlanoCliente(PlanoCliente planoCliente) {
+        this.planoCliente = planoCliente;
+    }
+
+    public void desassociarCasal(Cliente parceiro) {
+        if (parceiro != null && parceiro == this.clienteAssociado) {
+            this.clienteAssociado = null;
+            parceiro.clienteAssociado = null;
+            System.out.println("O casal foi desassociado com sucesso.");
+        } else {
+            System.out.println("Não há um casal associado para desassociar.");
+        }
+    }
 
     public String getObjectivo() {
         return objectivo;
@@ -127,14 +130,6 @@ public class Cliente extends Pessoa implements Serializable {
         this.nascimento = nascimento;
     }
 
-    public String getNome_Do_Conjuge() {
-        return nome_Do_Conjuge;
-    }
-
-    public void setNome_Do_Conjuge(String nome_Do_Conjuge) {
-        this.nome_Do_Conjuge = nome_Do_Conjuge;
-    }
-
     public String getContato_emergencia() {
         return contato_emergencia;
     }
@@ -167,12 +162,12 @@ public class Cliente extends Pessoa implements Serializable {
         this.peso = peso;
     }
 
-    public Plano_de_Associacao getPlano_de_associacao() {
-        return plano_de_associacao;
+    public Cliente getClienteAssociado() {
+        return clienteAssociado;
     }
 
-    public void setPlano_de_associacao(Plano_de_Associacao plano_de_associacao) {
-        this.plano_de_associacao = plano_de_associacao;
+    public void setClienteAssociado(Cliente clienteAssociado) {
+        this.clienteAssociado = clienteAssociado;
     }
 
     public Long getId() {
@@ -318,8 +313,6 @@ public class Cliente extends Pessoa implements Serializable {
         sb.append(", data_inscricao=").append(data_inscricao);
         sb.append(", altura=").append(altura);
         sb.append(", peso=").append(peso);
-        sb.append(", plano_de_associacao=").append(plano_de_associacao);
-        sb.append(", nome_Do_Conjuge=").append(nome_Do_Conjuge);
         sb.append(", nascimento=").append(nascimento);
         sb.append(", esporte_que_Pratica=").append(esporte_que_Pratica);
         sb.append(", doenca=").append(doenca);

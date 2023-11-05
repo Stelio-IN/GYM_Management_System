@@ -8,7 +8,10 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.ResourceBundle;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +19,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.AreaChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -24,6 +29,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.Ficha_Inscricao;
 import model.Pessoa;
 
@@ -64,6 +70,9 @@ public class Tela_Menu_Func_Controller implements Initializable {
     @FXML
     private Button btnPacotes;
     
+     @FXML
+    private AreaChart<String, Number> GraficoArea;
+    
   
 
     public void carregarTela(String tela, Pessoa pessoa) {
@@ -95,6 +104,25 @@ public class Tela_Menu_Func_Controller implements Initializable {
         btnMaquinas.setStyle("-fx-background-color: transparent;");
         btnGestaoCliente.setStyle("-fx-background-color: transparent;");
         btnClientes.setStyle("-fx-background-color: transparent;");
+        
+        //           // Inicialize o gráfico
+        XYChart.Series<String, Number> series = new XYChart.Series<>();
+        series.setName("Série de Dados Fictícios");
+        GraficoArea.getData().add(series);
+
+        // Crie um Timeline para atualizar automaticamente o gráfico a cada 5 segundos
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+            // Limpe os dados existentes no gráfico
+            series.getData().clear();
+
+            // Adicione novos dados fictícios à série
+            Random random = new Random();
+            for (int i = 1; i <= 10; i++) {
+                series.getData().add(new XYChart.Data<>("Mês " + i, random.nextInt(100)));
+            }
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     @FXML

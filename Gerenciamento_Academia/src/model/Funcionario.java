@@ -23,7 +23,9 @@ public class Funcionario extends Pessoa implements Serializable {
     private List<Avaliacoes_Fisicas> avaliacoesFisicas;
     
     
-    
+    public Funcionario(){
+        this.isAtivo = true;
+    }
         
     private Double salario;
     private String cargo;

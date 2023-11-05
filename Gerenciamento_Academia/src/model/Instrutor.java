@@ -22,6 +22,10 @@ public class Instrutor extends Pessoa implements Serializable {
     private String descricao;
     @OneToMany(mappedBy = "instrutor")
     private List<Avaliacoes_Fisicas> avaliacoesFisicas;
+    
+    public Instrutor(){
+        this.isAtivo =true;
+    }
 
     public String getEspecializacao() {
         return especializacao;

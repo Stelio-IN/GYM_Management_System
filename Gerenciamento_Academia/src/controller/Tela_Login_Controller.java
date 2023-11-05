@@ -48,18 +48,15 @@ public class Tela_Login_Controller implements Initializable {
 
     @FXML
     private TextField txtEmail;
-    
-        @FXML
+
+    @FXML
     private Button botaoLogin;
 
-   
-    @FXML
-    private TextField txtPassword;
-
-    
+//    @FXML
+//    private TextField txtPassword;
     @FXML
     private AnchorPane PainelTelaLogin;
-    
+
     private BooleanProperty emailValido = new SimpleBooleanProperty(false);
     @FXML
     private Stage stage;
@@ -67,24 +64,101 @@ public class Tela_Login_Controller implements Initializable {
     private Scene scene;
     @FXML
     private Parent root;
-    
-       @FXML
+
+    @FXML
     private ImageView visualizarPassword;
-       
-           @FXML
+
+    @FXML
     private Label atencao;
-           
-               @FXML
+
+    @FXML
     private ImageView NaovisualizarPassword;
-        
-        
+
     @FXML
     private Text passwordRequisitos;
-    
+
     private Scene cena;
-    
-     @FXML
+
+    @FXML
     private Label lblDadosIncorrectos;
+
+    @FXML
+    private TextField txtAuxPass;
+
+    @FXML
+    private TextField txtPassword;
+    @FXML
+    private Button btnPassword;
+    private boolean isMouseOver = false;
+
+    String pegarPass() {
+        String pass = txtPassword.getText();
+        return pass;
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        btnPassword.setOnMouseEntered(event -> {
+            isMouseOver = true;
+            txtAuxPass.setVisible(true);
+            txtAuxPass.textProperty().bind(Bindings.concat(txtPassword.getText()));
+            txtPassword.setVisible(false);
+            NaovisualizarPassword.setVisible(true);
+            visualizarPassword.setVisible(false);
+        });
+
+        btnPassword.setOnMouseExited(event -> {
+            isMouseOver = false;
+            txtPassword.setVisible(true);
+            txtAuxPass.setVisible(false);
+            txtPassword.setPromptText(txtPassword.getText());
+            NaovisualizarPassword.setVisible(false);
+            visualizarPassword.setVisible(true);
+        });
+        lblDadosIncorrectos.setVisible(false);
+
+        // Configurar um ouvinte para verificar o conteúdo do TextField enquanto o usuário digita
+        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (validarEmail(newValue)) {
+                txtEmail.getStyleClass().clear();
+                txtEmail.getStyleClass().add("txtfield_confirmado");
+                emailValido.set(true);
+            } else {
+                txtEmail.getStyleClass().clear();
+                txtEmail.getStyleClass().add("txtfield_nao_confirmado");
+                emailValido.set(false);
+            }
+        });
+
+        // PASSWORD
+        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
+            if (validarPassword(pass)) {
+                txtPassword.getStyleClass().clear();
+                txtPassword.getStyleClass().add("txtfield_confirmado");
+                emailValido.set(true);
+            } else {
+                txtPassword.getStyleClass().clear();
+                txtPassword.getStyleClass().add("txtfield_nao_confirmado");
+                emailValido.set(false);
+//                 atencao.setVisible(true);
+//                passwordRequisitos.setVisible(true);
+
+            }
+        });
+
+        // Vincular o botão a propriedade emailValido para habilitar/desabilitar
+        botaoLogin.disableProperty().bind(Bindings.not(emailValido));
+
+        // Configurar um evento para o botão de login
+        //botaoLogin.setOnAction(this::btnLogar);
+        // Visibilidade iniciais
+        atencao.setVisible(false);
+        passwordRequisitos.setVisible(false);
+        NaovisualizarPassword.setVisible(false);
+        visualizarPassword.setVisible(true);
+
+    }
 
     @FXML
     void close(ActionEvent event) {
@@ -126,6 +200,9 @@ public class Tela_Login_Controller implements Initializable {
         } else if (pessoa instanceof Funcionario) {
             Tela_Menu_Func_Controller controller = loader.getController();
             controller.setPessoa(pessoa);
+        } else if (pessoa instanceof Cliente) {
+            Tela_Menu_Cliente_Controller controller = loader.getController();
+            controller.setPessoaCliente(pessoa);
         }
 //        // Acessa o controlador da próxima tela
 //        Tela_Menu_Admin_Controller controller = loader.getController();
@@ -141,7 +218,7 @@ public class Tela_Login_Controller implements Initializable {
 
     @FXML
     void btnLogar(ActionEvent event) {
-         String email = txtEmail.getText();
+        String email = txtEmail.getText();
         GenericDAO bb = new GenericDAO();
 
         Pessoa pessoa = (Pessoa) bb.logarEmailOuCodigo(txtEmail.getText());
@@ -169,85 +246,23 @@ public class Tela_Login_Controller implements Initializable {
             lblDadosIncorrectos.setVisible(true);
             atencao.setVisible(true);
             passwordRequisitos.setVisible(true);
-            
+
         }
     }
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-         lblDadosIncorrectos.setVisible(false);
-       // Carregar o arquivo CSS quando a cena estiver disponível
-        Platform.runLater(() -> {
-            cena = txtEmail.getScene();
-            if (cena != null) {
-                cena.getStylesheets().add(getClass().getResource("/css/tela_login.css").toExternalForm());
-            }
-        });
-        
-       // Configurar um ouvinte para verificar o conteúdo do TextField enquanto o usuário digita
-        txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (validarEmail(newValue)) {
-                txtEmail.getStyleClass().clear();
-                txtEmail.getStyleClass().add("txtfield_confirmado");
-                emailValido.set(true);
-            } else {
-                txtEmail.getStyleClass().clear();
-                txtEmail.getStyleClass().add("txtfield_nao_confirmado");
-                emailValido.set(false);
-            }
-        });
-        
-        // PASSWORD
-        txtPassword.textProperty().addListener((observable, oldvalue, pass) -> {
-            if(validarPassword(pass)){
-               txtPassword.getStyleClass().clear();
-                txtPassword.getStyleClass().add("txtfield_confirmado");
-                emailValido.set(true);
-            } else {
-                txtPassword.getStyleClass().clear();
-                txtPassword.getStyleClass().add("txtfield_nao_confirmado");
-                emailValido.set(false);
-//                 atencao.setVisible(true);
-//                passwordRequisitos.setVisible(true);
-               
-            }
-        });
-
-        // Vincular o botão a propriedade emailValido para habilitar/desabilitar
-        botaoLogin.disableProperty().bind(Bindings.not(emailValido));
-
-        // Configurar um evento para o botão de login
-        //botaoLogin.setOnAction(this::btnLogar);
-        
-        
-        // Visibilidade iniciais
-         atencao.setVisible(false);
-         passwordRequisitos.setVisible(false);
-        NaovisualizarPassword.setVisible(false);
-        visualizarPassword.setVisible(true);
-        
- 
-    }
-    
-
-    
-     private boolean validarEmail(String email) {
+    private boolean validarEmail(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
     }
-     
-      private boolean validarPassword(String password) {
-         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
+
+    private boolean validarPassword(String password) {
+        String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-     
-     
 
     private void exibirAlerta(String titulo, String mensagem) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -255,28 +270,6 @@ public class Tela_Login_Controller implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
-    }
-
-  
-   @FXML
-    void verPassword(MouseEvent event) {
-
-    }
-    
-    
-    @FXML
-    void NaoverPassword(MouseEvent event) {
-
-    }
-    
-    @FXML
-    void mostrarsenha(MouseDragEvent event) {
-
-    }
-
-    @FXML
-    void naomostrarsenha(MouseDragEvent event) {
-
     }
 
 }

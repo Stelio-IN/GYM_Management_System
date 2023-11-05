@@ -83,16 +83,16 @@ public class GenericDAO {
         }
     }
 
-public List<Pessoa> listarTodosParaRelatorio(Class<Pessoa> classe) {
-    try {
-        TypedQuery<Pessoa> query = gerente.createNamedQuery("Pessoa.findAll", Pessoa.class);
-        List<Pessoa> pessoas = query.getResultList();
-        return pessoas;
-    } catch (Exception e) {
-        e.printStackTrace();
-        return null;
+    public List<Pessoa> listarTodosParaRelatorio(Class<Pessoa> classe) {
+        try {
+            TypedQuery<Pessoa> query = gerente.createNamedQuery("Pessoa.findAll", Pessoa.class);
+            List<Pessoa> pessoas = query.getResultList();
+            return pessoas;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
-}
 // @NamedQuery(name = "Equipamento.findAll", query = "SELECT e FROM equipamento e")
 
     public int contar_Quantidade_Base(Class<?> classe) {
@@ -115,6 +115,19 @@ public List<Pessoa> listarTodosParaRelatorio(Class<Pessoa> classe) {
             if (gerente != null && gerente.isOpen()) {
                 gerente.close();
             }
+        }
+    }
+
+    public long contarPessoasPorDTayp(String dtayp) {
+        try {
+            fabrica = Persistence.createEntityManagerFactory("SystemPU");
+            gerente = fabrica.createEntityManager();
+            TypedQuery<Long> query = gerente.createQuery("SELECT COUNT(p) FROM Pessoa p WHERE p.dtayp = :dtaypValue", Long.class);
+            query.setParameter("dtaypValue", dtayp);
+            return (Long) query.getSingleResult();
+        } catch (Exception e) {
+            return -1;
+
         }
     }
 
@@ -321,7 +334,6 @@ public List<Pessoa> listarTodosParaRelatorio(Class<Pessoa> classe) {
     }
     }
      */
-    
 //    Configuration configuration = new Configuration().configure("persistence.xml");
 //ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
 //SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
@@ -347,7 +359,4 @@ public List<Pessoa> listarTodosParaRelatorio(Class<Pessoa> classe) {
 //        session.close();
 //    }
 //}
-    
-     
-    
 }

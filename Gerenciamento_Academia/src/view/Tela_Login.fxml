@@ -18,6 +18,14 @@
    <children>
       <AnchorPane layoutX="882.0" layoutY="115.0" prefHeight="502.0" prefWidth="354.0" style="-fx-border-radius: 0px 10px 10px 0px;" styleClass="painel">
          <children>
+            <TextField fx:id="txtAuxPass" layoutX="63.0" layoutY="247.0" prefHeight="30.0" prefWidth="236.0" styleClass="txtfield_confirmado">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="System Italic" size="14.0" />
+               </font>
+            </TextField>
             <Text fill="#046924" layoutX="106.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seja Bem Vindo!">
                <font>
                   <Font name="Bookman Old Style" size="19.0" />
@@ -41,7 +49,7 @@
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
-            <PasswordField fx:id="txtPassword" layoutX="63.0" layoutY="247.0" onMouseDragEntered="#mostrarsenha" onMouseDragExited="#naomostrarsenha" prefHeight="30.0" prefWidth="236.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 1px; -fx-border-width: 0px 0px 1px 0px;">
+            <PasswordField fx:id="txtPassword" layoutX="63.0" layoutY="247.0" prefHeight="30.0" prefWidth="236.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 1px; -fx-border-width: 0px 0px 1px 0px;">
                <effect>
                   <InnerShadow />
                </effect>
@@ -80,16 +88,17 @@
             </Label>
             <Text fx:id="passwordRequisitos" fill="RED" layoutX="63.0" layoutY="373.0" lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A palavra-passe deve conter pelo menos: Uma letra maiúscula, uma letra minúscula, um número, um símbolo;" wrappingWidth="228.6761474609375" />
             <Label fx:id="atencao" layoutX="63.0" layoutY="343.0" text="Atenção:" textFill="RED" />
-            <ImageView fx:id="visualizarPassword" fitHeight="26.0" fitWidth="33.0" layoutX="268.0" layoutY="249.0" onMouseClicked="#verPassword" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="visualizarPassword" fitHeight="26.0" fitWidth="33.0" layoutX="268.0" layoutY="249.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/fechar-o-olho.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="NaovisualizarPassword" fitHeight="26.0" fitWidth="33.0" layoutX="268.0" layoutY="250.0" onMouseClicked="#NaoverPassword" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="NaovisualizarPassword" fitHeight="26.0" fitWidth="33.0" layoutX="268.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../img/opcao-de-interface-de-olho-aberto-visivel.png" />
                </image>
             </ImageView>
+            <Button fx:id="btnPassword" layoutX="266.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="34.0" style="-fx-background-color: transparent;" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="616.0" layoutY="115.0" prefHeight="502.0" prefWidth="267.0" style="-fx-border-radius: 10px 0px 0px 10px;" styleClass="painel">
