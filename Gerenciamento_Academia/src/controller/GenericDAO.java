@@ -6,6 +6,8 @@ package controller;
 
 import model.Administrador;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.NamedQuery;
@@ -272,11 +274,21 @@ public class GenericDAO {
         }
 
     }
+      public static boolean validarCodigo(String input) {
+        // Cria um padrão de expressão regular para 4 letras seguidas de 8 números
+        String padrao = "^[A-Za-z]{4}\\d{8}$";
+        // Compila o padrão em um objeto Pattern
+        Pattern pattern = Pattern.compile(padrao);
+        // Cria um objeto Matcher para a entrada fornecida
+        Matcher matcher = pattern.matcher(input);
+        // Verifica se a entrada corresponde ao padrão
+        return matcher.matches();
+    }
 
     public Object logarEmailOuCodigo(String input) {
         fabrica = Persistence.createEntityManagerFactory("SystemPU");
         gerente = fabrica.createEntityManager();
-        if (input != null && input.length() == 10) {
+        if (validarCodigo(input)) {
             List<Pessoa> pessoas = gerente.createNamedQuery("Pessoa.findByCodigo", Pessoa.class)
                     .setParameter("codigo", input)
                     .getResultList();

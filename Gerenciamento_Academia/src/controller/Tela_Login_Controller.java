@@ -120,7 +120,7 @@ public class Tela_Login_Controller implements Initializable {
 
         // Configurar um ouvinte para verificar o conteúdo do TextField enquanto o usuário digita
         txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (validarEmail(newValue)) {
+            if (validarEmail(newValue)||validarCodigo(newValue)) {
                 txtEmail.getStyleClass().clear();
                 txtEmail.getStyleClass().add("txtfield_confirmado");
                 emailValido.set(true);
@@ -261,6 +261,17 @@ public class Tela_Login_Controller implements Initializable {
         String regex = "^(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*])(?=.*[0-9]).{8,}$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+    
+     public static boolean validarCodigo(String input) {
+        // Cria um padrão de expressão regular para 4 letras seguidas de 8 números
+        String padrao = "^[A-Za-z]{4}\\d{8}$";
+        // Compila o padrão em um objeto Pattern
+        Pattern pattern = Pattern.compile(padrao);
+        // Cria um objeto Matcher para a entrada fornecida
+        Matcher matcher = pattern.matcher(input);
+        // Verifica se a entrada corresponde ao padrão
         return matcher.matches();
     }
 

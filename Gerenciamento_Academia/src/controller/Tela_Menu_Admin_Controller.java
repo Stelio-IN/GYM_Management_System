@@ -225,7 +225,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         // Vincular os nomes e valores dos dados aos rótulos do gráfico
         pieChartData.forEach(data -> {
             data.nameProperty().bind(
-                    Bindings.concat(data.getName(), " amount: ", data.pieValueProperty())
+                    Bindings.concat(data.getName(), " Total: ", data.pieValueProperty())
             );
         });
 
@@ -236,11 +236,11 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         //////////////////////////////////////////////////////////////////////////////////////////   
 //           // Inicialize o gráfico
         Series<String, Number> series = new Series<>();
-        series.setName("Série de Dados Fictícios");
+        series.setName("Dados");
         GraficoArea.getData().add(series);
 
         // Crie um Timeline para atualizar automaticamente o gráfico a cada 5 segundos
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(20), event -> {
             // Limpe os dados existentes no gráfico
             series.getData().clear();
 

@@ -246,7 +246,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AreaChart fx:id="GraficoArea" layoutX="15.0" layoutY="26.0" prefHeight="242.0" prefWidth="525.0" style="-fx-background-color: white;">
+                  <AreaChart fx:id="GraficoArea" layoutX="15.0" layoutY="26.0" prefHeight="242.0" prefWidth="525.0" style="-fx-background-color: white;" stylesheets="@../css/menu_1.css">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -291,7 +291,7 @@
                   </DropShadow>
                </effect>
             </AnchorPane>
-            <AnchorPane layoutX="597.0" layoutY="121.0" prefHeight="228.0" prefWidth="486.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="597.0" layoutY="105.0" prefHeight="244.0" prefWidth="486.0" style="-fx-background-color: white;">
                <effect>
                   <DropShadow>
                      <color>
@@ -300,7 +300,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <PieChart fx:id="pieChart" layoutX="19.0" layoutY="6.0" prefHeight="216.0" prefWidth="460.0" />
+                  <PieChart fx:id="pieChart" layoutX="19.0" layoutY="6.0" prefHeight="216.0" prefWidth="460.0" stylesheets="@../css/menu_1_1.css" />
                   <Label layoutX="205.0" layoutY="8.0" text="Clientes" textFill="#c9a514">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
