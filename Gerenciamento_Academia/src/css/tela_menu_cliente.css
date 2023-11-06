@@ -47,3 +47,21 @@
 .chart-vertical-grid-lines {
     -fx-stroke: #ccc; /* Defina a cor das marcas no eixo X */
 }
+
+.botao{
+        -fx-background-color: linear-gradient(to right,  #0ce58b7b, #0226167b);
+        -fx-text-fill: rgb(255, 255, 255);
+        -fx-background-radius: 10px
+    }
+
+    .painelcurva{
+        
+        -fx-background-color: linear-gradient(to right,  #0ce58bd7, #022616d8); 
+        -fx-fill: linear-gradient(to left,  #0ce58bd7, #022616d8); 
+    }
+    
+    .textfields_esquerda{
+        -fx-border-width: 0px 0px 1px 0px;
+        -fx-border-color: #ccc;
+        -fx-background-color: transparent;
+    }

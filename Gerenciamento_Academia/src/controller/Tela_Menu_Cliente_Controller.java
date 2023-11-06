@@ -389,11 +389,9 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
             txtNome.setText(cliente.getNome());
             txtCodigo.setText(String.valueOf(cliente.getCodigo()));
             if (cliente.getPlanoCliente() != null) {
-                if (cliente.getPlanoCliente().isStatus() == true) {
-                    txtPagamento.setText("Ativo");
-                }
+                txtPagamento.setText(clienteNovosDados.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
                 txtPlanoAssociacao.setText(cliente.getPlanoCliente().getPlano().getNome());
-                txtPagamento.setText("Inativo");
+              //  txtPagamento.setText("Inativo");
                 txtDataFim.setText(cliente.getPlanoCliente().getDataFim().toString());
                 txtDataInicio.setText(cliente.getPlanoCliente().getDataInicio().toString());
             }

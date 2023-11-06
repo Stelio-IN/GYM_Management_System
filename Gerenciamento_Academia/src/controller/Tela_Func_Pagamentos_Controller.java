@@ -26,7 +26,6 @@ import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import model.Cliente;
 import model.Pagamento_Mensalidade;
-import static model.PlanoCliente_.plano;
 import model.Plano_de_Associacao;
 
 /**

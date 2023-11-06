@@ -246,7 +246,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AreaChart fx:id="GraficoArea" layoutX="15.0" layoutY="26.0" prefHeight="242.0" prefWidth="525.0" style="-fx-background-color: white;">
+                  <AreaChart fx:id="GraficoArea" layoutX="15.0" layoutY="26.0" prefHeight="242.0" prefWidth="525.0" style="-fx-background-color: white;" stylesheets="@../css/menu_1.css">
                     <xAxis>
                       <CategoryAxis side="BOTTOM" />
                     </xAxis>
@@ -270,7 +270,7 @@
                         <Image url="@../img/casamento.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="17" textFill="#185104">
+                  <Label fx:id="txtQuantidadePlanoCasal" layoutX="42.0" layoutY="60.0" text="17" textFill="#185104">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -323,7 +323,7 @@
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="597.0" layoutY="121.0" prefHeight="228.0" prefWidth="486.0" style="-fx-background-color: white;">
+            <AnchorPane layoutX="597.0" layoutY="105.0" prefHeight="244.0" prefWidth="486.0" style="-fx-background-color: white;">
                <effect>
                   <DropShadow>
                      <color>
@@ -332,7 +332,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <PieChart fx:id="pieChart" layoutX="19.0" layoutY="6.0" prefHeight="216.0" prefWidth="460.0" />
+                  <PieChart fx:id="pieChart" layoutX="19.0" layoutY="6.0" prefHeight="216.0" prefWidth="460.0" stylesheets="@../css/menu_1_1.css" />
                   <Label layoutX="205.0" layoutY="8.0" text="Clientes" textFill="#c9a514">
                      <font>
                         <Font name="Berlin Sans FB Demi Bold" size="18.0" />
@@ -374,7 +374,7 @@
                         <Image url="@../img/graduado.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="23" textFill="WHITE">
+                  <Label fx:id="txtQuantidadePlanoEstudante" layoutX="41.0" layoutY="60.0" text="23" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -405,7 +405,7 @@
                         <Image url="@../img/halteres.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="09" textFill="#185104">
+                  <Label fx:id="txtQuantidadePlanoNormal" layoutX="41.0" layoutY="60.0" text="09" textFill="#185104">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -436,7 +436,7 @@
                         <Image url="@../img/ginasio.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="12" textFill="WHITE">
+                  <Label fx:id="txtQuantidadePlanoEspecial" layoutX="42.0" layoutY="60.0" text="12" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>

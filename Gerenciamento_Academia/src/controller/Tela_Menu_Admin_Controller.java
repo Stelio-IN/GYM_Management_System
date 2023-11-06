@@ -7,6 +7,7 @@ package controller;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -54,6 +55,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
+import model.PlanoCliente;
 
 /**
  * FXML Controller class
@@ -169,6 +171,17 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     private Label txtQuanInstrutores;
     @FXML
     private Label txtQuanMaquinas;
+    @FXML
+    private Label txtQuantidadePlanoCasal;
+
+    @FXML
+    private Label txtQuantidadePlanoEspecial;
+
+    @FXML
+    private Label txtQuantidadePlanoEstudante;
+
+    @FXML
+    private Label txtQuantidadePlanoNormal;
 
     private int quandidade_Clientes = 0;
     private int quandidade_Funcionarios = 0;
@@ -214,7 +227,8 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        contabilizar();
+       // quantidadeDeInscritos();
+       contabilizar();
         carregarDadosDoBanco();
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
@@ -225,7 +239,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         // Vincular os nomes e valores dos dados aos rótulos do gráfico
         pieChartData.forEach(data -> {
             data.nameProperty().bind(
-                    Bindings.concat(data.getName(), " amount: ", data.pieValueProperty())
+                    Bindings.concat(data.getName(), " Total: ", data.pieValueProperty())
             );
         });
 
@@ -236,11 +250,11 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         //////////////////////////////////////////////////////////////////////////////////////////   
 //           // Inicialize o gráfico
         Series<String, Number> series = new Series<>();
-        series.setName("Série de Dados Fictícios");
+        series.setName("Dados");
         GraficoArea.getData().add(series);
 
         // Crie um Timeline para atualizar automaticamente o gráfico a cada 5 segundos
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(20), event -> {
             // Limpe os dados existentes no gráfico
             series.getData().clear();
 
@@ -417,6 +431,27 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             // Lida com exceções de carregamento de FXML
             ex.printStackTrace();
         }
+    }
+    
+    int quantidadePlanoCasal=0;
+    private void quantidadeDeInscritos() {
+        GenericDAO dao = new GenericDAO();
+        List<PlanoCliente> plano = new ArrayList<>();
+      //  List<PlanoCliente> plano1 = new List()<>;
+        plano = (List<PlanoCliente>) dao.listar(PlanoCliente.class);
+        if(plano!=null){
+            
+            for(int i = 0; i < plano.size();i++){
+                System.out.println(plano.get(i).getPlano().getNome());
+                if(plano.get(i).getPlano().getNome().equalsIgnoreCase("plano casal")){
+                    quantidadePlanoCasal++;
+                }
+            }
+            
+            System.out.println("SIN E PAI");
+            txtQuantidadePlanoCasal.setText(String.valueOf(quantidadePlanoCasal));
+        }
+        System.out.println("Foste solado");
     }
 
 }

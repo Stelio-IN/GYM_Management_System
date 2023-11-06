@@ -184,10 +184,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtId.setText(String.valueOf(cliente.getId()));
             txtCodigo.setText(String.valueOf(cliente.getCodigo()));
             if (cliente.getPlanoCliente() != null) {
-                if (cliente.getPlanoCliente().isStatus() == true) {
-                    txtPagamento.setText("Ativo");
-                }
-                txtPagamento.setText("Inativo");
+                 txtPagamento.setText(cliente.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
                 txtDataFim.setText(cliente.getPlanoCliente().getDataFim().toString());
                 txtDataInicio.setText(cliente.getPlanoCliente().getDataInicio().toString());
             }
