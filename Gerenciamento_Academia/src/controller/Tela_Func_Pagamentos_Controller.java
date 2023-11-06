@@ -152,7 +152,7 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         mpesa.setVisible(true);
         
         btnPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);");
-        btnCancelarPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);");
+        btnCancelarPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);"); 
 
     }
 
