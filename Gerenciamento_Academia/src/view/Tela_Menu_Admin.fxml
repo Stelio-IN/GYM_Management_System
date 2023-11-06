@@ -270,7 +270,7 @@
                         <Image url="@../img/casamento.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="17" textFill="#185104">
+                  <Label fx:id="txtQuantidadePlanoCasal" layoutX="42.0" layoutY="60.0" text="17" textFill="#185104">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -342,7 +342,7 @@
                         <Image url="@../img/graduado.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="23" textFill="WHITE">
+                  <Label fx:id="txtQuantidadePlanoEstudante" layoutX="41.0" layoutY="60.0" text="23" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -373,7 +373,7 @@
                         <Image url="@../img/halteres.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="09" textFill="#185104">
+                  <Label fx:id="txtQuantidadePlanoNormal" layoutX="41.0" layoutY="60.0" text="09" textFill="#185104">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -404,7 +404,7 @@
                         <Image url="@../img/privacidade.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="60.0" text="12" textFill="WHITE">
+                  <Label fx:id="txtQuantidadePlanoEspecial" layoutX="42.0" layoutY="60.0" text="12" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
