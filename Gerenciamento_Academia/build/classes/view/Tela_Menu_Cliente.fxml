@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.scene.chart.CategoryAxis?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
@@ -21,10 +20,7 @@
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1300.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Menu_Cliente_Controller">
-    <stylesheets>
-        <URL value="@/css/tela_menu_cliente.css" />
-    </stylesheets>
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="1300.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_menu_cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Menu_Cliente_Controller">
    <children>
       <AnchorPane layoutX="42.0" layoutY="14.0" prefHeight="596.0" prefWidth="280.0" style="-fx-background-color: white; -fx-background-radius: 20px;">
          <effect>
@@ -35,37 +31,37 @@
             </DropShadow>
          </effect>
          <children>
-            <TextField fx:id="txtPagamento" layoutX="22.0" layoutY="249.0" prefHeight="30.0" prefWidth="223.0" promptText="Pendente" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtPagamento" layoutX="22.0" layoutY="249.0" prefHeight="30.0" prefWidth="223.0" promptText="Pendente" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtCodigo" layoutX="25.0" layoutY="131.0" prefHeight="31.0" prefWidth="115.0" promptText="CLIE20230002" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtCodigo" layoutX="25.0" layoutY="131.0" prefHeight="31.0" prefWidth="115.0" promptText="CLIE20230002" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtNome" layoutX="22.0" layoutY="190.0" prefHeight="30.0" prefWidth="223.0" promptText="Tobias zucula mphemo" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtNome" layoutX="22.0" layoutY="190.0" prefHeight="30.0" prefWidth="223.0" promptText="Tobias zucula mphemo" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtPlanoAssociacao" layoutX="22.0" layoutY="306.0" prefHeight="30.0" prefWidth="223.0" promptText="Plano estudantil" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtPlanoAssociacao" layoutX="22.0" layoutY="306.0" prefHeight="30.0" prefWidth="223.0" promptText="Plano estudantil" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtDataInicio" layoutX="22.0" layoutY="362.0" prefHeight="30.0" prefWidth="223.0" promptText="23/04/2023" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtDataInicio" layoutX="22.0" layoutY="362.0" prefHeight="30.0" prefWidth="223.0" promptText="23/04/2023" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtDataFim" layoutX="22.0" layoutY="419.0" prefHeight="30.0" prefWidth="223.0" promptText="23/05/2023" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtDataFim" layoutX="22.0" layoutY="419.0" prefHeight="30.0" prefWidth="223.0" promptText="23/05/2023" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtObjectivo" layoutX="22.0" layoutY="478.0" prefHeight="30.0" prefWidth="223.0" promptText="Definir o sixpeak" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtObjectivo" layoutX="22.0" layoutY="478.0" prefHeight="30.0" prefWidth="223.0" promptText="Definir o sixpeak" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
@@ -177,12 +173,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtNumeroDeAvaliacoes" layoutX="227.0" layoutY="12.0" prefHeight="31.0" prefWidth="103.0" promptText="0" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtNumeroDeAvaliacoes" layoutX="227.0" layoutY="12.0" prefHeight="31.0" prefWidth="103.0" promptText="0" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextField fx:id="txtQuantidadeDias" layoutX="227.0" layoutY="63.0" prefHeight="31.0" prefWidth="103.0" promptText="1" style="-fx-border-width: 0px 0px 1px 0px; -fx-background-color: transparent; -fx-border-color: black;" styleClass="textfields_esquerda">
+            <TextField fx:id="txtQuantidadeDias" layoutX="227.0" layoutY="63.0" prefHeight="31.0" prefWidth="103.0" promptText="1" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font>

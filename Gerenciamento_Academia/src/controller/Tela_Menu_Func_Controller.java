@@ -111,7 +111,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
         GraficoArea.getData().add(series);
 
         // Crie um Timeline para atualizar automaticamente o gráfico a cada 5 segundos
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(5), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(20), event -> {
             // Limpe os dados existentes no gráfico
             series.getData().clear();
 
