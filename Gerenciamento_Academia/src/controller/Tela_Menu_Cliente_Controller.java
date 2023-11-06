@@ -142,29 +142,15 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
 
     @FXML
     void LimparCampos(ActionEvent event) {
-        Image imageLimpar = new Image("/img/adicionar-usuario.png");
-        imageView.setImage(imageLimpar);
-        imageViewAssociado.setImage(imageLimpar);
+       
 
-        imageView.setFitWidth(158);
-        imageView.setFitHeight(130);
-
-        imageViewAssociado.setFitWidth(158);
-        imageViewAssociado.setFitHeight(130);
-
-        txtCodigoClientePrincipal.setText("");
-        txtCodigoClienteAssociado.setText("");
-        txtNomeClientePrincipal.setText("");
-        txtNomeClienteAssociado.setText("");
+       
         txtNomePlano.setText("");
         txtDuracaoPlano.setText("");
-        txtNomeClienteAssociado.setText("");
-        txtObjectivoClientePrincipal.setText("");
-        txtObjectivoClienteAssociado.setText("");
+      
         txtPrecoPlano.setText("");
 
-        clienteNovosDados = null;
-        clienteAssociadoNovosDados = null;
+  
         planoSelecionado = null;
         planoAssociacaoAtualizar = null;
     }
@@ -414,9 +400,19 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
             txtObjectivo.setText(cliente.getObjectivo());
             if (cliente.getImagem() != null) {
                 byte[] imagemBytes = cliente.getImagem();
+                
+                
+                
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
                 imageView.setImage(imagem);
+                
+                Image imagem1 = new Image(new ByteArrayInputStream(imagemBytes));
+                imageView1.setImage(imagem1);
 
+                imageView1.setFitWidth(90); // Largura desejada
+                imageView1.setFitHeight(100); // Altura desejada
+                imageView1.setPreserveRatio(true);
+                
                 imageView.setFitWidth(90); // Largura desejada
                 imageView.setFitHeight(100); // Altura desejada
                 imageView.setPreserveRatio(true);
@@ -474,8 +470,8 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
         if (clienteNovosDados.getImagem() != null) {
             byte[] imagemBytes = clienteNovosDados.getImagem();
             Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
-            imageView.setFitWidth(79); // Largura desejada
-            imageView.setFitHeight(93); // Altura desejada
+            imageView.setFitWidth(70); // Largura desejada
+            imageView.setFitHeight(80); // Altura desejada
             imageView.setImage(imagem);
         } else {
             JOptionPane.showMessageDialog(null, "imagem nao encontrada");

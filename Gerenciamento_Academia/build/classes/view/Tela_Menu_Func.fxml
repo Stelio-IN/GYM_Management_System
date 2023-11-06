@@ -170,7 +170,7 @@
                   </DropShadow>
                </effect>
                <children>
-                  <AreaChart fx:id="GraficoArea" layoutX="40.0" layoutY="8.0" prefHeight="206.0" prefWidth="388.0" style="-fx-background-color: white;">
+                  <AreaChart fx:id="GraficoArea" layoutX="12.0" layoutY="8.0" prefHeight="218.0" prefWidth="440.0" style="-fx-background-color: white;">
                      <xAxis>
                         <CategoryAxis side="BOTTOM" />
                      </xAxis>

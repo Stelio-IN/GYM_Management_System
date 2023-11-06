@@ -254,6 +254,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         txtGeneroClientePrincipal.setText("");
         txtGeneroClienteAssociado.setText("");
         txtPrecoPlano.setText("");
+        txtStatusClienteAssociado.setText("");
+        txtStatusClientePrincipal.setText("");
 
         clienteNovosDados = null;
         clienteAssociadoNovosDados = null;
