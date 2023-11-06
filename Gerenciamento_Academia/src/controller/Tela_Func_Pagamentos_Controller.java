@@ -146,10 +146,13 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         txtNumeroCartao.setVisible(false);
         txtTitular.setVisible(false);
         txtCvv.setVisible(false);
-        CartaoDeCredito.setVisible(true);
+        CartaoDeCredito.setVisible(false);
         mkesh.setVisible(false);
         emola.setVisible(false);
-        mpesa.setVisible(false);
+        mpesa.setVisible(true);
+        
+        btnPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);");
+        btnCancelarPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);");
 
     }
 

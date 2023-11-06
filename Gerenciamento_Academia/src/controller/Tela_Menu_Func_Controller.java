@@ -107,7 +107,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
         
         //           // Inicialize o gráfico
         XYChart.Series<String, Number> series = new XYChart.Series<>();
-        series.setName("Série de Dados Fictícios");
+        series.setName("Faturamento");
         GraficoArea.getData().add(series);
 
         // Crie um Timeline para atualizar automaticamente o gráfico a cada 5 segundos
