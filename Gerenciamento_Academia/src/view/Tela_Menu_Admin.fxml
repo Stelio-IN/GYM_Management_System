@@ -291,32 +291,32 @@
                   </DropShadow>
                </effect>
                <children>
-                  <Label layoutX="85.0" layoutY="11.0" text="Pagamentos Pagos">
+                  <Label layoutX="85.0" layoutY="11.0" text="Pagamentos Efectuados" textFill="#185104">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="336.0" layoutY="3.0" text="12" textFill="#185104">
+                  <Label fx:id="txtPagamentosEfectuados" layoutX="336.0" layoutY="3.0" text="12" textFill="#185104">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
-                  <Label layoutX="85.0" layoutY="52.0" text="Pagamentos Pendentes">
+                  <Label layoutX="85.0" layoutY="52.0" text="Pagamentos Pendentes" textFill="#b5a409">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="338.0" layoutY="41.0" text="0" textFill="#185104">
+                  <Label fx:id="txtPagamentosPendentes" layoutX="338.0" layoutY="41.0" text="0" textFill="#b5a409">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
                   </Label>
-                  <Label layoutX="85.0" layoutY="91.0" text="Pagamentos Cancelados">
+                  <Label fx:id="txtPagamentosCancelados" layoutX="85.0" layoutY="91.0" text="Pagamentos Cancelados" textFill="#970606">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>
                   </Label>
-                  <Label layoutX="337.0" layoutY="80.0" text="0" textFill="#185104">
+                  <Label fx:id="txtPagamentosCancelados" layoutX="337.0" layoutY="80.0" text="0" textFill="#970606">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -462,21 +462,16 @@
    <top>
       <MenuBar prefHeight="42.0" prefWidth="1300.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Tools">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#Tela_Admin_Planos_Associacao" text="Planos de Associação" />
                   <MenuItem mnemonicParsing="false" onAction="#Tela_Cadastrar_Admin" text="Cadastrar Administrador" />
                   <MenuItem mnemonicParsing="false" onAction="#Tela_Atualizar_Admin" text="Atualizar Administrador" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Relátorio">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem mnemonicParsing="false" text="Imprimir" />
             </items>
           </Menu>
         </menus>
