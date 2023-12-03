@@ -22,21 +22,16 @@
    <top>
       <MenuBar style="-fx-background-color: white;" BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Outher">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#Tela_Realizar_Testes" text="Realizar Avaliação" />
                   <MenuItem mnemonicParsing="false" onAction="#Tela_Func_AddPlano" text="Adicionar Plano ao Cliente" />
                   <MenuItem mnemonicParsing="false" onAction="#Tela_Func_Associar_Cliente" text="Associar Clientes" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Payment">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#Tela_Func_Pagamento" text="Pagamento" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
             </items>
           </Menu>
         </menus>
@@ -217,7 +212,7 @@
                         <Image url="@../img/pequeno-haltere.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="49.0" layoutY="254.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="206.0" style="-fx-background-radius: 20px;" styleClass="painelinho-1" text="     Registrar Cliente" textFill="WHITE">
+                  <Button layoutX="49.0" layoutY="254.0" mnemonicParsing="false" onAction="#abrirTelaRegistro" prefHeight="42.0" prefWidth="207.0" style="-fx-background-radius: 20px;" styleClass="painelinho-1" text="     Registrar Cliente" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
@@ -243,7 +238,7 @@
                         <Image url="@../img/casamento.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="68.0" text="17" textFill="#185104">
+                  <Label fx:id="txtQuantidadePlanoCasal" layoutX="42.0" layoutY="68.0" text="17" textFill="#185104">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -269,7 +264,7 @@
                         <Image url="@../img/graduado.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="72.0" text="23" textFill="WHITE">
+                  <Label fx:id="txtQuantidadePlanoEstudante" layoutX="42.0" layoutY="72.0" text="23" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -300,7 +295,7 @@
                         <Image url="@../img/privacidade.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="67.0" text="12" textFill="WHITE">
+                  <Label fx:id="txtQuantidadePlanoEspecial" layoutX="42.0" layoutY="67.0" text="12" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
@@ -343,7 +338,7 @@
                         <Image url="@../img/halteres.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="42.0" layoutY="63.0" text="09" textFill="#185104">
+                  <Label fx:id="txtQuantidadePlanoNormal" layoutX="42.0" layoutY="63.0" text="09" textFill="#185104">
                      <font>
                         <Font name="System Bold" size="27.0" />
                      </font>
