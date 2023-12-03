@@ -142,15 +142,12 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
 
     @FXML
     void LimparCampos(ActionEvent event) {
-       
 
-       
         txtNomePlano.setText("");
         txtDuracaoPlano.setText("");
-      
+
         txtPrecoPlano.setText("");
 
-  
         planoSelecionado = null;
         planoAssociacaoAtualizar = null;
     }
@@ -382,6 +379,11 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
         if (pessoa instanceof Cliente cliente) {
             //Ajuste para tela
             clienteNovosDados = cliente;
+
+            if (clienteNovosDados.getPlanoCliente() != null) {
+                long quantdi = clienteNovosDados.getPlanoCliente().calcularDiasDecorridos();
+                txtQuantidadeDias.setText(String.valueOf(quantdi));
+            }
             if (cliente.getClienteAssociado() != null) {
                 clienteAssociadoNovosDados = cliente.getClienteAssociado();
             }
@@ -391,36 +393,33 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
             if (cliente.getPlanoCliente() != null) {
                 txtPagamento.setText(clienteNovosDados.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
                 txtPlanoAssociacao.setText(cliente.getPlanoCliente().getPlano().getNome());
-              //  txtPagamento.setText("Inativo");
+                //  txtPagamento.setText("Inativo");
                 txtDataFim.setText(cliente.getPlanoCliente().getDataFim().toString());
                 txtDataInicio.setText(cliente.getPlanoCliente().getDataInicio().toString());
             }
             txtObjectivo.setText(cliente.getObjectivo());
             if (cliente.getImagem() != null) {
                 byte[] imagemBytes = cliente.getImagem();
-                
-                
-                
+
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
                 imageView.setImage(imagem);
-                
+
                 Image imagem1 = new Image(new ByteArrayInputStream(imagemBytes));
                 imageView1.setImage(imagem1);
 
                 imageView1.setFitWidth(90); // Largura desejada
                 imageView1.setFitHeight(100); // Altura desejada
                 imageView1.setPreserveRatio(true);
-                
+
                 imageView.setFitWidth(90); // Largura desejada
                 imageView.setFitHeight(100); // Altura desejada
                 imageView.setPreserveRatio(true);
             }
             List<Avaliacoes_Fisicas> avaliacoes = cliente.getAvaliacoes();
-            
-           
+
             if (avaliacoes != null) {
-               int quantidade =  avaliacoes.size();
-               txtNumeroDeAvaliacoes.setText(String.valueOf(quantidade));
+                int quantidade = avaliacoes.size();
+                txtNumeroDeAvaliacoes.setText(String.valueOf(quantidade));
                 XYChart.Series<String, Number> series = new XYChart.Series<>();
 
                 for (int i = 0; i < avaliacoes.size(); i++) {
@@ -458,8 +457,8 @@ public class Tela_Menu_Cliente_Controller implements Initializable {
             if (clienteAssociadoNovosDados.getImagem() != null) {
                 byte[] imagemBytes = clienteAssociadoNovosDados.getImagem();
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
-                   imageView.setFitWidth(79); // Largura desejada
-            imageView.setFitHeight(93); // Altura desejada
+                imageView.setFitWidth(79); // Largura desejada
+                imageView.setFitHeight(93); // Altura desejada
                 imageViewAssociado.setImage(imagem);
             } else {
                 JOptionPane.showMessageDialog(null, "imagem nao encontrada");

@@ -21,6 +21,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 public class PlanoCliente {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,42 +37,56 @@ public class PlanoCliente {
 
     @Temporal(TemporalType.DATE)
     private Date dataFim;
-    
+
     private boolean status;
     private int duracao;
 
-    
-    
     public void atualizarPlano(Plano_de_Associacao novoPlano, Date novaDataInicio, boolean novoStatus, int novaDuracao) {
         this.plano = novoPlano;
         this.dataInicio = novaDataInicio;
         this.status = novoStatus;
         this.duracao = novaDuracao;
-         setDuracaoEmMeses(novaDuracao); 
+        setDuracaoEmMeses(novaDuracao);
     }
-    
+
     public void setDuracaoEmMeses(int duracaoEmMeses) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dataInicio);
         calendar.add(Calendar.MONTH, duracaoEmMeses);
         this.dataFim = calendar.getTime();
     }
-    
-     public long calcularDiasDecorridos() {
-        Date dataAtual = new Date(); // Obtém a data atual
-        long diferencaEmMillis = dataAtual.getTime() - dataFim.getTime();
 
-        if (diferencaEmMillis < 0) {
+//     public long calcularDiasDecorridos() {
+//        Date dataAtual = new Date(); // Obtém a data atual
+//        long diferencaEmMillis = dataAtual.getTime() - dataFim.getTime();
+//
+//        if (diferencaEmMillis < 0) {
+//            // A data de fim ainda não foi alcançada, portanto, retornamos 0 dias
+//            this.status = false;
+//            return 0;
+//        } else {
+//            // Converte a diferença de milissegundos em dias
+//            long diferencaEmDias = diferencaEmMillis / (24 * 60 * 60 * 1000);
+//            return diferencaEmDias;
+//        }
+//    }
+//     
+    public long calcularDiasDecorridos() {
+        Date dataAtual = new Date(); // Obtém a data atual
+        long diferencaEmMillis = dataFim.getTime() - dataAtual.getTime();
+
+        if (diferencaEmMillis > 0) {
             // A data de fim ainda não foi alcançada, portanto, retornamos 0 dias
-            this.status = false;
-            return 0;
+            this.status = true; // Define o status como ativo
+            return diferencaEmMillis / (24 * 60 * 60 * 1000);
         } else {
             // Converte a diferença de milissegundos em dias
-            long diferencaEmDias = diferencaEmMillis / (24 * 60 * 60 * 1000);
+            long diferencaEmDias = Math.abs(diferencaEmMillis) / (24 * 60 * 60 * 1000);
+            this.status = false; // Define o status como inativo
             return diferencaEmDias;
         }
     }
-     
+
     public Long getId() {
         return id;
     }
@@ -127,5 +142,5 @@ public class PlanoCliente {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-    
+
 }
