@@ -113,6 +113,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtId.setText(String.valueOf(cliente.getId()));
             txtNome.setText(cliente.getNome());
             txtCodigo.setText(cliente.getCodigo());
+             txtObjectivo.setText(cliente.getObjectivo());
 
             if (cliente.getImagem() != null) {
                 // Converta o array de bytes em uma Image
@@ -131,6 +132,9 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             }
             if (cliente.getPlanoCliente() != null) {
                 txtPlanoAssociacao.setText(cliente.getPlanoCliente().getPlano().getNome());
+                String plano = cliente.getPlanoCliente().getPlano().getNome();
+                
+                txtPlanoAssociacao.setText(plano);
                 //Formatacao de data
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
                 if (cliente.getPlanoCliente().getDataInicio() != null) {
