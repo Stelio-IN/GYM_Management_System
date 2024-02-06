@@ -54,23 +54,7 @@ public class PlanoCliente {
         calendar.setTime(dataInicio);
         calendar.add(Calendar.MONTH, duracaoEmMeses);
         this.dataFim = calendar.getTime();
-    }
-
-//     public long calcularDiasDecorridos() {
-//        Date dataAtual = new Date(); // Obtém a data atual
-//        long diferencaEmMillis = dataAtual.getTime() - dataFim.getTime();
-//
-//        if (diferencaEmMillis < 0) {
-//            // A data de fim ainda não foi alcançada, portanto, retornamos 0 dias
-//            this.status = false;
-//            return 0;
-//        } else {
-//            // Converte a diferença de milissegundos em dias
-//            long diferencaEmDias = diferencaEmMillis / (24 * 60 * 60 * 1000);
-//            return diferencaEmDias;
-//        }
-//    }
-//     
+    }   
     public long calcularDiasDecorridos() {
         Date dataAtual = new Date(); // Obtém a data atual
         long diferencaEmMillis = dataFim.getTime() - dataAtual.getTime();

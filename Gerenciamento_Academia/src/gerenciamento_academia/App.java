@@ -69,17 +69,22 @@ public class App extends Application {
         ArrayList<Cliente> clientes =  (ArrayList<Cliente>) dao.listar(clien_Classe);
         
         for(Cliente cli : clientes){
+            Cliente obj = cli;
             System.out.println(cli.getNome());
             if (cli.getPlanoCliente() != null) {
                if (cli.getPlanoCliente().getDataInicio() != null) {  
                     if (cli.getPlanoCliente().isStatus() == true) {
                         System.out.println("Ativo");
+                        obj.getPlanoCliente().setStatus(true);
                      //   txtPagamento.setText("Ativo");
-                    }
+                    }else{
                      // txtPagamento.setText("Inativo");
                      System.out.println("Inativo");
+                     obj.getPlanoCliente().setStatus(false);
+                    }
                 }
             }
+             dao.Atualizar(Cliente.class, cli.getId(), obj);
         }
         
                
