@@ -128,6 +128,7 @@ public class PlanoCliente {
     }
 
     public boolean isStatus() {
+        calcularDiasDecorridos();
         return status;
     }
 
