@@ -17,14 +17,14 @@
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_AddPlano_Controller">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_AddPlano_Controller">
     <stylesheets>
         <URL value="@/css/tela_func_addplano.css" />
     </stylesheets>
    <children>
       <AnchorPane layoutX="91.0" layoutY="34.0" prefHeight="572.0" prefWidth="610.0" style="-fx-background-color: white; -fx-background-radius: 20px;" stylesheets="@../css/tela_func_addplano.css">
          <children>
-            <TextField fx:id="txtCodigoClientePrincipal" layoutX="167.0" layoutY="91.0" prefHeight="26.0" prefWidth="100.0" promptText="Codigo" styleClass="textfields_esquerda">
+            <TextField fx:id="txtCodigoClientePrincipal" layoutX="149.0" layoutY="87.0" prefHeight="31.0" prefWidth="120.0" promptText="Codigo" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
@@ -49,7 +49,7 @@
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
-            <TextField fx:id="txtCodigoClienteAssociado" layoutX="167.0" layoutY="335.0" prefHeight="26.0" prefWidth="100.0" promptText="Código" styleClass="textfields_esquerda">
+            <TextField fx:id="txtCodigoClienteAssociado" layoutX="149.0" layoutY="331.0" prefHeight="31.0" prefWidth="120.0" promptText="Código" styleClass="textfields_esquerda">
                <font>
                   <Font name="System Italic" size="14.0" />
                </font></TextField>
@@ -115,12 +115,12 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="134.0" layoutY="95.0" text="Cod:" textFill="#847e7e">
+            <Label layoutX="116.0" layoutY="91.0" text="Cod:" textFill="#847e7e">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="133.0" layoutY="339.0" text="Cod:" textFill="#847e7e">
+            <Label layoutX="115.0" layoutY="335.0" text="Cod:" textFill="#847e7e">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -135,15 +135,15 @@
                   <Font name="System Bold Italic" size="18.0" />
                </font>
             </Label>
-            <Button layoutX="152.0" layoutY="523.0" mnemonicParsing="false" onAction="#LimparCampos" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Limpar Campos">
+            <Button layoutX="21.0" layoutY="523.0" mnemonicParsing="false" onAction="#LimparCampos" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Limpar Campos">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
-            <Button layoutX="307.0" layoutY="523.0" mnemonicParsing="false" onAction="#RemoverPlano" styleClass="botao" text="Desassociar Plano">
+            <Button layoutX="166.0" layoutY="523.0" mnemonicParsing="false" onAction="#RemoverPlano" styleClass="botao" text="Desassociar Plano">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
-            <Button layoutX="458.0" layoutY="523.0" mnemonicParsing="false" onAction="#guardarPlano" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Associar plano">
+            <Button layoutX="458.0" layoutY="523.0" mnemonicParsing="false" onAction="#guardarPlano" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Add. novo Plano">
                <font>
                   <Font name="System Bold Italic" size="14.0" />
                </font></Button>
@@ -168,6 +168,11 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
+            <Button layoutX="313.0" layoutY="523.0" mnemonicParsing="false" onAction="#atualizarPlano" prefHeight="30.0" prefWidth="139.0" styleClass="botao" text="Atualizar Plano">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font>
+            </Button>
          </children>
          <effect>
             <DropShadow>

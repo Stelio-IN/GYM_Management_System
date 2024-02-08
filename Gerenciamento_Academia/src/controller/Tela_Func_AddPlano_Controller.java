@@ -130,7 +130,9 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             if (clienteNovosDados.getPlanoCliente() != null) {
                 txtObjectivoClientePrincipal.setText(clienteNovosDados.getPlanoCliente().getPlano().getNome());
                 txtStatusClientePrincipal.setText(clienteNovosDados.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
-
+            }else{
+                txtObjectivoClientePrincipal.setText("");
+                txtStatusClientePrincipal.setText("");
             }
             if (cli.getClinteAssociado() != null) {
                 clienteAssociadoNovosDados = cli.getClinteAssociado();
@@ -140,7 +142,10 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                 if (clienteAssociadoNovosDados.getPlanoCliente() != null) {
                     txtObjectivoClienteAssociado.setText(clienteAssociadoNovosDados.getPlanoCliente().getPlano().getNome());
                     txtStatusClienteAssociado.setText(clienteAssociadoNovosDados.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
-                }
+                }else{
+                    txtObjectivoClienteAssociado.setText("");
+                    txtStatusClienteAssociado.setText("");
+               }
                 if (clienteAssociadoNovosDados.getImagem() != null) {
                     byte[] imagemBytes = clienteAssociadoNovosDados.getImagem();
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
@@ -443,5 +448,31 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         } else {
             JOptionPane.showMessageDialog(null, "Preencha os campos");
         }
+    }
+     @FXML
+    void atualizarPlano(ActionEvent event){
+        /*
+            verificar se o plano selecionado e o mesmo 
+            verificar se a data selecionada e maior em relacao a um mes da dataFim do plano ativo
+            Caso plano casal verificar para ambos usuarios 
+            verificar quantidade de meses adicionados
+            
+        */
+        if (clienteNovosDados != null && planoSelecionado != null && !txtDuracaoPlano.getText().isEmpty()) {
+            if(clienteNovosDados.getPlanoCliente() != null){
+                if(clienteNovosDados.getPlanoCliente().getPlano().getNome().equals(planoSelecionado.getPlano().getNome())){
+                    
+                    JOptionPane.showMessageDialog(null, "Da para atualizar");
+                }else{
+                    JOptionPane.showMessageDialog(null, "Impossivel atualizar para Plano difernte"); 
+                }
+            }else{
+                JOptionPane.showMessageDialog(null,"Nao pode atualizar sem antes ter plano!!!");
+            }
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Preencha todos campos");
+        }
+        
     }
 }

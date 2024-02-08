@@ -59,7 +59,7 @@
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtPagamento" layoutX="22.0" layoutY="249.0" prefHeight="30.0" prefWidth="223.0" promptText="Pendente" styleClass="textfields_esquerda" stylesheets="@../css/menu_1.css">
+                  <TextField fx:id="txtPagamento" layoutX="22.0" layoutY="249.0" prefHeight="30.0" prefWidth="223.0" promptText="Activo/Inactivo" styleClass="textfields_esquerda" stylesheets="@../css/menu_1.css">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
@@ -124,7 +124,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="26.0" layoutY="231.0" text="Status do pagamento" textFill="#847e7e">
+                  <Label layoutX="26.0" layoutY="231.0" text="Status do Plano" textFill="#847e7e">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

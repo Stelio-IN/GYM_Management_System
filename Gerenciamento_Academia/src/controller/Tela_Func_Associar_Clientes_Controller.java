@@ -121,7 +121,8 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                     // Defina a imagem no ImageView
                     imageViewPrimeiro.setImage(imagem);
                 } 
-            } else if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false) && (txtGeneroPrimeiroCliente.getText().equals(cli.getGenero())) == false) {
+            } else if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false)) {
+    // if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false) && (txtGeneroPrimeiroCliente.getText().equals(cli.getGenero())) == false) {
                 cliente3 = cli;
                 txtNomeSegundoCliente.setText(cli.getNome());
                 txtCodigoSegundoCliente.setText(cli.getCodigo());
@@ -308,14 +309,15 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
     @FXML
     void AssociarClientes(ActionEvent event) {
-        if (cliente1 != null && cliente3 != null) {
+        if (cliente1 != null && cliente3 != null && cliente1.getClienteAssociado() == null && cliente3.getClienteAssociado() == null ) {
             cliente1.associarCasal(cliente3);
 
             dao.Atualizar(classe, cliente1.getId(), cliente1);
             dao.Atualizar(classe, cliente3.getId(), cliente3);
-
+            JOptionPane.showMessageDialog(null, "Clentes associado com sucesso!!");
             limparCampos(event);
         } else {
+            JOptionPane.showMessageDialog(null, "Erro, um dos clientes te um associado!!");
             System.out.println("A associação só é permitida entre pessoas de sexo oposto.");
         }
     }
