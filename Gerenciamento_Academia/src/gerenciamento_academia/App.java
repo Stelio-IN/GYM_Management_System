@@ -62,7 +62,7 @@ public class App extends Application {
     public static void main(String[] args) {
         
         System.out.println("Banana");
-       
+       /*
         GenericDAO dao = new GenericDAO();
 
         Class<Cliente> clien_Classe = Cliente.class;
@@ -85,11 +85,8 @@ public class App extends Application {
                 }
             }
              dao.Atualizar(Cliente.class, cli.getId(), obj);
-        }
-        
-               
-        
-        
+        }    
+        */
         launch(args);
     }
     

@@ -48,13 +48,26 @@ public class PlanoCliente {
         this.duracao = novaDuracao;
         setDuracaoEmMeses(novaDuracao);
     }
+    // Método para ajustar a duração do plano em meses com base na data inicial
+    public void setDuracaoEmMesesNew(int duracaoEmMeses, Date dataInicial) {
+        // Obtém uma instância do Calendar, que nos permite manipular datas
+        Calendar calendar = Calendar.getInstance();
+        // Define a data inicial do calendário como a data fornecida
+        calendar.setTime(dataInicial);
+        // Adiciona a duração em meses fornecida à data inicial
+        calendar.add(Calendar.MONTH, duracaoEmMeses);
+        // Define a data de término como a nova data calculada
+        this.dataFim = calendar.getTime();
+    }
+
 
     public void setDuracaoEmMeses(int duracaoEmMeses) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(dataInicio);
         calendar.add(Calendar.MONTH, duracaoEmMeses);
         this.dataFim = calendar.getTime();
-    }   
+    }  
+    /*
     public long calcularDiasDecorridos() {
         Date dataAtual = new Date(); // Obtém a data atual
         long diferencaEmMillis = dataFim.getTime() - dataAtual.getTime();
@@ -70,6 +83,31 @@ public class PlanoCliente {
             return diferencaEmDias;
         }
     }
+    */
+    public long calcularDiasDecorridos() {
+        Date dataAtual = new Date(); // Obtém a data atual
+
+        // Verifica se a data atual está após a data de início do plano
+        if (dataAtual.after(dataInicio)) {
+            long diferencaEmMillis = dataFim.getTime() - dataAtual.getTime();
+
+            if (diferencaEmMillis > 0) {
+                // A data de fim ainda não foi alcançada, portanto, retornamos 0 dias
+                this.status = true; // Define o status como ativo
+                return diferencaEmMillis / (24 * 60 * 60 * 1000);
+            } else {
+                // Converte a diferença de milissegundos em dias
+                long diferencaEmDias = Math.abs(diferencaEmMillis) / (24 * 60 * 60 * 1000);
+                this.status = false; // Define o status como inativo
+                return diferencaEmDias;
+            }
+        } else {
+            // A data de início do plano ainda não foi alcançadasa
+            this.status = false; // Define o status como inativo
+            return 0;
+        }
+    }
+
 
     public Long getId() {
         return id;
