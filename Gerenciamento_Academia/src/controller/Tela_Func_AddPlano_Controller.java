@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -11,7 +12,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -23,6 +28,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -261,11 +267,11 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         imageView.setImage(imageLimpar);
         imageViewAssociado.setImage(imageLimpar);
 
-        imageView.setFitWidth(158);
-        imageView.setFitHeight(130);
+        imageView.setFitWidth(90);
+        imageView.setFitHeight(100);
 
-        imageViewAssociado.setFitWidth(158);
-        imageViewAssociado.setFitHeight(130);
+        imageViewAssociado.setFitWidth(90);
+        imageViewAssociado.setFitHeight(100);
 
         txtCodigoClientePrincipal.setText("");
         txtCodigoClienteAssociado.setText("");
@@ -285,11 +291,13 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         txtDataFimClientePrincipal.setText("");
         txtDataIniClienteAssociado.setText("");
         txtDataFimClienteAssociado.setText("");
+        txtPesquisa.setText("");
 
         clienteNovosDados = null;
         clienteAssociadoNovosDados = null;
         planoSelecionado = null;
         planoAssociacaoAtualizar = null;
+        
     }
 
     @FXML
@@ -298,9 +306,11 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
         Class<Cliente> classe = Cliente.class;
         if (clienteNovosDados != null && clienteNovosDados.getPlanoCliente() != null) {
             if (clienteNovosDados.getPlanoCliente().isStatus() == true) {
-                clienteNovosDados.getPlanoCliente().setStatus(false);
+                clienteNovosDados.setPlanoCliente(null);
+                
                 dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
                 JOptionPane.showMessageDialog(null, "Plano Removido");
+                LimparCampos( event);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Impossivel remover Plano");
@@ -330,8 +340,10 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             valor = planoSelecionado.getPlano().getPreco() * Integer.valueOf(txtDuracaoPlano.getText());
             pagamento.setSituacao("Pendente");
             pagamento.setValor(valor);
-
-            if (!planoSelecionado.getPlano().getNome().equals("Plano Casal")) {
+            
+            //Adicionando para qualquer plano diferente casal por ser single e nao necessital de carregar associado
+            if (!planoSelecionado.getPlano().getNome().equals("Casal")) {
+                
                 if (clienteNovosDados.getPlanoCliente() != null) {
                     if (clienteNovosDados.getPlanoCliente().isStatus() == false) {
                         clienteNovosDados.getPlanoCliente().setPlano(planoAssociacaoAtualizar);
@@ -340,8 +352,10 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         pagamento.setSituacao("Pendente");
                         dao.add(pagamento);
                         JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
+                        LimparCampos( event);
                     } else {
                         JOptionPane.showMessageDialog(null, "Cliente com plano: " + clienteNovosDados.getPlanoCliente().getPlano().getNome() + "__ Estado: " + clienteNovosDados.getPlanoCliente().isStatus());
+                        LimparCampos( event);
                     }
                 } else {
                     dao.add(planoSelecionado);
@@ -349,10 +363,12 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                     clienteNovosDados.setPlanoCliente(planoSelecionado);
                     dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                     JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
+                    LimparCampos( event);
                 }
+                
             }
-
-            if (planoSelecionado.getPlano().getNome().equals("Plano Casal")) {
+            //Se o plano selecionado for casal
+            if (planoSelecionado.getPlano().getNome().equals("Casal")) {
                 if (clienteAssociadoNovosDados != null) {
                     if (clienteNovosDados.getPlanoCliente() == null && clienteAssociadoNovosDados.getPlanoCliente() == null) {
                         // Nenhum dos clientes tem planos associados, você pode associá-los ao Plano Casal
@@ -423,6 +439,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
 
                         JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        LimparCampos( event);
                     }
                     if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() == null
                             && !clienteNovosDados.getPlanoCliente().isStatus()) {
@@ -450,6 +467,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
 
                         JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        LimparCampos( event);
                     }
                     if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() != null
                             && !clienteNovosDados.getPlanoCliente().isStatus() && !clienteNovosDados.getPlanoCliente().isStatus()) {
@@ -462,6 +480,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         // Atualize os clientes e o Plano Cliente do associado
                         dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+                        LimparCampos( event);
                     }
 
                 } else {
@@ -519,18 +538,42 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
        if (clienteNovosDados != null && planoSelecionado != null && !txtDuracaoPlano.getText().isEmpty()) {
            if (clienteNovosDados.getPlanoCliente() != null) {
                if (clienteNovosDados.getPlanoCliente().getPlano().getNome().equals(planoSelecionado.getPlano().getNome())) {    
+                   if(!planoSelecionado.getPlano().getNome().equals("Casal")){
+                    // Atualizar os dados do plano existente
+                        clienteNovosDados.getPlanoCliente().setDataInicio(clienteNovosDados.getPlanoCliente().getDataInicio());
+                        clienteNovosDados.getPlanoCliente().setDuracao(clienteNovosDados.getPlanoCliente().getDuracao() + Integer.parseInt(txtDuracaoPlano.getText()));
+                        clienteNovosDados.getPlanoCliente().setDuracaoEmMesesNew(Integer.parseInt(txtDuracaoPlano.getText()), clienteNovosDados.getPlanoCliente().getDataFim());
+                        clienteNovosDados.getPlanoCliente().setStatus(true);
 
-                   // Atualizar os dados do plano existente
-                   clienteNovosDados.getPlanoCliente().setDataInicio(clienteNovosDados.getPlanoCliente().getDataInicio());
-                   clienteNovosDados.getPlanoCliente().setDuracao(clienteNovosDados.getPlanoCliente().getDuracao() + Integer.parseInt(txtDuracaoPlano.getText()));
-                   clienteNovosDados.getPlanoCliente().setDuracaoEmMesesNew(Integer.parseInt(txtDuracaoPlano.getText()), clienteNovosDados.getPlanoCliente().getDataFim());
-                   clienteNovosDados.getPlanoCliente().setStatus(true);
+                    // Persistir as alterações no banco de dados
+                        GenericDAO dao = new GenericDAO();
+                        dao.Atualizar(PlanoCliente.class, clienteNovosDados.getPlanoCliente().getId(), clienteNovosDados.getPlanoCliente());
 
-                   // Persistir as alterações no banco de dados
-                   GenericDAO dao = new GenericDAO();
-                   dao.Atualizar(PlanoCliente.class, clienteNovosDados.getPlanoCliente().getId(), clienteNovosDados.getPlanoCliente());
+                        JOptionPane.showMessageDialog(null, "Plano atualizado com sucesso!");
+                        LimparCampos( event);
+                    }else{
+                       if(clienteNovosDados.getPlanoCliente().getPlano().getNome().equals(clienteAssociadoNovosDados.getPlanoCliente().getPlano().getNome())){
+                            // Atualizar dados do cliente principal
+                            clienteNovosDados.getPlanoCliente().setDataInicio(clienteNovosDados.getPlanoCliente().getDataInicio());
+                            clienteNovosDados.getPlanoCliente().setDuracao(clienteNovosDados.getPlanoCliente().getDuracao() + Integer.parseInt(txtDuracaoPlano.getText()));
+                            clienteNovosDados.getPlanoCliente().setDuracaoEmMesesNew(Integer.parseInt(txtDuracaoPlano.getText()), clienteNovosDados.getPlanoCliente().getDataFim());
+                            clienteNovosDados.getPlanoCliente().setStatus(true);
 
-                   JOptionPane.showMessageDialog(null, "Plano atualizado com sucesso!");
+                            // Atualizar  dados do cliente associado
+                            clienteAssociadoNovosDados.getPlanoCliente().setDataInicio(clienteAssociadoNovosDados.getPlanoCliente().getDataInicio());
+                            clienteAssociadoNovosDados.getPlanoCliente().setDuracao(clienteAssociadoNovosDados.getPlanoCliente().getDuracao() + Integer.parseInt(txtDuracaoPlano.getText()));
+                            clienteAssociadoNovosDados.getPlanoCliente().setDuracaoEmMesesNew(Integer.parseInt(txtDuracaoPlano.getText()), clienteAssociadoNovosDados.getPlanoCliente().getDataFim());
+                            clienteAssociadoNovosDados.getPlanoCliente().setStatus(true);
+                            
+                            // Persistir as alterações no banco de dados
+                            GenericDAO dao = new GenericDAO();
+                            dao.Atualizar(PlanoCliente.class, clienteAssociadoNovosDados.getPlanoCliente().getId(), clienteAssociadoNovosDados.getPlanoCliente());
+                            dao.Atualizar(PlanoCliente.class, clienteNovosDados.getPlanoCliente().getId(), clienteNovosDados.getPlanoCliente());
+                            JOptionPane.showMessageDialog(null, "Atualizacao efectuada com sucesso!!! "); 
+                            LimparCampos( event);
+                       }           
+                       
+                    }
                } else {
                    JOptionPane.showMessageDialog(null, "Impossível atualizar para um plano diferente.");
                }
@@ -541,6 +584,23 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
            JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
        }
    }
+      
+   
+      //Usado para resetar um ficheiro fxml 
+      //ainda por melhorar
+      private void resetarFXML(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/Tela_Menu_Func.fxml"));
+            Parent root = loader.load();
+
+            // Seu código para configurar o controlador, se necessário
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Lide com a exceção conforme necessário
+        }
+    }
 
 
 }

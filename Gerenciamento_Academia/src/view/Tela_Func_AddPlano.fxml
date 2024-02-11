@@ -96,7 +96,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="31.0" layoutY="214.0" text="Plano" textFill="#847e7e">
+            <Label layoutX="38.0" layoutY="214.0" text="Plano" textFill="#847e7e">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -111,7 +111,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label layoutX="28.0" layoutY="456.0" text="Plano" textFill="#847e7e">
+            <Label layoutX="36.0" layoutY="455.0" text="Plano" textFill="#847e7e">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -214,7 +214,7 @@
                   <Font name="System Italic" size="14.0" />
                </font>
             </TextField>
-            <TextArea layoutX="381.0" layoutY="297.0" prefHeight="106.0" prefWidth="200.0" text="NB: para actualizar o plano nao&#10; precisa selecionar a data de inicio&#10; somente a quantidade de meses&#10; que sera acrescentada" />
+            <TextArea layoutX="412.0" layoutY="268.0" prefHeight="182.0" prefWidth="190.0" text="NB:. ao adicionar ou atualizar&#10;um plano o seu pagamento &#10;sera dado como efectuado!!&#10;  - Para actulizar planos não &#10;é preciso selecionar a data de &#10;inicio, sera considerada a data&#10;fim do plano activo actual-&#10;mente adicione apenas a &#10;quantidade de meses!!!" />
          </children>
          <effect>
             <DropShadow>
