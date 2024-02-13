@@ -257,7 +257,7 @@ public class Tela_Menu_Func_Controller implements Initializable {
     }
 
     @FXML
-    void plano_Associa(ActionEvent event) {
+    public void plano_Associa(ActionEvent event) {
         carregarTela("/view/Tela_Func_PlanoAss", pessoa);
         btnPacotes.setStyle("-fx-background-color: #00ff001e;");
         btnDashboard.setStyle("-fx-background-color: transparent;");

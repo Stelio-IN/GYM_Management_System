@@ -191,6 +191,10 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     @FXML
     private Label txtPlanosInactivos;
 
+    @FXML
+    private Label txtFaturamento;
+
+    private int faturamento = 0;
     private int quandidade_Clientes = 0;
     private int quandidade_Funcionarios = 0;
     private int quandidade_Instrutores = 0;
@@ -316,33 +320,22 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         txtPlanosInactivos.setText(String.valueOf(inativos));
     }
      */
- /*
+
     private void preencher_Pagamento() {
         GenericDAO dao = new GenericDAO();
         Class<Pagamento_Mensalidade> classe = Pagamento_Mensalidade.class;
         List<Pagamento_Mensalidade> pagamentos = (List<Pagamento_Mensalidade>) dao.listar(classe);
-
-        int pagos=0;
-        int cancelados=0;
-        int pendentes=0;
-
-        if (pagamentos
-                != null) {
-            for (int i = 0; i < pagamentos.size(); i++) {
-                if (pagamentos.get(i).getSituacao().equals("Pago")) {
-                    pagos++;
-                }
-                if (pagamentos.get(i).getSituacao().equals("Cancelado")) {
-                    cancelados++;
-                }
-                if (pagamentos.get(i).getSituacao().equals("Pendente")) {
-                    pendentes++;
-                }
-            }
-        }
+        
+        faturamento =0;
+        
+        if (pagamentos!= null)
+            for (int i = 0; i < pagamentos.size(); i++) 
+                faturamento += pagamentos.get(i).getValor();
+        
+        txtFaturamento.setText(String.valueOf(faturamento) + " MT");
+               
     }
 
-     */
     @FXML
     private PieChart pieChart;
 
@@ -351,6 +344,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         // TODO
         // quantidadeDeInscritos();
         contabilizar();
+        preencher_Pagamento();
         // carregarDadosDoBanco();
         //  planos_ativos_inativos();
 

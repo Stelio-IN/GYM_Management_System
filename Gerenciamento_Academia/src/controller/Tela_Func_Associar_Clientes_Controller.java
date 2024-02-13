@@ -5,6 +5,7 @@
 package controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,7 +13,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -351,6 +354,7 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
     @FXML
     void limparCampos(ActionEvent event) {
+         //new Tela_Menu_Func_Controller().plano_Associa(event);
         txtCodigoPrimeiroCliente.setText("");
         txtNomePrimeiroCliente.setText("");
         txtGeneroPrimeiroCliente.setText("");
@@ -388,5 +392,5 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada((Cliente) newValue)
         );
     }
-
+    
 }
