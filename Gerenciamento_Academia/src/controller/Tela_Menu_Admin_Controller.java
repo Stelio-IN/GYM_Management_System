@@ -117,6 +117,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     private ImageView imageViewAdmin;
     @FXML
     private TextField txtNomeAdmin;
+
     private Pessoa pessoa;
 
     public void setPessoa(Pessoa pessoa) {
@@ -184,24 +185,36 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     @FXML
     private Label txtQuantidadePlanoNormal;
 
+    @FXML
+    private Label txtPlanosActivos;
+
+    @FXML
+    private Label txtPlanosInactivos;
+
     private int quandidade_Clientes = 0;
     private int quandidade_Funcionarios = 0;
     private int quandidade_Instrutores = 0;
     private int quandidade_Maquinas = 0;
 
-    private int quantidade_plano_id_1 =0;
-    private int quantidade_plano_id_2=0;
-    private int quantidade_plano_id_3=0;
-    private int quantidade_plano_id_4=0;
+    private int quantidade_plano_id_1 = 0;
+    private int quantidade_plano_id_2 = 0;
+    private int quantidade_plano_id_3 = 0;
+    private int quantidade_plano_id_4 = 0;
+    private int quandidade_Homens = 0;
+    private int quandidade_Mulheres = 0;
 
     private void contabilizar() {
         quandidade_Instrutores = 0;
         quandidade_Funcionarios = 0;
         quandidade_Clientes = 0;
-        quantidade_plano_id_1 =0;
-        quantidade_plano_id_2 =0;
-        quantidade_plano_id_3 =0;
-        quantidade_plano_id_4 =0;
+        quantidade_plano_id_1 = 0;
+        quantidade_plano_id_2 = 0;
+        quantidade_plano_id_3 = 0;
+        quantidade_plano_id_4 = 0;
+        quandidade_Mulheres = 0;
+        quandidade_Homens = 0;
+        int ativos = 0;
+        int inativos = 0;
 
         GenericDAO dao = new GenericDAO();
         Class<Equipamento> classe = Equipamento.class;
@@ -212,10 +225,22 @@ public class Tela_Menu_Admin_Controller implements Initializable {
                 Pessoa pessoa = pessoas.get(i);
                 if (pessoa instanceof Cliente cliente) {
                     quandidade_Clientes++;
+
+                    /*
+                       * Comtabilizar homens e mulheres
+                     */
+                    if (cliente.getGenero().equals("Masculino")) {
+                        quandidade_Homens++;
+                        System.out.println("Cliente " + cliente.getNome() + " é masculino.");
+                    } else {
+                        quandidade_Mulheres++;
+                        System.out.println("Cliente " + cliente.getNome() + " é feminino.");
+                    }
                     /*
                     Contabilizar clientes e sei la quantos 
                      */
                     if (cliente.getPlanoCliente() != null) {
+
                         if (cliente.getPlanoCliente().getPlano().getId() == 1) {
                             quantidade_plano_id_1++;
                         }
@@ -227,6 +252,14 @@ public class Tela_Menu_Admin_Controller implements Initializable {
                         }
                         if (cliente.getPlanoCliente().getPlano().getId() == 4) {
                             quantidade_plano_id_4++;
+                        }
+                        /*
+                            verificar quantidade de planos ativos e inativos
+                         */
+                        if (cliente.getPlanoCliente().isStatus()) {
+                            ativos++;
+                        } else {
+                            inativos++;
                         }
                     }
 
@@ -253,8 +286,37 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         txtQuantidadePlanoEstudante.setText(String.valueOf(quantidade_plano_id_1));
         txtQuantidadePlanoNormal.setText(String.valueOf(quantidade_plano_id_3));
 
+        txtPlanosActivos.setText(String.valueOf(ativos));
+        txtPlanosInactivos.setText(String.valueOf(inativos));
+
     }
 
+    /*
+        Metodo para verificar quantidade de planos ativos e inativos
+     */
+ /*
+    private void planos_ativos_inativos() {
+        GenericDAO dao = new GenericDAO();
+        Class<PlanoCliente> classe = PlanoCliente.class;
+        List<PlanoCliente> planos = (List<PlanoCliente>) dao.listar(classe);
+        int ativos = 0;
+        int inativos = 0;
+        if (planos != null) {
+            for (int i = 0; i < planos.size(); i++) {
+                if (planos.get(i).getCliente() != null) {
+                    if (planos.get(i).isStatus()) {
+                        ativos++;
+                    } else {
+                        inativos++;
+                    }
+                }
+            }
+        }
+        txtPlanosActivos.setText(String.valueOf(ativos));
+        txtPlanosInactivos.setText(String.valueOf(inativos));
+    }
+     */
+ /*
     private void preencher_Pagamento() {
         GenericDAO dao = new GenericDAO();
         Class<Pagamento_Mensalidade> classe = Pagamento_Mensalidade.class;
@@ -278,21 +340,9 @@ public class Tela_Menu_Admin_Controller implements Initializable {
                 }
             }
         }
-
-        txtPagamentosCancelados.setText( String.valueOf(cancelados));
-        txtPagamentosEfectuados.setText(String.valueOf(pagos));
-        txtPagamentosPendentes.setText(String.valueOf(pendentes));
     }
 
-    @FXML
-    private Label txtPagamentosCancelados;
-
-    @FXML
-    private Label txtPagamentosEfectuados;
-
-    @FXML
-    private Label txtPagamentosPendentes;
-
+     */
     @FXML
     private PieChart pieChart;
 
@@ -301,8 +351,8 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         // TODO
         // quantidadeDeInscritos();
         contabilizar();
-        carregarDadosDoBanco();
-        preencher_Pagamento();
+        // carregarDadosDoBanco();
+        //  planos_ativos_inativos();
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
                 new PieChart.Data("Homens", quandidade_Homens),
@@ -395,9 +445,6 @@ public class Tela_Menu_Admin_Controller implements Initializable {
     @FXML
     private ScrollPane scrollPanePesquisa;
 
-    private int quandidade_Homens = 0;
-    private int quandidade_Mulheres = 0;
-
     @FXML
     void listarPesquisa(KeyEvent event) {
         listaPesquisa();
@@ -442,6 +489,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
         fabrica.close(); // E a EntityManagerFactory também
     }
 
+    /*
     private void carregarDadosDoBanco() {
         GenericDAO dao = new GenericDAO();
         List<Pessoa> pessoas = dao.listarTodosParaRelatorio(Pessoa.class
@@ -460,7 +508,7 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             }
         }
     }
-
+     */
     @FXML
     void Tela_Admin_Planos_Associacao(ActionEvent event) {
         carregarTela("/view/Tela_Admin_Menu_Plano_Associacao");
@@ -505,30 +553,6 @@ public class Tela_Menu_Admin_Controller implements Initializable {
             // Lida com exceções de carregamento de FXML
             ex.printStackTrace();
         }
-    }
-
-    int quantidadePlanoCasal = 0;
-
-    private void quantidadeDeInscritos() {
-        GenericDAO dao = new GenericDAO();
-        List<PlanoCliente> plano = new ArrayList<>();
-        //  List<PlanoCliente> plano1 = new List()<>;
-        plano
-                = (List<PlanoCliente>) dao.listar(PlanoCliente.class
-                );
-        if (plano != null) {
-
-            for (int i = 0; i < plano.size(); i++) {
-                System.out.println(plano.get(i).getPlano().getNome());
-                if (plano.get(i).getPlano().getNome().equalsIgnoreCase("plano casal")) {
-                    quantidadePlanoCasal++;
-                }
-            }
-
-            System.out.println("SIN E PAI");
-            txtQuantidadePlanoCasal.setText(String.valueOf(quantidadePlanoCasal));
-        }
-        System.out.println("Foste solado");
     }
 
 }
