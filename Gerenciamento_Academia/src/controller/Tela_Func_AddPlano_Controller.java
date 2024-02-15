@@ -115,6 +115,9 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
     @FXML
     private TextField txtDataIniClientePrincipal;
     
+    Notificacao notifica = new Notificacao();
+    
+    
     Cliente clienteNovosDados = new Cliente();
     Cliente clienteAssociadoNovosDados = new Cliente();
     PlanoCliente planoSelecionado = new PlanoCliente();
@@ -163,7 +166,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                 imageView.setFitHeight(130);
                 imageView.setImage(imagem);
             } else {
-                JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+                 notifica.notificacaoWarning("imagem nao encontrada");
+               // JOptionPane.showMessageDialog(null, "imagem nao encontrada");
             }
             if (cli.getClinteAssociado() != null) {
                 clienteAssociadoNovosDados = cli.getClinteAssociado();
@@ -188,11 +192,10 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                     imageViewAssociado.setFitHeight(130);
                     imageViewAssociado.setImage(imagem);
                 } else {
-                    JOptionPane.showMessageDialog(null, "imagem nao encontrada");
+                    notifica.notificacaoWarning("imagem nao encontrada");
+                  // JOptionPane.showMessageDialog(null, "imagem nao encontrada");
                 }
             }
-        } else {
-          //  JOptionPane.showMessageDialog(null, "Selecione alguém");
         }
     }
 
@@ -256,9 +259,7 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
             planoSelecionado = planoCliente;
             txtNomePlano.setText(plano.getNome());
             txtPrecoPlano.setText(String.valueOf(plano.getPreco()));
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione Uma linha");
-        }
+        } 
     }
 
     @FXML
@@ -309,11 +310,13 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                 clienteNovosDados.setPlanoCliente(null);
                 
                 dao.Atualizar(classe, clienteNovosDados.getId(), clienteNovosDados);
-                JOptionPane.showMessageDialog(null, "Plano Removido");
+                notifica.notificacaoSucesso("Plano Removido com sucesso");
+            //  JOptionPane.showMessageDialog(null, "Plano Removido");
                 LimparCampos( event);
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Impossivel remover Plano");
+            notifica.notificacaoFalha("Impossivel remover Plano");
+          // JOptionPane.showMessageDialog(null, "Impossivel remover Plano");
         }
     }
 
@@ -351,10 +354,12 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         pagamento.setPlanoCliente(clienteNovosDados.getPlanoCliente());
                         pagamento.setSituacao("Pendente");
                         dao.add(pagamento);
-                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
+                        notifica.notificacaoSucesso("Sucesso ao adicionar plano Total pago: " + valor);
+                        //JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
                         LimparCampos( event);
                     } else {
-                        JOptionPane.showMessageDialog(null, "Cliente com plano: " + clienteNovosDados.getPlanoCliente().getPlano().getNome() + "__ Estado: " + clienteNovosDados.getPlanoCliente().isStatus());
+                        notifica.notificacaoWarning("Cliente com plano: " + clienteNovosDados.getPlanoCliente().getPlano().getNome() + "__ Estado: " + clienteNovosDados.getPlanoCliente().isStatus());
+                       // JOptionPane.showMessageDialog(null, "Cliente com plano: " + clienteNovosDados.getPlanoCliente().getPlano().getNome() + "__ Estado: " + clienteNovosDados.getPlanoCliente().isStatus());
                         LimparCampos( event);
                     }
                 } else {
@@ -362,7 +367,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                     dao.add(pagamento);
                     clienteNovosDados.setPlanoCliente(planoSelecionado);
                     dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
-                    JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
+                    notifica.notificacaoSucesso("Sucesso ao adicionar plano Total pago: " + valor);
+                   // JOptionPane.showMessageDialog(null, "Sucesso ao adicionar plano Total a pagar: " + valor);
                     LimparCampos( event);
                 }
                 
@@ -407,8 +413,8 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         clienteAssociadoNovosDados.setPlanoCliente(planoClienteAssociadoNovo);
                         dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-
-                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                         notifica.notificacaoSucesso("Sucesso ao adicionar Plano Casal. Total Pago: " + valor);
+                       // JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
                     }
                     if (clienteNovosDados.getPlanoCliente() == null && clienteAssociadoNovosDados.getPlanoCliente() != null
                             && !clienteAssociadoNovosDados.getPlanoCliente().isStatus()) {
@@ -437,8 +443,9 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         // Atualize os clientes e o Plano Cliente do associado
                         dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-
-                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        
+                        notifica.notificacaoSucesso("Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        //JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
                         LimparCampos( event);
                     }
                     if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() == null
@@ -465,8 +472,9 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         // Atualize os clientes e o Plano Cliente do associado
                         dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
-
-                        JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
+                        
+                        notifica.notificacaoSucesso("Sucesso ao adicionar Plano Casal. Total pago: " + valor);
+                      //  JOptionPane.showMessageDialog(null, "Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
                         LimparCampos( event);
                     }
                     if (clienteNovosDados.getPlanoCliente() != null && clienteAssociadoNovosDados.getPlanoCliente() != null
@@ -480,16 +488,19 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                         // Atualize os clientes e o Plano Cliente do associado
                         dao.Atualizar(classeCliente, clienteNovosDados.getId(), clienteNovosDados);
                         dao.Atualizar(classeCliente, clienteAssociadoNovosDados.getId(), clienteAssociadoNovosDados);
+                        notifica.notificacaoSucesso("Sucesso ao adicionar Plano Casal. Total a pagar: " + valor);
                         LimparCampos( event);
                     }
 
                 } else {
-                    JOptionPane.showMessageDialog(null, "Sem cliente Associado");
+                     notifica.notificacaoWarning("Sem cliente Associado");
+                    //JOptionPane.showMessageDialog(null, "Sem cliente Associado");
                 }
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "Preencha os campos");
+            notifica.notificacaoWarning("Preencha os campos");
+            //JOptionPane.showMessageDialog(null, "Preencha os campos");
         }
     }
     /*
@@ -548,8 +559,10 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                     // Persistir as alterações no banco de dados
                         GenericDAO dao = new GenericDAO();
                         dao.Atualizar(PlanoCliente.class, clienteNovosDados.getPlanoCliente().getId(), clienteNovosDados.getPlanoCliente());
-
-                        JOptionPane.showMessageDialog(null, "Plano atualizado com sucesso!");
+                        
+                        
+                        notifica.notificacaoSucesso("Plano atualizado com sucesso!");
+                        //JOptionPane.showMessageDialog(null, "Plano atualizado com sucesso!");
                         LimparCampos( event);
                     }else{
                        if(clienteNovosDados.getPlanoCliente().getPlano().getNome().equals(clienteAssociadoNovosDados.getPlanoCliente().getPlano().getNome())){
@@ -569,19 +582,24 @@ public class Tela_Func_AddPlano_Controller implements Initializable {
                             GenericDAO dao = new GenericDAO();
                             dao.Atualizar(PlanoCliente.class, clienteAssociadoNovosDados.getPlanoCliente().getId(), clienteAssociadoNovosDados.getPlanoCliente());
                             dao.Atualizar(PlanoCliente.class, clienteNovosDados.getPlanoCliente().getId(), clienteNovosDados.getPlanoCliente());
-                            JOptionPane.showMessageDialog(null, "Atualizacao efectuada com sucesso!!! "); 
+                            
+                            notifica.notificacaoSucesso("Atualizacao efectuada com sucesso!!! ");
+                          //  JOptionPane.showMessageDialog(null, "Atualizacao efectuada com sucesso!!! "); 
                             LimparCampos( event);
                        }           
                        
                     }
                } else {
-                   JOptionPane.showMessageDialog(null, "Impossível atualizar para um plano diferente.");
+                    notifica.notificacaoWarning("Impossível atualizar para um plano diferente.");
+                  // JOptionPane.showMessageDialog(null, "Impossível atualizar para um plano diferente.");
                }
            } else {
-               JOptionPane.showMessageDialog(null, "Não é possível atualizar sem antes ter um plano.");
+                notifica.notificacaoWarning("Não é possível atualizar sem antes ter um plano.");
+              // JOptionPane.showMessageDialog(null, "Não é possível atualizar sem antes ter um plano.");
            }
        } else {
-           JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
+           notifica.notificacaoWarning("Preencha todos os campos.");
+        //   JOptionPane.showMessageDialog(null, "Preencha todos os campos.");
        }
    }
       

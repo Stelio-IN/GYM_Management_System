@@ -78,6 +78,8 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
     @FXML
     private TextField txtNomeSegundoCliente;
+    
+    Notificacao notifica = new Notificacao();
 
     @FXML
     private TextField txtPesquisa;
@@ -328,11 +330,12 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
             dao.Atualizar(classe, cliente1.getId(), cliente1);
             dao.Atualizar(classe, cliente3.getId(), cliente3);
-            JOptionPane.showMessageDialog(null, "Clentes associado com sucesso!!");
+            notifica.notificacaoSucesso("Clentes associado com sucesso!!");
+           // JOptionPane.showMessageDialog(null, "Clentes associado com sucesso!!");
             limparCampos(event);
         } else {
-            JOptionPane.showMessageDialog(null, "Erro, um dos clientes te um associado!!");
- 
+            notifica.notificacaoFalha("Erro, um dos clientes te um associado!!");
+            //JOptionPane.showMessageDialog(null, "Erro, um dos clientes te um associado!!");
         }
     }
 
@@ -345,10 +348,12 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
             limparCampos(event);
             System.out.println(cliente1.toString());
             System.out.println(cliente2.toString());
-            JOptionPane.showMessageDialog(null, "Cliente "+cliente1.getNome()+"Dessasociado de "+cliente2.getNome());
+            notifica.notificacaoSucesso("Cliente "+cliente1.getNome()+"Dessasociado de "+cliente2.getNome());
+          //  JOptionPane.showMessageDialog(null, "Cliente "+cliente1.getNome()+"Dessasociado de "+cliente2.getNome());
             limparCampos( event);
         } else {
-            JOptionPane.showMessageDialog(null, "Erro, Clientes "+cliente1.getNome() +" sem associado!!");
+            notifica.notificacaoFalha("Erro, Clientes "+cliente1.getNome() +" sem associado!!");
+            //JOptionPane.showMessageDialog(null, "Erro, Clientes "+cliente1.getNome() +" sem associado!!");
         }
     }
 
