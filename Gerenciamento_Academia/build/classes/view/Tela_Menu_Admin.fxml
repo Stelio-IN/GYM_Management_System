@@ -453,7 +453,6 @@
                   </Label>
                </children>
             </AnchorPane>
-            <TextField fx:id="txtPesquisa1" layoutX="709.0" layoutY="-3.0" onKeyReleased="#listarPesquisa" opacity="0.51" prefHeight="22.0" prefWidth="268.0" promptText="Pesquisar" style="-fx-border-radius: 50px; -fx-border-color: #AEB2C3; -fx-border-width: 1px 1px 1px 1px;" styleClass="pesquisar" />
          </children>
          <BorderPane.margin>
             <Insets top="20.0" />

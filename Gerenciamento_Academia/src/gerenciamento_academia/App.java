@@ -18,7 +18,7 @@ import javafx.stage.Stage;
  * @author steli 
  */
 public class App extends Application {
-    
+     
     @Override
     public void start(Stage stage) throws Exception {
             Image imagem = new Image("/img/icone.png"); 
