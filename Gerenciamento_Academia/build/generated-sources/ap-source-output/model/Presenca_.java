@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 import model.Cliente;
 import model.Funcionario;
 
-@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-02-15T16:26:06", comments="EclipseLink-2.7.12.v20230209-rNA")
+@Generated(value="org.eclipse.persistence.internal.jpa.modelgen.CanonicalModelProcessor", date="2024-02-17T08:50:24", comments="EclipseLink-2.7.12.v20230209-rNA")
 @StaticMetamodel(Presenca.class)
 public class Presenca_ { 
 
