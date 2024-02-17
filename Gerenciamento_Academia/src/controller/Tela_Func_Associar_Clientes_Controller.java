@@ -5,6 +5,7 @@
 package controller;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -12,7 +13,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.ScrollPane;
@@ -75,6 +78,8 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
     @FXML
     private TextField txtNomeSegundoCliente;
+    
+    Notificacao notifica = new Notificacao();
 
     @FXML
     private TextField txtPesquisa;
@@ -109,6 +114,14 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                         // Defina a imagem no ImageView
                         imageViewPrimeiroAssociado.setImage(imagem);
                     }
+                }else{
+                    Image imageLimpar = new Image("/img/adicionar-usuario.png");
+                    txtNomePrimeiroAssociado.setText("");
+                    imageViewPrimeiroAssociado.setFitWidth(79); // Largura desejada
+                    imageViewPrimeiroAssociado.setFitHeight(93); // Altura desejada
+                    // Defina a imagem no ImageView
+                    imageViewPrimeiroAssociado.setImage(imageLimpar);
+                    
                 }
                 if (cli.getImagem() != null) {
                     // Converta o array de bytes em uma Image
@@ -116,12 +129,13 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                     // Definir largura e altura desejadas
-                    imageViewPrimeiro.setFitWidth(79); // Largura desejada
-                    imageViewPrimeiro.setFitHeight(93); // Altura desejada
+                    imageViewPrimeiro.setFitWidth(128); // Largura desejada
+                    imageViewPrimeiro.setFitHeight(99); // Altura desejada
                     // Defina a imagem no ImageView
                     imageViewPrimeiro.setImage(imagem);
                 } 
-            } else if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false) && (txtGeneroPrimeiroCliente.getText().equals(cli.getGenero())) == false) {
+            } else if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false)) {
+    // if ((txtCodigoPrimeiroCliente.getText().equals(cli.getCodigo()) == false) && (txtGeneroPrimeiroCliente.getText().equals(cli.getGenero())) == false) {
                 cliente3 = cli;
                 txtNomeSegundoCliente.setText(cli.getNome());
                 txtCodigoSegundoCliente.setText(cli.getCodigo());
@@ -136,13 +150,18 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                         Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                         // Definir largura e altura desejadas
-                        imageViewSegundoAssociado.setFitWidth(79); // Largura desejada
-                        imageViewSegundoAssociado.setFitHeight(93); // Altura desejada
+                        imageViewSegundoAssociado.setFitWidth(128); // Largura desejada
+                        imageViewSegundoAssociado.setFitHeight(99); // Altura desejada
                         // Defina a imagem no ImageView
                         imageViewSegundoAssociado.setImage(imagem);
-                    } else {
-                        //     JOptionPane.showMessageDialog(null, "imagem nao encontrada");
                     }
+                }else{
+                    txtNomeSegundoAssociado.setText("");
+                    Image imageLimpar = new Image("/img/adicionar-usuario.png");
+                    imageViewSegundoAssociado.setFitWidth(79); // Largura desejada
+                    imageViewSegundoAssociado.setFitHeight(93); // Altura desejada
+                    // Defina a imagem no ImageView
+                    imageViewSegundoAssociado.setImage(imageLimpar);
                 }
                 if (cli.getImagem() != null) {
                     // Converta o array de bytes em uma Image
@@ -150,12 +169,10 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                     Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                     // Definir largura e altura desejadas
-                    imageViewSegundo.setFitWidth(79); // Largura desejada
-                    imageViewSegundo.setFitHeight(93); // Altura desejada
+                    imageViewSegundo.setFitWidth(128); // Largura desejada
+                    imageViewSegundo.setFitHeight(99); // Altura desejada
                     // Defina a imagem no ImageView
                     imageViewSegundo.setImage(imagem);
-                } else {
-                    //    JOptionPane.showMessageDialog(null, "imagem nao encontrada");
                 }
             }
         }
@@ -308,15 +325,17 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
 
     @FXML
     void AssociarClientes(ActionEvent event) {
-        if (cliente1 != null && cliente3 != null) {
+        if (cliente1 != null && cliente3 != null && cliente1.getClienteAssociado() == null && cliente3.getClienteAssociado() == null ) {
             cliente1.associarCasal(cliente3);
 
             dao.Atualizar(classe, cliente1.getId(), cliente1);
             dao.Atualizar(classe, cliente3.getId(), cliente3);
-
+            notifica.notificacaoSucesso("Clentes associado com sucesso!!");
+           // JOptionPane.showMessageDialog(null, "Clentes associado com sucesso!!");
             limparCampos(event);
         } else {
-            System.out.println("A associação só é permitida entre pessoas de sexo oposto.");
+            notifica.notificacaoFalha("Erro, um dos clientes te um associado!!");
+            //JOptionPane.showMessageDialog(null, "Erro, um dos clientes te um associado!!");
         }
     }
 
@@ -329,14 +348,18 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
             limparCampos(event);
             System.out.println(cliente1.toString());
             System.out.println(cliente2.toString());
-            System.out.println("Desassociado");
+            notifica.notificacaoSucesso("Cliente "+cliente1.getNome()+"Dessasociado de "+cliente2.getNome());
+          //  JOptionPane.showMessageDialog(null, "Cliente "+cliente1.getNome()+"Dessasociado de "+cliente2.getNome());
+            limparCampos( event);
         } else {
-            System.out.println("Erro ao Desassociar");
+            notifica.notificacaoFalha("Erro, Clientes "+cliente1.getNome() +" sem associado!!");
+            //JOptionPane.showMessageDialog(null, "Erro, Clientes "+cliente1.getNome() +" sem associado!!");
         }
     }
 
     @FXML
     void limparCampos(ActionEvent event) {
+         //new Tela_Menu_Func_Controller().plano_Associa(event);
         txtCodigoPrimeiroCliente.setText("");
         txtNomePrimeiroCliente.setText("");
         txtGeneroPrimeiroCliente.setText("");
@@ -346,6 +369,7 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
         txtNomeSegundoCliente.setText("");
         txtGeneroSegundoCliente.setText("");
         txtNomeSegundoAssociado.setText("");
+        txtPesquisa.setText("");
 
         Image imageLimpar = new Image("/img/adicionar-usuario.png");
         imageViewPrimeiro.setImage(imageLimpar);
@@ -353,17 +377,18 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
         imageViewSegundo.setImage(imageLimpar);
         imageViewSegundoAssociado.setImage(imageLimpar);
 
-        imageViewPrimeiro.setFitWidth(158); // Largura desejada
-        imageViewPrimeiro.setFitHeight(130); // Altura desejada
+        imageViewPrimeiro.setFitWidth(128); // Largura desejada
+        imageViewPrimeiro.setFitHeight(99); // Altura desejada
 
-        imageViewSegundo.setFitWidth(158); // Largura desejada
-        imageViewSegundo.setFitHeight(130); // Altura desejada
+        imageViewSegundo.setFitWidth(128); // Largura desejada
+        imageViewSegundo.setFitHeight(99); // Altura desejada
 
-        imageViewSegundoAssociado.setFitWidth(158); // Largura desejada
-        imageViewSegundoAssociado.setFitHeight(130); // Altura desejada
+        imageViewSegundoAssociado.setFitWidth(128); // Largura desejada
+        imageViewSegundoAssociado.setFitHeight(99); // Altura desejada
 
-        imageViewPrimeiroAssociado.setFitWidth(158); // Largura desejada
-        imageViewPrimeiroAssociado.setFitHeight(130); // Altura desejada
+        imageViewPrimeiroAssociado.setFitWidth(128); // Largura desejada
+        imageViewPrimeiroAssociado.setFitHeight(99); // Altura desejada
+      
     }
 
     @Override
@@ -372,5 +397,5 @@ public class Tela_Func_Associar_Clientes_Controller implements Initializable {
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada((Cliente) newValue)
         );
     }
-
+    
 }

@@ -91,6 +91,8 @@ public class Tela_Login_Controller implements Initializable {
     private Button btnPassword;
     private boolean isMouseOver = false;
 
+    Notificacao notifica = new Notificacao();
+
     String pegarPass() {
         String pass = txtPassword.getText();
         return pass;
@@ -120,7 +122,7 @@ public class Tela_Login_Controller implements Initializable {
 
         // Configurar um ouvinte para verificar o conteúdo do TextField enquanto o usuário digita
         txtEmail.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (validarEmail(newValue)||validarCodigo(newValue)) {
+            if (validarEmail(newValue) || validarCodigo(newValue)) {
                 txtEmail.getStyleClass().clear();
                 txtEmail.getStyleClass().add("txtfield_confirmado");
                 emailValido.set(true);
@@ -215,7 +217,33 @@ public class Tela_Login_Controller implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    /*
+    //Usando notificacoes
+    @FXML
+    void btnLogar(ActionEvent event) throws IOException {
+        String email = txtEmail.getText();
+        GenericDAO bb = new GenericDAO();
 
+        Pessoa pessoa = (Pessoa) bb.logarEmailOuCodigo(txtEmail.getText());
+
+        if (pessoa != null && pessoa.getPassword().equals(txtPassword.getText())) {
+            
+            notifica.notificacaoSucesso();
+
+            if (pessoa instanceof Administrador) {
+                Tela_de_Entrada(event, "/view/Tela_Menu_Admin.fxml", pessoa);
+            } else if (pessoa instanceof Cliente) {
+                Tela_de_Entrada(event, "/view/Tela_Menu_Cliente.fxml", pessoa);
+            } else if (pessoa instanceof Funcionario) {
+                Tela_de_Entrada(event, "/view/Tela_Menu_Func.fxml", pessoa);
+            }
+
+        } else {
+               notifica.notificacaoWarning();
+        }
+    }
+    */
+   
     @FXML
     void btnLogar(ActionEvent event) {
         String email = txtEmail.getText();
@@ -249,7 +277,6 @@ public class Tela_Login_Controller implements Initializable {
 
         }
     }
-
     private boolean validarEmail(String email) {
         String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
         Pattern pattern = Pattern.compile(regex);
@@ -263,8 +290,8 @@ public class Tela_Login_Controller implements Initializable {
         Matcher matcher = pattern.matcher(password);
         return matcher.matches();
     }
-    
-     public static boolean validarCodigo(String input) {
+
+    public static boolean validarCodigo(String input) {
         // Cria um padrão de expressão regular para 4 letras seguidas de 8 números
         String padrao = "^[A-Za-z]{4}\\d{8}$";
         // Compila o padrão em um objeto Pattern

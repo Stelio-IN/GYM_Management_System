@@ -248,9 +248,9 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
-            <AnchorPane layoutX="248.0" prefHeight="139.0" prefWidth="158.0" style="-fx-background-color: #fffffc;">
+            <AnchorPane layoutX="282.0" layoutY="20.0" prefHeight="100.0" prefWidth="90.0" style="-fx-background-color: #fffffc;">
                <children>
-                  <ImageView fx:id="imageCamera" fitHeight="122.0" fitWidth="111.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageCamera" fitHeight="100.0" fitWidth="90.0" layoutX="-7.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../img/adicionar-usuario.png" />
                      </image>
@@ -277,7 +277,7 @@
                   <Image url="@../img/lupa.png" />
                </image>
             </ImageView>
-            <TextField fx:id="txtId" layoutX="375.0" layoutY="449.0" prefHeight="26.0" prefWidth="35.0" />
+            <TextField fx:id="txtId" layoutX="367.0" layoutY="458.0" prefHeight="26.0" prefWidth="35.0" promptText="Id" style="-fx-background-color: transparent; -fx-border-width: 0px 0px 1px 0px; -fx-border-color: black;" />
          </children>
          <effect>
             <DropShadow>

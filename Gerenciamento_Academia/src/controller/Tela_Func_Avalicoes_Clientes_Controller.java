@@ -150,13 +150,19 @@ public class Tela_Func_Avalicoes_Clientes_Controller implements Initializable {
         txtForca_Muscular.setText("");
         txtIndi_Mass_Corp.setText("");
         txtNomeCliente.setText("");
-   
+
         txtNomeInstrutor.setText("");
         txtNotaFinal.setText("");
         txtPanturrilha.setText("");
         txtPeso.setText("");
         txtQuadril.setText("");
         txtPeito.setText("");
+        txtPesquisa.setText("");
+        Image imageLimpar = new Image("/img/adicionar-usuario.png");
+        imageView.setFitWidth(79); // Largura desejada
+        imageView.setFitHeight(93); // Altura desejada
+        // Defina a imagem no ImageView
+        imageView.setImage(imageLimpar);
 
     }
 
@@ -164,6 +170,7 @@ public class Tela_Func_Avalicoes_Clientes_Controller implements Initializable {
     Instrutor instrutor = new Instrutor();
     Funcionario funcionario = new Funcionario();
 
+    /*
     @FXML
     void gravarAvaliacao(ActionEvent event) {
         Avaliacoes_Fisicas avaliacao = new Avaliacoes_Fisicas();
@@ -200,6 +207,127 @@ public class Tela_Func_Avalicoes_Clientes_Controller implements Initializable {
         
         
     }
+     */
+    @FXML
+    void gravarAvaliacao(ActionEvent event) {
+        if (validateInputs()) {
+            Avaliacoes_Fisicas avaliacao = new Avaliacoes_Fisicas();
+            GenericDAO dao = new GenericDAO();
+
+            avaliacao.setCliente(cliente);
+            avaliacao.setInstrutor(instrutor);
+            avaliacao.setFuncionario(funcionario);
+            avaliacao.setAltura(Double.valueOf(txtAltura.getText()));
+            avaliacao.setPeso(Double.valueOf(txtPeso.getText()));
+            avaliacao.setIndice_Massa_corporal(avaliacao.calcularIMC());
+
+            avaliacao.setCapacidade_cardiovascular(Double.valueOf(txtCap_Vascular.getText()));
+            avaliacao.setCircunferência_braco(Double.valueOf(txtBraco.getText()));
+            avaliacao.setCircunferência_coxa(Double.valueOf(txtCoxa.getText()));
+            avaliacao.setCircunferência_panturrilha(Double.valueOf(txtPanturrilha.getText()));
+            avaliacao.setCircunferência_quadril(Double.valueOf(txtQuadril.getText()));
+            avaliacao.setCircunferência_peito(Double.valueOf(txtPeito.getText()));
+            avaliacao.setNota_da_avaliacao(Double.valueOf(txtNotaFinal.getText()));
+            avaliacao.setDiscricao_comentarios(txtAreaDiscricao.getText());
+
+            dao.add(avaliacao);
+
+            //Limpar os campos
+            LimparCampos(event);
+
+            Notificacao notificacao = new Notificacao();
+            notificacao.setCliente(cliente);
+            notificacao.setMensagem("Realizacao de Avaliacao");
+            notificacao.setStatus(true);
+            dao.add(notificacao); // Fix: Change to add notification instead of evaluation
+        } else {
+            // Show an error message to the user indicating that some fields are invalid
+            // You can use JavaFX dialogs or any other method to display the message
+            JOptionPane.showMessageDialog(null, "Por favor, preencha todos os campos corretamente.");
+        }
+    }
+/*
+    private boolean validateInputs() {
+        // Check if any of the required fields are empty
+        if (txtAltura.getText().isEmpty() || txtPeso.getText().isEmpty()
+                || txtCap_Vascular.getText().isEmpty() || txtBraco.getText().isEmpty()
+                || txtCoxa.getText().isEmpty() || txtPanturrilha.getText().isEmpty()
+                || txtQuadril.getText().isEmpty() || txtPeito.getText().isEmpty()
+                || txtNotaFinal.getText().isEmpty() || txtAreaDiscricao.getText().isEmpty()) {
+            return false;
+        }
+
+        // Validate if numeric fields contain valid numbers
+        try {
+            Double.valueOf(txtAltura.getText());
+            Double.valueOf(txtPeso.getText());
+            Double.valueOf(txtCap_Vascular.getText());
+            Double.valueOf(txtBraco.getText());
+            Double.valueOf(txtCoxa.getText());
+            Double.valueOf(txtPanturrilha.getText());
+            Double.valueOf(txtQuadril.getText());
+            Double.valueOf(txtPeito.getText());
+            Double.valueOf(txtNotaFinal.getText());
+        } catch (NumberFormatException e) {
+            return false; // If any of the conversions fail, return false
+        }
+
+        return true; // All validations passed
+    }
+*/
+    private boolean validateInputs() {
+    // Define a CSS style to set the border color to red
+    String redBorderStyle = "-fx-border-color: red;";
+
+    // Check if any of the required fields are empty
+    if (txtAltura.getText().isEmpty() || txtPeso.getText().isEmpty() ||
+            txtCap_Vascular.getText().isEmpty() || txtBraco.getText().isEmpty() ||
+            txtCoxa.getText().isEmpty() || txtPanturrilha.getText().isEmpty() ||
+            txtQuadril.getText().isEmpty() || txtPeito.getText().isEmpty() ||
+            txtNotaFinal.getText().isEmpty() || txtAreaDiscricao.getText().isEmpty()) {
+        // Set the border color of empty fields to red
+        txtAltura.setStyle(redBorderStyle);
+        txtPeso.setStyle(redBorderStyle);
+        txtCap_Vascular.setStyle(redBorderStyle);
+        txtBraco.setStyle(redBorderStyle);
+        txtCoxa.setStyle(redBorderStyle);
+        txtPanturrilha.setStyle(redBorderStyle);
+        txtQuadril.setStyle(redBorderStyle);
+        txtPeito.setStyle(redBorderStyle);
+        txtNotaFinal.setStyle(redBorderStyle);
+        txtAreaDiscricao.setStyle(redBorderStyle);
+        return false;
+    }
+
+    // Validate if numeric fields contain valid numbers
+    try {
+        Double.valueOf(txtAltura.getText());
+        Double.valueOf(txtPeso.getText());
+        Double.valueOf(txtCap_Vascular.getText());
+        Double.valueOf(txtBraco.getText());
+        Double.valueOf(txtCoxa.getText());
+        Double.valueOf(txtPanturrilha.getText());
+        Double.valueOf(txtQuadril.getText());
+        Double.valueOf(txtPeito.getText());
+        Double.valueOf(txtNotaFinal.getText());
+
+        // Reset the border color of all fields to default if validation passes
+        txtAltura.setStyle("");
+        txtPeso.setStyle("");
+        txtCap_Vascular.setStyle("");
+        txtBraco.setStyle("");
+        txtCoxa.setStyle("");
+        txtPanturrilha.setStyle("");
+        txtQuadril.setStyle("");
+        txtPeito.setStyle("");
+        txtNotaFinal.setStyle("");
+        txtAreaDiscricao.setStyle("");
+    } catch (NumberFormatException e) {
+        return false; // If any of the conversions fail, return false
+    }
+
+    return true; // All validations passed
+}
 
     @FXML
     void listarPesquisa(KeyEvent event) {
@@ -281,16 +409,16 @@ public class Tela_Func_Avalicoes_Clientes_Controller implements Initializable {
 
     public void pegarLinhaSelecionada(Instrutor pessoa) {
         if (pessoa != null) {
-            instrutor = pessoa;  
+            instrutor = pessoa;
             txtNomeInstrutor.setText(pessoa.getNome());
-        } 
+        }
     }
-    
-    private Pessoa pessoa; 
+
+    private Pessoa pessoa;
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
-        funcionario =(Funcionario) pessoa;
+        funcionario = (Funcionario) pessoa;
         txtNomeFuncionario.setText(pessoa.getNome());
         // ... Configure outros campos conforme necessário
     }

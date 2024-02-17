@@ -14,7 +14,7 @@
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Associar_Clientes_Controller">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Associar_Clientes_Controller">
     <stylesheets>
         <URL value="@/css/tela_func_associar_clientes.css" />
     </stylesheets>
@@ -30,22 +30,22 @@
                   </DropShadow>
                </effect>
                <children>
-                  <TextField fx:id="txtCodigoPrimeiroCliente" layoutX="147.0" layoutY="66.0" prefHeight="26.0" prefWidth="100.0" promptText="Código" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtCodigoPrimeiroCliente" layoutX="131.0" layoutY="68.0" prefHeight="31.0" prefWidth="116.0" promptText="Código" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtNomePrimeiroCliente" layoutX="21.0" layoutY="106.0" prefHeight="30.0" prefWidth="226.0" promptText="Tobias" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtNomePrimeiroCliente" layoutX="21.0" layoutY="106.0" prefHeight="30.0" prefWidth="226.0" promptText="Ex: Stelio" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtGeneroPrimeiroCliente" layoutX="21.0" layoutY="157.0" prefHeight="30.0" prefWidth="226.0" promptText="Outro" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtGeneroPrimeiroCliente" layoutX="21.0" layoutY="157.0" prefHeight="30.0" prefWidth="226.0" promptText="Ex: Masculino" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtNomePrimeiroAssociado" layoutX="21.0" layoutY="213.0" prefHeight="30.0" prefWidth="226.0" promptText="Maria" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtNomePrimeiroAssociado" layoutX="21.0" layoutY="213.0" prefHeight="30.0" prefWidth="226.0" promptText="Ex: Maria" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -86,7 +86,7 @@
                      </font>
                   </Label>
                   <QuadCurve controlX="-101.20002746582031" controlY="83.19999694824219" endX="73.0" endY="-21.511882781982422" fill="#05a764" layoutX="480.0" layoutY="22.0" startX="-217.6005096435547" startY="-21.511890411376953" stroke="WHITE" strokeType="INSIDE" styleClass="painelcurva" />
-                  <Label layoutX="114.0" layoutY="72.0" text="Cod:" textFill="#847e7e">
+                  <Label layoutX="98.0" layoutY="74.0" text="Cod:" textFill="#847e7e">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
@@ -102,22 +102,22 @@
                   </DropShadow>
                </effect>
                <children>
-                  <TextField fx:id="txtNomeSegundoCliente" layoutX="20.0" layoutY="97.0" prefHeight="30.0" prefWidth="226.0" promptText="Maria" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtNomeSegundoCliente" layoutX="20.0" layoutY="97.0" prefHeight="30.0" prefWidth="226.0" promptText="Ex: Joana" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtCodigoSegundoCliente" layoutX="146.0" layoutY="60.0" prefHeight="26.0" prefWidth="100.0" promptText="Código" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtCodigoSegundoCliente" layoutX="128.0" layoutY="62.0" prefHeight="31.0" prefWidth="116.0" promptText="Código" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtNomeSegundoAssociado" layoutX="16.0" layoutY="206.0" prefHeight="30.0" prefWidth="226.0" promptText="Tobias" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtNomeSegundoAssociado" layoutX="16.0" layoutY="206.0" prefHeight="30.0" prefWidth="226.0" promptText="Ex: Sumeid" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtGeneroSegundoCliente" layoutX="18.0" layoutY="151.0" prefHeight="30.0" prefWidth="226.0" promptText="Outro" styleClass="textfields_esquerda">
+                  <TextField fx:id="txtGeneroSegundoCliente" layoutX="18.0" layoutY="151.0" prefHeight="30.0" prefWidth="226.0" promptText="Ex: Feminino" styleClass="textfields_esquerda">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -157,7 +157,7 @@
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <Label layoutX="115.0" layoutY="63.0" text="Cod:" textFill="#847e7e">
+                  <Label layoutX="97.0" layoutY="65.0" text="Cod:" textFill="#847e7e">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

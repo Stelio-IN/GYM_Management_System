@@ -113,6 +113,7 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtId.setText(String.valueOf(cliente.getId()));
             txtNome.setText(cliente.getNome());
             txtCodigo.setText(cliente.getCodigo());
+             txtObjectivo.setText(cliente.getObjectivo());
 
             if (cliente.getImagem() != null) {
                 // Converta o array de bytes em uma Image
@@ -130,21 +131,15 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
                 imageView.setPreserveRatio(true);
             }
             if (cliente.getPlanoCliente() != null) {
+                txtPagamento.setText(cliente.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
+                txtDataFim.setText(cliente.getPlanoCliente().getDataFim().toString());
+                txtDataInicio.setText(cliente.getPlanoCliente().getDataInicio().toString());
                 txtPlanoAssociacao.setText(cliente.getPlanoCliente().getPlano().getNome());
-                //Formatacao de data
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
-                if (cliente.getPlanoCliente().getDataInicio() != null) {
-
-                    String dateString = sdf.format(cliente.getPlanoCliente().getDataInicio()); // Convert the date to a string
-                    txtDataInicio.setText(dateString);
-                    String dateString1 = sdf.format(cliente.getPlanoCliente().getDataFim()); // Convert the date to a string
-                    txtDataFim.setText(dateString1);
-                    if (cliente.getPlanoCliente().isStatus() == true) {
-                        txtPagamento.setText("Ativo");
-                    }
-                    txtPagamento.setText("Inativo");
-                }
-
+            }else{
+                txtPagamento.setText("");
+                txtDataFim.setText("");
+                txtDataInicio.setText("");
+                txtPlanoAssociacao.setText(""); 
             }
 
             List<Avaliacoes_Fisicas> avaliacoes = cliente.getAvaliacoes();
@@ -184,9 +179,15 @@ public class Tela_Admin_Menu_Clientes_Controller implements Initializable {
             txtId.setText(String.valueOf(cliente.getId()));
             txtCodigo.setText(String.valueOf(cliente.getCodigo()));
             if (cliente.getPlanoCliente() != null) {
-                 txtPagamento.setText(cliente.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
+                txtPagamento.setText(cliente.getPlanoCliente().isStatus() ? "Activo" : "Inactivo");
                 txtDataFim.setText(cliente.getPlanoCliente().getDataFim().toString());
                 txtDataInicio.setText(cliente.getPlanoCliente().getDataInicio().toString());
+                txtPlanoAssociacao.setText(cliente.getPlanoCliente().getPlano().getNome());
+            }else{
+                txtPagamento.setText("");
+                txtDataFim.setText("");
+                txtDataInicio.setText("");
+                txtPlanoAssociacao.setText(""); 
             }
             txtObjectivo.setText(cliente.getObjectivo());
             if (cliente.getImagem() != null) {

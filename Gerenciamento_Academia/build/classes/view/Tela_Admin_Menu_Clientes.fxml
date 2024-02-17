@@ -19,7 +19,7 @@
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="1117.0" style="-fx-background-color: #f1fff6f2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Clientes_Controller">
+<AnchorPane id="AnchorPane" prefHeight="629.0" prefWidth="1117.0" style="-fx-background-color: #f1fff6f2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Admin_Menu_Clientes_Controller">
     <stylesheets>
         <URL value="@/css/tela_admin_menu_clientes.css" />
     </stylesheets>
@@ -59,12 +59,12 @@
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtPagamento" layoutX="22.0" layoutY="249.0" prefHeight="30.0" prefWidth="223.0" promptText="Pendente" styleClass="textfields_esquerda" stylesheets="@../css/menu_1.css">
+                  <TextField fx:id="txtPagamento" layoutX="22.0" layoutY="249.0" prefHeight="30.0" prefWidth="223.0" promptText="Activo/Inactivo" styleClass="textfields_esquerda" stylesheets="@../css/menu_1.css">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="txtCodigo" layoutX="25.0" layoutY="131.0" prefHeight="30.0" prefWidth="90.0" promptText="20230001" styleClass="textfields_esquerda" stylesheets="@../css/menu_1_1.css">
+                  <TextField fx:id="txtCodigo" layoutX="25.0" layoutY="131.0" prefHeight="31.0" prefWidth="123.0" promptText="20230001" styleClass="textfields_esquerda" stylesheets="@../css/menu_1_1.css">
                      <font>
                         <Font name="System Italic" size="14.0" />
                      </font>
@@ -124,7 +124,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="26.0" layoutY="231.0" text="Status do pagamento" textFill="#847e7e">
+                  <Label layoutX="26.0" layoutY="231.0" text="Status do Plano" textFill="#847e7e">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

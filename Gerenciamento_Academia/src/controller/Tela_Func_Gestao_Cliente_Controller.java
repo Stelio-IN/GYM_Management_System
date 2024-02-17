@@ -260,8 +260,8 @@ public class Tela_Func_Gestao_Cliente_Controller implements Initializable {
                 Image imagem = new Image(new ByteArrayInputStream(imagemBytes));
 
                 // Definir largura e altura desejadas
-                imageCamera.setFitWidth(120); // Largura desejada
-                imageCamera.setFitHeight(143); // Altura desejada
+                imageCamera.setFitWidth(90); // Largura desejada
+                imageCamera.setFitHeight(100); // Altura desejada
                 // Defina a imagem no ImageView
                 imageCamera.setImage(imagem);
             }
