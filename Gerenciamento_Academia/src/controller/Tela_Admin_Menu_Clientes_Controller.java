@@ -22,8 +22,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.Avaliacoes_Fisicas;
-import model.Cliente;
+import con.sin.model.Avaliacoes_Fisicas;
+import con.sin.model.Cliente;
 import model.Pessoa;
 
 /**

@@ -21,7 +21,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import model.Administrador;
+import con.sin.model.Administrador;
 import model.Pessoa;
 
 /**

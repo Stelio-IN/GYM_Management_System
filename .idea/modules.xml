@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Copias_De_Classes/Copias_De_Classes.iml" filepath="$PROJECT_DIR$/Copias_De_Classes/Copias_De_Classes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/GYM_Management_System.iml" filepath="$PROJECT_DIR$/.idea/GYM_Management_System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gerenciamento_Academia/Gerenciamento_Academia.iml" filepath="$PROJECT_DIR$/Gerenciamento_Academia/Gerenciamento_Academia.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Gerenciamento_Academia/build/build.iml" filepath="$PROJECT_DIR$/Gerenciamento_Academia/build/build.iml" />
+    </modules>
+  </component>
+</project>

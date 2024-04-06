@@ -32,8 +32,8 @@ import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javax.swing.JOptionPane;
-import model.Administrador;
-import model.Equipamento;
+import con.sin.model.Administrador;
+import con.sin.model.Equipamento;
 
 /**
  * FXML Controller class

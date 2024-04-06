@@ -4,6 +4,9 @@
  */
 package model;
 
+import con.sin.model.Endereco;
+import con.sin.model.Avaliacoes_Fisicas;
+import con.sin.model.Cliente;
 import java.io.ByteArrayInputStream;
 import java.io.Serializable;
 import java.util.List;

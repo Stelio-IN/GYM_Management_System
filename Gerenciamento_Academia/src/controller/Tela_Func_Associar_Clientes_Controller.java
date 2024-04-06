@@ -29,7 +29,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import javax.swing.JOptionPane;
-import model.Cliente;
+import con.sin.model.Cliente;
 
 /**
  * FXML Controller class

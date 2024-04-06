@@ -4,6 +4,7 @@
  */
 package model;
 
+import con.sin.model.Endereco;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;

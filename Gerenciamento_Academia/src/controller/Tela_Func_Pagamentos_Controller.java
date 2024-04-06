@@ -24,7 +24,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
-import model.Cliente;
+import con.sin.model.Cliente;
 import model.Pagamento_Mensalidade;
 import model.Plano_de_Associacao;
 

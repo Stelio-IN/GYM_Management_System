@@ -4,6 +4,7 @@
  */
 package model;
 
+import con.sin.model.Cliente;
 import java.util.Calendar;
 import java.util.Date;
 import javax.persistence.Entity;

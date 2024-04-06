@@ -4,7 +4,7 @@
  */
 package controller;
 
-import model.Administrador;
+import con.sin.model.Administrador;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,7 +18,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.swing.JOptionPane;
-import model.Ficha_Inscricao;
+import con.sin.model.Ficha_Inscricao;
 import model.Pessoa;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

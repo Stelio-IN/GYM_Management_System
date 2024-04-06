@@ -30,7 +30,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
-import model.Cliente;
+import con.sin.model.Cliente;
 
 public class Tela_Func_Gestao_Cliente_Controller implements Initializable {
 

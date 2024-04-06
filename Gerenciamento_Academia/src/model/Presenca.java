@@ -4,6 +4,7 @@
  */
 package model;
 
+import con.sin.model.Cliente;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

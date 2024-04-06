@@ -44,9 +44,9 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-import model.Cliente;
-import model.Endereco;
-import model.Ficha_Inscricao;
+import con.sin.model.Cliente;
+import con.sin.model.Endereco;
+import con.sin.model.Ficha_Inscricao;
 import model.Pessoa;
 
 /**
