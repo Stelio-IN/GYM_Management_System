@@ -25,7 +25,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javax.swing.JOptionPane;
 import model.Cliente;
+import model.Funcionario;
 import model.Pagamento_Mensalidade;
+import model.Pessoa;
 import model.Plano_de_Associacao;
 
 /**
@@ -39,16 +41,20 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
     private TableView<Pagamento_Mensalidade> tabela_Pagemento;
 
     @FXML
-    private TableColumn<Cliente, String> coluna_Cliente;
+    private TableColumn<Pagamento_Mensalidade, String> coluna_Cliente;
 
     @FXML
     private TableColumn<Pagamento_Mensalidade, Long> coluna_ID;
 
     @FXML
+    private TableColumn<Plano_de_Associacao, String> coluna_Pacote;
+
+    @FXML
     private TableColumn<Pagamento_Mensalidade, Double> coluna_Valor;
 
-    // @FXML
-    // private TableColumn<Pagamento_Mensalidade, String> coluna_Funcionario;
+    @FXML
+    private TableColumn<Pagamento_Mensalidade, String> coluna_Funcionario;
+
     @FXML
     private ImageView emola;
 
@@ -109,12 +115,7 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
     @FXML
     private Button btnPagamento;
     @FXML
-    private Button btnCancelarPagamento;
-    @FXML
     private TextField txtValor;
-
-    @FXML
-    private TextField txtNomePlano;
 
     public void EscritaSimultanea() {
         // NOME
@@ -145,13 +146,10 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         txtNumeroCartao.setVisible(false);
         txtTitular.setVisible(false);
         txtCvv.setVisible(false);
-        CartaoDeCredito.setVisible(false);
+        CartaoDeCredito.setVisible(true);
         mkesh.setVisible(false);
         emola.setVisible(false);
-        mpesa.setVisible(true);
-        
-        btnPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);");
-        btnCancelarPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);"); 
+        mpesa.setVisible(false);
 
     }
 
@@ -173,7 +171,6 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         txtCvv.setVisible(true);
 
         btnPagamento.setStyle(" -fx-background-color: linear-gradient(to right,  #0ac1758f, #055c36bb);");
-        btnCancelarPagamento.setStyle(" -fx-background-color: linear-gradient(to right,  #0ac1758f, #055c36bb);");
     }
 
     @FXML
@@ -194,7 +191,6 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         txtCvv.setVisible(false);
 
         btnPagamento.setStyle(" -fx-background-color: linear-gradient(to right,  #fa7f45, #ae410e);");
-        btnCancelarPagamento.setStyle(" -fx-background-color: linear-gradient(to right,  #fa7f45, #ae410e);");
     }
 
     @FXML
@@ -215,7 +211,6 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         txtCvv.setVisible(false);
 
         btnPagamento.setStyle(" -fx-background-color: linear-gradient(to right,  #ffe95c, #8b7903e0);");
-        btnCancelarPagamento.setStyle(" -fx-background-color: linear-gradient(to right,  #ffe95c, #8b7903e0);");
     }
 
     @FXML
@@ -235,7 +230,6 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         txtTitular.setVisible(false);
         txtCvv.setVisible(false);
         btnPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);");
-        btnCancelarPagamento.setStyle("-fx-background-color: linear-gradient(to right,  #ff5c61, #8f060b);");
     }
 
 //    private void retornarPagamentos(){
@@ -247,21 +241,23 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
     void listar() {
         GenericDAO dao = new GenericDAO();
 
-        Class<Pagamento_Mensalidade> pagamento_Classe = Pagamento_Mensalidade.class;
-        List<Pagamento_Mensalidade> lista = (List<Pagamento_Mensalidade>) dao.listar(pagamento_Classe);
+        
+    Class<Pagamento_Mensalidade> pagamento_Classe = Pagamento_Mensalidade.class;
+    List<Pagamento_Mensalidade> lista = (List<Pagamento_Mensalidade>) dao.listar(pagamento_Classe);
 
-        // Filter the list to include only payments with status == false
-        List<Pagamento_Mensalidade> filteredList = lista.stream()
-                .filter(p -> !p.isStatus()) // Assuming isStatus() returns the boolean status
-                .collect(Collectors.toList());
+    // Filter the list to include only payments with status == false
+    List<Pagamento_Mensalidade> filteredList = lista.stream()
+            .filter(p -> !p.isStatus())  // Assuming isStatus() returns the boolean status
+            .collect(Collectors.toList());
 
-        coluna_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
-        coluna_Cliente.setCellValueFactory(new PropertyValueFactory<>("planoCliente_id"));
-        coluna_Valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
-        //  coluna_Funcionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
+    coluna_ID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    coluna_Cliente.setCellValueFactory(new PropertyValueFactory<>("cliente"));
+    coluna_Pacote.setCellValueFactory(new PropertyValueFactory<>("plano_de_Associacao"));
+    coluna_Valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+    coluna_Funcionario.setCellValueFactory(new PropertyValueFactory<>("funcionario"));
 
-        observableListe = FXCollections.observableArrayList(filteredList);
-        tabela_Pagemento.setItems(observableListe);
+    observableListe = FXCollections.observableArrayList(filteredList);
+    tabela_Pagemento.setItems(observableListe);
     }
 
     @Override
@@ -272,83 +268,51 @@ public class Tela_Func_Pagamentos_Controller implements Initializable {
         tabela_Pagemento.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> pegarLinhaSelecionada(newValue)
         );
+
     }
 
-    private Cliente cliente = new Cliente();
-    GenericDAO dao = new GenericDAO();
-    //   private Funcionario funcionario;
+    private Cliente cliente;
+    private Funcionario funcionario;
     private Pagamento_Mensalidade pagamento;
-
-    @FXML
-    void efetuarPagamento(ActionEvent event) {
-        if (pagamento != null) {
-            pagamento.setStatus(true);
-            pagamento.setSituacao("Pago");
-            if (pagamento.getPlanoCliente().getPlano().getNome().equalsIgnoreCase("plano casal")) {
-                // Se for "Plano Casal", atualize o status de ambos os clientes associados
-                Cliente cliente = pagamento.getPlanoCliente().getCliente();
-                Cliente clienteAssociado = pagamento.getPlanoCliente().getCliente().getClienteAssociado();
-
-                cliente.getPlanoCliente().setStatus(true);
-                clienteAssociado.getPlanoCliente().setStatus(true);
-
-                dao.Atualizar(Cliente.class, cliente.getId(), cliente);
-                dao.Atualizar(Cliente.class, clienteAssociado.getId(), clienteAssociado);
-            } else {
-                // Se não for "Plano Casal", atualize apenas o cliente principal
-                Cliente cliente = pagamento.getPlanoCliente().getCliente();
-                cliente.getPlanoCliente().setStatus(true);
-                dao.Atualizar(Cliente.class, cliente.getId(), cliente);
-            }
-
-            // Atualize o status do pagamento e exiba uma mensagem de sucesso
-            dao.Atualizar(Pagamento_Mensalidade.class, pagamento.getId(), pagamento);
-            JOptionPane.showMessageDialog(null, "Pago");
-              resetScreen();
-        } else {
-            JOptionPane.showMessageDialog(null, "Fail");
-        }
-    }
-
-    @FXML
-    void cancelarPagamento(ActionEvent event) {
-        if (pagamento != null) {
-            pagamento.setStatus(true);
-            pagamento.setSituacao("Cancelado");
-            dao.Atualizar(Pagamento_Mensalidade.class, pagamento.getId(), pagamento);
-            JOptionPane.showMessageDialog(null,"Pagamento cancelado");
-              resetScreen();
-        }
-       
-
-    }
 
     public void pegarLinhaSelecionada(Pagamento_Mensalidade factura) {
         if (factura != null) {
             pagamento = factura;
-            cliente = factura.getPlanoCliente().getCliente();
+            cliente = factura.getCliente();
             txtNome.setText(cliente.getNome());
             txtEmail.setText(cliente.getEmail());
             txtContacto.setText(cliente.getTelefone());
             txtValor.setText(factura.getValor().toString());
-            txtNomePlano.setText(factura.getPlanoCliente().getPlano().getNome());
             //JOptionPane.showMessageDialog(null,"Stelio");       
         }
     }
 
-    public void resetScreen() {
-    // Limpa os campos de texto
-    txtNome.clear();
-    txtEmail.clear();
-    txtContacto.clear();
-    txtValor.clear();
-    txtNomePlano.clear();
+    GenericDAO dao = new GenericDAO();
+    
+    @FXML
+    void efetuarPagamento(ActionEvent event) {
+        if (pagamento != null) {
 
-    // Limpa a seleção na tabela
-    tabela_Pagemento.getSelectionModel().clearSelection();
+            pagamento.setStatus(true);
 
-    // Configura a tela para o estado inicial
-    EscritaSimultanea();
-    listar();
-}
+            Cliente cliente = pagamento.getCliente();
+            
+            cliente.getPlano_de_associacao().setStatus(true);
+            dao.Atualizar(Cliente.class, cliente.getId(), cliente);
+            dao.Atualizar(Pagamento_Mensalidade.class, pagamento.getId(), pagamento);
+            
+
+            JOptionPane.showMessageDialog(null, "Pago");
+        } else {
+            JOptionPane.showMessageDialog(null, "Fail");
+        }
+    }
+// private Pessoa pessoa; 
+//    public void setPessoa(Pessoa pessoa) {
+//        this.pessoa = pessoa;
+//        funcionario =(Funcionario) pessoa;
+//       // txtNomeFuncionario.setText(pessoa.getNome());
+//        // ... Configure outros campos conforme necessário
+//    }
+
 }

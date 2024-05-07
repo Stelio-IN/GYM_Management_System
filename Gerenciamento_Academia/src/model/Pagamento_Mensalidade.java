@@ -21,34 +21,23 @@ public class Pagamento_Mensalidade implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
+    private Cliente cliente;
     
     @ManyToOne
-    private PlanoCliente planoCliente;
+    private Plano_de_Associacao plano_de_Associacao;
     private String data_Pagamento;
     private Double valor;
     private boolean status;
-    
-    //Pendente, pago , cancelado 
-    private String situacao;
 
-    public String getSituacao() {
-        return situacao;
+    public Plano_de_Associacao getPlano_de_Associacao() {
+        return plano_de_Associacao;
     }
 
-    public void setSituacao(String situacao) {
-        this.situacao = situacao;
-    }
-    
-    
-    public PlanoCliente getPlanoCliente() {
-        return planoCliente;
+    public void setPlano_de_Associacao(Plano_de_Associacao plano_de_Associacao) {
+        this.plano_de_Associacao = plano_de_Associacao;
     }
 
-    public void setPlanoCliente(PlanoCliente planoCliente) {
-        this.planoCliente = planoCliente;
-    }
-
-   
     public boolean isStatus() {
         return status;
     }
@@ -64,6 +53,14 @@ public class Pagamento_Mensalidade implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     public String getData_Pagamento() {
