@@ -9,7 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -17,29 +18,61 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Avaliacoes_Fisicas implements Serializable {
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @OneToOne
+    @ManyToOne
     private Cliente cliente;
+    
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+    @ManyToOne
+    private Instrutor instrutor;
+    private String data;
+
     private Double peso;
     private Double altura;
     private Double circunferencia_cintura;
-    private Double circunferência_Braco;
-    private Double circunferência_Coxa;
-    private Double circunferência_Panturrilha;
-    private Double circunferência_Quadril;
-    private Double circunferência_Peito;
-    private Double indice_Massa_Corporal; 
-    private Double nível_de_Condicionamento_Fisico;
+    private Double circunferência_braco;
+    private Double circunferência_coxa;
+    private Double circunferência_panturrilha;
+    private Double circunferência_quadril;
+    private Double circunferência_peito;
+    private Double indice_Massa_corporal;
+    private Double nível_de_condicionamento_fisico;
     private Double forca_Muscular;
-    private Double teste_de_Resistencia;
-    private Double percentual_Gordura_Corporal;
-    @OneToOne
-    private Funcionario funcionario;
-    @OneToOne
-    private Instrutor instrutor;
-    private String data;
+    private Double realizacao_Metas_pessoas;
+    private Double satisfacao_do_Cliente;
+    private Double capacidade_cardiovascular;
+    private String discricao_comentarios;
+
+    private Double Nota_da_avaliacao;
+
+    public double calcularIMC() {
+        if (peso > 0 && altura > 0) {
+            return indice_Massa_corporal = peso / (altura * altura);
+        }
+        return -1;
+    }
+
+    public void classificarIMC(double imc) {
+        if (imc < 18.5) {
+            System.out.println("Abaixo do peso.");
+        } else if (imc < 24.9) {
+            System.out.println("Peso saudável.");
+        } else if (imc < 29.9) {
+            System.out.println("Sobrepeso.");
+        } else if (imc < 34.9) {
+            System.out.println("Obesidade Grau I.");
+        } else if (imc < 39.9) {
+            System.out.println("Obesidade Grau II.");
+        } else {
+            System.out.println("Obesidade Grau III.");
+        }
+    }
 
     public int getId() {
         return id;
@@ -49,12 +82,44 @@ public class Avaliacoes_Fisicas implements Serializable {
         this.id = id;
     }
 
+    public Double getNota_da_avaliacao() {
+        return Nota_da_avaliacao;
+    }
+
+    public void setNota_da_avaliacao(Double Nota_da_avaliacao) {
+        this.Nota_da_avaliacao = Nota_da_avaliacao;
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
+
+    public Instrutor getInstrutor() {
+        return instrutor;
+    }
+
+    public void setInstrutor(Instrutor instrutor) {
+        this.instrutor = instrutor;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 
     public Double getPeso() {
@@ -81,60 +146,60 @@ public class Avaliacoes_Fisicas implements Serializable {
         this.circunferencia_cintura = circunferencia_cintura;
     }
 
-    public Double getCircunferência_Braco() {
-        return circunferência_Braco;
+    public Double getCircunferência_braco() {
+        return circunferência_braco;
     }
 
-    public void setCircunferência_Braco(Double circunferência_Braco) {
-        this.circunferência_Braco = circunferência_Braco;
+    public void setCircunferência_braco(Double circunferência_braco) {
+        this.circunferência_braco = circunferência_braco;
     }
 
-    public Double getCircunferência_Coxa() {
-        return circunferência_Coxa;
+    public Double getCircunferência_coxa() {
+        return circunferência_coxa;
     }
 
-    public void setCircunferência_Coxa(Double circunferência_Coxa) {
-        this.circunferência_Coxa = circunferência_Coxa;
+    public void setCircunferência_coxa(Double circunferência_coxa) {
+        this.circunferência_coxa = circunferência_coxa;
     }
 
-    public Double getCircunferência_Panturrilha() {
-        return circunferência_Panturrilha;
+    public Double getCircunferência_panturrilha() {
+        return circunferência_panturrilha;
     }
 
-    public void setCircunferência_Panturrilha(Double circunferência_Panturrilha) {
-        this.circunferência_Panturrilha = circunferência_Panturrilha;
+    public void setCircunferência_panturrilha(Double circunferência_panturrilha) {
+        this.circunferência_panturrilha = circunferência_panturrilha;
     }
 
-    public Double getCircunferência_Quadril() {
-        return circunferência_Quadril;
+    public Double getCircunferência_quadril() {
+        return circunferência_quadril;
     }
 
-    public void setCircunferência_Quadril(Double circunferência_Quadril) {
-        this.circunferência_Quadril = circunferência_Quadril;
+    public void setCircunferência_quadril(Double circunferência_quadril) {
+        this.circunferência_quadril = circunferência_quadril;
     }
 
-    public Double getCircunferência_Peito() {
-        return circunferência_Peito;
+    public Double getCircunferência_peito() {
+        return circunferência_peito;
     }
 
-    public void setCircunferência_Peito(Double circunferência_Peito) {
-        this.circunferência_Peito = circunferência_Peito;
+    public void setCircunferência_peito(Double circunferência_peito) {
+        this.circunferência_peito = circunferência_peito;
     }
 
-    public Double getIndice_Massa_Corporal() {
-        return indice_Massa_Corporal;
+    public Double getIndice_Massa_corporal() {
+        return indice_Massa_corporal;
     }
 
-    public void setIndice_Massa_Corporal(Double indice_Massa_Corporal) {
-        this.indice_Massa_Corporal = indice_Massa_Corporal;
+    public void setIndice_Massa_corporal(Double indice_Massa_corporal) {
+        this.indice_Massa_corporal = indice_Massa_corporal;
     }
 
-    public Double getNível_de_Condicionamento_Fisico() {
-        return nível_de_Condicionamento_Fisico;
+    public Double getNível_de_condicionamento_fisico() {
+        return nível_de_condicionamento_fisico;
     }
 
-    public void setNível_de_Condicionamento_Fisico(Double nível_de_Condicionamento_Fisico) {
-        this.nível_de_Condicionamento_Fisico = nível_de_Condicionamento_Fisico;
+    public void setNível_de_condicionamento_fisico(Double nível_de_condicionamento_fisico) {
+        this.nível_de_condicionamento_fisico = nível_de_condicionamento_fisico;
     }
 
     public Double getForca_Muscular() {
@@ -145,45 +210,36 @@ public class Avaliacoes_Fisicas implements Serializable {
         this.forca_Muscular = forca_Muscular;
     }
 
-    public Double getTeste_de_Resistencia() {
-        return teste_de_Resistencia;
+    public Double getRealizacao_Metas_pessoas() {
+        return realizacao_Metas_pessoas;
     }
 
-    public void setTeste_de_Resistencia(Double teste_de_Resistencia) {
-        this.teste_de_Resistencia = teste_de_Resistencia;
+    public void setRealizacao_Metas_pessoas(Double realizacao_Metas_pessoas) {
+        this.realizacao_Metas_pessoas = realizacao_Metas_pessoas;
     }
 
-    public Double getPercentual_Gordura_Corporal() {
-        return percentual_Gordura_Corporal;
+    public Double getSatisfacao_do_Cliente() {
+        return satisfacao_do_Cliente;
     }
 
-    public void setPercentual_Gordura_Corporal(Double percentual_Gordura_Corporal) {
-        this.percentual_Gordura_Corporal = percentual_Gordura_Corporal;
+    public void setSatisfacao_do_Cliente(Double satisfacao_do_Cliente) {
+        this.satisfacao_do_Cliente = satisfacao_do_Cliente;
     }
 
-    public Funcionario getFuncionario() {
-        return funcionario;
+    public Double getCapacidade_cardiovascular() {
+        return capacidade_cardiovascular;
     }
 
-    public void setFuncionario(Funcionario funcionario) {
-        this.funcionario = funcionario;
+    public void setCapacidade_cardiovascular(Double capacidade_cardiovascular) {
+        this.capacidade_cardiovascular = capacidade_cardiovascular;
     }
 
-    public Instrutor getInstrutor() {
-        return instrutor;
+    public String getDiscricao_comentarios() {
+        return discricao_comentarios;
     }
 
-    public void setInstrutor(Instrutor instrutor) {
-        this.instrutor = instrutor;
+    public void setDiscricao_comentarios(String discricao_comentarios) {
+        this.discricao_comentarios = discricao_comentarios;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public void setData(String data) {
-        this.data = data;
-    }
-    
-    
 }

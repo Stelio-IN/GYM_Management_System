@@ -26,8 +26,13 @@ public class App extends Application {
         
         
        Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Menu_Func.fxml"));
+<<<<<<< HEAD
      //  Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
   //     Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
+=======
+    // Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Login.fxml"));
+     //Parent root = FXMLLoader.load(getClass().getResource("/view/Tela_Admin_Registrar.fxml"));
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
         
         Scene scene = new Scene(root);
         stage.getIcons().add(imagem);
@@ -56,6 +61,7 @@ public class App extends Application {
     
     public static void main(String[] args) {
         launch(args);
+        System.out.println("Banana");
     }
     
 }

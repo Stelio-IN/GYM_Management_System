@@ -5,19 +5,22 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
-
+import javax.persistence.OneToMany;
 
 /**
  *
  * @author steli
  */
 @Entity
-public class Instrutor extends Pessoa implements Serializable{
+public class Instrutor extends Pessoa implements Serializable {
 
     private String especializacao;
     private Double classificacao;
     private Double salario;
+    @OneToMany(mappedBy = "instrutor")
+    private List<Avaliacoes_Fisicas> avaliacoesFisicas;
 
     public String getEspecializacao() {
         return especializacao;
@@ -163,6 +166,4 @@ public class Instrutor extends Pessoa implements Serializable{
         this.isAtivo = isAtivo;
     }
 
-    
-        
 }

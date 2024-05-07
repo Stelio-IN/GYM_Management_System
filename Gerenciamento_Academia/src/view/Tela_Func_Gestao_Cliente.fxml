@@ -4,9 +4,15 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<<<<<<< HEAD
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+=======
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.effect.DropShadow?>
@@ -17,20 +23,33 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_cadastrar_cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Cadastrar_Cliente_Controller">
    <children>
       <AnchorPane layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" stylesheets="@../css/tela_cadastrar_cliente.css">
          <children>
             <TextField fx:id="txtNumeroInsc" layoutX="28.0" layoutY="124.0" prefHeight="30.0" prefWidth="129.0" promptText="FIcha de inscrição" style=": ;" styleClass="textfields_esquerda">
+=======
+<AnchorPane id="AnchorPane" prefHeight="524.0" prefWidth="1117.0" styleClass="mainFxmlClass" stylesheets="@../css/tela_cadastrar_cliente.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_Gestao_Cliente_Controller">
+   <children>
+      <AnchorPane layoutX="75.0" layoutY="38.0" prefHeight="555.0" prefWidth="962.0" style="-fx-background-color: white; -fx-background-radius: 10px;" stylesheets="@../css/tela_cadastrar_cliente.css">
+         <children>
+            <TextField fx:id="txtNome" layoutX="28.0" layoutY="179.0" prefHeight="30.0" prefWidth="382.0" promptText="Nome Completo" styleClass="textfields_esquerda">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
+<<<<<<< HEAD
             <TextField fx:id="txtNome" layoutX="28.0" layoutY="173.0" prefHeight="30.0" prefWidth="382.0" promptText="Nome Completo" styleClass="textfields_esquerda">
+=======
+            <TextField fx:id="txtNumeroDaCasa" layoutX="39.0" layoutY="410.0" prefHeight="30.0" prefWidth="110.0" promptText="Nrª da Casa" styleClass="textfields_esquerda">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
+<<<<<<< HEAD
             <TextField fx:id="txtNumeroDaCasa" layoutX="39.0" layoutY="404.0" prefHeight="30.0" prefWidth="110.0" promptText="Nrª da Casa" styleClass="textfields_esquerda">
                <font>
                   <Font size="14.0" />
@@ -38,33 +57,60 @@
             </TextField>
             <DatePicker fx:id="dataChosser" layoutX="248.0" layoutY="230.0" prefHeight="26.0" prefWidth="158.0" promptText="Data de Nascimento" styleClass="textfields_esquerda" />
             <RadioButton layoutX="38.0" layoutY="351.0" mnemonicParsing="false" selected="true" text="Masculino">
+=======
+            <DatePicker fx:id="dataChosser" layoutX="248.0" layoutY="236.0" prefHeight="26.0" prefWidth="158.0" promptText="Data de Nascimento" styleClass="textfields_esquerda" />
+            <RadioButton layoutX="38.0" layoutY="357.0" mnemonicParsing="false" selected="true" text="Masculino">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <toggleGroup>
                   <ToggleGroup fx:id="genero" />
                </toggleGroup>
             </RadioButton>
+<<<<<<< HEAD
             <RadioButton layoutX="136.0" layoutY="353.0" mnemonicParsing="false" selected="true" text="Feminino" toggleGroup="$genero" />
             <TextField fx:id="txtRua" layoutX="191.0" layoutY="404.0" prefHeight="30.0" prefWidth="226.0" promptText="Rua" styleClass="textfields_esquerda">
+=======
+            <RadioButton layoutX="136.0" layoutY="359.0" mnemonicParsing="false" selected="true" text="Feminino" toggleGroup="$genero" />
+            <TextField fx:id="txtRua" layoutX="191.0" layoutY="410.0" prefHeight="30.0" prefWidth="226.0" promptText="Rua" styleClass="textfields_esquerda">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
+<<<<<<< HEAD
             <RadioButton layoutX="39.0" layoutY="303.0" mnemonicParsing="false" onAction="#desativarCampoConjugue" selected="true" text="Solteiro/a">
+=======
+            <RadioButton layoutX="39.0" layoutY="309.0" mnemonicParsing="false" onAction="#desativarCampoConjugue" selected="true" text="Solteiro/a">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <toggleGroup>
                   <ToggleGroup fx:id="grupoestadocivil" />
                </toggleGroup>
             </RadioButton>
+<<<<<<< HEAD
             <RadioButton layoutX="137.0" layoutY="303.0" mnemonicParsing="false" onAction="#ativarCampoConjugue" selected="true" text="Casado/a" toggleGroup="$grupoestadocivil" />
             <TextField fx:id="txtNomeConjuge" layoutX="232.0" layoutY="286.0" prefHeight="30.0" prefWidth="184.0" promptText="Nome do Conjuge" styleClass="textfields_esquerda">
+=======
+            <RadioButton layoutX="137.0" layoutY="309.0" mnemonicParsing="false" onAction="#ativarCampoConjugue" selected="true" text="Casado/a" toggleGroup="$grupoestadocivil" />
+            <TextField fx:id="txtNomeConjuge" layoutX="232.0" layoutY="292.0" prefHeight="30.0" prefWidth="184.0" promptText="Nome do Conjuge" styleClass="textfields_esquerda">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
+<<<<<<< HEAD
             <ComboBox fx:id="comboBoxNacionalidade" layoutX="32.0" layoutY="230.0" prefHeight="26.0" prefWidth="165.0" promptText="Nacionalidade" styleClass="textfields_esquerda" />
             <ComboBox fx:id="comboBoxCidade" layoutX="41.0" layoutY="465.0" prefHeight="26.0" prefWidth="111.0" promptText="Cidade" styleClass="textfields_esquerda" />
             <ComboBox fx:id="comboBoxBairro" layoutX="191.0" layoutY="465.0" prefHeight="26.0" prefWidth="226.0" promptText="Bairro" styleClass="textfields_esquerda" />
             <AnchorPane layoutX="458.0" prefHeight="555.0" prefWidth="508.0" style="-fx-background-radius: 0px 10px 10px 0px;" styleClass="splitpane">
                <children>
                   <TextField fx:id="txtPeso" layoutX="50.0" layoutY="20.0" prefHeight="30.0" prefWidth="126.0" promptText="Peso" styleClass="textfields_direita">
+=======
+            <ComboBox fx:id="comboBoxNacionalidade" layoutX="32.0" layoutY="236.0" prefHeight="26.0" prefWidth="165.0" promptText="Nacionalidade" styleClass="textfields_esquerda" />
+            <ComboBox fx:id="comboBoxCidade" layoutX="41.0" layoutY="471.0" prefHeight="26.0" prefWidth="111.0" promptText="Cidade" styleClass="textfields_esquerda" />
+            <ComboBox fx:id="comboBoxBairro" layoutX="191.0" layoutY="471.0" prefHeight="26.0" prefWidth="226.0" promptText="Bairro" styleClass="textfields_esquerda" />
+            <AnchorPane layoutX="458.0" prefHeight="555.0" prefWidth="508.0" style="-fx-background-radius: 0px 10px 10px 0px;" styleClass="splitpane">
+               <children>
+                  <TextField fx:id="txtPeso" layoutX="50.0" layoutY="89.0" prefHeight="30.0" prefWidth="126.0" promptText="Peso" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -76,7 +122,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <TextField fx:id="txtAltura" layoutX="242.0" layoutY="19.0" prefHeight="30.0" prefWidth="158.0" promptText="Altura" styleClass="textfields_direita">
+=======
+                  <TextField fx:id="txtAltura" layoutX="242.0" layoutY="88.0" prefHeight="30.0" prefWidth="158.0" promptText="Altura" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -88,7 +138,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <TextField fx:id="txtEmail" layoutX="43.0" layoutY="255.0" prefHeight="30.0" prefWidth="186.0" promptText="Email" styleClass="textfields_direita">
+=======
+                  <TextField fx:id="txtEmail" layoutX="43.0" layoutY="327.0" prefHeight="30.0" prefWidth="186.0" promptText="Email" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -100,7 +154,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <TextField fx:id="txtContacto" layoutX="43.0" layoutY="357.0" prefHeight="30.0" prefWidth="186.0" promptText="Contacto" styleClass="textfields_direita">
+=======
+                  <TextField fx:id="txtContacto" layoutX="43.0" layoutY="452.0" prefHeight="30.0" prefWidth="186.0" promptText="Contacto" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -112,7 +170,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <TextField fx:id="txtPassword" layoutX="260.0" layoutY="255.0" promptText="Password" styleClass="textfields_direita">
+=======
+                  <TextField fx:id="txtPassword" layoutX="260.0" layoutY="327.0" promptText="Password" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -124,7 +186,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <TextField fx:id="txtDataInscricao" layoutX="43.0" layoutY="207.0" prefHeight="30.0" prefWidth="186.0" promptText="Data de inscrição" styleClass="textfields_direita">
+=======
+                  <TextField fx:id="txtDataInscricao" layoutX="43.0" layoutY="276.0" prefHeight="30.0" prefWidth="186.0" promptText="Data de inscrição" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -136,7 +202,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <TextField fx:id="txtCodigoMembro" layoutX="43.0" layoutY="306.0" prefHeight="30.0" prefWidth="186.0" promptText="Código membro" styleClass="textfields_direita">
+=======
+                  <TextField fx:id="txtCodigoMembro" layoutX="43.0" layoutY="389.0" prefHeight="30.0" prefWidth="186.0" promptText="Código membro" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -148,7 +218,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <RadioButton layoutX="53.0" layoutY="98.0" mnemonicParsing="false" onAction="#desabilitarComboDesportos" selected="true" text="Sim" textFill="WHITE">
+=======
+                  <RadioButton layoutX="53.0" layoutY="167.0" mnemonicParsing="false" onAction="#desabilitarComboDesportos" selected="true" text="Sim" textFill="WHITE">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <toggleGroup>
                         <ToggleGroup fx:id="grupoDesport" />
                      </toggleGroup>
@@ -156,12 +230,20 @@
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
+<<<<<<< HEAD
                   <RadioButton layoutX="128.0" layoutY="98.0" mnemonicParsing="false" onAction="#ativarComboDesportos" text="Não" textFill="WHITE" toggleGroup="$grupoDesport">
+=======
+                  <RadioButton layoutX="128.0" layoutY="167.0" mnemonicParsing="false" onAction="#ativarComboDesportos" text="Não" textFill="WHITE" toggleGroup="$grupoDesport">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
+<<<<<<< HEAD
                   <ComboBox fx:id="comboBoxDesporto" layoutX="261.0" layoutY="94.0" prefHeight="26.0" prefWidth="174.0" promptText="Desportos" styleClass="textfields_direita">
+=======
+                  <ComboBox fx:id="comboBoxDesporto" layoutX="261.0" layoutY="163.0" prefHeight="26.0" prefWidth="166.0" promptText="Desportos" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <effect>
                         <InnerShadow>
                            <color>
@@ -170,7 +252,11 @@
                         </InnerShadow>
                      </effect>
                   </ComboBox>
+<<<<<<< HEAD
                   <RadioButton layoutX="130.0" layoutY="165.0" mnemonicParsing="false" onAction="#ativarComboDoencas" selected="true" text="Não" textFill="WHITE">
+=======
+                  <RadioButton layoutX="130.0" layoutY="234.0" mnemonicParsing="false" onAction="#ativarComboDoencas" selected="true" text="Não" textFill="WHITE">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <toggleGroup>
                         <ToggleGroup fx:id="grupoDoenca" />
                      </toggleGroup>
@@ -178,12 +264,20 @@
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
+<<<<<<< HEAD
                   <RadioButton layoutX="52.0" layoutY="165.0" mnemonicParsing="false" onAction="#desativarComboDoencas" selected="true" text="Sim" textFill="WHITE" toggleGroup="$grupoDoenca">
+=======
+                  <RadioButton layoutX="52.0" layoutY="234.0" mnemonicParsing="false" onAction="#desativarComboDoencas" selected="true" text="Sim" textFill="WHITE" toggleGroup="$grupoDoenca">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="13.0" />
                      </font>
                   </RadioButton>
+<<<<<<< HEAD
                   <ComboBox fx:id="comboBoxDoencas" layoutX="261.0" layoutY="156.0" prefHeight="26.0" prefWidth="174.0" promptText="Doença" styleClass="textfields_direita">
+=======
+                  <ComboBox fx:id="comboBoxDoencas" layoutX="261.0" layoutY="225.0" prefHeight="26.0" prefWidth="166.0" promptText="Doença" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <effect>
                         <InnerShadow>
                            <color>
@@ -192,17 +286,41 @@
                         </InnerShadow>
                      </effect>
                   </ComboBox>
+<<<<<<< HEAD
                   <Label layoutX="56.0" layoutY="72.0" text="Pratica algum desporto?" textFill="WHITE">
+=======
+                  <Label layoutX="56.0" layoutY="141.0" text="Pratica algum desporto?" textFill="WHITE">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
+<<<<<<< HEAD
                   <Label layoutX="53.0" layoutY="139.0" text="Possui alguma doença?" textFill="WHITE">
+=======
+                  <Label layoutX="53.0" layoutY="208.0" text="Possui alguma doença?" textFill="WHITE">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
+<<<<<<< HEAD
                   <TextField fx:id="txtContactoEmergencia" layoutX="259.0" layoutY="306.0" prefHeight="30.0" prefWidth="174.0" promptText="Contacto de Emergẽcia" styleClass="textfields_direita">
+=======
+                  <Button layoutX="362.0" layoutY="491.0" mnemonicParsing="false" onAction="#Atualizar" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Editar" textFill="#169c18">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.27368420362472534" green="0.27368420362472534" blue="0.27368420362472534" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+                  <TextField fx:id="txtContactoEmergencia" layoutX="259.0" layoutY="389.0" prefHeight="30.0" prefWidth="174.0" promptText="Contacto de Emergẽcia" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -214,7 +332,11 @@
                         </InnerShadow>
                      </effect>
                   </TextField>
+<<<<<<< HEAD
                   <ComboBox layoutX="259.0" layoutY="209.0" prefHeight="26.0" prefWidth="174.0" promptText="Objectivo" styleClass="textfields_direita">
+=======
+                  <ComboBox layoutX="259.0" layoutY="278.0" prefHeight="26.0" prefWidth="174.0" promptText="Objectivo" styleClass="textfields_direita">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <effect>
                         <InnerShadow>
                            <color>
@@ -223,6 +345,7 @@
                         </InnerShadow>
                      </effect>
                   </ComboBox>
+<<<<<<< HEAD
                   <TableView fx:id="tabela" layoutX="35.0" layoutY="407.0" prefHeight="133.0" prefWidth="430.0">
                      <columns>
                         <TableColumn fx:id="tabela_Modelo" prefWidth="110.39999103546143" text="Código" />
@@ -243,10 +366,28 @@
                </children>
             </AnchorPane>
             <TextField fx:id="txtIdentificacao" layoutX="232.0" layoutY="348.0" prefHeight="26.0" prefWidth="184.0" promptText="Bilhete de identificação" styleClass="textfields_esquerda">
+=======
+                  <Button layoutX="254.0" layoutY="491.0" mnemonicParsing="false" onAction="#Remover" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Remover" textFill="#169c18">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                     <effect>
+                        <DropShadow>
+                           <color>
+                              <Color red="0.27368420362472534" green="0.27368420362472534" blue="0.27368420362472534" />
+                           </color>
+                        </DropShadow>
+                     </effect>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <TextField fx:id="txtIdentificacao" layoutX="232.0" layoutY="354.0" prefHeight="26.0" prefWidth="184.0" promptText="Bilhete de identificação" styleClass="textfields_esquerda">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <font>
                   <Font size="14.0" />
                </font>
             </TextField>
+<<<<<<< HEAD
             <Button layoutX="255.0" layoutY="141.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #05a764f0; -fx-background-radius: 20px;" text=" Carregar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="13.0" />
@@ -267,17 +408,32 @@
             <AnchorPane layoutX="248.0" prefHeight="139.0" prefWidth="158.0" style="-fx-background-color: #fffffc;">
                <children>
                   <ImageView fx:id="imageCamera" fitHeight="104.0" fitWidth="110.0" layoutX="25.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+=======
+            <Button layoutX="255.0" layoutY="142.0" mnemonicParsing="false" onAction="#carregarimg" prefHeight="30.0" prefWidth="129.0" style="-fx-background-color: #05a764f0; -fx-background-radius: 20px;" text=" Carregar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
+            <AnchorPane layoutX="248.0" prefHeight="139.0" prefWidth="158.0" style="-fx-background-color: #fffffc;">
+               <children>
+                  <ImageView fx:id="imageCamera" fitHeight="122.0" fitWidth="111.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                      <image>
                         <Image url="@../img/adicionar-usuario.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
+<<<<<<< HEAD
             <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="267.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+=======
+            <ImageView fitHeight="20.0" fitWidth="25.0" layoutX="267.0" layoutY="147.0" pickOnBounds="true" preserveRatio="true">
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
                <image>
                   <Image url="@../img/upload-big-arrow.png" />
                </image>
             </ImageView>
+<<<<<<< HEAD
             <Button layoutX="353.0" layoutY="521.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="30.0" prefWidth="91.0" style="-fx-background-color: white; -fx-border-radius: 70px; -fx-border-color: white; -fx-background-radius: 30px;" text="Cadastrar" textFill="#169c18">
                <font>
                   <Font size="13.0" />
@@ -302,6 +458,23 @@
                   </DropShadow>
                </effect>
             </Button>
+=======
+            <ScrollPane fx:id="scrollPane" layoutX="45.0" layoutY="36.0" prefHeight="150.0" prefWidth="158.0" style="-fx-background-color: transparent;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="143.0" prefWidth="151.0" style="-fx-background-color: transparent;">
+                     <children>
+                        <ListView fx:id="listView" layoutX="-1.0" layoutY="-2.0" prefHeight="139.0" prefWidth="145.0" style="-fx-background-color: transparent;" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </ScrollPane>
+            <TextField fx:id="txtPesquisa" layoutX="45.0" layoutY="14.0" onKeyReleased="#listarPesquisa" prefHeight="25.0" prefWidth="158.0" promptText="Pesquisar Cliente" style="-fx-border-color: black; -fx-background-color: transparent; -fx-border-radius: 25;" />
+            <ImageView fitHeight="17.0" fitWidth="20.0" layoutX="181.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/lupa.png" />
+               </image>
+            </ImageView>
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
          </children>
          <effect>
             <DropShadow>
@@ -311,5 +484,13 @@
             </DropShadow>
          </effect>
       </AnchorPane>
+<<<<<<< HEAD
+=======
+      <Label layoutX="396.0" layoutY="8.0" prefHeight="30.0" prefWidth="166.0" text="Gestao Cliente" textFill="#0a7902" underline="true">
+         <font>
+            <Font name="System Bold Italic" size="19.0" />
+         </font>
+      </Label>
+>>>>>>> f57dd2763a9a89c48eef3f37cfe8ed5419e1dfb3
    </children>
 </AnchorPane>

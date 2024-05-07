@@ -5,7 +5,10 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -14,10 +17,16 @@ import javax.persistence.Entity;
  */
 @Entity
 public class Funcionario extends Pessoa implements Serializable {
+
+
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL)
+    private List<Avaliacoes_Fisicas> avaliacoesFisicas;
     
+    
+    
+        
     private Double salario;
     private String cargo;
-
     public Double getSalario() {
         return salario;
     }

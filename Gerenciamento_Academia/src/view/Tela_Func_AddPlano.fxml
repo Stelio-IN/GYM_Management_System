@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1109.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Tela_Func_AddPlano_Controller">
+    <stylesheets>
+        <URL value="@/css/tela_func_addplano.css" />
+    </stylesheets>
+   <children>
+      <AnchorPane layoutX="91.0" layoutY="34.0" prefHeight="572.0" prefWidth="356.0" style="-fx-background-color: green;">
+         <children>
+            <TextField fx:id="txtCodigoClientePrincipal" layoutX="24.0" layoutY="33.0" prefHeight="26.0" prefWidth="100.0" promptText="Codigo" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtNomePlano" layoutX="21.0" layoutY="454.0" promptText="Plano Casal" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtNomeClientePrincipal" layoutX="24.0" layoutY="90.0" promptText="Tobias" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <ImageView fx:id="imageView" fitHeight="99.0" fitWidth="128.0" layoutX="209.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fotocrianca.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="18.0" layoutY="435.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plano">
+               <font>
+                  <Font name="Bodoni MT" size="17.0" />
+               </font></Text>
+            <Text layoutX="29.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
+            <TextField fx:id="txtNomeClienteAssociado" layoutX="21.0" layoutY="294.0" promptText="conjuge" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="27.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genero" />
+            <TextField fx:id="txtGeneroClientePrincipal" layoutX="24.0" layoutY="136.0" promptText="Outro" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtObjectivoClientePrincipal" layoutX="24.0" layoutY="184.0" promptText="Fazer Perna" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="26.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Objectivo" />
+            <TextField fx:id="txtCodigoClienteAssociado" layoutX="24.0" layoutY="242.0" prefHeight="26.0" prefWidth="100.0" promptText="Codico Associado" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="24.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome" />
+            <Text layoutX="26.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Genero" />
+            <Text layoutX="21.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Objectivo" />
+            <TextField fx:id="txtObjectivoClienteAssociado" layoutX="21.0" layoutY="384.0" promptText="Perder Peso" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <TextField fx:id="txtGeneroClienteAssociado" layoutX="21.0" layoutY="340.0" promptText="Outro" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="23.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome do plano" />
+            <Text layoutX="24.0" layoutY="499.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Preço" />
+            <Text layoutX="19.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente">
+               <font>
+                  <Font name="Bodoni MT" size="17.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txtPrecoPlano" layoutX="21.0" layoutY="503.0" promptText="Preço" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <ImageView fx:id="imageViewAssociado" fitHeight="99.0" fitWidth="128.0" layoutX="209.0" layoutY="348.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/fotocrianca.png" />
+               </image>
+            </ImageView>
+            <Text layoutX="14.0" layoutY="237.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cliente Associado">
+               <font>
+                  <Font name="Bodoni MT" size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="731.0" layoutY="34.0" prefHeight="572.0" prefWidth="253.0" style="-fx-background-color: aqua;">
+         <children>
+            <Button layoutX="71.0" layoutY="521.0" mnemonicParsing="false" onAction="#guardarPlano" prefHeight="25.0" prefWidth="111.0" text="Salvar" />
+            <Button layoutX="71.0" layoutY="481.0" mnemonicParsing="false" onAction="#RemoverPlano" text="Desassociar Plano" />
+            <Button layoutX="71.0" layoutY="438.0" mnemonicParsing="false" onAction="#LimparCampos" prefHeight="25.0" prefWidth="111.0" text="Limpar Campos" />
+            <Text layoutX="25.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Meses a Pagar">
+               <font>
+                  <Font name="Baskerville Old Face" size="15.0" />
+               </font></Text>
+            <TextField fx:id="txtDuracaoPlano" layoutX="25.0" layoutY="304.0" promptText="duracao" style="-fx-background-color: transparent; -fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" />
+            <Text layoutX="25.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data Inicio">
+               <font>
+                  <Font name="Baskerville Old Face" size="15.0" />
+               </font></Text>
+            <DatePicker fx:id="dataPickerInicio" layoutX="22.0" layoutY="359.0" />
+            <TableView fx:id="tabelaPlano" layoutX="48.0" layoutY="37.0" prefHeight="212.0" prefWidth="157.0">
+              <columns>
+                <TableColumn fx:id="colunaNomePlano" prefWidth="155.0" text="Planos" />
+              </columns>
+            </TableView>
+            <Text layoutX="15.0" layoutY="25.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Planos">
+               <font>
+                  <Font name="Bodoni MT" size="17.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
+      <TextField fx:id="txtPesquisa" layoutX="501.0" layoutY="50.0" onKeyReleased="#listarPesquisa" prefHeight="25.0" prefWidth="200.0" promptText="Pesquisa Cliente" style="-fx-border-color: black; -fx-border-radius: 20; -fx-background-color: transparent;" />
+      <ImageView fitHeight="17.0" fitWidth="18.0" layoutX="671.0" layoutY="55.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../img/lupa.png" />
+         </image>
+      </ImageView>
+      <ScrollPane fx:id="scrollPane" layoutX="501.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;">
+               <children>
+                  <ListView fx:id="listView" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: transparent;" />
+               </children>
+            </AnchorPane>
+        </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>
